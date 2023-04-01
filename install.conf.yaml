@@ -1,0 +1,23 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.config/nvim: nvim
+
+- shell:
+    - command: git submodule sync --recursive
+      description: Sync Submodules
+      quiet: true
+    - command: git submodule update --init --recursive
+      description: Update Submodules
+      quiet: true
+    - command: nvim --headless "+Lazy! sync" +qa
+      description: Prepare Neovim
+      quiet: false
+    - command: chmod 0600 ~/.ssh/config
+      description: Set permissions for SSH Config
+      quiet: true
