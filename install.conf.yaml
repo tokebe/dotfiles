@@ -18,6 +18,3 @@
     - command: nvim --headless "+Lazy! sync" +qa
       description: Prepare Neovim
       quiet: false
-    - command: chmod 0600 ~/.ssh/config
-      description: Set permissions for SSH Config
-      quiet: true
