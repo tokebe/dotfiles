@@ -1,0 +1,70 @@
+@media (min-width: 1000px) {
+
+  #navigator-toolbox {
+    display: flex;
+    flex-wrap: wrap;    
+  }
+
+  #nav-bar {
+    order: var(--uc-urlbar-position);
+    width: var(--uc-urlbar-min-width);
+/*     width: min(max-content, var(--uc-urlbar-min-width)) !important; */
+  }
+
+  #nav-bar #urlbar-container {
+    min-width: 0px !important      
+      /*     margin-top */
+  }
+
+  #titlebar {
+    order: 2;
+    width: calc(100vw - var(--uc-urlbar-min-width) - 1px);
+/*     min-width: 50vw !important;
+      max-width: 100vw !important; */
+/*     min-width: 50vw; */
+  }
+
+
+  #PersonalToolbar {
+    order: var(--uc-toolbar-position);
+    width: 100%;
+  }
+
+
+  #navigator-toolbox:focus-within #nav-bar {
+    width: var(--uc-urlbar-max-width);
+    /*     width: 100vw; */
+  }
+
+  #navigator-toolbox:focus-within #titlebar {
+    width: calc(100vw - var(--uc-urlbar-max-width) - 1px);
+    /*     transition: width 0.2s; */
+  }
+
+
+}
+
+
+/* Window buttons fix */
+
+:root[tabsintitlebar] {
+  --uc-window-control-width: 137px;
+  --uc-win-ctrl-padding: 12px;
+}
+
+#TabsToolbar {
+  --toolbarbutton-inner-padding: 8px !important;
+}
+
+
+.titlebar-buttonbox-container {
+  top: 0 !important;
+  right: 0 !important;
+  height: calc(var(--tab-min-height) + var(--toolbarbutton-inner-padding) + var(--toolbarbutton-outer-padding));
+  position: fixed !important;
+  z-index: 101 !important;
+}
+
+#nav-bar {
+  padding-right: calc(var(--uc-window-control-width) + var(--uc-win-ctrl-padding)) !important;
+}
