@@ -1,0 +1,142 @@
+:root {
+
+  --toolbarbutton-border-radius: var(--uc-border-radius) !important;
+  --tab-border-radius: var(--uc-border-radius) !important;
+  --arrowpanel-border-radius: var(--uc-border-radius) !important;
+
+}
+
+/*  Rounded corner in pages  */
+#navigator-toolbox {
+  padding-bottom: 7px;
+}
+
+.browserStack>browser {
+  margin: -7px 0 0 0 !important;
+  border-radius: 7px 7px 0 0
+}
+
+.browserStack:nth-last-child(3n)>browser,
+.browserStack:nth-last-child(4n)>browser {
+  margin: -7px 0 !important;
+  border-radius: 7px !important;
+}
+
+findbar {
+  border-radius: 7px 7px 0 0 !important;
+  margin-top: -7px;
+  z-index: 2;
+  padding-bottom: -7px;
+}
+
+#main-window,
+#toolbar-menubar,
+#TabsToolbar,
+#navigator-toolbox,
+#sidebar-box,
+#nav-bar {
+  box-shadow: none !important;
+}
+
+#main-window,
+#toolbar-menubar,
+#TabsToolbar,
+#PersonalToolbar,
+#navigator-toolbox,
+#sidebar-box,
+#nav-bar {
+  border: none !important;
+}
+
+/* remove "padding" left and right from tabs */
+.titlebar-spacer {
+  display: none !important;
+}
+
+/* fix Shield Icon padding */
+#urlbar-input-container[pageproxystate="valid"]>#tracking-protection-icon-container>#tracking-protection-icon-box>#tracking-protection-icon {
+  padding-bottom: 1px;
+}
+
+/* #TabsToolbar {
+    display: flex !important;
+} */
+
+#PersonalToolbar {
+
+  padding: 6px !important;
+  box-shadow: inset 0 0 50vh rgba(0, 0, 0, var(--uc-darken-toolbar)) !important;
+  ;
+
+}
+
+#statuspanel #statuspanel-label {
+
+  border: none !important;
+  border-radius: var(--uc-border-radius) !important;
+
+}
+
+/* Hide unimportant buttons until hover */
+:root {
+  --in-transition: font-size .2s, padding .2s, margin .2s, max-width .2s, opacity .2s .15s;
+  --out-transition: font-size .2s, padding .2s, margin .2s, max-width .2s, opacity .07s;
+}
+
+#urlbar-container:hover #urlbar-input-container>box:not(#page-action-buttons),
+#urlbar-container:hover #page-action-buttons>*,
+#urlbar-container:hover #userContext-label {
+  transition: var(--in-transition) !important;
+  max-width: 200px;
+}
+
+@supports -moz-bool-pref("onebar.disable-autohide-of-URLbar-icons") {
+  #urlbar-container {
+    min-width: 300px !important;
+  }
+}
+
+@supports not -moz-bool-pref("onebar.disable-autohide-of-URLbar-icons") {
+  #urlbar-container:not(:hover) :where(
+
+    /*         toolbarbutton, */
+    #userContext-label,
+    #star-button-box,
+    /*         .verifiedDomain, */
+    #identity-permission-box,
+    #tracking-protection-icon-container,
+    #pageAction-urlbar-_testpilot-containers,
+  #notification-popup-box,
+  
+    /*         #pageActionButton, */
+  ) {
+    font-size: 0 !important;
+    max-width: 0 !important;
+    padding-inline: 0 !important;
+    margin-inline: 0 !important;
+    opacity: 0 !important;
+    transition: var(--out-transition) !important;
+  }
+
+  @supports -moz-bool-pref("onebar.hide-all-URLbar-icons") {
+    #urlbar-container:not(:hover) :where(#page-action-buttons, #identity-box)>* {
+      font-size: 0 !important;
+      max-width: 0 !important;
+      padding-inline: 0 !important;
+      margin-inline: 0 !important;
+      opacity: 0 !important;
+      transition: var(--out-transition) !important;
+    }
+  }
+}
+
+#navigator-toolbox-background #urlbar-container:focus-within #urlbar-input-container>box,
+#navigator-toolbox-background #urlbar-container:focus-within #page-action-buttons>* {
+  font-size: 0 !important;
+  max-width: 0 !important;
+  padding-inline: 0 !important;
+  margin-inline: 0 !important;
+  opacity: 0 !important;
+  transition: var(--out-transition) !important;
+}
+
