@@ -18,6 +18,7 @@ set.completeopt = 'menuone,noselect' -- Set completeopt to have a better complet
 set.splitbelow = true -- open horizontal splits below current window
 set.splitright = true -- open vertical splits to the right of the current window
 set.laststatus = 2 -- always show status line
+set.colorcolumn = '88' -- default max line length hint
 
 -- NOTE: You should make sure your terminal supports this
 set.termguicolors = true
