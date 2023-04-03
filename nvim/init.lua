@@ -8,8 +8,18 @@ makes sense to do so.
 Wish me luck.
 --]]
 
+-- Set <space> as the leader key
+-- See `:help mapleader`
+--  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+
 -- [[ Set up basic keybinds ]]
 require('base_keybinds')
 
 -- [[ Set up basic options ]]
 require('base_config')
+
+-- [[ Set up plugins ]]
+require('plugins')
