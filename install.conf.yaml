@@ -7,6 +7,7 @@
 
 - link:
     ~/.config/nvim: nvim
+    ~/.config/iosevka: iosevka
 
 - shell:
     - command: git submodule sync --recursive
@@ -18,3 +19,8 @@
     - command: nvim --headless "+Lazy! sync" +qa
       description: Prepare Neovim
       quiet: false
+    - command: scripts/iosevka-generate
+      description: Generate Custom Iosevka Fonts
+      quiet: true
+      stdout: true
+      stderr: true
