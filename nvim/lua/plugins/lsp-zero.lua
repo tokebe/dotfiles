@@ -1,5 +1,7 @@
 local myLsps = {
-  'lua_ls'
+  'lua_ls',
+  'tsserver',
+
 }
 
 return {
@@ -19,14 +21,19 @@ return {
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'L3MON4D3/LuaSnip' },
     { 'lukas-reineke/lsp-format.nvim' },
+    { 'folke/neodev.nvim' },
   },
   config = function()
+    -- Set up LSP
     local lsp = require('lsp-zero').preset({})
-    lsp.preset('lsp-zero')
 
     lsp.on_attach(
       function(client, bufnr)
         require('lsp-format').on_attach(client, bufnr)
+        lsp.default_keymaps({
+          buffer = bufnr,
+          preserve_mappings = false,
+        })
       end
     )
 
@@ -35,10 +42,36 @@ return {
       automatic_installation = true,
     })
 
-    lsp.nvim_workspace()
+    -- lsp.nvim_workspace()
     -- Configure lua language server for neovim
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
     lsp.setup()
+
+    -- Set up completion etc
+    require('neodev').setup()
+    local luasnip = require('luasnip')
+    luasnip.setup({})
+    local cmp = require('cmp')
+    local cmp_action = require('lsp-zero').cmp_action()
+    cmp.setup({
+      sources = {
+        { name = 'path' },
+        { name = 'nvim_lsp' },
+        { name = 'buffer',  keyword_length = 3 },
+        { name = 'luasnip', keyword_length = 2 }
+      },
+      mapping = {
+        ['<Tab>'] = cmp.mapping(function(fallback)
+          if luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          elseif cmp.visible() then
+            cmp.confirm({ select = true })
+          else
+            fallback()
+          end
+        end),
+      }
+    })
   end
 }
