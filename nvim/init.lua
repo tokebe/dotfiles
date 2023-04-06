@@ -25,3 +25,6 @@ require('base_config')
 
 -- [[ Set up plugins ]]
 require('plugins')
+
+-- [[ Configure anything that requires plugins ]]
+require('postconfig')
