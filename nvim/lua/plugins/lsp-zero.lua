@@ -54,12 +54,13 @@ return {
     luasnip.setup({})
     local cmp = require('cmp')
     local cmp_action = require('lsp-zero').cmp_action()
+
     cmp.setup({
-      sources = {
-        { name = 'path' },
-        { name = 'nvim_lsp' },
-        { name = 'buffer',  keyword_length = 3 },
-        { name = 'luasnip', keyword_length = 2 }
+      sources = {                                 -- completion sources
+        { name = 'nvim_lsp' },                    -- language server
+        { name = 'luasnip', keyword_length = 2 }, -- snippets
+        { name = 'path' },                        -- filepath
+        { name = 'buffer',  keyword_length = 3 }, -- current file
       },
       mapping = {
         ['<Tab>'] = cmp.mapping(function(fallback)
@@ -71,7 +72,27 @@ return {
             fallback()
           end
         end),
+        -- ['<Esc>'] = cmp.mapping.abort()
       }
+    })
+
+    -- Use buffer for completion in search
+    cmp.setup.cmdline({ '/', '?' }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = { name = 'buffer' }
+    })
+
+    -- Cmdline and path completion for commands
+    cmp.setup.cmdline({ ':' }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources(
+        {
+          { name = 'path' }
+        },
+        {
+          { name = 'cmdline' }
+        }
+      )
     })
   end
 }
