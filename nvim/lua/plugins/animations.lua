@@ -2,6 +2,7 @@ return {
   {
     -- Animate cursor jumping larger distances
     'edluffy/specs.nvim',
+    event = 'BufEnter',
     config = function()
       require('specs').setup({
         show_jumps       = true,
@@ -12,7 +13,7 @@ return {
           blend = 10,   -- starting blend, between 0-100 (fully transparent), see :h winblend
           width = 10,
           winhl = "PMenu",
-          fader = require('specs').linear_fader,
+          fader = require('specs').pulse_fader,
           resizer = require('specs').shrink_resizer
         },
         ignore_filetypes = {},
@@ -23,10 +24,14 @@ return {
     end
   },
   {
-    -- Smooth scrolling and some scrolling keybinds
-    'karb94/neoscroll.nvim',
+    'gen740/SmoothCursor.nvim',
+    event = 'BufEnter',
     config = function()
-      require('neoscroll').setup()
+      require('smoothcursor').setup({
+        autostart = true,
+        cursor = ' ',
+        linehl = 'CursorLine',
+      })
     end
   }
   -- possibly add anuvyklack/windows.nvim
