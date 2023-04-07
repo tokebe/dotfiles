@@ -29,7 +29,7 @@ return {
     config = function()
       require('smoothcursor').setup({
         autostart = true,
-        cursor = ' ',
+        cursor = '',
         linehl = 'CursorLine',
       })
     end
