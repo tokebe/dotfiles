@@ -1,7 +1,3 @@
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
---vim.g.mapleader = ' '
---vim.g.maplocalleader = ' '
-
+-- Make Esc hide search highlight in normal mode
+vim.api.nvim_set_keymap('n', '<Esc>', ':noh<CR>', { noremap = true, silent = true })
 

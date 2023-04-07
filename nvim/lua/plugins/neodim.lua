@@ -5,6 +5,7 @@ return {
   config = function ()
     require('neodim').setup({
       refresh_delay = 100,
+      hide = { underline = false, virtual_text = false, signs = false }
     })
   end
 }

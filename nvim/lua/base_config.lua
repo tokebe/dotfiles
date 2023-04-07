@@ -7,13 +7,13 @@ local set = vim.opt
 local cmd = vim.cmd
 
 -- [[ Visual Config ]]
-set.scrolloff = 1                    -- keep cursor 1 away from edge when scrolling
+set.scrolloff = 20                   -- keep cursor 1 away from edge when scrolling
 set.sidescrolloff = 15               -- keep 30 columns around cursor
 set.showmatch = true                 -- matching bracket pairs
 set.cursorline = true                -- highlight current line
 set.number = true                    -- Make line numbers default
 set.breakindent = true               -- Wrapped lines preserve indent
-set.signcolumn = 'yes'               -- Keep signcolumn on by default
+set.signcolumn = 'yes'                -- Keep signcolumn on by default
 set.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
 set.splitbelow = true                -- open horizontal splits below current window
 set.splitright = true                -- open vertical splits to the right of the current window
