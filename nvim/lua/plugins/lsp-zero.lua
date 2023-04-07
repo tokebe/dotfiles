@@ -1,7 +1,6 @@
 local myLsps = {
   'lua_ls',
   'tsserver',
-
 }
 
 return {
@@ -34,6 +33,9 @@ return {
           buffer = bufnr,
           preserve_mappings = false,
         })
+        if client.server_capabilities['documentsSymbolProvider'] then
+          require('nvim-navic').attach(client, bufnr)
+        end
       end
     )
 
