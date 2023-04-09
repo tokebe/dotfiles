@@ -1,17 +1,15 @@
 -- Colorscheme(s). TODO find a way to manage/switch colorschemes
 return {
-  -- Theme inspired by Atom
-  'folke/tokyonight.nvim',
-  branch = 'main',
+  'navarasu/onedark.nvim',
   priority = 1000,
   config = function()
-    vim.cmd [[colorscheme tokyonight-storm]]
+    vim.cmd [[colorscheme onedark]]
     require('barbecue').setup({
-      theme = 'tokyonight-storm',
+      theme = 'onedark',
     })
     require('lualine').setup({
       options = {
-        theme = 'tokyonight'
+        theme = 'onedark'
       }
     })
   end,
