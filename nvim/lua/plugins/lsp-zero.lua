@@ -22,7 +22,9 @@ return {
     { 'folke/neodev.nvim' },
     { 'onsails/lspkind.nvim' }, -- icons
     -- Formatting
-    { 'lukas-reineke/lsp-format.nvim' },
+    -- { 'lukas-reineke/lsp-format.nvim' },
+    -- Indicator
+    { 'j-hui/fidget.nvim' },
   },
   config = function()
     -- Set up LSP
@@ -35,11 +37,11 @@ return {
       info = '»'
     })
 
-    require('lsp-format').setup()
+    -- require('lsp-format').setup()
 
     lsp.on_attach(
       function(client, bufnr)
-        require('lsp-format').on_attach(client, bufnr)
+        -- require('lsp-format').on_attach(client, bufnr)
         -- keymaps
         lsp.default_keymaps({
           buffer = bufnr,
@@ -78,6 +80,22 @@ return {
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
     lsp.setup()
+    require('fidget').setup() -- LSP loading status
+    -- Format keybind
+    vim.keymap.set('n', '<leader>gf', function()
+      vim.lsp.buf.format({ async = true })
+    end, { desc = 'Format Buffer' })
+    -- buffer
+    vim.keymap.set('v', '<leader>gf', function()
+      vim.lsp.buf.format({
+        async = true,
+        range = {
+          ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+          ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+        }
+      }, { desc = 'Format Visual' })
+    end)
+
 
     -- Set up completion etc
     require('neodev').setup()
@@ -106,8 +124,8 @@ return {
       },
       mapping = {
         ['<Tab>'] = cmp.mapping(function(fallback)
-          if luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
+          if luasnip.expandable() then
+            luasnip.expand()
           elseif cmp.visible() then
             cmp.confirm({ select = true })
           else
