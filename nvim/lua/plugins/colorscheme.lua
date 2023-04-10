@@ -1,9 +1,9 @@
 -- Colorscheme(s). TODO find a way to manage/switch colorschemes
 return {
-  'navarasu/onedark.nvim',
+  'olimorris/onedarkpro.nvim',
   priority = 1000,
   config = function()
-    vim.cmd [[colorscheme onedark]]
+    vim.cmd('colorscheme onedark')
     require('barbecue').setup({
       theme = 'onedark',
     })
