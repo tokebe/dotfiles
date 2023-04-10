@@ -28,11 +28,18 @@ return {
     { 'tamago324/cmp-zsh' },
     { 'onsails/lspkind.nvim' }, -- icons
     -- Formatting
-    -- { 'lukas-reineke/lsp-format.nvim' },
     -- Indicator
     { 'j-hui/fidget.nvim' },
     -- LSP rename preview
     { 'smjonas/inc-rename.nvim',            dependencies = { 'stevearc/dressing.nvim' } },
+    {
+      'SmiteshP/nvim-navbuddy',
+      dependencies = {
+        'SmiteshP/nvim-navic',
+        'MunifTanjim/nui.nvim'
+      },
+      opts = { lsp = { auto_attach = true } },
+    },
   },
   config = function()
     -- Set up neodev
@@ -55,6 +62,15 @@ return {
     vim.keymap.set("n", "<leader>gr", function()
       return ":IncRename " .. vim.fn.expand("<cword>")
     end, { expr = true })
+    -- Set up Navbuddy
+    require('nvim-navbuddy').setup({
+      border = 'none',
+      size = '80%',
+      lsp = {
+        auto_attach = true,
+      }
+    })
+    vim.keymap.set('n', '<leader>ss', '<CMD>Navbuddy<CR>', { desc = 'Select symbol' })
     -- Set up LSP
     local lsp = require('lsp-zero').preset('recommended')
 

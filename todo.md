@@ -50,6 +50,7 @@ And also the random notes for smaller things:
 - [X] Don't highlight trailing spaces in which-key window
 - [ ] Fancier look for telescope
 - [ ] move all keymaps to legendary if feasible
+- [ ] See if navbuddy can auto-select the first lsp or something
 
 ## Package Install Automation
 
