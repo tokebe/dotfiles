@@ -2,9 +2,16 @@
 return {
   'folke/which-key.nvim',
   config = function()
-    require('which-key').setup({
+    local which_key = require('which-key')
+    which_key.setup({
       window = {
         winblend = 15
+      }
+    })
+    -- Set up a seciton that doesn't really belong to anything
+    which_key.register({
+      ['<leader>g'] = {
+        name = 'Global...'
       }
     })
   end
