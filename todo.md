@@ -12,22 +12,22 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
   - [ ] Italics, bold, etc?
 - [-] Intellisense (type-checking, etc)
   - [ ] auto docstring?
-- [-] Code completion (From file and intellisense, etc)
+- [X] Code completion (From file and intellisense, etc)
 - [-] Debugging
   - [ ] Breakpoints, inspection
   - [ ] Possible vscode debug config support?
   - [-] vscode task support? (See vs-tasks.nvim for this and launch support)
   - [ ] javascript/other profiling
 - [ ] File Tree
-- [ ] Fuzzy file jumping
+- [X] Fuzzy file jumping
 - [ ] Project management (open a given set of files, remember previously-open files)
 - [ ] File tabs
-- [X] Autoformatting
+- [-] Autoformatting
 - [ ] Intelligent indenting on paste
 - [ ] Toggleable terminal
 - [X] Remove trailing spaces on exit insert mode
-- [ ] Interactive git blame/figure  out where a change came from
-- [ ] Command pallette
+- [ ] Interactive git blame/figure out where a change came from
+- [-] Command palette
 - [X] LSP notifications
 - [ ] Theme manager/switcher
 - [X] Autosave
@@ -37,6 +37,7 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
 - [ ] connect to docker container and lazydocker?
 - [ ] Jupyter/similar
 - [ ] TODO highlighting/overview
+- [ ] Trouble: list all diagnostics (maybe TODO support?)
 
 And also the random notes for smaller things:
 
@@ -46,11 +47,20 @@ And also the random notes for smaller things:
 - [ ] Wrap before minimap
 - [X] Don't auto-pair with a character directly in front
 - [X] A theme that is good
-- [ ] Don't highlight trailing spaces in which-key window
+- [X] Don't highlight trailing spaces in which-key window
+- [ ] Fancier look for telescope
+- [ ] move all keymaps to legendary if feasible
 
 ## Package Install Automation
 
 - [ ] Automatically installs desired packages
+
+Require the following:
+
+- unzip
+- ripgrep
+- fzf
+- fd
 
 ## Iosevka
 
