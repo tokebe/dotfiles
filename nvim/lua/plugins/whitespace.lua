@@ -3,10 +3,21 @@ return {
   'johnfrankmorgan/whitespace.nvim',
   config = function()
     local whitespace = require('whitespace-nvim')
-    whitespace.setup()
+    whitespace.setup({
+      ignored_filetypes = {
+        'TelescopePrompt',
+        'TelescopeResults',
+        'Trouble',
+        'help',
+        'DressingSelect',
+        'NvinTree',
+      }
+    })
     vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
       callback = function()
-        whitespace.trim()
+        if not vim.bo[vim.api.nvim_win_get_buf(0)].readonly then
+          whitespace.trim()
+        end
       end
     })
   end
