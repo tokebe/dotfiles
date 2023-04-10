@@ -15,20 +15,48 @@ return {
       end,
     },
     { 'williamboman/mason-lspconfig.nvim' }, -- integration
+    { 'folke/neodev.nvim' },
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' },
     { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/cmp-nvim-lsp-signature-help' },
     { 'L3MON4D3/LuaSnip' },
-    { 'folke/neodev.nvim' },
+    { 'hrsh7th/cmp-buffer' },
+    { 'FelipeLema/cmp-async-path' },
+    { 'hrsh7th/cmp-cmdline' },
+    { 'dmitmel/cmp-cmdline-history' },
+    { 'tamago324/cmp-zsh' },
     { 'onsails/lspkind.nvim' }, -- icons
     -- Formatting
     -- { 'lukas-reineke/lsp-format.nvim' },
     -- Indicator
     { 'j-hui/fidget.nvim' },
+    -- LSP rename preview
+    { 'smjonas/inc-rename.nvim',            dependencies = { 'stevearc/dressing.nvim' } },
   },
   config = function()
+    -- Set up neodev
+    require('neodev').setup({})
+    -- Set up Dressing
+    require('dressing').setup({
+      input = {
+        override = function(conf)
+          conf.col = -1
+          conf.row = 0
+          return conf
+        end,
+        border = 'rounded'
+      },
+    })
+    -- Set up IncRename
+    require('inc_rename').setup({
+      input_buffer_type = 'dressing',
+    })
+    vim.keymap.set("n", "<leader>gr", function()
+      return ":IncRename " .. vim.fn.expand("<cword>")
+    end, { expr = true })
     -- Set up LSP
-    local lsp = require('lsp-zero').preset()
+    local lsp = require('lsp-zero').preset('recommended')
 
     lsp.set_sign_icons({
       error = '✘',
@@ -36,9 +64,6 @@ return {
       hint = '⚑',
       info = '»'
     })
-
-    -- require('lsp-format').setup()
-
     lsp.on_attach(
       function(client, bufnr)
         -- require('lsp-format').on_attach(client, bufnr)
@@ -55,7 +80,7 @@ return {
             local opts = {
               focusable = false,
               close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-              border = 'rounded',
+              border = 'none',
               source = 'always',
               prefix = ' ',
               scope = 'cursor',
@@ -70,14 +95,10 @@ return {
         end
       end
     )
-
     require('mason-lspconfig').setup({
       ensure_installed = myLsps,
       automatic_installation = true,
     })
-
-    -- Configure lua language server for neovim
-    require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
     lsp.setup()
     require('fidget').setup() -- LSP loading status
@@ -93,18 +114,15 @@ return {
           ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
           ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
         }
-      }, { desc = 'Format Visual' })
-    end)
-
+      })
+    end, { desc = 'Format Visual' })
 
     -- Set up completion etc
-    require('neodev').setup()
     local luasnip = require('luasnip')
-    luasnip.setup({})
+    -- luasnip.setup({})
     local cmp = require('cmp')
-    local cmp_action = require('lsp-zero').cmp_action()
 
-    cmp.setup({
+    cmp.setup(lsp.defaults.cmp_config({
       sources = {                                                -- completion sources
         { name = 'nvim_lsp' },                                   -- language server
         { name = 'nvim_lsp_signature_help' },
@@ -113,11 +131,12 @@ return {
         { name = 'buffer',                 keyword_length = 3 }, -- current file
       },
       formatting = {
+        -- Icons
         format = require('lspkind').cmp_format({
           mode = 'symbol_text',
           maxwidth = 50,
           ellipsis_char = '...',
-          before = function(entry, vim_item)
+          before = function(_, vim_item)
             return vim_item -- see lspkind #30
           end
         }),
@@ -134,22 +153,23 @@ return {
         end),
         -- ['<Esc>'] = cmp.mapping.abort()
       }
-    })
+    }))
 
     -- Use buffer for completion in search
-    -- cmp.setup.cmdline({ '/', '?' }, {
-    --   mapping = cmp.mapping.preset.cmdline(),
-    --   sources = { name = 'buffer' }
-    -- })
-    --
+    cmp.setup.cmdline({ '/', '?' }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = { name = 'buffer' }
+    })
+
     -- Cmdline and path completion for commands
-    -- cmp.setup.cmdline(':', {
-    --   mapping = cmp.mapping.preset.cmdline(),
-    --   sources = {
-    --     { name = 'async-path' },
-    --     { name = 'cmdline' },
-    --     { name = 'cmdline_history' }
-    --   },
-    -- })
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = 'cmdline' },
+        { name = 'async-path' },
+        { name = 'cmdline_history' },
+        { name = 'zsh' },
+      },
+    })
   end
 }
