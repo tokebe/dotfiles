@@ -51,6 +51,7 @@ And also the random notes for smaller things:
 - [ ] Fancier look for telescope
 - [ ] move all keymaps to legendary if feasible
 - [ ] See if navbuddy can auto-select the first lsp or something
+- [ ] Break up some of the larger configs into folders
 
 ## Package Install Automation
 
@@ -62,6 +63,12 @@ Require the following:
 - ripgrep
 - fzf
 - fd
+- ranger
+- zsh
+- lazygit
+- lazydocker
+- neofetch
+- btop
 
 ## Iosevka
 
