@@ -34,5 +34,4 @@ return {
       })
     end
   }
-  -- possibly add anuvyklack/windows.nvim
 }

@@ -1,5 +1,5 @@
 -- Use lualine, a better statusline
-return { 
+return {
   'nvim-lualine/lualine.nvim',
   -- See `:help lualine.txt`
   opts = {
@@ -8,6 +8,7 @@ return {
       theme = 'auto',
       component_separators = '|',
       section_separators = '',
+      globalstatus = true,
     },
   },
 }

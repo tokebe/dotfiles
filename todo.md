@@ -52,6 +52,7 @@ And also the random notes for smaller things:
 - [ ] move all keymaps to legendary if feasible
 - [ ] See if navbuddy can auto-select the first lsp or something
 - [ ] Break up some of the larger configs into folders
+- [X] keep lualine on bottom regardless of window?
 
 ## Package Install Automation
 
@@ -63,6 +64,7 @@ Require the following:
 - ripgrep
 - fzf
 - fd
+  - link properly on ubuntu using `ln -s $(which fdfind) ~/.local/bin/fd`
 - ranger
 - zsh
 - lazygit
@@ -70,6 +72,11 @@ Require the following:
 - neofetch
 - btop
 
+
 ## Iosevka
 
 - [ ] Automatically installs patched custom Iosevka
+
+## Firefox
+
+- [ ] Fix tab spacing when firefox goes into narrow mode
