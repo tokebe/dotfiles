@@ -8,7 +8,7 @@ return {
         { name = 'nvim_lsp' },                                   -- language server
         { name = 'nvim_lsp_signature_help' },
         { name = 'luasnip',                keyword_length = 2 }, -- snippets
-        { name = 'async_path' },                                 -- filepath
+        { name = 'fuzzy_path' },                                       -- filepath
         { name = 'buffer',                 keyword_length = 3 }, -- current file
       },
       formatting = {
@@ -47,7 +47,7 @@ return {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
         { name = 'cmdline' },
-        { name = 'async_path' },
+        { name = 'fuzzy_path' },
         { name = 'cmdline_history' },
         { name = 'zsh' },
       },
