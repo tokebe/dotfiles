@@ -22,7 +22,7 @@ return {
       })
       -- Set up keymaps
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, {
+      vim.keymap.set('n', '<leader>ff', function() builtin.find_files({ no_ignore = true }) end, {
         desc = "Find file"
       })
       vim.keymap.set('n', '<leader>fg', telescope.extensions.live_grep_args.live_grep_args, {
