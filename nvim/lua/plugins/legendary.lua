@@ -26,7 +26,15 @@ return {
       },
       commands = {},
       funcs = {},
-      autocmds = {},
+      autocmds = {
+        {
+          'QuitPre',
+          function()
+            vim.cmd("NvimTreeClose")
+          end,
+          description = "Close nvim-tree before quit so nvim actually quits"
+        }
+      },
       extensions = {},
       col_separator_char = ' ',
       which_key = {
