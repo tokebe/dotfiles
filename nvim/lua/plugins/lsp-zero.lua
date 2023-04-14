@@ -35,7 +35,7 @@ return {
 		{ "mfussenegger/nvim-dap" },
 		{ "jay-babu/mason-nvim-dap.nvim" },
 		-- Indicator
-		{ "j-hui/fidget.nvim" },
+		{ "j-hui/fidget.nvim" }, -- progress indicator
 		-- LSP rename preview
 		{ "smjonas/inc-rename.nvim", dependencies = { "stevearc/dressing.nvim" } },
 		{

@@ -33,5 +33,5 @@ return {
         linehl = 'CursorLine',
       })
     end
-  }
+  },
 }
