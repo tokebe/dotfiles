@@ -1,3 +1,4 @@
+local lsps = require('config.sources').lsp
 return {
   config = function(lsp)
     lsp.set_sign_icons({
@@ -38,7 +39,7 @@ return {
       end
     )
     require('mason-lspconfig').setup({
-      ensure_installed = myLsps,
+      ensure_installed = lsps,
       automatic_installation = true,
     })
 
