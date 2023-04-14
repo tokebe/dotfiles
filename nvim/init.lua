@@ -15,10 +15,6 @@ Wish me luck.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-
--- [[ Set up basic keybinds ]]
-require('base_keybinds')
-
 -- [[ Set up basic options ]]
 require('base_config')
 

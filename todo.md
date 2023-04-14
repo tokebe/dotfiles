@@ -23,6 +23,7 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
 - [ ] Project management (open a given set of files, remember previously-open files)
 - [ ] File tabs
 - [-] Autoformatting
+  - [ ] Command to format entire folder/project
 - [ ] Intelligent indenting on paste
 - [ ] Toggleable terminal
 - [X] Remove trailing spaces on exit insert mode
@@ -49,10 +50,12 @@ And also the random notes for smaller things:
 - [X] A theme that is good
 - [X] Don't highlight trailing spaces in which-key window
 - [ ] Fancier look for telescope
-- [ ] move all keymaps to legendary if feasible
+- [ ] Move all keymaps to legendary if feasible
 - [ ] See if navbuddy can auto-select the first lsp or something
-- [ ] Break up some of the larger configs into folders
-- [X] keep lualine on bottom regardless of window?
+- [-] Break up some of the larger configs into folders
+- [X] Keep lualine on bottom regardless of window?
+- [ ] Fix \<C-v\> opening telescope search vertical (currently just pastes)
+- [ ] menu to open Lazy, Mason, other config stuff
 
 ## Package Install Automation
 
@@ -71,6 +74,9 @@ Require the following:
 - lazydocker
 - neofetch
 - btop
+- luarocks
+- latest lua
+- cmake
 
 
 ## Iosevka
