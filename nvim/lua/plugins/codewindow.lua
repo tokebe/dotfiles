@@ -13,6 +13,7 @@ return {
       minimap_width = 10,
       width_multiplier = 4,
       window_border = "none",
+      exclude_filetypes = require('config.filetype_excludes')
     })
     -- Set up which-key hint
     require('which-key').register({
