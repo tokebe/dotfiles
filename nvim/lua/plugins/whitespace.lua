@@ -6,7 +6,7 @@ return {
   config = function()
     local whitespace = require('whitespace-nvim')
     whitespace.setup({
-      ignored_filetypes = filetype_excludes
+      ignored_filetypes = filetype_excludes,
     })
     vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
       callback = function()
@@ -16,7 +16,7 @@ return {
         if not fileIsReadOnly and not fileIsSpecial and fileIsModifiable then
           whitespace.trim()
         end
-      end
+      end,
     })
-  end
+  end,
 }

@@ -11,7 +11,7 @@ return {
         cursorline = true,
         transparency = false,
         highlight_inactive_windows = true,
-      }
+      },
     })
     vim.cmd('colorscheme onedark')
     require('barbecue').setup({
@@ -19,8 +19,8 @@ return {
     })
     require('lualine').setup({
       options = {
-        theme = 'onedark'
-      }
+        theme = 'onedark',
+      },
     })
     local modicator = require('modicator')
     modicator.setup({
@@ -33,37 +33,37 @@ return {
           foreground = modicator.get_highlight_fg('CursorLineNr'),
           background = modicator.get_highlight_bg('CursorLineNr'),
           bold = false,
-          italic = false
+          italic = false,
         },
         -- Color and bold/italic options for each mode. You can add a bold and/or
         -- italic key pair to override the default highlight for a specific mode if
         -- you would like.
         modes = {
-          ['n']   = {
+          ['n'] = {
             foreground = modicator.get_highlight_fg('CursorLineNr'),
           },
-          ['i']   = {
+          ['i'] = {
             foreground = modicator.get_highlight_fg('Question'),
           },
-          ['v']   = {
+          ['v'] = {
             foreground = modicator.get_highlight_fg('Type'),
           },
-          ['V']   = {
+          ['V'] = {
             foreground = modicator.get_highlight_fg('Type'),
           },
           ['�'] = { -- This symbol is the ^V character
             foreground = modicator.get_highlight_fg('Type'),
           },
-          ['s']   = {
+          ['s'] = {
             foreground = modicator.get_highlight_fg('Keyword'),
           },
-          ['S']   = {
+          ['S'] = {
             foreground = modicator.get_highlight_fg('Keyword'),
           },
-          ['R']   = {
+          ['R'] = {
             foreground = modicator.get_highlight_fg('Title'),
           },
-          ['c']   = {
+          ['c'] = {
             foreground = modicator.get_highlight_fg('Constant'),
           },
         },

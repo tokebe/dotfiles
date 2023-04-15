@@ -1,8 +1,9 @@
 return {
   lsp = { -- Language Server Protocol
-    'lua_ls',
-    'tsserver',
-    'pylsp',
+    'lua_ls', -- Lua
+    'tsserver', -- Typescript/Javascript
+    'pylsp', -- Python
+    'taplo', -- TOML
   },
   dap = { -- Debug Adapter Protocol
     'node-debug2-adapter',
