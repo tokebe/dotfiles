@@ -15,12 +15,6 @@ return {
       window_border = "none",
       exclude_filetypes = require('config.filetype_excludes')
     })
-    -- Set up which-key hint
-    require('which-key').register({
-      ['<leader>m'] = {
-        name = "Minimap..."
-      }
-    })
     codewindow.apply_default_keybinds()
   end
 }

@@ -27,19 +27,13 @@ return {
       },
       mappings = {
         basic = true,
-        option_toggle_prefix = [[<Leader>t]],
+        option_toggle_prefix = [[<Leader>o]],
         windows = true,
         move_with_alt = true,
       },
       autocommands = {
         basic = true,
         relnum_in_visual_mode = true,
-      }
-    })
-    -- Set up which-key hint
-    require('which-key').register({
-      ['<leader>t'] = {
-        name = 'Toggle...'
       }
     })
   end

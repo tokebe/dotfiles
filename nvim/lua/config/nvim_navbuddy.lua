@@ -7,6 +7,5 @@ return {
         auto_attach = true,
       }
     })
-    vim.keymap.set('n', '<leader>ss', '<CMD>Navbuddy<CR>', { desc = 'Select symbol' })
   end
 }
