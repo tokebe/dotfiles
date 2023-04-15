@@ -4,11 +4,8 @@ return {
   config = function()
     local which_key = require('which-key')
     which_key.setup({
-    })
-    -- Set up a seciton that doesn't really belong to anything
-    which_key.register({
-      ['<leader>g'] = {
-        name = 'Global...'
+      icons = {
+        group = "»"
       }
     })
   end

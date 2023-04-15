@@ -5,6 +5,5 @@ return {
     require('auto-save').setup({
       -- trigger_events = { 'InsertLeave' }
     })
-    vim.api.nvim_set_keymap('n', "<leader>ta", ":ASToggle<CR>", {})
-  end
+  end,
 }
