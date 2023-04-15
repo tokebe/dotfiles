@@ -5,10 +5,10 @@ return {
     config = function()
       require('mkdnflow').setup({
         mappings = {
-          MkdnNewListItem = { 'i', '<CR>' }
-        }
+          MkdnNewListItem = { 'i', '<CR>' },
+        },
       })
-    end
+    end,
   },
   { -- Markdown preview, only good on non-windows
     'iamcco/markdown-preview.nvim',
@@ -21,6 +21,6 @@ return {
         border = 'rounded',
         pager = false,
       })
-    end
-  }
+    end,
+  },
 }

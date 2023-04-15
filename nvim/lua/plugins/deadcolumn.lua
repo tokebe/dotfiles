@@ -7,7 +7,7 @@ return {
       hlgroup = {
         'Warning',
         'background',
-      }
-    }
+      },
+    },
   },
 }
