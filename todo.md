@@ -8,7 +8,7 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
 
 - [-] Syntax Highlighting
   - [ ] Rainbow indent and brackets?
-  - [ ] Better dimming, etc for unused/etc
+  - [X] Better dimming, etc for unused/etc
   - [ ] Italics, bold, etc?
 - [-] Intellisense (type-checking, etc)
   - [ ] auto docstring?
@@ -18,19 +18,18 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
   - [ ] Possible vscode debug config support?
   - [-] vscode task support? (See vs-tasks.nvim for this and launch support)
   - [ ] javascript/other profiling
-- [ ] File Tree
+- [X] File Tree
 - [X] Fuzzy file jumping
 - [ ] Project management (open a given set of files, remember previously-open files)
-- [ ] File tabs
-- [-] Autoformatting
-  - [ ] Command to format entire folder/project
+- [X] File tabs
+- [X] Autoformatting
 - [ ] Intelligent indenting on paste
 - [ ] Toggleable terminal
 - [X] Remove trailing spaces on exit insert mode
 - [ ] Interactive git blame/figure out where a change came from
-- [-] Command palette
+- [X] Command palette
 - [X] LSP notifications
-- [ ] Theme manager/switcher
+- [-] Theme manager/switcher
 - [X] Autosave
 - [ ] CTRL-D multi-cursor with live edit behavior
 - [ ] Sensible folding with obvious markers, mouse-support?
@@ -50,12 +49,16 @@ And also the random notes for smaller things:
 - [X] A theme that is good
 - [X] Don't highlight trailing spaces in which-key window
 - [ ] Fancier look for telescope
-- [ ] Move all keymaps to legendary if feasible
+- [X] Move all keymaps to legendary if feasible
 - [ ] See if navbuddy can auto-select the first lsp or something
 - [-] Break up some of the larger configs into folders
 - [X] Keep lualine on bottom regardless of window?
 - [ ] Fix \<C-v\> opening telescope search vertical (currently just pastes)
 - [ ] menu to open Lazy, Mason, other config stuff
+
+And, after all this, the obvious way to destroy all my time:
+
+- [ ] A stroll down the entirety of [Awesome-neovim](https://github.com/rockerBOO/awesome-neovim)
 
 ## Package Install Automation
 
