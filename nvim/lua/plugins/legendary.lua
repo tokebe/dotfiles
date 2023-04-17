@@ -156,6 +156,16 @@ return {
           ':ASToggle<CR>',
           description = 'Toggle autosave',
         },
+        {
+          '<leader>om',
+          ':Mason<CR>',
+          description = 'Manage LSPs with Mason',
+        },
+        {
+          '<leader>op',
+          ':Lazy<CR>',
+          description = 'Manage plugins with Lazy',
+        },
         -- Buffer keybinds
         {
           '<lt>',
@@ -177,12 +187,23 @@ return {
           ':BufferMoveNext<CR>',
           description = 'Move buffer tab right',
         },
+        -- Misc keybinds
         {
-          '<A-w>',
+          '<leader>bd',
           ':BufferClose<CR>',
           description = 'Close buffer',
         },
-        -- Misc keybinds
+        -- Fold controls for UFO
+        {
+          'zR',
+          require('ufo').openAllFolds,
+          description = 'Open all folds',
+        },
+        {
+          'zM',
+          require('ufo').closeAllFolds,
+          description = 'Close all folds',
+        },
       },
       commands = {},
       funcs = {},

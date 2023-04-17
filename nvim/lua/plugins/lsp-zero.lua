@@ -46,6 +46,10 @@ return {
       },
       opts = { lsp = { auto_attach = true } },
     },
+    -- Folding
+    { 'kevinhwang91/nvim-ufo', dependencies = { 'kevinhwang91/promise-async' } },
+    -- Inlay type hints
+    { 'simrat39/inlay-hints.nvim' },
   },
   config = function()
     -- Set up neodev
