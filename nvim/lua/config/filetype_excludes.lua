@@ -9,5 +9,6 @@ return {
   'null-ls-info',
   'lazy',
   'NvimTree',
-  'lspinfo'
+  'lspinfo',
+  'WhichKey',
 }
