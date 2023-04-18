@@ -112,14 +112,19 @@ return {
           end,
           description = 'Rename symbol',
         },
+        {
+          '<leader>gq',
+          vim.lsp.buf.code_action,
+          description = 'Quickfix...',
+        },
         -- Jump kebinds
         {
-          '<leader>jb',
+          '<leader>jj',
           ':Portal jumplist backward<CR>',
           description = 'Jump backward in place history',
         },
         {
-          '<leader>jf',
+          '<leader>jk',
           ':Portal jumplist forward<CR>',
           description = 'Jump forward in place history',
         },
