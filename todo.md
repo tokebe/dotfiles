@@ -53,6 +53,9 @@ And also the random notes for smaller things:
 - [X] Keep lualine on bottom regardless of window?
 - [ ] Fix \<C-v\> opening telescope search vertical (currently just pastes)
 - [ ] menu to open Lazy, Mason, other config stuff
+- [ ] Fix IncRename: needs to ensure diagnostic float is hidden/paused
+- [ ] Add more signature support somehow (e.g. typescrip signatures on variables in bte)
+- [ ] Code hints not really displaying, might need above fix first ^
 
 And, after all this, the obvious way to destroy all my time:
 
