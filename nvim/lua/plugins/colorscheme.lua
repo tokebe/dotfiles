@@ -30,6 +30,5 @@ return {
       },
     })
     vim.cmd('colorscheme ' .. default_theme)
-    require('modicator').setup()
   end,
 }
