@@ -2,7 +2,7 @@ return {
   lsp = { -- Language Server Protocol
     'lua_ls', -- Lua
     'tsserver', -- Typescript/Javascript
-    'pylsp', -- Python
+    'pyright', -- Python
     'taplo', -- TOML
   },
   dap = { -- Debug Adapter Protocol

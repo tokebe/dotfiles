@@ -9,8 +9,6 @@ return {
 
     require('ufo').setup()
 
-    local inlay_hints = require('inlay-hints')
-
     lsp.set_sign_icons({
       error = '✘',
       warn = '▲',
@@ -46,6 +44,9 @@ return {
       if client.server_capabilities['documentsSymbolProvider'] then
         require('nvim-navic').attach(client, bufnr)
       end
+
+      -- attach inlay hints
+      require('lsp-inlayhints').on_attach(client, bufnr)
     end)
     require('mason-lspconfig').setup({
       ensure_installed = lsps,
@@ -61,23 +62,6 @@ return {
           foldingRange = {
             dynamicRegistration = false,
             lineFoldingOnly = true,
-          },
-        },
-      },
-    })
-
-    -- INLAY HINT CONFIGS (different per-lsp, so have to set up manually >.>)
-    -- See https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/guides/quick-recipes.md#enable-inlay-hints-with-inlay-hintsnvim
-    local lspconfig = require('lspconfig')
-
-    lspconfig.lua_ls.setup({
-      on_attach = function(client, bufnr)
-        inlay_hints.on_attach(client, bufnr)
-      end,
-      settings = {
-        Lua = {
-          hint = {
-            enable = true,
           },
         },
       },
