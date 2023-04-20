@@ -19,7 +19,7 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
   - [ ] javascript/other profiling
 - [X] File Tree
 - [X] Fuzzy file jumping
-- [ ] Project management (open a given set of files, remember previously-open files)
+- [X] Project management (open a given set of files, remember previously-open files)
 - [X] File tabs
 - [X] Autoformatting
 - [ ] Intelligent indenting on paste
@@ -36,6 +36,7 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
 - [ ] Jupyter/similar
 - [ ] TODO highlighting/overview
 - [ ] Trouble: list all diagnostics (maybe TODO support?)
+- [ ] Tab management keybinds/different buffer/tab line
 
 And also the random notes for smaller things:
 
@@ -46,16 +47,18 @@ And also the random notes for smaller things:
 - [X] Don't auto-pair with a character directly in front
 - [X] A theme that is good
 - [X] Don't highlight trailing spaces in which-key window
-- [ ] Fancier look for telescope
+- [X] Fancier look for telescope
 - [X] Move all keymaps to legendary if feasible
 - [ ] See if navbuddy can auto-select the first lsp or something
 - [-] Break up some of the larger configs into folders
 - [X] Keep lualine on bottom regardless of window?
 - [ ] Fix \<C-v\> opening telescope search vertical (currently just pastes)
-- [ ] menu to open Lazy, Mason, other config stuff
+- [X] menu to open Lazy, Mason, other config stuff
 - [ ] Fix IncRename: needs to ensure diagnostic float is hidden/paused
 - [ ] Add more signature support somehow (e.g. typescrip signatures on variables in bte)
 - [ ] Code hints not really displaying, might need above fix first ^
+- [ ] change nvim-tree icons for git to make more sense
+- [X] ensure dashboard loads after projections and legendary
 
 And, after all this, the obvious way to destroy all my time:
 
