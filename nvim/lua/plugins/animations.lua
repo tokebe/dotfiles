@@ -34,4 +34,14 @@ return {
       })
     end,
   },
+  -- currently too buggy to trust
+  -- {
+  --   'huy-hng/anyline.nvim',
+  --   dependencies = {
+  --     'nvim-treesitter/nvim-treesitter',
+  --   },
+  --   config = true,
+  --   event = 'VeryLazy',
+  --   ft_ignore = require('config.filetype_excludes'),
+  -- },
 }
