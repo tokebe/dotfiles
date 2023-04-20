@@ -194,9 +194,14 @@ return {
         },
         -- Misc keybinds
         {
-          '<leader>bd',
+          '<leader>ww',
           ':BufferClose<CR>',
           description = 'Close buffer',
+        },
+        {
+          '<leader>qq',
+          ':qa',
+          description = 'Close NVIM',
         },
         -- Fold controls for UFO
         {
