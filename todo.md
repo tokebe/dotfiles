@@ -6,9 +6,9 @@ Things this repo needs, basically.
 
 The basic plan is to replace VSCode with neovim, so, important functionality:
 
-- [-] Syntax Highlighting
+- [X] Syntax Highlighting
   - [X] Better dimming, etc for unused/etc
-  - [ ] Italics, bold, etc?
+  - [X] Italics, bold, etc?
 - [-] Intellisense (type-checking, etc)
   - [ ] auto docstring?
 - [X] Code completion (From file and intellisense, etc)
@@ -28,9 +28,9 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
 - [ ] Interactive git blame/figure out where a change came from
 - [X] Command palette
 - [X] LSP notifications
-- [-] Theme manager/switcher
+- [X] Theme manager/switcher
 - [X] Autosave
-- [ ] Sensible folding with obvious markers, mouse-support?
+- [X] Sensible folding with obvious markers, mouse-support?
 - [ ] lazygit/further git integration
 - [ ] connect to docker container and lazydocker?
 - [ ] Jupyter/similar
