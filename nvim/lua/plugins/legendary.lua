@@ -200,7 +200,7 @@ return {
         },
         {
           '<leader>qq',
-          ':qa',
+          ':qa<CR>',
           description = 'Close NVIM',
         },
         -- Fold controls for UFO
