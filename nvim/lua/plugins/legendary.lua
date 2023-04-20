@@ -4,6 +4,7 @@ return {
   'mrjones2014/legendary.nvim',
   dependencies = {
     'folke/which-key.nvim',
+    'gnikdroy/projections.nvim',
   },
   config = function()
     local wk = require('which-key')
@@ -69,6 +70,14 @@ return {
           '<leader>fq',
           builtin.quickfix,
           description = 'Find quickfix',
+        },
+        {
+          '<leader>fp',
+          function()
+            require('codewindow').close_minimap() -- hide codewindow to avoid errors
+            telescope.extensions.projections.projections()
+          end,
+          description = 'Find project',
         },
         -- Select keymaps
         {
@@ -215,7 +224,15 @@ return {
           description = 'Close all folds',
         },
       },
-      commands = {},
+      commands = {
+        {
+          ':AddWorkspace',
+          function()
+            require('projections.workspace').add(vim.loop.cwd())
+          end,
+          description = 'Add current directory as a workspace',
+        },
+      },
       funcs = {},
       autocmds = {
         {
@@ -224,6 +241,31 @@ return {
             vim.cmd('NvimTreeClose')
           end,
           description = 'Close nvim-tree before quit so nvim actually quits',
+        },
+        {
+          'VimLeavePre',
+          function()
+            vim.opt.sessionoptions:append('localoptions')
+            require('projections.session').store(vim.loop.cwd())
+          end,
+          description = 'Store session on exit',
+        },
+        {
+          'VimEnter',
+          function()
+            if vim.fn.argc() == 0 then
+              require('projections.switcher').switch(vim.loop.cwd())
+            end
+          end,
+          description = 'Switch to project if nvim was started in a project dir',
+        },
+        {
+          'DirChanged',
+          function()
+            if vim.fn.argc() == 0 then
+              require('projections.switcher').switch(vim.loop.cwd())
+            end
+          end,
         },
       },
       extensions = {},

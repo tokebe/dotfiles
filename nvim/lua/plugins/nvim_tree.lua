@@ -5,12 +5,17 @@ return {
       hijack_cursor = true,
       sync_root_with_cwd = true,
       reload_on_bufenter = true,
+      respect_buf_cwd = true,
       update_focused_file = {
         enable = true,
       },
       diagnostics = {
         enable = true,
         show_on_dirs = true,
+      },
+      git = {
+        enable = true,
+        ignore = false,
       },
       modified = {
         enable = true,

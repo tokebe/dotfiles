@@ -5,8 +5,8 @@ return {
     local builtin = require('statuscol.builtin')
 
     vim.opt.fillchars = {
-      foldopen = '˅',
-      foldclose = '˃',
+      foldopen = 'v',
+      foldclose = '>',
       foldsep = ' ',
       eob = ' ',
     }
