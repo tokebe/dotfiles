@@ -8,6 +8,7 @@ return {
       foldopen = '˅',
       foldclose = '˃',
       foldsep = ' ',
+      eob = ' ',
     }
 
     require('statuscol').setup({
@@ -16,6 +17,10 @@ return {
         {
           sign = { name = { 'Diagnostic' }, maxwidth = 2, colwidth = 1, auto = false },
           click = 'v:lua.ScSa',
+        },
+        {
+          sign = { name = { 'Breakpoint' }, maxwidth = 1, colwidth = 1, auto = true },
+          click = 'v:lua.ScSa'
         },
         { text = { builtin.lnumfunc }, click = 'v:lua.ScLa'},
         {
