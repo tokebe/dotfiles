@@ -139,3 +139,6 @@ unset __conda_setup
 
 
 if [ -e /home/alter-0/.nix-profile/etc/profile.d/nix.sh ]; then . /home/alter-0/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# To customize prompt, run `p10k configure` or edit ~/dotfiles/zsh/.p10k.zsh.
+[[ ! -f ~/dotfiles/zsh/.p10k.zsh ]] || source ~/dotfiles/zsh/.p10k.zsh
