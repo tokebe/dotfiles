@@ -4,12 +4,12 @@ return {
     local cmp = require('cmp')
 
     cmp.setup(lsp.defaults.cmp_config({
-      sources = {                                                -- completion sources
-        { name = 'nvim_lsp' },                                   -- language server
+      sources = { -- completion sources
+        { name = 'nvim_lsp' }, -- language server
         { name = 'nvim_lsp_signature_help' },
-        { name = 'luasnip',                keyword_length = 2 }, -- snippets
-        { name = 'fuzzy_path' },                                       -- filepath
-        { name = 'buffer',                 keyword_length = 3 }, -- current file
+        { name = 'luasnip', keyword_length = 2 }, -- snippets
+        { name = 'fuzzy_path', options = { fd_timeout_msec = 250 } }, -- filepath
+        { name = 'buffer', keyword_length = 3 }, -- current file
       },
       formatting = {
         -- Icons
@@ -19,7 +19,7 @@ return {
           ellipsis_char = '...',
           before = function(_, vim_item)
             return vim_item -- see lspkind #30
-          end
+          end,
         }),
       },
       mapping = {
@@ -33,13 +33,13 @@ return {
           end
         end),
         -- ['<Esc>'] = cmp.mapping.abort()
-      }
+      },
     }))
 
     -- Use buffer for completion in search
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
-      sources = { name = 'buffer' }
+      sources = { name = 'buffer' },
     })
 
     -- Cmdline and path completion for commands
@@ -52,5 +52,5 @@ return {
         { name = 'zsh' },
       },
     })
-  end
+  end,
 }
