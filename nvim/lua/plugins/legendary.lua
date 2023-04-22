@@ -145,22 +145,22 @@ return {
         },
         -- Tree keybinds
         {
-          '<leader>tt',
+          '<leader>ee',
           ':NvimTreeToggle<CR>',
           description = 'Toggle tree',
         },
         {
-          '<leader>tf',
+          '<leader>ef',
           ':NvimTreeFocus<CR>',
           description = 'Focus tree',
         },
         {
-          '<leader>tj',
+          '<leader>ej',
           ':NvimTreeFindFile<CR>',
           description = 'Jump to current buffer in tree',
         },
         {
-          '<leader>tc',
+          '<leader>ec',
           ':NvimTreeCollapse<CR>',
           description = 'Recursively collapse tree',
         },
@@ -289,7 +289,7 @@ return {
       -- View keymaps
       v = { name = 'View...' },
       -- Tree keymaps
-      t = { name = 'Tree...' },
+      e = { name = 'Tree...' },
       -- Option keymaps
       o = { name = 'Options...' },
     }, { prefix = '<leader>' })

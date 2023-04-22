@@ -54,11 +54,17 @@ return {
               key = 'p',
             },
             {
+              desc = " Find File",
+              group = 'Number',
+              action = 'Telescope find_files',
+              key = 'f'
+            },
+            {
               -- TODO when you have icons fixed use 
               desc = '+New File',
               group = 'Number',
               action = 'enew',
-              key = 'f',
+              key = 'n',
             },
           },
           project = {
