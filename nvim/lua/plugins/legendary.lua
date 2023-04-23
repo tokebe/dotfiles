@@ -266,6 +266,7 @@ return {
               require('projections.switcher').switch(vim.loop.cwd())
             end
           end,
+          description = 'Switch to project if nvim CDs into project',
         },
       },
       extensions = {},
