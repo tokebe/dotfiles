@@ -4,3 +4,6 @@
 [submodule "zsh/custom/themes/powerlevel10k"]
 	path = zsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k
+[submodule "iosevka/iosevka-generate"]
+	path = iosevka/iosevka-generate
+	url = https://github.com/tokebe/iosevka-generate.git

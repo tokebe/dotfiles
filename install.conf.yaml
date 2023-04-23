@@ -16,15 +16,12 @@
     - command: git submodule update --init --recursive
       description: Update Submodules
       quiet: true
-    - command: uninstall_oh_my_zsh || rm -rf $HOME/.oh-my-zsh
-      description: Clean previous Oh My Zsh
+    - command: ./zsh/setup
+      description: Install ZSH for Humans
       quiet: true
-    - command: mv ~/.zshrc "$HOME/.zshrc.backup.$(date %F-%T)"
-      description: Back up old .zshrc
-      quiet: true
-    - command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-      description: Install oh-my-zsh
-      quiet: false
+      stdout: true
+      stderr: true
+      stdin: true
     - command: >-
         rm ~/applications/nvim.appimage;
         curl -L -o ~/applications/nvim.appimage https://github.com/neovim/neovim/releases/latest/download/nvim.appimage;
@@ -32,29 +29,26 @@
       description: Install nvim
       quiet: true
       stdout: true
-    # - command: scripts/iosevka-generate
-    #   description: Generate Custom Iosevka Fonts
-    #   quiet: true
-    #   stdout: true
-    #   stderr: true
 
 - link:
     ~/.config/nvim: nvim
-    ~/.config/iosevka: iosevka
-    ~/.oh-my-zsh/custom:
-      path: zsh/custom
-      force: true
     ~/.p10k.zsh:
       path: zsh/.p10k.zsh
       force: true
-    ~/.zshrc:
-      path: zsh/.zshrc
+    # ~/.zshrc:
+    #   path: zsh/.zshrc
+    #   force: true
+    ~/.config/iosevka/config.ini:
+      path: iosevka/config.ini
       force: true
 
 - shell:
     - command: ~/applications/nvim.appimage --headless "+Lazy! sync" +qa
       description: Prepare Neovim
-      quiet: false
-    - command: echo "test"
-      description: Test that you can actually order things
-      quiet: false
+      quiet: true
+    - command: ./iosevka/setup
+      description: Generate Custom Iosevka Fonts
+      quiet: true
+      stdout: true
+      stderr: true
+      stdin: true
