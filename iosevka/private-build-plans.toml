@@ -93,6 +93,5 @@ cyrl-ef = "cursive"
 [buildPlans.iosevka-perfected-001.variants.oblique]
 f = "tailed"
 
-  [buildPlans.iosevka-perfected-001.ligations]
-  inherits = "dlig"
-
+[buildPlans.iosevka-perfected-001.ligations]
+inherits = "dlig"
