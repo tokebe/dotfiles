@@ -74,6 +74,7 @@ return {
             label = 'Recent Projects',
             action = function(path)
               vim.cmd('cd ' .. path)
+              vim.cmd('Telescope find_files')
             end,
           },
           footer = {
