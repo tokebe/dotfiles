@@ -1,3 +1,19 @@
+#!/bin/bash
+install_linux() {
+    rm ~/applications/nvim &> /dev/null
+    curl -L -o ~/applications/nvim https://github.com/neovim/neovim/releases/latest/download/nvim.appimage && \
+        chmod u+x ~/applications/nvim
+}
+
+install_macos() {
+    if brew ls --versions neovim &> /dev/null; then
+        HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade neovim
+    else
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install neovim
+        echo 'Nvim installed.'
+    fi
+}
+
 setup() {
     local cwd=$PWD
     cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -6,13 +22,17 @@ setup() {
     if yesno 'Install/update nvim?' $?
     then
         echo 'Installing latest nvim...'
-        rm ~/applications/nvim.appimage;
-        curl -L -o ~/applications/nvim.appimage https://github.com/neovim/neovim/releases/latest/download/nvim.appimage;
-        chmod u+x ~/applications/nvim.appimage;
-        echo 'Nvim installed.'
+        if [[ $OSTYPE == 'gnu-linux'* ]]; then
+            install_linux
+            echo 'Nvim installed.'
+        elif [[ $OSTYPE == 'darwin'* ]]; then
+            install_macos
+        else
+            echo 'Error installing nvim: OS not recognized'
+        fi
     else
         echo 'Skipping nvim install...'
     fi
-    cd $cwd
+    cd "$cwd"
 }
 setup
