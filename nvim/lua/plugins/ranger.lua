@@ -1,4 +1,7 @@
 return {
-  'kevimhwang91/rnvimr',
+  'kevinhwang91/rnvimr',
   lazy = true,
+  config = function ()
+    require('rnvimr').setup()
+  end
 }
