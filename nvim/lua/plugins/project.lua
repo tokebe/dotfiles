@@ -5,7 +5,7 @@ return {
       require('projections').setup({
         workspaces = {
           { '~/Documents/GitHub', { '.git', '.vscode' } },
-          { '~',                  { '.git', '.vscode' } },
+          { '~', { '.git', '.vscode' } },
         },
         store_hooks = {
           pre = function() -- Avoid problems with nvim-tree
@@ -40,28 +40,28 @@ return {
             enable = true,
           },
           shortcut = {
-            { desc = ' Update', group = '@property', action = 'Lazy sync', key = 'u' },
+            { desc = '  Update', group = '@property', action = 'Lazy sync', key = 'u' },
             {
-              desc = ' dotfiles',
+              desc = '  dotfiles',
               group = 'Number',
               action = 'cd ~/dotfiles',
               key = 'd',
             },
             {
-              desc = ' Projects',
+              desc = '  Projects',
               group = 'DiagnosticHint',
               action = 'Telescope projections',
               key = 'p',
             },
             {
-              desc = " Find File",
+              desc = '󰈞  Find File',
               group = 'Number',
               action = 'Telescope find_files',
-              key = 'f'
+              key = 'f',
             },
             {
               -- TODO when you have icons fixed use 
-              desc = '+New File',
+              desc = '  New File',
               group = 'Number',
               action = 'enew',
               key = 'n',
@@ -70,7 +70,7 @@ return {
           project = {
             enable = true,
             limit = 8,
-            icon = ' ',
+            icon = '  ',
             label = 'Recent Projects',
             action = function(path)
               vim.cmd('cd ' .. path)
