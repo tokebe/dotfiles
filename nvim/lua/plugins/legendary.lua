@@ -79,6 +79,13 @@ return {
           end,
           description = 'Find project',
         },
+        {
+          '<leader>fu',
+          function()
+            telescope.extensions.undo.undo()
+          end,
+          description = 'Find in undo history',
+        },
         -- Select keymaps
         {
           '<leader>sl',
@@ -142,6 +149,11 @@ return {
           '<leader>ms',
           ':Navbuddy<CR>',
           description = 'Manage symbols with Navbuddy',
+        },
+        {
+          '<leader>mr',
+          ':RnvimrToggle<CR>',
+          description = 'Toggle Ranger',
         },
         -- Tree keybinds
         {
