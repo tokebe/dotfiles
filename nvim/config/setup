@@ -1,0 +1,4 @@
+
+        rm ~/applications/nvim.appimage;
+        curl -L -o ~/applications/nvim.appimage https://github.com/neovim/neovim/releases/latest/download/nvim.appimage;
+        chmod u+x ~/applications/nvim.appimage;
