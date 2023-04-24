@@ -22,7 +22,7 @@ fontgen() {
 linkfonts() {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         ln -sf ./cached ~/.local/share/fonts/iosevka-tokebe
-    elif [[ "OSTYPE" == "darwin"* ]]; then
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
         ln -sf ./cached ~/Library/Fonts/iosevka-tokebe
     fi
 }
