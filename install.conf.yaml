@@ -22,16 +22,15 @@
       stdout: true
       stderr: true
       stdin: true
-    - command: >-
-        rm ~/applications/nvim.appimage;
-        curl -L -o ~/applications/nvim.appimage https://github.com/neovim/neovim/releases/latest/download/nvim.appimage;
-        chmod u+x ~/applications/nvim.appimage;
+    - command: ./nvim/setup
       description: Install nvim
       quiet: true
       stdout: true
+      stderr: true
+      stdin: true
 
 - link:
-    ~/.config/nvim: nvim
+    ~/.config/nvim: nvim/config
     ~/.p10k.zsh:
       path: zsh/.p10k.zsh
       force: true
@@ -40,7 +39,6 @@
     #   force: true
     ~/.config/iosevka/config.ini:
       path: iosevka/config.ini
-      force: true
 
 - shell:
     - command: ~/applications/nvim.appimage --headless "+Lazy! sync" +qa

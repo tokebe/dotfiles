@@ -1,0 +1,18 @@
+setup() {
+    local cwd=$PWD
+    cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    source ../scripts/yesno
+
+    if yesno 'Install/update nvim?' $?
+    then
+        echo 'Installing latest nvim...'
+        rm ~/applications/nvim.appimage;
+        curl -L -o ~/applications/nvim.appimage https://github.com/neovim/neovim/releases/latest/download/nvim.appimage;
+        chmod u+x ~/applications/nvim.appimage;
+        echo 'Nvim installed.'
+    else
+        echo 'Skipping nvim install...'
+    fi
+    cd $cwd
+}
+setup
