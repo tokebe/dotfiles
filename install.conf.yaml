@@ -41,9 +41,11 @@
       path: iosevka/config.ini
 
 - shell:
-    - command: ~/applications/nvim.appimage --headless "+Lazy! sync" +qa
+    - command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
       description: Prepare Neovim
       quiet: true
+      stdout: true
+      stderr: true
     - command: ./iosevka/setup
       description: Generate Custom Iosevka Fonts
       quiet: true
