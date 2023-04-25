@@ -22,7 +22,7 @@ setup() {
     if yesno 'Install/update nvim?' $?
     then
         echo 'Installing latest nvim...'
-        if [[ $OSTYPE == 'gnu-linux'* ]]; then
+        if [[ $OSTYPE == 'linux-gnu'* ]]; then
             install_linux
             echo 'Nvim installed.'
         elif [[ $OSTYPE == 'darwin'* ]]; then
