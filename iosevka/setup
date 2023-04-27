@@ -1,6 +1,7 @@
 #!/bin/bash
 shopt -s expand_aliases
-cd "${0%/*}" # execute from script dir
+cwd="$(realpath ./"${0%/*}")"
+cd $cwd # execute from script dir
 # TODO add something to make the first python on path point to the venv interpreter
 # cleanup on exit or fail
 exithandler() {
@@ -11,19 +12,22 @@ trap exithandler ERR EXIT
 fontgen() {
     # handle creation in a virtual environment
     python3 -m venv iosevka_setup_env --clear
-    alias python='./iosevka_setup_env/bin/python3'
-    alias pip='./iosevka_setup_env/bin/pip3'
+    # alias python='./iosevka_setup_env/bin/python3'
+    # alias pip='./iosevka_setup_env/bin/pip3'
 
-    pip install -r iosevka-generate/requirements.txt
-    python iosevka-generate/iosevka-generate
-    mv ~/.local/share/fonts/tokebe* ./cached
+    ./iosevka_setup_env/bin/pip3 install -r iosevka-generate/requirements.txt
+    ./iosevka_setup_env/bin/python3 iosevka-generate/iosevka-generate
+    mv ~/.local/share/fonts/Tokebe* ./cached
 }
 
 linkfonts() {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        ln -sf ./cached ~/.local/share/fonts/iosevka-tokebe
+        # ensure link goes as desired
+        unlink ~/.local/share/fonts/iosevka-tokebe &> /dev/null
+        rm -rf ~/.local/share/fonts/iosevka-tokebe &> /dev/null
+        ln -sf "$cwd/cached" ~/.local/share/fonts/iosevka-tokebe
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        ln -sf ./cached ~/Library/Fonts/iosevka-tokebe
+        cp -a "$cwd/cached/." ~/Library/Fonts
     fi
 }
 
