@@ -2,6 +2,7 @@
     link:
       create: true
       relink: true
+      force: true
 
 - clean: ["~"]
 
@@ -30,15 +31,16 @@
       stdin: true
 
 - link:
+    # neovim
     ~/.config/nvim: nvim/config
-    ~/.p10k.zsh:
-      path: zsh/.p10k.zsh
-      force: true
-    # ~/.zshrc:
-    #   path: zsh/.zshrc
-    #   force: true
-    ~/.config/iosevka/config.ini:
-      path: iosevka/config.ini
+    # zsh
+    ~/.zshrc: zsh/.zshrc
+    ~/.zshenv: zsh/.zshenv
+    ~/.p10k.zsh: zsh/.p10k.zsh
+    # iosevka font gen
+    ~/.config/iosevka/config.ini: iosevka/config.ini
+    # ranger config
+    ~/.config/ranger: ranger
 
 - shell:
     - command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
