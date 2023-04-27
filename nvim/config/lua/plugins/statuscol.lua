@@ -15,7 +15,7 @@ return {
       relculright = true,
       segments = {
         {
-          sign = { name = { 'Diagnostic' }, maxwidth = 2, colwidth = 1, auto = false },
+          sign = { name = { 'Diagnostic' }, maxwidth = 2, colwidth = 2, auto = false },
           click = 'v:lua.ScSa',
         },
         {
