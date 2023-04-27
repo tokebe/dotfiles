@@ -84,7 +84,11 @@ Require the following:
 - luarocks
 - latest lua
 - cmake
+- tldr
 
+macos specific:
+- macos specific, python: use `ln -sf "$(brew --prefix)/bin/python"{3,}` to make python work
+- coreutils
 
 ## Iosevka
 
