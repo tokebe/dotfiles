@@ -90,9 +90,13 @@ macos specific:
 - macos specific, python: use `ln -sf "$(brew --prefix)/bin/python"{3,}` to make python work
 - coreutils
 
+Things to do:
+
+- make sure that nvim isn't reinstalled if it's the latest release version
+
 ## Iosevka
 
-- [ ] Automatically installs patched custom Iosevka
+- [X] Automatically installs patched custom Iosevka
 
 ## Firefox
 

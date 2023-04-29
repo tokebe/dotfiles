@@ -7,3 +7,12 @@
 [submodule "iosevka/iosevka-generate"]
 	path = iosevka/iosevka-generate
 	url = https://github.com/tokebe/iosevka-generate.git
+[submodule "dotbot-plugins/dotbot-omnipkg"]
+	path = dotbot-plugins/dotbot-omnipkg
+	url = https://github.com/code-maniac/dotbot-omnipkg
+[submodule "dotbot-plugins/dotbot-include"]
+	path = dotbot-plugins/dotbot-include
+	url = https://gitlab.com/gnfzdz/dotbot-include.git
+[submodule "dotbot-plugins/dotbot-conditional"]
+	path = dotbot-plugins/dotbot-conditional
+	url = https://gitlab.com/gnfzdz/dotbot-conditional.git

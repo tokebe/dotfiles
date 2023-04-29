@@ -3,6 +3,8 @@
       create: true
       relink: true
       force: true
+    include:
+      isolated: true
 
 - clean: ["~"]
 
@@ -29,6 +31,26 @@
       stdout: true
       stderr: true
       stdin: true
+
+- omnipkg:
+    - update
+    - upgrade
+    - install:
+        [
+          unzip,
+          ripgrep,
+          fzf,
+          fd,
+          ranger,
+          lazygit,
+          lazydocker,
+          neofetch,
+          btop,
+          luarocks,
+          cmake,
+          tldr,
+          { brew: coreutils },
+        ]
 
 - link:
     # neovim
