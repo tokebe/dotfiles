@@ -9,6 +9,11 @@ return {
     'rose-pine/neovim',
     'sainnhe/sonokai',
     'ntk148v/habamax.nvim',
+    'nyngwang/nvimgelion',
+    -- Persistent colorscheme
+    { 'propet/colorscheme-persist.nvim', dependencies = { 'nvim-telescope/telescope-dap.nvim' } },
+    -- Toggleable background transparency
+    'xiyaowong/transparent.nvim',
   },
   priority = 1000,
   config = function()
@@ -29,6 +34,12 @@ return {
         theme = 'auto',
       },
     })
-    vim.cmd('colorscheme ' .. default_theme)
+    local persist_colorscheme = require('colorscheme-persist')
+    persist_colorscheme.setup({
+      fallback = default_theme,
+    })
+    local colorscheme = persist_colorscheme.get_colorscheme()
+    vim.cmd('colorscheme ' .. colorscheme)
+    require('transparent').setup()
   end,
 }

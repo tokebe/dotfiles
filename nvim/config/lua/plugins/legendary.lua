@@ -100,7 +100,12 @@ return {
         {
           '<leader>sc',
           builtin.colorscheme,
-          description = 'Select colorscheme',
+          description = 'Select temporary colorscheme',
+        },
+        {
+          '<leader>sC',
+          require('colorscheme-persist').picker,
+          description = 'Select default colorscheme',
         },
         -- Global operation keymaps
         {
@@ -119,7 +124,7 @@ return {
               })
             end,
           },
-          description = 'Format',
+          description = 'Format file',
         },
         {
           '<leader>gr',
@@ -191,6 +196,11 @@ return {
           '<leader>op',
           ':Lazy<CR>',
           description = 'Manage plugins with Lazy',
+        },
+        {
+          '<leader>ot',
+          ':TransparentToggle<CR>',
+          description = 'Toggle transparent background',
         },
         -- Buffer keybinds
         {
