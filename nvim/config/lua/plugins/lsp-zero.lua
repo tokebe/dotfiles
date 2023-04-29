@@ -51,7 +51,7 @@ return {
     -- Inlay type hints
     { 'lvimuser/lsp-inlayhints.nvim' },
   },
-  config = function()
+  config = function() -- LSP loading status
     -- Set up neodev
     require('neodev').setup({})
     -- Set up Dressing
@@ -63,7 +63,15 @@ return {
     -- Set up LSP
     local lsp = require('lsp-zero').preset('recommended')
     require('config.lsp_zero').config(lsp)
-    require('fidget').setup() -- LSP loading status
+    require('fidget').setup({
+      text = {
+        spinner = "arc",
+      },
+      window = {
+        relative = "editor",
+        blend = 0,
+      }
+    })
 
     -- Set up formatters
     require('mason-null-ls').setup({

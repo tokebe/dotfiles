@@ -6,7 +6,6 @@ return {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-live-grep-args.nvim' }, -- ripgrep args
       { 'stevearc/dressing.nvim' }, -- better UI for a few things
-      { 'mrjones2014/legendary.nvim' },
     },
     config = function()
       local telescope = require('telescope')
@@ -14,9 +13,9 @@ return {
         border = {},
         pickers = {
           colorscheme = {
-            enable_preview = true
-          }
-        }
+            enable_preview = true,
+          },
+        },
       })
       telescope.load_extension('live_grep_args')
       -- Set up dressing (ui enhancements)
@@ -43,18 +42,6 @@ return {
           }),
         },
       })
-      require('legendary').setup({
-        which_key = {
-          auto_register = true,
-        },
-        col_separator_char = ' ',
-        extensions = {
-          nvim_tree = false,
-          smart_splits = false,
-          op_nvim = false,
-          diffview = false,
-        },
-      })
     end,
   },
   {
@@ -71,10 +58,10 @@ return {
     'debugloop/telescope-undo.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'debugloop/telescope-undo.nvim'
+      'debugloop/telescope-undo.nvim',
     },
-    config = function ()
+    config = function()
       require('telescope').load_extension('undo')
-    end
-  }
+    end,
+  },
 }
