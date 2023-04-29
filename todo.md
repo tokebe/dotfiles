@@ -90,6 +90,10 @@ macos specific:
 - macos specific, python: use `ln -sf "$(brew --prefix)/bin/python"{3,}` to make python work
 - coreutils
 
+old ubuntu (such as wsl):
+- alternate ccat
+- alternate lsd
+
 Things to do:
 
 - make sure that nvim isn't reinstalled if it's the latest release version
