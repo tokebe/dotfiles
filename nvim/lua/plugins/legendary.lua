@@ -9,7 +9,8 @@ return {
   config = function()
     local wk = require('which-key')
     local telescope = require('telescope')
-    local builtin = require('telescope.builtin')
+    telescope.builtin = require('telescope.builtin')
+    telescope.themes = require('telescope.themes')
     require('legendary').setup({
       keymaps = {
         -- Summon Command palette
@@ -22,7 +23,11 @@ return {
         {
           '<leader>ff',
           function()
-            builtin.find_files({ no_ignore = true })
+            telescope.builtin.find_files({
+              no_ignore = true,
+              hidden = true,
+              follow = true,
+            })
           end,
           description = 'Find file',
         },
@@ -33,48 +38,73 @@ return {
         },
         {
           '<leader>fb',
-          builtin.buffers,
+          function()
+            telescope.builtin.buffers(telescope.themes.get_dropdown({
+              sort_lastused = true,
+              sort_mru = true,
+            }))
+          end,
+          description = 'Find open buffer',
+        },
+        {
+          '<tab>',
+          function()
+            telescope.builtin.buffers(telescope.themes.get_dropdown({
+              sort_lastused = true,
+              sort_mru = true,
+            }))
+          end,
           description = 'Find open buffer',
         },
         {
           '<leader>fh',
-          builtin.help_tags,
+          telescope.builtin.help_tags,
           description = 'Find help',
         },
         {
           '<leader>fs',
-          builtin.lsp_document_symbols,
+          telescope.builtin.lsp_document_symbols,
           description = 'Find symbol in buffer',
         },
         {
           '<leader>fS',
-          builtin.lsp_dynamic_workspace_symbols,
+          telescope.builtin.lsp_dynamic_workspace_symbols,
           description = 'Find symbol in workspace',
         },
         {
           '<leader>fd',
-          builtin.diagnostics,
+          telescope.builtin.diagnostics,
           description = 'Find diagnostics',
         },
         {
           '<leader>fr',
-          builtin.lsp_references,
+          telescope.builtin.lsp_references,
           description = 'Find references',
         },
         {
           '<leader>ft',
-          builtin.current_buffer_fuzzy_find,
+          telescope.builtin.current_buffer_fuzzy_find,
           description = 'Find text in buffer',
         },
         {
+          '<leader>fc',
+          telescope.builtin.registers,
+          description = 'Find in clipboard (registers)',
+        },
+        {
+          '<leader>fi',
+          telescope.builtin.lsp_implementations,
+          description = 'Find implementations',
+        },
+        {
           '<leader>fq',
-          builtin.quickfix,
+          telescope.builtin.quickfix,
           description = 'Find quickfix',
         },
         {
           '<leader>fp',
           function()
-            require('codewindow').close_minimap() -- hide codewindow to avoid errors
+            -- require('codewindow').close_minimap() -- hide codewindow to avoid errors
             telescope.extensions.projections.projections()
           end,
           description = 'Find project',
@@ -88,18 +118,31 @@ return {
         },
         -- Select keymaps
         {
+          '<leader>ss',
+          function()
+            telescope.builtin.spell_suggest(telescope.themes.get_cursor())
+          end,
+          description = 'Select spelling',
+        },
+        {
           '<leader>sl',
-          builtin.filetypes,
+          function()
+            telescope.builtin.filetypes(telescope.themes.get_dropdown())
+          end,
           description = 'Select language',
         },
         {
           '<leader>sb',
-          builtin.git_branches,
+          function()
+            telescope.builtin.git_branches(telescope.themes.get_dropdown())
+          end,
           description = 'Select branch',
         },
         {
           '<leader>sc',
-          builtin.colorscheme,
+          function()
+            telescope.builtin.colorscheme(telescope.themes.get_dropdown())
+          end,
           description = 'Select temporary colorscheme',
         },
         {
@@ -149,7 +192,7 @@ return {
           ':Portal jumplist forward<CR>',
           description = 'Jump forward in place history',
         },
-        -- Manage	keybinds
+        -- Manage keybinds
         {
           '<leader>ms',
           ':Navbuddy<CR>',

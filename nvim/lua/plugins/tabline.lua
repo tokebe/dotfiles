@@ -1,0 +1,15 @@
+return {}
+-- return {
+--   'willothy/nvim-cokeline',
+--   dependencies = {
+--     'nvim-tree/nvim-web-devicons',
+--   },
+--   config = function()
+--     require('cokeline').setup({
+--       sidebar = {
+--         filetype = 'NvimTree'
+--         -- TODO a lot of freaking implementation
+--       }
+--     })
+--   end
+-- }

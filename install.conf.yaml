@@ -1,23 +1,54 @@
+---
+- plugins:
+    - dotbot-plugins/dotbot-omnipkg
+    - dotbot-plugins/dotbot-if
+    - dotbot-plugins/dotbot-brew
 - defaults:
     link:
       create: true
       relink: true
       force: true
-    include:
-      isolated: true
-
 - clean: ["~"]
-
-- create:
-    - ~/applications
-    - ~/downloads
-
+- create: [~/applications, ~/downloads]
+- omnipkg:
+    - update
+    - upgrade
+    - install:
+        - unzip
+        - ripgrep
+        - fzf
+        - apt: fd-find
+          dnf: fd-find
+          pac: fd
+          brew: fd
+        - pac: ccat
+          brew: ccat
+        - ranger
+        - pac: lazygit
+          dnf: lazygit
+          brew: jesseduffield/lazygit/lazygit
+        - neofetch
+        - brew: btop
+        - luarocks
+        - cmake
+        - tldr
+        - python3-venv
+        - cargo
+        - ttfautohint
+        - { brew: coreutils }
+- if:
+    cond: '[[ "$(uname -s)" == *"Linux"* ]]'
+    met:
+      - if:
+          cond: command -v fd &> /dev/null
+          met:
+            - shell:
+                - command: ln -sf $(which fdfind) ~/.local/bin/fd
+                  description: Fix fd access
+                  quiet: true
+      - brew: [lsd, ccat, lazygit, lazydocker, btop, nvim]
 - shell:
-    - command: git submodule sync --recursive
-      description: Sync Submodules
-      quiet: true
-    - command: git submodule update --init --recursive
-      description: Update Submodules
+    - command: brew analytics off
       quiet: true
     - command: ./zsh/setup
       description: Install ZSH for Humans
@@ -25,36 +56,9 @@
       stdout: true
       stderr: true
       stdin: true
-    - command: ./nvim/setup
-      description: Install nvim
-      quiet: true
-      stdout: true
-      stderr: true
-      stdin: true
-
-- omnipkg:
-    - update
-    - upgrade
-    - install:
-        [
-          unzip,
-          ripgrep,
-          fzf,
-          fd,
-          ranger,
-          lazygit,
-          lazydocker,
-          neofetch,
-          btop,
-          luarocks,
-          cmake,
-          tldr,
-          { brew: coreutils },
-        ]
-
 - link:
     # neovim
-    ~/.config/nvim: nvim/config
+    ~/.config/nvim: nvim
     # zsh
     ~/.zshrc: zsh/.zshrc
     ~/.zshenv: zsh/.zshenv
@@ -63,7 +67,6 @@
     ~/.config/iosevka/config.ini: iosevka/config.ini
     # ranger config
     ~/.config/ranger: ranger
-
 - shell:
     - command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
       description: Prepare Neovim
