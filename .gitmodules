@@ -1,21 +1,15 @@
 [submodule "dotbot"]
 	path = dotbot
-	url = https://github.com/anishathalye/dotbot
-[submodule "zsh/custom/themes/powerlevel10k"]
-	path = zsh/custom/themes/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k
+	url = https://github.com/tokebe/dotbot
 [submodule "iosevka/iosevka-generate"]
 	path = iosevka/iosevka-generate
 	url = https://github.com/tokebe/iosevka-generate.git
 [submodule "dotbot-plugins/dotbot-omnipkg"]
 	path = dotbot-plugins/dotbot-omnipkg
 	url = https://github.com/code-maniac/dotbot-omnipkg
-[submodule "dotbot-plugins/dotbot-conditional"]
-	path = dotbot-plugins/dotbot-conditional
-	url = https://gitlab.com/gnfzdz/dotbot-conditional.git
-[submodule "dotbot-plugins/dotbot-ifplatform"]
-	path = dotbot-plugins/dotbot-ifplatform
-	url = https://github.com/ssbanerje/dotbot-ifplatform.git
 [submodule "dotbot-plugins/dotbot-brew"]
 	path = dotbot-plugins/dotbot-brew
 	url = https://github.com/d12frosted/dotbot-brew.git
+[submodule "dotbot-plugins/dotbot-if"]
+	path = dotbot-plugins/dotbot-if
+	url = https://github.com/wonderbeyond/dotbot-if.git
