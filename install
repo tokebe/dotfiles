@@ -12,15 +12,7 @@ cd "$BASEDIR"
 git submodule sync --quiet --recursive
 git submodule update --init --recursive
 
-# Plugins
-OMNIPKGPLUGIN="${BASEDIR}/dotbot-plugins/dotbot-omnipkg/omnipkg.py"
-INCLUDEPLUGIN="${BASEDIR}/dotbot-plugins/dotbot-include/include.py"
-CONDITIONALPLUGIN="${BASEDIR}/dotbot-plugins/dotbot-conditional"
-
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
     -d "$BASEDIR" \
     -c "$CONFIG" \
-    -p "$OMNIPKGPLUGIN" \
-    -p "$INCLUDEPLUGIN" \
-    --plugin-dir "$CONDITIONALPLUGIN" \
     "${@}"

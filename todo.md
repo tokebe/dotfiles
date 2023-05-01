@@ -59,6 +59,8 @@ And also the random notes for smaller things:
 - [ ] Code hints not really displaying, might need above fix first ^
 - [ ] change nvim-tree icons for git to make more sense
 - [X] ensure dashboard loads after projections and legendary
+- [ ] fix mkdnflow failing sometimes
+- [ ] completely redo the project/session system to something simpler and more consistent
 
 And, after all this, the obvious way to destroy all my time:
 
@@ -70,33 +72,33 @@ And, after all this, the obvious way to destroy all my time:
 
 Require the following:
 
-- unzip
-- ripgrep
-- fzf
-- fd
-  - link properly on ubuntu using `ln -s $(which fdfind) ~/.local/bin/fd`
-- ranger
-- zsh
-- lazygit
+- [ ] unzip
+- [ ] ripgrep
+- [ ] fzf
+- [ ] fd
+  - [ ] link properly on ubuntu using `ln -s $(which fdfind) ~/.local/bin/fd`
+- [ ] ranger
+- [ ] zsh
+- [ ] lazygit
 - lazydocker
-- neofetch
-- btop
-- luarocks
-- latest lua
-- cmake
-- tldr
+- [ ] neofetch
+- [ ] btop
+- [ ] luarocks
+- [ ] latest lua
+- [ ] cmake
+- [ ] tldr
 
 macos specific:
-- macos specific, python: use `ln -sf "$(brew --prefix)/bin/python"{3,}` to make python work
-- coreutils
+- [ ] macos specific, python: use `ln -sf "$(brew --prefix)/bin/python"{3,}` to make python work
+- [ ] coreutils
 
 old ubuntu (such as wsl):
-- alternate ccat
-- alternate lsd
+- [ ] manual install lsd
+- [ ] manual install ccat
 
 Things to do:
 
-- make sure that nvim isn't reinstalled if it's the latest release version
+- [ ] make sure that nvim isn't reinstalled if it's the latest release version
 
 ## Iosevka
 
@@ -104,4 +106,4 @@ Things to do:
 
 ## Firefox
 
-- [ ] Fix tab spacing when firefox goes into narrow mode
+  - [ ] Fix tab spacing when firefox goes into narrow mode

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# takes $pkg_name $github_repo $release_grep
+install_from_github() {
+    local download_link="$( \
+      curl -s https://api.github.com/repos/"${2}"/releases/latest \
+        | grep -E "browser_download_url" \
+        | grep "$3" \
+        | head -n 1 \
+        | cut -d '"' -f 4 \
+    )"
+    curl -L "$download_link" > ~/downloads/"${1}".tar.gz && \
+        tar -xzf ~/downloads/"${1}".tar.gz -C ~/downloads && \
+        local binary="$(find ~/downloads -name "${1}")"
+    chmod u+x "$binary" && \
+        mv "$binary" ~/.local/bin/"${1}" && \
+        rm ~/downloads/"${1}".tar.gz && \
+        rm -rf ~/downloads/"${2}"
+}

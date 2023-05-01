@@ -109,9 +109,9 @@ alias lg=lazygit
 alias ls='lsd -AX --group-dirs=first'
 alias notes='nvim ~/notes'
 alias cat=ccat
-if [ -f ~/applications/nvim ]; then
-    alias nvim=~/applications/nvim
-fi
+# if [ -f ~/applications/nvim ]; then
+#     alias nvim=~/applications/nvim
+# fi
 
 # Add flags to existing aliases.
 # alias ls="${aliases[ls]:-ls} -A"
@@ -124,3 +124,6 @@ setopt no_auto_menu  # require an extra TAB press to open the completion menu
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Make Go work
+  export GOPATH=$HOME/gocode

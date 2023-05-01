@@ -23,6 +23,9 @@ fontgen() {
 linkfonts() {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # ensure link goes as desired
+        if [ ! -d ~/.local/share/fonts ]; then
+            mkdir -p ~/.local/share/fonts
+        fi
         unlink ~/.local/share/fonts/iosevka-tokebe &> /dev/null
         rm -rf ~/.local/share/fonts/iosevka-tokebe &> /dev/null
         ln -sf "$cwd/cached" ~/.local/share/fonts/iosevka-tokebe
