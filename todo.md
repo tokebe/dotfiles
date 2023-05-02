@@ -6,59 +6,60 @@ Things this repo needs, basically.
 
 The basic plan is to replace VSCode with neovim, so, important functionality:
 
-- [X] Syntax Highlighting
-  - [X] Better dimming, etc for unused/etc
-  - [X] Italics, bold, etc?
+- [x] Syntax Highlighting
+  - [x] Better dimming, etc for unused/etc
+  - [x] Italics, bold, etc?
 - [-] Intellisense (type-checking, etc)
   - [ ] auto docstring?
-- [X] Code completion (From file and intellisense, etc)
+- [x] Code completion (From file and intellisense, etc)
 - [-] Debugging
   - [ ] Breakpoints, inspection
   - [ ] Possible vscode debug config support?
   - [-] vscode task support? (See vs-tasks.nvim for this and launch support)
   - [ ] javascript/other profiling
-- [X] File Tree
-- [X] Fuzzy file jumping
-- [X] Project management (open a given set of files, remember previously-open files)
-- [X] File tabs
-- [X] Autoformatting
+- [x] File Tree
+- [x] Fuzzy file jumping
+- [x] Project management (open a given set of files, remember previously-open files)
+- [x] File tabs
+- [x] Autoformatting
 - [ ] Intelligent indenting on paste
 - [ ] Toggleable terminal
-- [X] Remove trailing spaces on exit insert mode
+- [x] Remove trailing spaces on exit insert mode
 - [ ] Interactive git blame/figure out where a change came from
-- [X] Command palette
-- [X] LSP notifications
-- [X] Theme manager/switcher
-- [X] Autosave
-- [X] Sensible folding with obvious markers, mouse-support?
+- [x] Command palette
+- [x] LSP notifications
+- [x] Theme manager/switcher
+- [x] Autosave
+- [x] Sensible folding with obvious markers, mouse-support?
 - [ ] lazygit/further git integration
 - [ ] connect to docker container and lazydocker?
 - [ ] Jupyter/similar
 - [ ] TODO highlighting/overview
 - [ ] Trouble: list all diagnostics (maybe TODO support?)
 - [ ] Tab management keybinds/different buffer/tab line
+- [ ] Disable highlighting for extremely large files
 
 And also the random notes for smaller things:
 
-- [X] Markdown auto-continuing bullets, etc. (fix bullets or vim-markdown)
+- [x] Markdown auto-continuing bullets, etc. (fix bullets or vim-markdown)
 - [ ] re-enable luasnip jumping but fix the jumpback issue
-- [X] Markdown preview (use hologram and glow?)
+- [x] Markdown preview (use hologram and glow?)
 - [ ] Wrap before minimap
-- [X] Don't auto-pair with a character directly in front
-- [X] A theme that is good
-- [X] Don't highlight trailing spaces in which-key window
-- [X] Fancier look for telescope
-- [X] Move all keymaps to legendary if feasible
+- [x] Don't auto-pair with a character directly in front
+- [x] A theme that is good
+- [x] Don't highlight trailing spaces in which-key window
+- [x] Fancier look for telescope
+- [x] Move all keymaps to legendary if feasible
 - [ ] See if navbuddy can auto-select the first lsp or something
 - [-] Break up some of the larger configs into folders
-- [X] Keep lualine on bottom regardless of window?
+- [x] Keep lualine on bottom regardless of window?
 - [ ] Fix \<C-v\> opening telescope search vertical (currently just pastes)
-- [X] menu to open Lazy, Mason, other config stuff
+- [x] menu to open Lazy, Mason, other config stuff
 - [ ] Fix IncRename: needs to ensure diagnostic float is hidden/paused
 - [ ] Add more signature support somehow (e.g. typescrip signatures on variables in bte)
 - [ ] Code hints not really displaying, might need above fix first ^
 - [ ] change nvim-tree icons for git to make more sense
-- [X] ensure dashboard loads after projections and legendary
+- [x] ensure dashboard loads after projections and legendary
 - [ ] fix mkdnflow failing sometimes
 - [ ] completely redo the project/session system to something simpler and more consistent
 
@@ -89,10 +90,12 @@ Require the following:
 - [ ] tldr
 
 macos specific:
+
 - [ ] macos specific, python: use `ln -sf "$(brew --prefix)/bin/python"{3,}` to make python work
 - [ ] coreutils
 
 old ubuntu (such as wsl):
+
 - [ ] manual install lsd
 - [ ] manual install ccat
 
@@ -102,8 +105,8 @@ Things to do:
 
 ## Iosevka
 
-- [X] Automatically installs patched custom Iosevka
+- [x] Automatically installs patched custom Iosevka
 
 ## Firefox
 
-  - [ ] Fix tab spacing when firefox goes into narrow mode
+- [ ] Fix tab spacing when firefox goes into narrow mode
