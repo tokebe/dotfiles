@@ -10,6 +10,17 @@
       force: true
 - clean: ["~"]
 - create: [~/applications, ~/downloads]
+- if:
+    cond: command -v brew &> /dev/null
+    unmet:
+      - shell:
+          - command: >
+              /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            description: Install brew package manager
+            quiet: true
+            stdout: true
+            stderr: true
+            stdin: true
 - omnipkg:
     - update
     - upgrade
