@@ -69,13 +69,16 @@ return {
           },
           project = {
             enable = true,
-            limit = 8,
+            limit = 2,
             icon = '  ',
             label = 'Recent Projects',
             action = function(path)
               vim.cmd('cd ' .. path)
               vim.cmd('Telescope find_files')
             end,
+          },
+          mru = {
+            limit = 3,
           },
           footer = {
             '',

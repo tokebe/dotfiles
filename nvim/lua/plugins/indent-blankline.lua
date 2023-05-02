@@ -10,6 +10,7 @@ return {
       -- use_treesitter_scope = true,
       show_current_context = true,
       show_current_context_start = true,
+      filetype_exclude = require('config.filetype_excludes'),
     })
   end,
 }
