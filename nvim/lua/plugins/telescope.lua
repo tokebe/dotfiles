@@ -5,7 +5,7 @@ return {
     dependencies = {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-live-grep-args.nvim' }, -- ripgrep args
-      { 'stevearc/dressing.nvim' },                       -- better UI for a few things
+      { 'stevearc/dressing.nvim' }, -- better UI for a few things
     },
     config = function()
       local telescope = require('telescope')
@@ -15,8 +15,6 @@ return {
           colorscheme = {
             enable_preview = true,
           },
-        },
-        pickers = {
           buffers = {
             mappings = {
               i = {
@@ -24,7 +22,7 @@ return {
               },
             },
           },
-        }
+        },
       })
       telescope.load_extension('live_grep_args')
       -- Set up dressing (ui enhancements)
