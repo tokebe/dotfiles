@@ -73,6 +73,7 @@
     # zsh
     ~/.zshrc: zsh/.zshrc
     ~/.zshenv: zsh/.zshenv
+    ~/.zprofile: zsh/.zprofile
     ~/.p10k.zsh: zsh/.p10k.zsh
     # iosevka font gen
     ~/.config/iosevka/config.ini: iosevka/config.ini
