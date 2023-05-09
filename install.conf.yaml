@@ -44,7 +44,9 @@
         - luarocks
         - cmake
         - tldr
+        - python3
         - python3-venv
+        - python3-pip
         - cargo
         - ttfautohint
         - { brew: coreutils }
@@ -68,6 +70,8 @@
       stdout: true
       stderr: true
       stdin: true
+- pip:
+    file: python-packages.txt
 - link:
     # neovim
     ~/.config/nvim: nvim
@@ -80,6 +84,9 @@
     ~/.config/iosevka/config.ini: iosevka/config.ini
     # ranger config
     ~/.config/ranger: ranger
+    # tmux
+    ~/.tmux.conf: tmux/.tmux/.tmux.conf
+    ~/.tmux.conf.local: tmux/.tmux.conf.local
 - shell:
     - command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
       description: Prepare Neovim
