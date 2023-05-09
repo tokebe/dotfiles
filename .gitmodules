@@ -13,3 +13,9 @@
 [submodule "dotbot-plugins/dotbot-if"]
 	path = dotbot-plugins/dotbot-if
 	url = https://github.com/wonderbeyond/dotbot-if.git
+[submodule "tmux/.tmux"]
+	path = tmux/.tmux
+	url = https://github.com/gpakosz/.tmux.git
+[submodule "dotbot-plugins/dotbot-pip"]
+	path = dotbot-plugins/dotbot-pip
+	url = https://github.com/sobolevn/dotbot-pip.git
