@@ -3,6 +3,7 @@
     - dotbot-plugins/dotbot-omnipkg
     - dotbot-plugins/dotbot-if
     - dotbot-plugins/dotbot-brew
+    - dotbot-plugins/dotbot-pip
 - defaults:
     link:
       create: true
