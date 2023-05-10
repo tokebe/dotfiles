@@ -10,10 +10,10 @@ return {
       highlight = {
         enabled = true,
         language_tree = true,
-        is_supported = function()
-          if vim.fn.strwidth(vim.fn.getline('.')) > 300 or vim.fn.getfsize(vim.fn.expand('%')) > 1024 * 1024 then
-            return false
-          else
+        disable = function(lang, bufnr)
+          local max_filesize = 1024 * 1024 -- 1MB
+          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+          if ok and stats and stats.size > max_filesize then
             return true
           end
         end,
