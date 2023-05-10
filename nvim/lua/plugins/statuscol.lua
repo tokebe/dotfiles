@@ -1,6 +1,6 @@
 return {
   'luukvbaal/statuscol.nvim',
-  commit = 'd9ee308',
+  -- commit = 'd9ee308',
   config = function()
     local builtin = require('statuscol.builtin')
 
@@ -15,7 +15,7 @@ return {
       relculright = true,
       segments = {
         {
-          sign = { name = { 'Diagnostic' }, maxwidth = 2, colwidth = 2, auto = false },
+          sign = { name = { 'Diagnostic', 'todo.*' }, maxwidth = 2, colwidth = 2, auto = false },
           click = 'v:lua.ScSa',
         },
         {
