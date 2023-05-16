@@ -4,7 +4,6 @@ return {
   'mrjones2014/legendary.nvim',
   dependencies = {
     'folke/which-key.nvim',
-    'gnikdroy/projections.nvim',
   },
   config = function()
     local wk = require('which-key')
@@ -37,16 +36,6 @@ return {
           description = 'Find in files (grep)',
         },
         {
-          '<leader>fb',
-          function()
-            telescope.builtin.buffers(telescope.themes.get_dropdown({
-              sort_lastused = true,
-              sort_mru = true,
-            }))
-          end,
-          description = 'Find open buffer',
-        },
-        {
           '<tab>',
           function()
             telescope.builtin.buffers(telescope.themes.get_dropdown({
@@ -73,16 +62,41 @@ return {
         },
         {
           '<leader>fd',
-          telescope.builtin.diagnostics,
+          function()
+            vim.cmd('Trouble document_diagnostics')
+          end,
           description = 'Find diagnostics',
         },
         {
+          '<leader>fD',
+          function()
+            vim.cmd('Trouble workspace_diagnostics')
+          end,
+          description = 'Find workspace diagnostics',
+        },
+        {
           '<leader>fr',
-          telescope.builtin.lsp_references,
+          function()
+            vim.cmd('Trouble lsp_references')
+          end,
           description = 'Find references',
         },
         {
-          '<leader>ft',
+          '<leader>fR',
+          function()
+            vim.cmd('trouble lsp_definitions')
+          end,
+          description = 'find definitions',
+        },
+        {
+          '<leader>f<C-r>',
+          function()
+            vim.cmd('Trouble lsp_type_definitions')
+          end,
+          description = 'find type definitions',
+        },
+        {
+          '<leader>fb',
           telescope.builtin.current_buffer_fuzzy_find,
           description = 'Find text in buffer',
         },
@@ -98,14 +112,22 @@ return {
         },
         {
           '<leader>fq',
-          telescope.builtin.quickfix,
+          function()
+            vim.cmd('Trouble quickfix')
+          end,
           description = 'Find quickfix',
+        },
+        {
+          '<leader>ft',
+          function()
+            vim.cmd('TodoTrouble')
+          end,
+          description = 'Find todos',
         },
         {
           '<leader>fp',
           function()
-            -- require('codewindow').close_minimap() -- hide codewindow to avoid errors
-            telescope.extensions.projections.projections()
+            vim.cmd('SessionManager load_session')
           end,
           description = 'Find project',
         },
@@ -306,32 +328,6 @@ return {
             vim.cmd('NvimTreeClose')
           end,
           description = 'Close nvim-tree before quit so nvim actually quits',
-        },
-        {
-          'VimLeavePre',
-          function()
-            vim.opt.sessionoptions:append('localoptions')
-            require('projections.session').store(vim.loop.cwd())
-          end,
-          description = 'Store session on exit',
-        },
-        {
-          'VimEnter',
-          function()
-            if vim.fn.argc() == 0 then
-              require('projections.switcher').switch(vim.loop.cwd())
-            end
-          end,
-          description = 'Switch to project if nvim was started in a project dir',
-        },
-        {
-          'DirChanged',
-          function()
-            if vim.fn.argc() == 0 then
-              require('projections.switcher').switch(vim.loop.cwd())
-            end
-          end,
-          description = 'Switch to project if nvim CDs into project',
         },
       },
       extensions = {},
