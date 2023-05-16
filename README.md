@@ -32,5 +32,5 @@ cd dotfiles && ./install
 
 Anyone who deserves thanking, they'll go here.
 
-- Initial Nvim config based around [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 
+- Initial Nvim config based around [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 - Firefox Chrome based on [Cascade](https://github.com/andreasgrafen/cascade), [Onebar](https://codeberg.org/Freeplay/Firefox-Onebar), and [u/Bali10050's css](https://old.reddit.com/r/FirefoxCSS/comments/11zreo3/updated_my_custom_theme_css_in_comments/)

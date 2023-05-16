@@ -35,7 +35,7 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
 - [ ] connect to docker container and lazydocker?
 - [ ] Jupyter/similar
 - [ ] TODO highlighting/overview
-- [ ] Trouble: list all diagnostics (maybe TODO support?)
+- [x] Trouble: list all diagnostics (maybe TODO support?)
 - [ ] Tab management keybinds/different buffer/tab line
 - [ ] Disable highlighting for extremely large files
 
@@ -44,7 +44,6 @@ And also the random notes for smaller things:
 - [x] Markdown auto-continuing bullets, etc. (fix bullets or vim-markdown)
 - [ ] re-enable luasnip jumping but fix the jumpback issue
 - [x] Markdown preview (use hologram and glow?)
-- [ ] Wrap before minimap
 - [x] Don't auto-pair with a character directly in front
 - [x] A theme that is good
 - [x] Don't highlight trailing spaces in which-key window
@@ -60,8 +59,7 @@ And also the random notes for smaller things:
 - [ ] Code hints not really displaying, might need above fix first ^
 - [ ] change nvim-tree icons for git to make more sense
 - [x] ensure dashboard loads after projections and legendary
-- [ ] fix mkdnflow failing sometimes
-- [ ] completely redo the project/session system to something simpler and more consistent
+- [x] completely redo the project/session system to something simpler and more consistent
 
 And, after all this, the obvious way to destroy all my time:
 
