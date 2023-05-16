@@ -34,6 +34,15 @@ return {
       })
     end,
   },
+  {
+    'declancm/cinnamon.nvim',
+    config = function()
+      require('cinnamon').setup({
+        extra_keymaps = true,
+        extended_keymaps = true,
+      })
+    end,
+  },
   -- currently too buggy to trust
   -- {
   --   'huy-hng/anyline.nvim',
