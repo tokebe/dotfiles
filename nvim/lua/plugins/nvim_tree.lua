@@ -1,6 +1,7 @@
 return {
   'nvim-tree/nvim-tree.lua',
   config = function()
+    -- TODO better git icons
     require('nvim-tree').setup({
       hijack_cursor = true,
       sync_root_with_cwd = true,

@@ -1,22 +1,34 @@
 return {
+  -- {
+  --   'gnikdroy/projections.nvim',
+  --   config = function()
+  --     require('projections').setup({
+  --       workspaces = {
+  --         { '~/Documents/GitHub', { '.git', '.vscode' } },
+  --         { '~', { '.git', '.vscode' } },
+  --       },
+  --       store_hooks = {
+  --         pre = function() -- Avoid problems with nvim-tree
+  --           local nvim_tree_present, api = pcall(require, 'nvim-tree.api')
+  --           if nvim_tree_present then
+  --             api.tree.close()
+  --           end
+  --         end,
+  --       },
+  --     })
+  --     require('telescope').load_extension('projections')
+  --   end,
+  -- },
   {
-    'gnikdroy/projections.nvim',
+    'Shatur/neovim-session-manager',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
     config = function()
-      require('projections').setup({
-        workspaces = {
-          { '~/Documents/GitHub', { '.git', '.vscode' } },
-          { '~', { '.git', '.vscode' } },
-        },
-        store_hooks = {
-          pre = function() -- Avoid problems with nvim-tree
-            local nvim_tree_present, api = pcall(require, 'nvim-tree.api')
-            if nvim_tree_present then
-              api.tree.close()
-            end
-          end,
-        },
+      local config = require('session_manager.config')
+      require('session_manager').setup({
+        autoload_mode = config.AutoloadMode.CurrentDir,
       })
-      require('telescope').load_extension('projections')
     end,
   },
   {
@@ -44,13 +56,16 @@ return {
             {
               desc = '  dotfiles',
               group = 'Number',
-              action = 'cd ~/dotfiles',
+              action = function()
+                vim.cmd('cd ~/dotfiles')
+                vim.cmd('SessionManager load_current_dir_session')
+              end,
               key = 'd',
             },
             {
               desc = '  Projects',
               group = 'DiagnosticHint',
-              action = 'Telescope projections',
+              action = 'SessionManager load_session',
               key = 'p',
             },
             {
@@ -60,7 +75,6 @@ return {
               key = 'f',
             },
             {
-              -- TODO when you have icons fixed use 
               desc = '  New File',
               group = 'Number',
               action = 'enew',
@@ -74,7 +88,7 @@ return {
             label = 'Recent Projects',
             action = function(path)
               vim.cmd('cd ' .. path)
-              vim.cmd('Telescope find_files')
+              vim.cmd('SessionManager load_current_dir_session')
             end,
           },
           mru = {
