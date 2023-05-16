@@ -9,6 +9,7 @@ return {
         { name = 'nvim_lsp_signature_help' },
         { name = 'luasnip', keyword_length = 2 }, -- snippets
         { name = 'fuzzy_path', options = { fd_timeout_msec = 250 } }, -- filepath
+        { name = 'async_path' },
         { name = 'buffer', keyword_length = 3 }, -- current file
       },
       formatting = {
@@ -44,11 +45,29 @@ return {
 
     -- Cmdline and path completion for commands
     cmp.setup.cmdline(':', {
+      sorting = {
+        priority_weight = 1,
+        comparators = {
+          cmp.config.compare.exact,
+          cmp.config.compare.offset,
+          cmp.config.compare.recently_used,
+          cmp.config.compare.score,
+          cmp.config.compare.locality,
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        },
+      },
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
         { name = 'cmdline' },
-        { name = 'fuzzy_path' },
-        { name = 'cmdline_history' },
+        { name = 'path', group_index = 1 },
+        {
+          name = 'cmdline_history',
+          max_item_count = 3,
+          group_index = 2,
+        },
         { name = 'zsh' },
       },
     })
