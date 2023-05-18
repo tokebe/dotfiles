@@ -42,6 +42,15 @@ return {
               sort_lastused = true,
               sort_mru = true,
               ignore_current_buffer = true,
+              -- jump to file if only one, not great because you can get inintended input
+              -- on_complete = {
+              --   function(picker)
+              --     -- if we have exactly one match, select it
+              --     if picker.manager.linked_states.size == 1 then
+              --       require('telescope.actions').select_default(picker.prompt_bufnr)
+              --     end
+              --   end,
+              -- },
             }))
           end,
           description = 'Find open buffer',
@@ -74,27 +83,6 @@ return {
             vim.cmd('Trouble workspace_diagnostics')
           end,
           description = 'Find workspace diagnostics',
-        },
-        {
-          '<leader>fr',
-          function()
-            vim.cmd('Trouble lsp_references')
-          end,
-          description = 'Find references',
-        },
-        {
-          '<leader>fR',
-          function()
-            vim.cmd('trouble lsp_definitions')
-          end,
-          description = 'find definitions',
-        },
-        {
-          '<leader>f<C-r>',
-          function()
-            vim.cmd('Trouble lsp_type_definitions')
-          end,
-          description = 'find type definitions',
         },
         {
           '<leader>fb',
@@ -194,17 +182,23 @@ return {
         },
         {
           '<leader>gr',
-          function()
-            return ':IncRename ' .. vim.fn.expand('<cword>')
-          end,
+          ':IncRename ' .. vim.fn.expand('<cword>'),
           description = 'Rename symbol',
+          noremap = true,
+        },
+        {
+          '<leader>gR',
+          function()
+            require('ssr').open()
+          end,
+          description = 'Structural replace',
         },
         {
           '<leader>gq',
           vim.lsp.buf.code_action,
           description = 'Quickfix...',
         },
-        -- Jump kebinds
+        -- Jump keybinds
         {
           '<leader>jj',
           ':Portal jumplist backward<CR>',
@@ -336,6 +330,14 @@ return {
           'zM',
           require('ufo').closeAllFolds,
           description = 'Close all folds',
+        },
+        -- LSP actions
+        {
+          'ga',
+          function()
+            require('actions-preview').code_actions()
+          end,
+          description = 'view code actions',
         },
       },
       commands = {

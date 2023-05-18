@@ -7,8 +7,8 @@ return {
           conf.row = 0
           return conf
         end,
-        border = 'rounded'
+        border = 'none',
       },
     })
-  end
+  end,
 }
