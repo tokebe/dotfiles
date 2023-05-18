@@ -41,6 +41,7 @@ return {
             telescope.builtin.buffers(telescope.themes.get_dropdown({
               sort_lastused = true,
               sort_mru = true,
+              ignore_current_buffer = true,
             }))
           end,
           description = 'Find open buffer',
@@ -288,12 +289,38 @@ return {
           ':BufferMoveNext<CR>',
           description = 'Move buffer tab right',
         },
-        -- Misc keybinds
+        -- Window keybinds
         {
-          '<leader>ww',
+          '<leader>wq',
           ':BufferClose<CR>',
           description = 'Close buffer',
         },
+        {
+          '<leader>ww',
+          ':WindowsMaximize<CR>',
+          description = 'Maximize current window',
+        },
+        {
+          '<leader>we',
+          ':WindowsEqualize<CR>',
+          description = 'Equalize windows',
+        },
+        {
+          '<leader>wa',
+          ':WindowsToggleAutowidth<CR>',
+          description = 'Toggle Window autowidth',
+        },
+        {
+          '<leader>wh',
+          ':WindowsMaximizeHorizontally<CR>',
+          description = 'Maximize window horizontally',
+        },
+        {
+          '<leader>wv',
+          ':WindowsMaximizeVertically<CR>',
+          description = 'Maximize window vertically',
+        },
+        -- Misc keybinds
         {
           '<leader>qq',
           ':qa<CR>',
@@ -328,6 +355,19 @@ return {
             vim.cmd('NvimTreeClose')
           end,
           description = 'Close nvim-tree before quit so nvim actually quits',
+        },
+        {
+          'ModeChanged',
+          function()
+            if
+              ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+              and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
+              and not require('luasnip').session.jump_active
+            then
+              require('luasnip').unlink_current()
+            end
+          end,
+          description = 'Prevent luasnip from jumping back after finishing a snippet',
         },
       },
       extensions = {},
