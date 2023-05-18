@@ -43,6 +43,19 @@ return {
       })
     end,
   },
+  {
+    'anuvyklack/windows.nvim',
+    dependencies = {
+      'anuvyklack/middleclass',
+      'anuvyklack/animation.nvim',
+    },
+      config = function()
+        vim.o.winwidth = 15
+        vim.o.windminwidth = 15
+        vim.o.equalalways = false
+        require('windows').setup()
+      end
+  }
   -- currently too buggy to trust
   -- {
   --   'huy-hng/anyline.nvim',
