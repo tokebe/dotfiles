@@ -34,7 +34,7 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
 - [ ] lazygit/further git integration
 - [ ] connect to docker container and lazydocker?
 - [ ] Jupyter/similar
-- [ ] TODO highlighting/overview
+- [x] TODO highlighting/overview
 - [x] Trouble: list all diagnostics (maybe TODO support?)
 - [ ] Tab management keybinds/different buffer/tab line
 - [ ] Disable highlighting for extremely large files
@@ -42,7 +42,7 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
 And also the random notes for smaller things:
 
 - [x] Markdown auto-continuing bullets, etc. (fix bullets or vim-markdown)
-- [ ] re-enable luasnip jumping but fix the jumpback issue
+- [x] re-enable luasnip jumping but fix the jumpback issue
 - [x] Markdown preview (use hologram and glow?)
 - [x] Don't auto-pair with a character directly in front
 - [x] A theme that is good
@@ -52,7 +52,7 @@ And also the random notes for smaller things:
 - [ ] See if navbuddy can auto-select the first lsp or something
 - [-] Break up some of the larger configs into folders
 - [x] Keep lualine on bottom regardless of window?
-- [ ] Fix \<C-v\> opening telescope search vertical (currently just pastes)
+- [x] Fix \<C-v\> opening telescope search vertical (currently just pastes)
 - [x] menu to open Lazy, Mason, other config stuff
 - [ ] Fix IncRename: needs to ensure diagnostic float is hidden/paused
 - [ ] Add more signature support somehow (e.g. typescrip signatures on variables in bte)
@@ -60,6 +60,7 @@ And also the random notes for smaller things:
 - [ ] change nvim-tree icons for git to make more sense
 - [x] ensure dashboard loads after projections and legendary
 - [x] completely redo the project/session system to something simpler and more consistent
+- [ ] allow buffer closing from tab switch menu
 
 And, after all this, the obvious way to destroy all my time:
 
