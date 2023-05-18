@@ -5,20 +5,20 @@ return {
     require('mini.cursorword').setup()
     require('mini.move').setup()
     require('mini.comment').setup()
-    require('mini.pairs').setup({
-      mappings = {
-        [' '] = { action = 'open', pair = '  ', neigh_pattern = '[{(%[][%])}]' }, -- in-bracket spacing
-        ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\][%s%{%(%[%]%)%}]' },
-        ['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\][%s%{%(%[%]%)%}]' },
-        ['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\][%s%{%(%[%]%)%}]' },
-        [')'] = { action = 'close', pair = '()', neigh_pattern = '[^\\][%s%{%(%[%]%)%}]' },
-        [']'] = { action = 'close', pair = '[]', neigh_pattern = '[^\\][%s%{%(%[%]%)%}]' },
-        ['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\][%s%{%(%[%]%)%}]' },
-        ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].', register = { cr = false } },
-        ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
-        ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].', register = { cr = false } },
-      }
-    })
+    -- require('mini.pairs').setup({
+    --   mappings = {
+    --     [' '] = { action = 'open', pair = '  ', neigh_pattern = '[{(%[][%])}]' }, -- in-bracket spacing
+    --     ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\][%s%{%(%[%]%)%}]' },
+    --     ['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\][%s%{%(%[%]%)%}]' },
+    --     ['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\][%s%{%(%[%]%)%}]' },
+    --     [')'] = { action = 'close', pair = '()', neigh_pattern = '[^\\][%s%{%(%[%]%)%}]' },
+    --     [']'] = { action = 'close', pair = '[]', neigh_pattern = '[^\\][%s%{%(%[%]%)%}]' },
+    --     ['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\][%s%{%(%[%]%)%}]' },
+    --     ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].', register = { cr = false } },
+    --     ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
+    --     ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].', register = { cr = false } },
+    --   }
+    -- })
     require('mini.basics').setup({
       options = {
         basic = false,
