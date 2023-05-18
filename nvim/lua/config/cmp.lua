@@ -52,7 +52,6 @@ return {
             end
           end,
           s = cmp.mapping.confirm({ select = true }),
-          c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
         }),
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then

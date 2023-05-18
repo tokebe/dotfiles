@@ -31,6 +31,7 @@ return {
         'jose-elias-alvarez/null-ls.nvim',
       },
     },
+    { 'aznhe21/actions-preview.nvim' },
     -- DAP
     { 'mfussenegger/nvim-dap' },
     { 'jay-babu/mason-nvim-dap.nvim' },

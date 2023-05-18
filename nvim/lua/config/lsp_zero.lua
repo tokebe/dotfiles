@@ -3,7 +3,7 @@ return {
   config = function(lsp)
     -- Set up some requirements for UFO (folding)
     vim.o.foldcolumn = '1' -- '0' is not bad
-    vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+    vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
     vim.o.foldlevelstart = 99
     vim.o.foldenable = true
 
@@ -23,6 +23,20 @@ return {
         buffer = bufnr,
         preserve_mappings = false,
       })
+
+      local map = function(mode, lhs, rhs)
+        local opts = { remap = false, buffer = bufnr }
+        vim.keymap.set(mode, lhs, rhs, opts)
+      end
+
+      -- LSP actions
+      map('n', 'gd', ':Trouble lsp_definitions<CR>')
+      map('n', 'gi', ':Trouble lsp_implementations<CR>')
+      map('n', 'gt', ':Trouble lsp_type_definitions<CR>')
+      map('n', 'gr', ':Trouble lsp_references<CR>')
+      map('n', '<F2>', ':IncRename' .. vim.fn.expand('<cword>'))
+      map('n', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
+      map('x', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
 
       -- diagnostics float on cursor
       vim.api.nvim_create_autocmd('CursorHold', {
@@ -46,7 +60,7 @@ return {
       end
 
       -- attach inlay hints
-      require('lsp-inlayhints').on_attach(client, bufnr)
+      require('lsp-inlayhints').on_attach(client, bufnr, true)
     end)
     require('mason-lspconfig').setup({
       ensure_installed = lsps,
@@ -68,5 +82,9 @@ return {
     })
 
     lsp.setup()
+
+    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'none' })
+
+    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'none' })
   end,
 }

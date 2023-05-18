@@ -4,7 +4,6 @@ return {
     dependencies = {
       'kevinhwang91/nvim-ufo',
     },
-    -- TODO integrate with vim-visual-multi (see hlslens README)
     config = function()
       require('hlslens').setup({
         calm_down = true,
