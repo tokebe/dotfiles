@@ -76,12 +76,12 @@ return {
       })
     end,
   },
-  {
-    'nanozuki/tabby.nvim',
-    config = function()
-      require('tabby.tabline').use_preset('active_wins_at_tail')
-    end,
-  },
+  -- {
+  --   'nanozuki/tabby.nvim',
+  --   config = function()
+  --     require('tabby.tabline').use_preset('active_wins_at_tail')
+  --   end,
+  -- },
   -- {
   --   'romgrk/barbar.nvim',
   --   dependencies = {
@@ -95,20 +95,20 @@ return {
   --     auto_hide = true,
   --   },
   -- },
-  -- {
-  --   'kdheepak/tabline.nvim',
-  --   config = function()
-  --     require('tabline').setup({
-  --       enable = true,
-  --       options = {
-  --         modified_icon = '',
-  --         modified_italic = true,
-  --         section_separators = { '', '' },
-  --         component_separators = { '╱', '╱' },
-  --         show_filename_only = true,
-  --         show_tabs_always = true,
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    'kdheepak/tabline.nvim',
+    config = function()
+      require('tabline').setup({
+        enable = true,
+        options = {
+          modified_icon = '',
+          modified_italic = true,
+          section_separators = { '', '' },
+          component_separators = { '╱', '╱' },
+          show_filename_only = true,
+          show_tabs_always = true,
+        },
+      })
+    end,
+  },
 }
