@@ -262,6 +262,13 @@ return {
           ':TransparentToggle<CR>',
           description = 'Toggle transparent background',
         },
+        {
+          '<leader>od',
+          function()
+            require('toggle_lsp_diagnostics').toggle_virtual_text()
+          end,
+          description = 'Toggle LSP diagnostic text',
+        },
         -- Buffer keybinds
         {
           '<lt>',

@@ -17,13 +17,13 @@ return {
     { 'hrsh7th/cmp-nvim-lsp-signature-help' },
     { 'L3MON4D3/LuaSnip' },
     { 'hrsh7th/cmp-buffer' },
-    { 'tzachar/cmp-fuzzy-path',             dependencies = { 'tzachar/fuzzy.nvim' } },
+    { 'tzachar/cmp-fuzzy-path', dependencies = { 'tzachar/fuzzy.nvim' } },
     { 'hrsh7th/cmp-cmdline' },
     { 'dmitmel/cmp-cmdline-history' },
     { 'tamago324/cmp-zsh' },
     { 'onsails/lspkind.nvim' }, -- icons
     -- Formatting
-    { 'jose-elias-alvarez/null-ls.nvim',    dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'jose-elias-alvarez/null-ls.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
     {
       'jay-babu/mason-null-ls.nvim',
       dependencies = {
@@ -38,7 +38,7 @@ return {
     -- Indicator
     { 'j-hui/fidget.nvim' }, -- progress indicator
     -- LSP rename preview
-    { 'smjonas/inc-rename.nvim',     dependencies = { 'stevearc/dressing.nvim' } },
+    { 'smjonas/inc-rename.nvim', dependencies = { 'stevearc/dressing.nvim' } },
     {
       'SmiteshP/nvim-navbuddy',
       dependencies = {
@@ -48,7 +48,7 @@ return {
       opts = { lsp = { auto_attach = true } },
     },
     -- Folding
-    { 'kevinhwang91/nvim-ufo',       dependencies = { 'kevinhwang91/promise-async' } },
+    { 'kevinhwang91/nvim-ufo', dependencies = { 'kevinhwang91/promise-async' } },
     -- Inlay type hints
     { 'lvimuser/lsp-inlayhints.nvim' },
   },
@@ -89,10 +89,8 @@ return {
           }))
         end,
         -- Supplying empty functions makes null_ls handle it instead
-        yamlfix = function()
-        end,
-        prettier = function()
-        end,
+        yamlfix = function() end,
+        prettier = function() end,
       },
     })
     -- Specify yamlfix before prettier so it loads first

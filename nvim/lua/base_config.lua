@@ -38,6 +38,7 @@ set.smarttab = true -- <tab>/<BS> indent/dedent in leading whitespace
 set.autoindent = true -- maintain indent of current line
 set.shiftround = true
 set.shell = 'zsh' -- shell to use for `!`, `:!`, `system()` etc.
+set.sessionoptions = set.sessionoptions + 'tabpages,globals'
 
 -- Sync clipboard between OS and Neovim.
 --  See `:help 'clipboard'`
