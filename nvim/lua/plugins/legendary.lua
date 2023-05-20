@@ -53,7 +53,15 @@ return {
               -- },
             }))
           end,
-          description = 'Find open buffer',
+          description = 'Switch buffers',
+        },
+        {
+          '<S-Tab>',
+          ':tabnext<CR>',
+          -- function ()
+          --   require('telescope-tabs').list_tabs()
+          -- end,
+          description = 'Switch tabs',
         },
         {
           '<leader>fh',
@@ -262,6 +270,7 @@ return {
           ':TransparentToggle<CR>',
           description = 'Toggle transparent background',
         },
+
         {
           '<leader>od',
           function()
@@ -272,29 +281,67 @@ return {
         -- Buffer keybinds
         {
           '<lt>',
-          ':BufferPrevious<CR>',
+          ':bprev<CR>',
           description = 'Next buffer',
         },
         {
           '>',
-          ':BufferNext<CR>',
+          ':bnext<CR>',
           description = 'Previous buffer',
         },
         {
           '<A-lt>',
-          ':BufferMovePrevious<CR>',
+          ':tabprev<CR>',
           description = 'Move buffer tab left',
         },
         {
           '<A->>',
-          ':BufferMoveNext<CR>',
+          ':tabnext<CR>',
           description = 'Move buffer tab right',
         },
         -- Window keybinds
         {
           '<leader>wq',
-          ':BufferClose<CR>',
+          ':bdelete<CR>',
           description = 'Close buffer',
+        },
+        {
+          '<leader>wQ',
+          ':bdelete!<CR>',
+          description = 'Close buffer (force)',
+        },
+        {
+          '<leader>wn',
+          ':enew<CR>',
+          description = 'New buffer',
+        },
+        {
+          '<leader>wt',
+          ':tabnew<CR>',
+          description = 'New tabpage',
+        },
+        {
+          '<leader>wc',
+          ':tabclose<CR>',
+          description = 'Close tabpage',
+        },
+        {
+          '<leader>wb',
+          function()
+            vim.cmd('TablineBuffersBind ' .. vim.api.nvim_buf_get_name(0))
+          end,
+          -- ':TablineBuffersBind '
+          description = 'Bind current buffer to current tab',
+        },
+        {
+          '<leader>wu',
+          ':TablineBuffersClearBind<CR>',
+          description = 'Unbind all buffers from current tab',
+        },
+        {
+          '<leader>wr',
+          ':TablineTabRename ',
+          description = 'Rename current tabpage',
         },
         {
           '<leader>ww',
@@ -309,7 +356,7 @@ return {
         {
           '<leader>wa',
           ':WindowsToggleAutowidth<CR>',
-          description = 'Toggle Window autowidth',
+          description = 'Toggle window autowidth',
         },
         {
           '<leader>wh',
@@ -326,6 +373,25 @@ return {
           '<leader>qq',
           ':qa<CR>',
           description = 'Close NVIM',
+        },
+        { -- Slightly smarter tab, would be better if it could be vscode-like
+          '<Tab>',
+          {
+            i = function()
+              local send_tab = true
+              if string.len(vim.api.nvim_get_current_line()) == 0 then
+                local key = vim.api.nvim_replace_termcodes('<C-f>', true, false, true)
+                vim.api.nvim_feedkeys(key, 'n', false)
+              else
+                local key = vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
+                vim.api.nvim_feedkeys(key, 'n', false)
+              end
+            end,
+          },
+          description = 'Smarter tab',
+          filters = {
+            mode = 'i',
+          },
         },
         -- Fold controls for UFO
         {

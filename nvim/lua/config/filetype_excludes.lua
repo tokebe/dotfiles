@@ -11,5 +11,6 @@ return {
   'NvimTree',
   'lspinfo',
   'WhichKey',
-  'dashboard'
+  'dashboard',
+  'noice'
 }

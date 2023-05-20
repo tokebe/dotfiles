@@ -20,6 +20,9 @@ return {
         { name = 'async_path' },
         { name = 'buffer', keyword_length = 3 }, -- current file
       },
+      view = {
+        entries = { selection_order = 'near_cursor' }
+      },
       formatting = {
         -- Icons
         format = require('lspkind').cmp_format({

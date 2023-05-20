@@ -6,6 +6,7 @@ return {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-live-grep-args.nvim' }, -- ripgrep args
       { 'stevearc/dressing.nvim' }, -- better UI for a few things
+      { 'LukasPietzschmann/telescope-tabs' },
     },
     config = function()
       local telescope = require('telescope')
