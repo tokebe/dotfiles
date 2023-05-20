@@ -35,8 +35,6 @@ return {
     -- DAP
     { 'mfussenegger/nvim-dap' },
     { 'jay-babu/mason-nvim-dap.nvim' },
-    -- Indicator
-    { 'j-hui/fidget.nvim' }, -- progress indicator
     -- LSP rename preview
     { 'smjonas/inc-rename.nvim', dependencies = { 'stevearc/dressing.nvim' } },
     {
@@ -64,15 +62,6 @@ return {
     -- Set up LSP
     local lsp = require('lsp-zero').preset('recommended')
     require('config.lsp_zero').config(lsp)
-    require('fidget').setup({
-      text = {
-        spinner = 'arc',
-      },
-      window = {
-        relative = 'editor',
-        blend = 0,
-      },
-    })
 
     -- Set up formatters
     local null_ls = require('null-ls')
