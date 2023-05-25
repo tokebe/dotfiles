@@ -158,6 +158,22 @@ return {
     },
   },
   {
+    'kevinhwang91/nvim-ufo',
+    dependencies = { 'kevinhwang91/promise-async' },
+    config = function()
+      -- Set up some requirements for UFO (folding)
+      vim.o.foldcolumn = '1' -- '0' is not bad
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+      require('ufo').setup({
+        provider_selector = function(bufnr, filetype, buftype)
+          return { 'treesitter', 'indent' }
+        end,
+      })
+    end,
+  },
+  {
     'luukvbaal/statuscol.nvim',
     -- commit = 'd9ee308',
     config = function()
@@ -169,25 +185,35 @@ return {
         foldsep = ' ',
         eob = ' ',
       }
-
-      require('statuscol').setup({
-        relculright = true,
-        segments = {
-          {
-            sign = { name = { 'Diagnostic', 'todo.*' }, maxwidth = 2, colwidth = 2, auto = false },
-            click = 'v:lua.ScSa',
-          },
-          {
-            sign = { name = { 'Breakpoint' }, maxwidth = 1, colwidth = 1, auto = true },
-            click = 'v:lua.ScSa',
-          },
-          { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
-          {
-            sign = { name = { '.*' }, maxwidth = 1, colwidth = 1, auto = true },
-            click = 'v:lua.ScSa',
-          },
-          { text = { builtin.foldfunc, ' ' }, click = 'v:lua.ScFa' },
-        },
+      vim.api.nvim_create_autocmd({ 'FileType' }, {
+        callback = function()
+          local filetype_excludes = require('config.filetype_excludes')
+          for i, value in ipairs(filetype_excludes) do
+            if vim.bo.filetype == value then
+              return
+            end
+          end
+          require('statuscol').setup({
+            relculright = true,
+            ft_ignore = require('config.filetype_excludes'),
+            segments = {
+              {
+                sign = { name = { 'Diagnostic', 'todo.*' }, maxwidth = 2, colwidth = 2, auto = false },
+                click = 'v:lua.ScSa',
+              },
+              {
+                sign = { name = { 'Breakpoint' }, maxwidth = 2, colwidth = 2, auto = true },
+                click = 'v:lua.ScSa',
+              },
+              { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
+              {
+                sign = { name = { '.*' }, maxwidth = 1, colwidth = 1, auto = false },
+                click = 'v:lua.ScSa',
+              },
+              { text = { builtin.foldfunc, ' ' }, click = 'v:lua.ScFa' },
+            },
+          })
+        end,
       })
     end,
   },
@@ -198,20 +224,43 @@ return {
     },
     config = function()
       require('noice').setup({
-        views = {
-          mini = {
-            timeout = 5000,
-          },
-        },
         cmdline = {
           view = 'cmdline',
           format = {
             cmdline = { pattern = '^:', icon = '', lang = 'vim' },
-            search_down = { kind = 'search', pattern = '^/', icon = '󰩊 ', lang = 'regex' },
-            search_up = { kind = 'search', pattern = '^%?', icon = '󰩊 ', lang = 'regex' },
+            search_down = { kind = 'search', pattern = '^/', icon = ' ', lang = 'regex' },
+            search_up = { kind = 'search', pattern = '^%?', icon = ' ', lang = 'regex' },
             filter = { pattern = '^:%s*!', icon = '$', lang = 'bash' },
             lua = { pattern = { '^:%s*lua%s+', '^:%s*lua%s*=%s*', '^:%s*=%s*' }, icon = '', lang = 'lua' },
             help = { pattern = '^:%s*he?l?p?%s+', icon = '󰋖 ' },
+          },
+        },
+        routes = {
+          {
+            view = 'popup',
+            filter = { cmdline = true, min_height = 3 },
+          },
+          {
+            view = 'popup',
+            filter = { error = true, min_height = 3 },
+          },
+        },
+        messages = {
+          view_search = false,
+        },
+        views = {
+          mini = {
+            timeout = 3000,
+          },
+          popupmenu = {
+            border = {
+              style = 'none',
+            },
+          },
+          popup = {
+            border = {
+              style = 'none',
+            },
           },
         },
       })

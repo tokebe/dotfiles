@@ -1,24 +1,4 @@
 return {
-  -- {
-  --   'gnikdroy/projections.nvim',
-  --   config = function()
-  --     require('projections').setup({
-  --       workspaces = {
-  --         { '~/Documents/GitHub', { '.git', '.vscode' } },
-  --         { '~', { '.git', '.vscode' } },
-  --       },
-  --       store_hooks = {
-  --         pre = function() -- Avoid problems with nvim-tree
-  --           local nvim_tree_present, api = pcall(require, 'nvim-tree.api')
-  --           if nvim_tree_present then
-  --             api.tree.close()
-  --           end
-  --         end,
-  --       },
-  --     })
-  --     require('telescope').load_extension('projections')
-  --   end,
-  -- },
   {
     'Shatur/neovim-session-manager',
     dependencies = {
@@ -28,6 +8,7 @@ return {
       local config = require('session_manager.config')
       require('session_manager').setup({
         autoload_mode = config.AutoloadMode.CurrentDir,
+        autosave_ignore_dirs = { '~' }
       })
     end,
   },

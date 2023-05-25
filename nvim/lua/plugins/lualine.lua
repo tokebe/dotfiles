@@ -17,6 +17,15 @@ return {
       return require('nvim-lightbulb').get_status_text()
     end
 
+    local function get_term_num()
+      local num = vim.b.toggle_number
+      if vim.bo.filetype == 'toggleterm' and string.len(num) > 0 then
+        return '  ' .. num
+      else
+        return ''
+      end
+    end
+
     require('lualine').setup({
       options = {
         icons_enabled = true,
@@ -26,9 +35,12 @@ return {
         globalstatus = true,
       },
       sections = {
-        lualine_a = { 'mode' },
+        lualine_a = { 'mode', get_term_num },
         lualine_b = { 'branch', 'diff', 'diagnostics', get_lightbulb },
-        lualine_c = { show_macro_recording, 'selectioncount' },
+        lualine_c = {
+          show_macro_recording,
+          { require('noice').api.status.search.get, cond = require('noice').api.status.search.has },
+        },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' },

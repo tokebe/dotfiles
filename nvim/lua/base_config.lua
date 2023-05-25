@@ -40,6 +40,7 @@ set.autoindent = true -- maintain indent of current line
 set.shiftround = true
 set.shell = 'zsh' -- shell to use for `!`, `:!`, `system()` etc.
 set.sessionoptions = set.sessionoptions + 'tabpages,globals'
+set.foldlevelstart = 99 -- UFO will handle folding
 
 -- Sync clipboard between OS and Neovim.
 --  See `:help 'clipboard'`
@@ -52,6 +53,6 @@ set.updatetime = 100
 set.timeout = true
 set.timeoutlen = 500
 
-set.lazyredraw = true -- faster scrolling
+-- set.lazyredraw = true -- faster scrolling
 cmd([[au BufEnter * set fo-=c fo-=r fo-=o]]) -- no autocomment on newline
 cmd('filetype plugin indent on') -- filetype detection
