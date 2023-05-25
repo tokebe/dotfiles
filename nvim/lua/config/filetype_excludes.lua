@@ -12,5 +12,8 @@ return {
   'lspinfo',
   'WhichKey',
   'dashboard',
-  'noice'
+  'dashboardpreview',
+  '',
+  'noice',
+  'toggleterm',
 }
