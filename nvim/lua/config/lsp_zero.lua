@@ -1,13 +1,6 @@
 local lsps = require('config.sources').lsp
 return {
   config = function(lsp)
-    -- Set up some requirements for UFO (folding)
-    vim.o.foldcolumn = '1' -- '0' is not bad
-    vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-    vim.o.foldlevelstart = 99
-    vim.o.foldenable = true
-
-    require('ufo').setup()
 
     lsp.set_sign_icons({
       error = '✘',
@@ -38,6 +31,7 @@ return {
       map('n', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
       map('x', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
 
+
       -- diagnostics float on cursor
       vim.api.nvim_create_autocmd('CursorHold', {
         buffer = bufnr,
@@ -55,7 +49,7 @@ return {
       })
 
       -- attach for breadcrumbs (see barbecue)
-      if client.server_capabilities['documentsSymbolProvider'] then
+      if client.server_capabilities['documentSymbolProvider'] then
         require('nvim-navic').attach(client, bufnr)
       end
 
@@ -69,17 +63,17 @@ return {
 
     lsp.nvim_workspace() -- Fix "undefined global 'vim'"
 
-    lsp.set_server_config({
-      -- Add requirement for UFO providing folds
-      capabilities = {
-        textDocument = {
-          foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-          },
-        },
-      },
-    })
+    -- lsp.set_server_config({
+    --   -- Add requirement for UFO providing folds
+    --   capabilities = {
+    --     textDocument = {
+    --       foldingRange = {
+    --         dynamicRegistration = false,
+    --         lineFoldingOnly = true,
+    --       },
+    --     },
+    --   },
+    -- })
 
     lsp.setup()
 
