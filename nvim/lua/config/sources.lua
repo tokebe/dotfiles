@@ -4,8 +4,9 @@ return {
     'tsserver', -- Typescript/Javascript
     'pyright', -- Python
     'taplo', -- TOML
-    'bashls',
-    'spectral',
+    'bashls', -- Bash
+    'spectral', -- JSON/YAML
+    'marksman', -- Markdown
   },
   dap = { -- Debug Adapter Protocol
     'node-debug2-adapter',
