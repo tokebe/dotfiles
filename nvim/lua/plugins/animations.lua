@@ -38,6 +38,7 @@ return {
     'declancm/cinnamon.nvim',
     config = function()
       require('cinnamon').setup({
+        scroll_limit = 75,
         extra_keymaps = true,
         extended_keymaps = true,
       })
@@ -49,13 +50,17 @@ return {
       'anuvyklack/middleclass',
       'anuvyklack/animation.nvim',
     },
-      config = function()
-        vim.o.winwidth = 15
-        vim.o.windminwidth = 15
-        vim.o.equalalways = false
-        require('windows').setup()
-      end
-  }
+    config = function()
+      vim.o.winwidth = 15
+      vim.o.windminwidth = 15
+      vim.o.equalalways = false
+      require('windows').setup({
+        autowidth = {
+          winwidth = 0.6,
+        },
+      })
+    end,
+  },
   -- currently too buggy to trust
   -- {
   --   'huy-hng/anyline.nvim',
