@@ -14,7 +14,7 @@ return {
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' },
     { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/cmp-nvim-lsp-signature-help' },
+    -- { 'hrsh7th/cmp-nvim-lsp-signature-help' },
     { 'L3MON4D3/LuaSnip' },
     { 'hrsh7th/cmp-buffer' },
     { 'tzachar/cmp-fuzzy-path', dependencies = { 'tzachar/fuzzy.nvim' } },
@@ -33,8 +33,9 @@ return {
     },
     { 'aznhe21/actions-preview.nvim' },
     -- DAP
-    { 'mfussenegger/nvim-dap' },
+    { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap' } },
     { 'jay-babu/mason-nvim-dap.nvim' },
+    { 'Weissle/persistent-breakpoints.nvim' },
     -- LSP rename preview
     { 'smjonas/inc-rename.nvim', dependencies = { 'stevearc/dressing.nvim' } },
     {
@@ -45,14 +46,14 @@ return {
       },
       opts = { lsp = { auto_attach = true } },
     },
-    -- Folding
-    { 'kevinhwang91/nvim-ufo', dependencies = { 'kevinhwang91/promise-async' } },
     -- Inlay type hints
     { 'lvimuser/lsp-inlayhints.nvim' },
   },
   config = function() -- LSP loading status
     -- Set up neodev
-    require('neodev').setup({})
+    require('neodev').setup({
+      library = { plugins = { 'nvim-dap-ui' }, types = true },
+    })
     -- Set up Dressing
     require('config.dressing').config()
     -- Set up IncRename
@@ -91,13 +92,10 @@ return {
       },
     })
 
-    -- Set up DAPs
-    require('mason-nvim-dap').setup({
-      automatic_setup = true,
-      ensure_installed = require('config.sources').dap,
-    })
-
     -- Set up completion etc
     require('config.cmp').config(lsp)
+
+    -- Set up DAPs
+    require('config.dap').config()
   end,
 }
