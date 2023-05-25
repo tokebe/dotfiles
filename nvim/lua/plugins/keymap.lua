@@ -14,13 +14,13 @@ return {
       keymaps = {
         -- Summon Command palette
         {
-          '<leader><leader>',
+          '<Leader><Leader>',
           ':Legendary<CR>',
           description = 'Open command palette',
         },
         -- Find keymaps
         {
-          '<leader>ff',
+          '<Leader><Tab>',
           function()
             telescope.builtin.find_files({
               no_ignore = true,
@@ -31,12 +31,23 @@ return {
           description = 'Find file',
         },
         {
-          '<leader>fg',
+          '<Leader><Tab>',
+          function()
+            telescope.builtin.find_files({
+              no_ignore = true,
+              hidden = true,
+              follow = true,
+            })
+          end,
+          description = 'Find file',
+        },
+        {
+          '<Leader>fg',
           telescope.extensions.live_grep_args.live_grep_args,
           description = 'Find in files (grep)',
         },
         {
-          '<tab>',
+          '<Tab>',
           function()
             telescope.builtin.buffers(telescope.themes.get_dropdown({
               sort_lastused = true,
@@ -64,72 +75,72 @@ return {
           description = 'Switch tabs',
         },
         {
-          '<leader>fh',
+          '<Leader>fh',
           telescope.builtin.help_tags,
           description = 'Find help',
         },
         {
-          '<leader>fs',
+          '<Leader>fs',
           telescope.builtin.lsp_document_symbols,
           description = 'Find symbol in buffer',
         },
         {
-          '<leader>fS',
+          '<Leader>fS',
           telescope.builtin.lsp_dynamic_workspace_symbols,
           description = 'Find symbol in workspace',
         },
         {
-          '<leader>fd',
+          '<Leader>fd',
           function()
             vim.cmd('Trouble document_diagnostics')
           end,
           description = 'Find diagnostics',
         },
         {
-          '<leader>fD',
+          '<Leader>fD',
           function()
             vim.cmd('Trouble workspace_diagnostics')
           end,
           description = 'Find workspace diagnostics',
         },
         {
-          '<leader>fb',
+          '<Leader>fb',
           telescope.builtin.current_buffer_fuzzy_find,
           description = 'Find text in buffer',
         },
         {
-          '<leader>fc',
+          '<Leader>fc',
           telescope.builtin.registers,
           description = 'Find in clipboard (registers)',
         },
         {
-          '<leader>fi',
+          '<Leader>fi',
           telescope.builtin.lsp_implementations,
           description = 'Find implementations',
         },
         {
-          '<leader>fq',
+          '<Leader>fq',
           function()
             vim.cmd('Trouble quickfix')
           end,
           description = 'Find quickfix',
         },
         {
-          '<leader>ft',
+          '<Leader>ft',
           function()
             vim.cmd('TodoTrouble')
           end,
           description = 'Find todos',
         },
         {
-          '<leader>fp',
+          '<Leader>fp',
           function()
             vim.cmd('SessionManager load_session')
           end,
           description = 'Find project',
         },
         {
-          '<leader>fu',
+          '<Leader>fu',
           function()
             telescope.extensions.undo.undo()
           end,
@@ -137,41 +148,41 @@ return {
         },
         -- Select keymaps
         {
-          '<leader>ss',
+          '<Leader>ss',
           function()
             telescope.builtin.spell_suggest(telescope.themes.get_cursor())
           end,
           description = 'Select spelling',
         },
         {
-          '<leader>sl',
+          '<Leader>sl',
           function()
             telescope.builtin.filetypes(telescope.themes.get_dropdown())
           end,
           description = 'Select language',
         },
         {
-          '<leader>sb',
+          '<Leader>sb',
           function()
             telescope.builtin.git_branches(telescope.themes.get_dropdown())
           end,
           description = 'Select branch',
         },
         {
-          '<leader>sc',
+          '<Leader>sc',
           function()
             telescope.builtin.colorscheme(telescope.themes.get_dropdown())
           end,
           description = 'Select temporary colorscheme',
         },
         {
-          '<leader>sC',
+          '<Leader>sC',
           require('colorscheme-persist').picker,
           description = 'Select default colorscheme',
         },
         -- Global operation keymaps
         {
-          '<leader>gf',
+          '<Leader>gf',
           {
             n = function()
               vim.lsp.buf.format({ async = true })
@@ -189,90 +200,91 @@ return {
           description = 'Format file',
         },
         {
-          '<leader>gr',
+          '<Leader>gr',
           ':IncRename ' .. vim.fn.expand('<cword>'),
           description = 'Rename symbol',
           noremap = true,
         },
         {
-          '<leader>gR',
+          '<Leader>gR',
           function()
             require('ssr').open()
           end,
+          mode = { 'n', 'x' },
           description = 'Structural replace',
         },
         {
-          '<leader>gq',
+          '<Leader>gq',
           vim.lsp.buf.code_action,
           description = 'Quickfix...',
         },
         -- Jump keybinds
         {
-          '<leader>jj',
+          '<Leader>jj',
           ':Portal jumplist backward<CR>',
           description = 'Jump backward in place history',
         },
         {
-          '<leader>jk',
+          '<Leader>jk',
           ':Portal jumplist forward<CR>',
           description = 'Jump forward in place history',
         },
         -- Manage keybinds
         {
-          '<leader>ms',
+          '<Leader>ms',
           ':Navbuddy<CR>',
           description = 'Manage symbols with Navbuddy',
         },
         {
-          '<leader>mr',
+          '<Leader>mf',
           ':RnvimrToggle<CR>',
           description = 'Toggle Ranger',
         },
         -- Tree keybinds
         {
-          '<leader>ee',
+          '<Leader>ee',
           ':NvimTreeToggle<CR>',
           description = 'Toggle tree',
         },
         {
-          '<leader>ef',
+          '<Leader>ef',
           ':NvimTreeFocus<CR>',
           description = 'Focus tree',
         },
         {
-          '<leader>ej',
+          '<Leader>ej',
           ':NvimTreeFindFile<CR>',
           description = 'Jump to current buffer in tree',
         },
         {
-          '<leader>ec',
+          '<Leader>ec',
           ':NvimTreeCollapse<CR>',
           description = 'Recursively collapse tree',
         },
         -- Option/toggle keybinds
         {
-          '<leader>oa',
+          '<Leader>oa',
           ':ASToggle<CR>',
           description = 'Toggle autosave',
         },
         {
-          '<leader>om',
+          '<Leader>om',
           ':Mason<CR>',
           description = 'Manage LSPs with Mason',
         },
         {
-          '<leader>op',
+          '<Leader>op',
           ':Lazy<CR>',
           description = 'Manage plugins with Lazy',
         },
         {
-          '<leader>ot',
+          '<Leader>ot',
           ':TransparentToggle<CR>',
           description = 'Toggle transparent background',
         },
 
         {
-          '<leader>od',
+          '<Leader>od',
           function()
             require('toggle_lsp_diagnostics').toggle_virtual_text()
           end,
@@ -292,41 +304,41 @@ return {
         {
           '<A-lt>',
           ':tabprev<CR>',
-          description = 'Move buffer tab left',
+          description = 'Previous Tabpage',
         },
         {
           '<A->>',
           ':tabnext<CR>',
-          description = 'Move buffer tab right',
+          description = 'Next Tabpage',
         },
         -- Window keybinds
         {
-          '<leader>wq',
+          '<Leader>wq',
           ':bdelete<CR>',
           description = 'Close buffer',
         },
         {
-          '<leader>wQ',
+          '<Leader>wQ',
           ':bdelete!<CR>',
           description = 'Close buffer (force)',
         },
         {
-          '<leader>wn',
+          '<Leader>wn',
           ':enew<CR>',
           description = 'New buffer',
         },
         {
-          '<leader>wt',
+          '<Leader>wt',
           ':tabnew<CR>',
           description = 'New tabpage',
         },
         {
-          '<leader>wc',
+          '<Leader>wc',
           ':tabclose<CR>',
           description = 'Close tabpage',
         },
         {
-          '<leader>wb',
+          '<Leader>wb',
           function()
             vim.cmd('TablineBuffersBind ' .. vim.api.nvim_buf_get_name(0))
           end,
@@ -334,64 +346,103 @@ return {
           description = 'Bind current buffer to current tab',
         },
         {
-          '<leader>wu',
+          '<Leader>wu',
           ':TablineBuffersClearBind<CR>',
           description = 'Unbind all buffers from current tab',
         },
         {
-          '<leader>wr',
+          '<Leader>wr',
           ':TablineTabRename ',
           description = 'Rename current tabpage',
         },
         {
-          '<leader>ww',
+          '<Leader>ww',
           ':WindowsMaximize<CR>',
           description = 'Maximize current window',
         },
         {
-          '<leader>we',
+          '<Leader>we',
           ':WindowsEqualize<CR>',
           description = 'Equalize windows',
         },
         {
-          '<leader>wa',
+          '<Leader>wa',
           ':WindowsToggleAutowidth<CR>',
           description = 'Toggle window autowidth',
         },
         {
-          '<leader>wh',
+          '<Leader>wh',
           ':WindowsMaximizeHorizontally<CR>',
           description = 'Maximize window horizontally',
         },
         {
-          '<leader>wv',
+          '<Leader>wv',
           ':WindowsMaximizeVertically<CR>',
           description = 'Maximize window vertically',
         },
-        -- Misc keybinds
+        -- Terminal Keybinds
         {
-          '<leader>qq',
+          '<Leader>tt',
+          ':999ToggleTerm direction=float<CR>',
+          description = 'Toggle dedicated floating terminal',
+        },
+        -- Session keybinds
+        {
+          '<Leader>qq',
           ':qa<CR>',
           description = 'Close NVIM',
         },
-        { -- Slightly smarter tab, would be better if it could be vscode-like
-          '<Tab>',
-          {
-            i = function()
-              local send_tab = true
-              if string.len(vim.api.nvim_get_current_line()) == 0 then
-                local key = vim.api.nvim_replace_termcodes('<C-f>', true, false, true)
-                vim.api.nvim_feedkeys(key, 'n', false)
-              else
-                local key = vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
-                vim.api.nvim_feedkeys(key, 'n', false)
-              end
-            end,
-          },
-          description = 'Smarter tab',
-          filters = {
-            mode = 'i',
-          },
+        {
+          '<Leader>qQ',
+          ':qa!<CR>',
+          description = 'Force close NVIM',
+        },
+        {
+          '<Leader>qs',
+          ':SessionManager save_current_session<CR>',
+          description = 'Save current session',
+        },
+        -- Misc keybinds
+        -- {
+        --   -- Slightly smarter tab, would be better if it could be vscode-like
+        --   '<Tab>',
+        --   function()
+        --     if string.len(vim.api.nvim_get_current_line()) == 0 then
+        --       local key = vim.api.nvim_replace_termcodes('<C-f>', true, false, true)
+        --       vim.api.nvim_feedkeys(key, 'n', false)
+        --     else
+        --       local key = vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
+        --       vim.api.nvim_feedkeys(key, 'm', false)
+        --     end
+        --   end,
+        --   mode = { 'i' },
+        --   description = 'Smarter tab',
+        -- },
+        {
+          'H',
+          function()
+            local r, c = unpack(vim.api.nvim_win_get_cursor(0))
+            local start, final, match = vim.api.nvim_get_current_line():find('%S')
+            if c + 1 == start then
+              vim.api.nvim_feedkeys('0', 'm', false)
+            else
+              vim.api.nvim_feedkeys('_', 'm', false)
+            end
+          end,
+          description = 'Go to first char',
+        },
+        {
+          'L',
+          function()
+            local r, c = unpack(vim.api.nvim_win_get_cursor(0))
+            local start, final, match = vim.api.nvim_get_current_line():find('%S')
+            if c + 1 == final then
+              vim.api.nvim_feedkeys('g_', 'm', false)
+            else
+              vim.api.nvim_feedkeys('$', 'm', false)
+            end
+          end,
+          description = 'Go to last char',
         },
         -- Fold controls for UFO
         {
@@ -467,8 +518,10 @@ return {
       v = { name = 'View...' },
       -- Tree keymaps
       e = { name = 'Tree...' },
+      -- Terminal keymaps
+      t = { name = 'Terminal...' },
       -- Option keymaps
       o = { name = 'Options...' },
-    }, { prefix = '<leader>' })
+    }, { prefix = '<Leader>' })
   end,
 }
