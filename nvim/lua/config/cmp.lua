@@ -14,7 +14,7 @@ return {
     cmp.setup(lsp.defaults.cmp_config({
       sources = { -- completion sources
         { name = 'nvim_lsp' }, -- language server
-        { name = 'nvim_lsp_signature_help' },
+        -- { name = 'nvim_lsp_signature_help' },
         { name = 'luasnip', keyword_length = 2 }, -- snippets
         { name = 'fuzzy_path', options = { fd_timeout_msec = 250 } }, -- filepath
         { name = 'async_path' },
@@ -40,8 +40,8 @@ return {
             cmp.select_next_item()
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
+          -- elseif has_words_before() then
+          --   cmp.complete()
           else
             fallback()
           end
