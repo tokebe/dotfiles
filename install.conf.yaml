@@ -76,6 +76,7 @@
 - pip:
     file: python-packages.txt
 - link:
+    ~/.wezterm.lua: wezterm/.wezterm.lua
     # neovim
     ~/.config/nvim: nvim
     # zsh
