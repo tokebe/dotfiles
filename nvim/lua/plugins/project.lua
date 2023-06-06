@@ -84,11 +84,13 @@ return {
     end,
   },
   {
-    'EthanJWright/vs-tasks.nvim',
-    dependencies = {
-      'nvim-lua/popup.nvim',
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-    },
+    'stevearc/overseer.nvim',
+    config = function ()
+      -- TODO set up with NeoTest
+      require('overseer').setup({
+        strategy = 'toggleterm'
+      })
+    end
   },
+
 }
