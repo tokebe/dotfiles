@@ -56,3 +56,12 @@ set.timeoutlen = 500
 -- set.lazyredraw = true -- faster scrolling
 cmd([[au BufEnter * set fo-=c fo-=r fo-=o]]) -- no autocomment on newline
 cmd('filetype plugin indent on') -- filetype detection
+
+-- Neovide config
+vim.o.guifont = 'Tokebe Nerd Font:h16:#e-subpixelantialias'
+
+vim.g.neovide_refrest_rate = 100
+-- vim.g.neovide_refrest_rate_idle = 5
+vim.g.neovide_cursor_animation_length = 0.05
+vim.g.neovide_cursor_antialiasing = true
+vim.g.neovide_cursor_animate_in_insert_mode = true
