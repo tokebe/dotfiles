@@ -403,6 +403,28 @@ return {
           description = 'Save current session',
         },
         -- Misc keybinds
+        {
+          'j',
+          function ()
+            if vim.v.count then
+              vim.api.nvim_feedkeys('gj', 'm', false)
+            else
+              vim.api.nvim_feedkeys('j', 'm', false)
+            end
+          end,
+          { 'n', 'x' },
+        },
+        {
+          'k',
+          function ()
+            if vim.v.count then
+              vim.api.nvim_feedkeys('gk', 'm', false)
+            else
+              vim.api.nvim_feedkeys('k', 'm', false)
+            end
+          end,
+          { 'n', 'x' },
+        },
         -- {
         --   -- Slightly smarter tab, would be better if it could be vscode-like
         --   '<Tab>',
