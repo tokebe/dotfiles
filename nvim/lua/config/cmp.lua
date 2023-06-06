@@ -12,6 +12,9 @@ return {
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
     cmp.setup(lsp.defaults.cmp_config({
+      enabled = function()
+        return vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt' or require('cmp_dap').is_dap_buffer()
+      end,
       sources = { -- completion sources
         { name = 'nvim_lsp' }, -- language server
         -- { name = 'nvim_lsp_signature_help' },
@@ -21,7 +24,7 @@ return {
         { name = 'buffer', keyword_length = 3 }, -- current file
       },
       view = {
-        entries = { selection_order = 'near_cursor' }
+        entries = { selection_order = 'near_cursor' },
       },
       formatting = {
         -- Icons
@@ -40,8 +43,8 @@ return {
             cmp.select_next_item()
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
-          -- elseif has_words_before() then
-          --   cmp.complete()
+            -- elseif has_words_before() then
+            --   cmp.complete()
           else
             fallback()
           end
@@ -103,6 +106,12 @@ return {
           group_index = 2,
         },
         { name = 'zsh' },
+      },
+    })
+    -- DAP REPL
+    cmp.setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
+      sources = {
+        { name = 'dap' },
       },
     })
   end,

@@ -3,10 +3,13 @@ return {
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'nvim-treesitter/nvim-treesitter-context',
+    'LiadOz/nvim-dap-repl-highlights', -- DAP highlighting support
   },
   config = function()
-    -- pcall(require('nvim-treesitter.install').update({ with_sync = true }))
+    -- TODO might need to add some stuff for intelligent REPL filetype selection
+    require('nvim-dap-repl-highlights').setup()
     require('nvim-treesitter.configs').setup({
+      ensure_installed = { 'dap_repl' },
       auto_install = true,
       highlight = {
         enabled = true,
@@ -21,7 +24,7 @@ return {
       },
     })
     require('treesitter-context').setup({
-      max_lines = 3
+      max_lines = 3,
     })
   end,
 }

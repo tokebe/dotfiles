@@ -18,9 +18,16 @@ return {
       automatic_setup = true,
       ensure_installed = require('config.sources').dap,
     })
+    require('dap.ext.vscode').load_launchjs()
+    -- TODO add commands
+    require('telescope').load_extension('dap')
     -- TODO change all breakpoint toggles to use persistent_breakpoints
     require('persistent-breakpoints').setup({
       load_breakpoints_event = { 'BufReadPost' },
+    })
+    require('nvim-dap-virtual-text').setup({
+      all_references = true,
+      commented = true,
     })
     require('dapui').setup({
       controls = {
