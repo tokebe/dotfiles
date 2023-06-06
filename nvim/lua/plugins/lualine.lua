@@ -36,12 +36,21 @@ return {
       },
       sections = {
         lualine_a = { 'mode', get_term_num },
-        lualine_b = { 'branch', 'diff', 'diagnostics', get_lightbulb },
+        lualine_b = {
+          'branch',
+          {
+            'diff',
+            colored = true,
+            symbols = { added = ' ', modified = ' ', removed = ' ' },
+          },
+          'diagnostics',
+          get_lightbulb,
+        },
         lualine_c = {
           show_macro_recording,
           { require('noice').api.status.search.get, cond = require('noice').api.status.search.has },
         },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_x = { 'overseer', 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' },
       },

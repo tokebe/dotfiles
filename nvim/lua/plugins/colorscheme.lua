@@ -26,6 +26,11 @@ return {
     })
     require('rose-pine').setup()
 
+    vim.o.background = 'light';
+    vim.g.zenbones = {
+      lightness = 'dim' 
+    }
+
     -- require('barbecue').setup({
     --   theme = 'onedark',
     -- })

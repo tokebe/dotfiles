@@ -43,8 +43,22 @@ return {
         },
         {
           '<Leader>fg',
-          telescope.extensions.live_grep_args.live_grep_args,
+          function()
+            require('spectre').open()
+          end,
           description = 'Find in files (grep)',
+        },
+        {
+          '<Leader>ff',
+          {
+            n = function()
+              require('spectre').open_visual({ select_word = true })
+            end,
+            v = function()
+              require('spectre').open_visual()
+            end,
+          },
+          description = 'Search word/selection in files',
         },
         {
           '<Tab>',
@@ -380,11 +394,16 @@ return {
           ':WindowsMaximizeVertically<CR>',
           description = 'Maximize window vertically',
         },
-        -- Terminal Keybinds
+        -- Terminal/Trouble Keybinds
         {
           '<Leader>tt',
           ':999ToggleTerm direction=float<CR>',
           description = 'Toggle dedicated floating terminal',
+        },
+        {
+          '<Leader>ta',
+          ':TroubleToggle<CR>',
+          description = 'Toggle Trouble view'
         },
         -- Session keybinds
         {
