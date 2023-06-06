@@ -36,6 +36,9 @@ return {
     { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap' } },
     { 'jay-babu/mason-nvim-dap.nvim' },
     { 'Weissle/persistent-breakpoints.nvim' },
+    { 'theHamsta/nvim-dap-virtual-text' },
+    { 'rcarriga/cmp-dap' },
+    { 'nvim-telescope/telescope-dap.nvim' },
     -- LSP rename preview
     { 'smjonas/inc-rename.nvim', dependencies = { 'stevearc/dressing.nvim' } },
     {
@@ -96,6 +99,6 @@ return {
     require('config.cmp').config(lsp)
 
     -- Set up DAPs
-    require('config.dap').config()
+    -- require('config.dap').config()
   end,
 }

@@ -11,9 +11,9 @@ return {
           text = '󱉵',
           text_unavilable = '',
         },
-        autocmd = {
-          enabled = true,
-        },
+        -- autocmd = {
+        --   enabled = true,
+        -- },
       })
     end,
   },
@@ -77,10 +77,15 @@ return {
             text = '',
           },
         },
+        handle = {
+          blend = 70,
+          highlight = 'TabLineSel',
+        },
         handlers = {
           gitsigns = true,
           search = true,
         },
+        excluded_filetypes = require('config.filetype_excludes'),
       })
     end,
   },
