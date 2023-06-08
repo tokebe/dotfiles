@@ -1,2 +1,3 @@
 libtmux
 pynvim
+pipx
