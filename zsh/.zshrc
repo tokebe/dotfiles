@@ -130,3 +130,9 @@ export NVM_DIR="$HOME/.nvm"
 
 # Make Go work
   export GOPATH=$HOME/gocode
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
