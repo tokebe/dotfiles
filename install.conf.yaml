@@ -63,7 +63,15 @@
                 - command: ln -sf $(which fdfind) ~/.local/bin/fd
                   description: Fix fd access
                   quiet: true
-      - brew: [lsd, ccat, lazygit, lazydocker, btop, nvim]
+      - brew:
+          - lsd
+          - ccat
+          - lazygit
+          - lazydocker
+          - btop
+          - nvim
+          - pyenv
+          - openssl # pyenv compatibility with linuxbrew
 - shell:
     - command: brew analytics off
       quiet: true
@@ -75,6 +83,8 @@
       stdin: true
 - pip:
     file: python-packages.txt
+- pipx:
+    file: pipx-packages.txt
 - link:
     ~/.wezterm.lua: wezterm/.wezterm.lua
     # neovim
@@ -84,6 +94,7 @@
     ~/.zshenv: zsh/.zshenv
     ~/.zprofile: zsh/.zprofile
     ~/.p10k.zsh: zsh/.p10k.zsh
+    ~/.zfunc: zsh/.zfunc
     # iosevka font gen
     ~/.config/iosevka/config.ini: iosevka/config.ini
     # ranger config
