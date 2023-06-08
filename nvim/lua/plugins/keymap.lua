@@ -257,23 +257,18 @@ return {
         -- Tree keybinds
         {
           '<Leader>ee',
-          ':NvimTreeToggle<CR>',
+          ':Neotree toggle<CR>',
           description = 'Toggle tree',
         },
         {
           '<Leader>ef',
-          ':NvimTreeFocus<CR>',
+          ':Neotree focus<CR>',
           description = 'Focus tree',
         },
         {
           '<Leader>ej',
-          ':NvimTreeFindFile<CR>',
+          ':Neotree reveal<CR>',
           description = 'Jump to current buffer in tree',
-        },
-        {
-          '<Leader>ec',
-          ':NvimTreeCollapse<CR>',
-          description = 'Recursively collapse tree',
         },
         -- Option/toggle keybinds
         {
@@ -516,13 +511,6 @@ return {
       },
       funcs = {},
       autocmds = {
-        {
-          'QuitPre',
-          function()
-            vim.cmd('NvimTreeClose')
-          end,
-          description = 'Close nvim-tree before quit so nvim actually quits',
-        },
         {
           'ModeChanged',
           function()
