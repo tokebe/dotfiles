@@ -23,7 +23,19 @@ return {
     config = function()
       require('colorful-winsep').setup({
         -- symbols = { '═', '║', '╔ ', '╗', '╚', '╝' },
-        no_exec_files = require('config.filetype_excludes'),
+        -- no_exec_files = require('config.filetype_excludes'),
+        no_exec_files = {
+          'telescopePrompt',
+          'TelescopeResults',
+          'DressingSelect',
+          'mason',
+          'null-ls-info',
+          'lazy',
+          'lspinfo',
+          'WhichKey',
+          'dashboard',
+          'dashboardpreview',
+        },
       })
     end,
   },
@@ -272,10 +284,101 @@ return {
     end,
   },
   {
+    'folke/edgy.nvim',
+    event = 'VeryLazy',
+    opts = {
+      bottom = {
+        {
+          ft = 'toggleterm',
+          size = { height = 0.3 },
+          -- exclude floating windows
+          filter = function(buf, win)
+            return vim.api.nvim_win_get_config(win).relative == ''
+          end,
+        },
+        'Trouble',
+        {
+          ft = 'help',
+          size = { height = 0.3 },
+          -- only show help buffers
+          filter = function(buf)
+            return vim.bo[buf].buftype == 'help'
+          end,
+        },
+      },
+      right = {},
+    },
+  },
+  {
     'jinh0/eyeliner.nvim',
     config = function()
       require('eyeliner').setup({
         highlight_on_key = true,
+      })
+    end,
+  },
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+    },
+    config = function()
+      vim.g.neo_tree_remove_legacy_commands = 1
+
+      -- Diagnostic signs
+      vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
+      vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
+      vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
+      vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+
+      require('neo-tree').setup({
+        add_blank_line_at_top = true,
+        popup_border_style = 'NC',
+        sources = {
+          'filesystem',
+          'buffers',
+          'git_status',
+          'document_symbols',
+        },
+        source_selector = {
+          winbar = true,
+        },
+        window = {
+          position = 'right',
+        },
+        filesystem = {
+          filtered_items = {
+            visible = true,
+          },
+        },
+        default_component_configs = {
+          indent = {
+            -- with_expanders = true,
+          },
+          modified = {
+            symbol = '󰏫 ',
+          },
+          name = {
+            highlight_opened_files = true,
+          },
+          git_status = {
+            symbols = {
+              -- Change type
+              added = ' ',
+              deleted = ' ',
+              modified = '',
+              renamed = '',
+              -- Status type
+              untracked = '',
+              ignored = ' ',
+              unstaged = ' ',
+              staged = '󰄵 ',
+              conflict = '󰃸 ',
+            },
+          },
+        },
       })
     end,
   },
