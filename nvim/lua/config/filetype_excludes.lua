@@ -16,4 +16,5 @@ return {
   '',
   'noice',
   'toggleterm',
+  'spectre_panel',
 }

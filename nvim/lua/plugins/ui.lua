@@ -306,7 +306,12 @@ return {
           end,
         },
       },
-      right = {},
+      right = {
+        {
+          ft = 'spectre_panel',
+          size = { width = 80 },
+        },
+      },
     },
   },
   {
