@@ -1,7 +1,6 @@
 local lsps = require('config.sources').lsp
 return {
   config = function(lsp)
-
     lsp.set_sign_icons({
       error = '✘',
       warn = '▲',
@@ -31,7 +30,6 @@ return {
       map('n', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
       map('x', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
 
-
       -- diagnostics float on cursor
       vim.api.nvim_create_autocmd('CursorHold', {
         buffer = bufnr,
@@ -59,6 +57,20 @@ return {
     require('mason-lspconfig').setup({
       ensure_installed = lsps,
       automatic_installation = true,
+    })
+
+    -- Better Poetry compat
+    require('lspconfig').pyright.setup({
+      before_init = function(params, config)
+        local Path = require('plenary.path')
+        local venv = Path:new((config.root_dir:gsub('/', Path.path.sep)), '.venv')
+
+        if venv:joinpath('bin'):is_dir() then
+          config.settings.python.pythonPath = tostring(venv:joinpath('bin', 'python'))
+        else
+          config.setting.python.pythonPath = tostring(venv:joinpath('Scripts', 'python.exe'))
+        end
+      end,
     })
 
     lsp.nvim_workspace() -- Fix "undefined global 'vim'"
