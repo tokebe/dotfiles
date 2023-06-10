@@ -398,7 +398,7 @@ return {
         {
           '<Leader>ta',
           ':TroubleToggle<CR>',
-          description = 'Toggle Trouble view'
+          description = 'Toggle Trouble view',
         },
         -- Session keybinds
         {
@@ -419,7 +419,7 @@ return {
         -- Misc keybinds
         {
           'j',
-          function ()
+          function()
             if vim.v.count then
               vim.api.nvim_feedkeys('gj', 'm', false)
             else
@@ -427,10 +427,11 @@ return {
             end
           end,
           { 'n', 'x' },
+          description = 'Down visible line',
         },
         {
           'k',
-          function ()
+          function()
             if vim.v.count then
               vim.api.nvim_feedkeys('gk', 'm', false)
             else
@@ -438,8 +439,22 @@ return {
             end
           end,
           { 'n', 'x' },
+          description = 'Up visible line',
         },
-        -- {
+        {
+          'D',
+          function()
+            local opts = {
+              focusable = false,
+              close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+              border = 'none',
+              source = 'always',
+              prefix = ' ',
+              scope = 'cursor',
+            }
+            vim.diagnostic.open_float(nil, opts)
+          end,
+        },
         --   -- Slightly smarter tab, would be better if it could be vscode-like
         --   '<Tab>',
         --   function()
