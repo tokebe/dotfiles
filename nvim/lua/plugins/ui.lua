@@ -79,26 +79,32 @@ return {
   --     })
   --   end,
   -- },
+  -- {
+  --   'petertriho/nvim-scrollbar',
+  --   config = function()
+  --     require('scrollbar').setup({
+  --       excluded_filetypes = require('config.filetype_excludes'),
+  --       marks = {
+  --         Cursor = {
+  --           text = '',
+  --         },
+  --       },
+  --       handle = {
+  --         blend = 70,
+  --         highlight = 'TabLineSel',
+  --       },
+  --       handlers = {
+  --         gitsigns = true,
+  --         search = true,
+  --       },
+  --       excluded_filetypes = require('config.filetype_excludes'),
+  --     })
+  --   end,
+  -- },
   {
-    'petertriho/nvim-scrollbar',
+    'lewis6991/satellite.nvim',
     config = function()
-      require('scrollbar').setup({
-        excluded_filetypes = require('config.filetype_excludes'),
-        marks = {
-          Cursor = {
-            text = '',
-          },
-        },
-        handle = {
-          blend = 70,
-          highlight = 'TabLineSel',
-        },
-        handlers = {
-          gitsigns = true,
-          search = true,
-        },
-        excluded_filetypes = require('config.filetype_excludes'),
-      })
+      require('satellite').setup({})
     end,
   },
   {
@@ -258,7 +264,7 @@ return {
             filter = { cmdline = true, min_height = 3 },
           },
           {
-            view = 'popup',
+            view = 'split',
             filter = { error = true, min_height = 3 },
           },
         },
