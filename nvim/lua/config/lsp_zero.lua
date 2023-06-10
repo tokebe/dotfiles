@@ -31,20 +31,6 @@ return {
       map('x', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
 
       -- diagnostics float on cursor
-      vim.api.nvim_create_autocmd('CursorHold', {
-        buffer = bufnr,
-        callback = function()
-          local opts = {
-            focusable = false,
-            close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
-            border = 'none',
-            source = 'always',
-            prefix = ' ',
-            scope = 'cursor',
-          }
-          vim.diagnostic.open_float(nil, opts)
-        end,
-      })
 
       -- attach for breadcrumbs (see barbecue)
       if client.server_capabilities['documentSymbolProvider'] then
