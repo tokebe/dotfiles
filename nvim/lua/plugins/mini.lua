@@ -23,7 +23,7 @@ return {
       options = {
         basic = false,
         extra_ui = false,
-        win_borders = "double",
+        win_borders = 'double',
       },
       mappings = {
         basic = true,
@@ -34,7 +34,24 @@ return {
       autocommands = {
         basic = true,
         relnum_in_visual_mode = true,
-      }
+      },
     })
-  end
+    require('mini.animate').setup({
+      cursor = {
+        enable = false,
+      },
+      scroll = {
+        enable = false,
+      },
+      resize = {
+        enable = true,
+      },
+      open = {
+        enable = true,
+      },
+      close = {
+        enable = true,
+      },
+    })
+  end,
 }
