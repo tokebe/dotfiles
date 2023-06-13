@@ -1,0 +1,18 @@
+XTerm*renderFont: true
+XTerm*faceName: Tokebe Nerd Font
+XTerm*faceSize: 14
+XTerm*geometry: 60x19+12+4
+xterm*termName: xterm-256color
+
+! Tokyonight
+*.foreground:     #A9B1D6
+*.background:     #1A1B26
+*.cursorColor:    #A9B1D6
+*.highlightColor: #3A3F4B
+
+! Black
+*.color0:  #1A1B26
+*.color8:  #4E5173
+! White
+*.color7:  #ACB0D0
+*.color15: #ABB2BF
