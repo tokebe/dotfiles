@@ -1,6 +1,8 @@
 return {
   'abecodes/tabout.nvim',
   config = function()
-    require('tabout').setup()
+    require('tabout').setup({
+      ignore_beginning = false
+    })
   end,
 }
