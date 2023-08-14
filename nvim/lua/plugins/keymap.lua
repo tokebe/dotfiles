@@ -258,17 +258,17 @@ return {
         {
           '<Leader>ee',
           ':Neotree toggle<CR>',
-          description = 'Toggle tree',
+          description = 'Toggle tree explorer ',
         },
         {
           '<Leader>ef',
           ':Neotree focus<CR>',
-          description = 'Focus tree',
+          description = 'Focus tree explorer',
         },
         {
           '<Leader>ej',
           ':Neotree reveal<CR>',
-          description = 'Jump to current buffer in tree',
+          description = 'Jump to current buffer in tree explorer',
         },
         -- Option/toggle keybinds
         {

@@ -107,10 +107,10 @@ alias rangerd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdi
 alias gitui=lazygit
 alias lg=lazygit
 alias ls='lsd -AX --group-dirs=first'
-alias notes='nvim ~/notes'
+alias notes="( cd ~ && nvim ~/notes )"
 alias cat=ccat
 if command -v neovide >/dev/null 2>&1; then
-  alias nvd='neovide --frame buttonless'
+    alias nvd='neovide --frame buttonless'
 fi
 # if [ -f ~/applications/nvim ]; then
 #     alias nvim=~/applications/nvim
@@ -129,7 +129,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Make Go work
-  export GOPATH=$HOME/gocode
+export GOPATH=$HOME/gocode
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
