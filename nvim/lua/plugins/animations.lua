@@ -55,7 +55,8 @@ return {
       vim.o.equalalways = false
       require('windows').setup({
         autowidth = {
-          winwidth = 0.65,
+          -- winwidth = 0.6,
+          winwidth = 1.5,
         },
       })
     end,

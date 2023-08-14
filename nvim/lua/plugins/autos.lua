@@ -8,6 +8,7 @@ return {
         'text',
         'gitcommit',
         'yaml',
+        '',
       }
       g.bullets_set_mappings = 1
       g.bullets_delete_last_bullet_if_empty = 1

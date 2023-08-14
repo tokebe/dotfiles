@@ -293,10 +293,13 @@ return {
     'folke/edgy.nvim',
     event = 'VeryLazy',
     opts = {
+      animate = {
+        enabled = false,
+      },
       bottom = {
         {
           ft = 'toggleterm',
-          size = { height = 0.3 },
+          size = { height = 0.4 },
           -- exclude floating windows
           filter = function(buf, win)
             return vim.api.nvim_win_get_config(win).relative == ''
@@ -345,6 +348,7 @@ return {
       vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 
       require('neo-tree').setup({
+        open_files_do_not_replace_types = { 'terminal', 'Trouble', 'toggleterm', 'qf', 'edgy' },
         add_blank_line_at_top = true,
         popup_border_style = 'NC',
         sources = {
