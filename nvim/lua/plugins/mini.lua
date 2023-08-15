@@ -44,7 +44,7 @@ return {
         enable = false,
       },
       resize = {
-        enable = true,
+        enable = false,
       },
       open = {
         enable = true,
