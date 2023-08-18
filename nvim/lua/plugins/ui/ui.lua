@@ -1,22 +1,22 @@
 return {
-  {
-    'kosayoda/nvim-lightbulb',
-    config = function()
-      require('nvim-lightbulb').setup({
-        sign = {
-          enabled = false,
-        },
-        status_text = {
-          enabled = true,
-          text = '󱉵',
-          text_unavilable = '',
-        },
-        -- autocmd = {
-        --   enabled = true,
-        -- },
-      })
-    end,
-  },
+  -- { -- Doesn't really work that well, and causes lots of messages
+  --   'kosayoda/nvim-lightbulb',
+  --   config = function()
+  --     require('nvim-lightbulb').setup({
+  --       sign = {
+  --         enabled = false,
+  --       },
+  --       status_text = {
+  --         enabled = true,
+  --         text = '󱉵',
+  --         text_unavilable = '',
+  --       },
+  --       -- autocmd = {
+  --       --   enabled = true,
+  --       -- },
+  --     })
+  --   end,
+  -- },
   {
     'nvim-zh/colorful-winsep.nvim',
     event = { 'WinNew' },
@@ -101,10 +101,20 @@ return {
   --     })
   --   end,
   -- },
+  -- {
+  --   'lewis6991/satellite.nvim',
+  --   config = function()
+  --     require('satellite').setup({})
+  --   end,
+  -- },
   {
-    'lewis6991/satellite.nvim',
+    'dstein64/nvim-scrollview',
     config = function()
-      require('satellite').setup({})
+      require('scrollview').setup({
+        excluded_filetypes = { 'nerdtree' },
+        current_only = true,
+        winblend = 50,
+      })
     end,
   },
   {
@@ -168,25 +178,12 @@ return {
     end,
   },
   {
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = '│' },
-        change = { text = '│' },
-        delete = { text = '│' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
-  {
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async' },
     config = function()
       -- Set up some requirements for UFO (folding)
       vim.o.foldcolumn = '1' -- '0' is not bad
-      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
       require('ufo').setup({
@@ -228,7 +225,7 @@ return {
                 sign = { name = { 'Breakpoint' }, maxwidth = 2, colwidth = 2, auto = true },
                 click = 'v:lua.ScSa',
               },
-              { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
+              { text = { builtin.lnumfunc },      click = 'v:lua.ScLa' },
               {
                 sign = { name = { '.*' }, maxwidth = 1, colwidth = 1, auto = false },
                 click = 'v:lua.ScSa',
@@ -289,40 +286,40 @@ return {
       })
     end,
   },
-  {
-    'folke/edgy.nvim',
-    event = 'VeryLazy',
-    opts = {
-      animate = {
-        enabled = false,
-      },
-      bottom = {
-        {
-          ft = 'toggleterm',
-          size = { height = 0.4 },
-          -- exclude floating windows
-          filter = function(buf, win)
-            return vim.api.nvim_win_get_config(win).relative == ''
-          end,
-        },
-        'Trouble',
-        {
-          ft = 'help',
-          size = { height = 0.3 },
-          -- only show help buffers
-          filter = function(buf)
-            return vim.bo[buf].buftype == 'help'
-          end,
-        },
-      },
-      right = {
-        {
-          ft = 'spectre_panel',
-          size = { width = 80 },
-        },
-      },
-    },
-  },
+  -- {
+  --   'folke/edgy.nvim',
+  --   event = 'VeryLazy',
+  --   opts = {
+  --     animate = {
+  --       enabled = false,
+  --     },
+  --     bottom = {
+  --       {
+  --         ft = 'toggleterm',
+  --         size = { height = 0.4 },
+  --         -- exclude floating windows
+  --         filter = function(buf, win)
+  --           return vim.api.nvim_win_get_config(win).relative == ''
+  --         end,
+  --       },
+  --       'Trouble',
+  --       {
+  --         ft = 'help',
+  --         size = { height = 0.3 },
+  --         -- only show help buffers
+  --         filter = function(buf)
+  --           return vim.bo[buf].buftype == 'help'
+  --         end,
+  --       },
+  --     },
+  --     right = {
+  --       {
+  --         ft = 'spectre_panel',
+  --         size = { width = 80 },
+  --       },
+  --     },
+  --   },
+  -- },
   {
     'jinh0/eyeliner.nvim',
     config = function()
@@ -362,6 +359,7 @@ return {
         },
         window = {
           position = 'right',
+          auto_expand_width = true,
         },
         filesystem = {
           filtered_items = {
@@ -395,6 +393,12 @@ return {
           },
         },
       })
+    end,
+  },
+  {
+    'roobert/search-replace.nvim',
+    config = function()
+      require('search-replace').setup({})
     end,
   },
 }
