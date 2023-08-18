@@ -14,7 +14,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-require('lazy').setup('plugins', {
+require('lazy').setup({
+  { import = 'plugins' },
+  { import = 'plugins.ui' },
+}, {
   change_detection = {
     notify = false,
   },

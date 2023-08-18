@@ -26,17 +26,11 @@ return {
               no_ignore = true,
               hidden = true,
               follow = true,
-            })
-          end,
-          description = 'Find file',
-        },
-        {
-          '<Leader><Tab>',
-          function()
-            telescope.builtin.find_files({
-              no_ignore = true,
-              hidden = true,
-              follow = true,
+              path_display = { 'truncate' },
+              -- layout_strategy = 'vertical',
+              -- layout_config = {
+              --   width = 0.5,
+              -- },
             })
           end,
           description = 'Find file',
@@ -67,6 +61,11 @@ return {
               sort_lastused = true,
               sort_mru = true,
               ignore_current_buffer = true,
+              path_display = { 'truncate' },
+              -- layout_strategy = 'vertical',
+              layout_config = {
+                width = 0.5,
+              },
               -- jump to file if only one, not great because you can get inintended input
               -- on_complete = {
               --   function(picker)
@@ -291,13 +290,26 @@ return {
           ':TransparentToggle<CR>',
           description = 'Toggle transparent background',
         },
-
         {
           '<Leader>od',
           function()
             require('toggle_lsp_diagnostics').toggle_virtual_text()
           end,
           description = 'Toggle LSP diagnostic text',
+        },
+        -- Search and replace keybinds
+        {
+          '<Leader>rr',
+          {
+            n = ':SearchReplaceSingleBufferCWord<CR>',
+            v = '"sy:%s/<C-r>s//gc<left><left><left>',
+          },
+          description = 'Search and replace selected',
+        },
+        {
+          '<Leader>rs',
+          ':SearchReplaceSingleBufferOpen<CR>',
+          description = 'Search and replace...',
         },
         -- Buffer keybinds
         {
@@ -530,9 +542,9 @@ return {
           'ModeChanged',
           function()
             if
-              ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-              and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-              and not require('luasnip').session.jump_active
+                ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+                and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
+                and not require('luasnip').session.jump_active
             then
               require('luasnip').unlink_current()
             end
@@ -566,6 +578,8 @@ return {
       t = { name = 'Terminal...' },
       -- Option keymaps
       o = { name = 'Options...' },
+      -- Search and Replace keymaps
+      r = { name = 'Replace...' },
     }, { prefix = '<Leader>' })
   end,
 }
