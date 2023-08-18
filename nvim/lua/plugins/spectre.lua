@@ -19,6 +19,30 @@ return {
         -- search = 'IncSearch',
         -- replace = 'IncSearch',
       },
+      mapping = {
+        ['toggle_gitignore'] = {
+          map = 'tg',
+          cmd = '<cmd>lua require("spectre").change_options("gitignore")<CR>',
+          desc = 'toggle respect .gitignore'
+        },
+      },
+      find_engine = {
+        ['rg'] = {
+          cmd = 'rg',
+          options = {
+            ['gitignore'] = {
+              value = '--no-ignore',
+              icon = '[G]',
+              desc = 'respect .gitignore',
+            },
+          },
+        },
+      },
+      default = {
+        find = {
+          options = {"ignore-case", "gitignore", "hidden"}
+        }
+      }
     })
   end,
 }
