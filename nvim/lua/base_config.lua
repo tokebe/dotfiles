@@ -62,7 +62,10 @@ cmd('filetype plugin indent on') -- filetype detection
 vim.o.guifont = 'Tokebe Nerd Font:h16:#e-subpixelantialias'
 
 vim.g.neovide_refrest_rate = 100
+vim.g.neovide_no_idle = true
 -- vim.g.neovide_refrest_rate_idle = 5
 vim.g.neovide_cursor_animation_length = 0.05
 vim.g.neovide_cursor_antialiasing = true
 vim.g.neovide_cursor_animate_in_insert_mode = true
+vim.g.neovide_scroll_animation_length = 0
+vim.g.neovide_input_macos_alt_is_meta = true
