@@ -63,13 +63,15 @@ return {
   {
     'f-person/git-blame.nvim',
     config = function()
-      vim.g.gitblame_enabled = 1
-      vim.g.gitblame_message_template = '<author> • <date> • <summary>'
-      vim.g.gitblame_date_format = '%r'
-      vim.g.gitblame_message_when_not_committed = ' Not Yet Committed'
-      vim.g.gitblame_display_virtual_text = 1
-      vim.g.gitblame_ignored_filetypes = require('config.filetype_excludes')
-      vim.g.gitblame_delay = 1000
+      require('gitblame').setup({
+        enabled = 1,
+        message_template = '<author> • <date> • <summary>',
+        date_format = '%r',
+        message_when_not_committed = ' Not Yet Committed',
+        display_virtual_text = 1,
+        ignored_filetypes = require('config.filetype_excludes'),
+        delay = 1000,
+      })
 
       map('n', 'gb', ':GitBlameToggle<CR>', { desc = 'Toggle blame' })
       map('n', '<Leader>gc', ':GitBlameOpenCommitURL<CR>', { desc = 'Open commit on GitHub' })
