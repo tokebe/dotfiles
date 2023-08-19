@@ -80,28 +80,6 @@ return {
   --   end,
   -- },
   -- {
-  --   'petertriho/nvim-scrollbar',
-  --   config = function()
-  --     require('scrollbar').setup({
-  --       excluded_filetypes = require('config.filetype_excludes'),
-  --       marks = {
-  --         Cursor = {
-  --           text = '',
-  --         },
-  --       },
-  --       handle = {
-  --         blend = 70,
-  --         highlight = 'TabLineSel',
-  --       },
-  --       handlers = {
-  --         gitsigns = true,
-  --         search = true,
-  --       },
-  --       excluded_filetypes = require('config.filetype_excludes'),
-  --     })
-  --   end,
-  -- },
-  -- {
   --   'lewis6991/satellite.nvim',
   --   config = function()
   --     require('satellite').setup({})
@@ -163,22 +141,22 @@ return {
       })
     end,
   },
-  {
-    'kdheepak/tabline.nvim',
-    config = function()
-      require('tabline').setup({
-        enable = true,
-        options = {
-          modified_icon = '',
-          modified_italic = true,
-          section_separators = { '', '' },
-          component_separators = { '╱', '╱' },
-          show_filename_only = true,
-          show_tabs_always = true,
-        },
-      })
-    end,
-  },
+  -- {
+  --   'kdheepak/tabline.nvim',
+  --   config = function()
+  --     require('tabline').setup({
+  --       enable = true,
+  --       options = {
+  --         modified_icon = '',
+  --         modified_italic = true,
+  --         section_separators = { '', '' },
+  --         component_separators = { '╱', '╱' },
+  --         show_filename_only = true,
+  --         show_tabs_always = true,
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async' },
