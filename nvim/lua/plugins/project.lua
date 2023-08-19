@@ -1,15 +1,25 @@
 return {
   {
-    'Shatur/neovim-session-manager',
+    'rmagatti/auto-session',
     dependencies = {
-      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
     },
     config = function()
-      local config = require('session_manager.config')
-      require('session_manager').setup({
-        autoload_mode = config.AutoloadMode.CurrentDir,
-        autosave_ignore_dirs = { '~' },
+      require('auto-session').setup({
+        log_level = 'error',
+        auto_session_supress_dirs = { '~/' },
+        auto_session_use_git_branch = false,
+        restore_upcoming_session = true,
+        pre_save_cmds = { 'ScopeSaveState' },
+        post_restore_cmds = { 'ScopeLoadState' },
+        session_lens = {
+          path_display = { 'truncate' },
+          theme = 'vertical',
+          previewer = false,
+        },
       })
+
+      vim.keymap.set('n', '<Leader>fp', require('auto-session.session-lens').search_session, { desc = 'Find Project' })
     end,
   },
   {
@@ -43,14 +53,14 @@ return {
               group = 'Number',
               action = function()
                 vim.cmd('cd ~/dotfiles')
-                vim.cmd('SessionManager load_current_dir_session')
+                vim.cmd([[SessionRestore]])
               end,
               key = 'd',
             },
             {
               desc = '  Projects',
               group = 'DiagnosticHint',
-              action = 'SessionManager load_session',
+              action = 'Autosession search',
               key = 'p',
             },
             {
@@ -73,7 +83,7 @@ return {
             label = 'Recent Projects',
             action = function(path)
               vim.cmd('cd ' .. path)
-              vim.cmd('SessionManager load_current_dir_session')
+              vim.cmd([[SessionRestore]])
             end,
           },
           mru = {
@@ -81,7 +91,7 @@ return {
           },
           footer = {
             '',
-            motd[math.random(#motd)]
+            motd[math.random(#motd)],
           },
         },
       })
