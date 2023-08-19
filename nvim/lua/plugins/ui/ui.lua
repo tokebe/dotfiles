@@ -119,7 +119,9 @@ return {
   },
   {
     'folke/todo-comments.nvim',
-    requires = 'nvim-lua/plenary.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
     config = function()
       require('todo-comments').setup({
         highlight = {
@@ -183,7 +185,7 @@ return {
     config = function()
       -- Set up some requirements for UFO (folding)
       vim.o.foldcolumn = '1' -- '0' is not bad
-      vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
       require('ufo').setup({
@@ -225,7 +227,7 @@ return {
                 sign = { name = { 'Breakpoint' }, maxwidth = 2, colwidth = 2, auto = true },
                 click = 'v:lua.ScSa',
               },
-              { text = { builtin.lnumfunc },      click = 'v:lua.ScLa' },
+              { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
               {
                 sign = { name = { '.*' }, maxwidth = 1, colwidth = 1, auto = false },
                 click = 'v:lua.ScSa',
@@ -253,6 +255,13 @@ return {
             filter = { pattern = '^:%s*!', icon = '$', lang = 'bash' },
             lua = { pattern = { '^:%s*lua%s+', '^:%s*lua%s*=%s*', '^:%s*=%s*' }, icon = '', lang = 'lua' },
             help = { pattern = '^:%s*he?l?p?%s+', icon = '󰋖 ' },
+          },
+        },
+        lsp = {
+          override = {
+            ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+            ['vim.lsp.util.stylize_markdown'] = true,
+            ['cmp.entry.get_documentation'] = true,
           },
         },
         routes = {
@@ -286,40 +295,40 @@ return {
       })
     end,
   },
-  -- {
-  --   'folke/edgy.nvim',
-  --   event = 'VeryLazy',
-  --   opts = {
-  --     animate = {
-  --       enabled = false,
-  --     },
-  --     bottom = {
-  --       {
-  --         ft = 'toggleterm',
-  --         size = { height = 0.4 },
-  --         -- exclude floating windows
-  --         filter = function(buf, win)
-  --           return vim.api.nvim_win_get_config(win).relative == ''
-  --         end,
-  --       },
-  --       'Trouble',
-  --       {
-  --         ft = 'help',
-  --         size = { height = 0.3 },
-  --         -- only show help buffers
-  --         filter = function(buf)
-  --           return vim.bo[buf].buftype == 'help'
-  --         end,
-  --       },
-  --     },
-  --     right = {
-  --       {
-  --         ft = 'spectre_panel',
-  --         size = { width = 80 },
-  --       },
-  --     },
-  --   },
-  -- },
+  {
+    'folke/edgy.nvim',
+    event = 'VeryLazy',
+    opts = {
+      animate = {
+        enabled = false,
+      },
+      bottom = {
+        {
+          ft = 'toggleterm',
+          size = { height = 0.4 },
+          -- exclude floating windows
+          filter = function(buf, win)
+            return vim.api.nvim_win_get_config(win).relative == ''
+          end,
+        },
+        'Trouble',
+        {
+          ft = 'help',
+          size = { height = 0.3 },
+          -- only show help buffers
+          filter = function(buf)
+            return vim.bo[buf].buftype == 'help'
+          end,
+        },
+      },
+      right = {
+        {
+          ft = 'spectre_panel',
+          size = { width = 80 },
+        },
+      },
+    },
+  },
   {
     'jinh0/eyeliner.nvim',
     config = function()
