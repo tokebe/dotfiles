@@ -1,9 +1,6 @@
 return {
   -- Add indentation guides even on blank lines
   'lukas-reineke/indent-blankline.nvim',
-  after = {
-    'nvimdev/dashboard-nvim',
-  },
   event = 'BufEnter',
   config = function()
     require('indent_blankline').setup({

@@ -9,7 +9,7 @@ return {
     -- TODO might need to add some stuff for intelligent REPL filetype selection
     require('nvim-dap-repl-highlights').setup()
     require('nvim-treesitter.configs').setup({
-      ensure_installed = { 'dap_repl' },
+      ensure_installed = { 'dap_repl', 'regex', 'markdown_inline'},
       auto_install = true,
       highlight = {
         enabled = true,
