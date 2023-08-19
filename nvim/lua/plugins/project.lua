@@ -8,7 +8,7 @@ return {
       local config = require('session_manager.config')
       require('session_manager').setup({
         autoload_mode = config.AutoloadMode.CurrentDir,
-        autosave_ignore_dirs = { '~' }
+        autosave_ignore_dirs = { '~' },
       })
     end,
   },
@@ -21,6 +21,10 @@ return {
     },
     event = 'VimEnter',
     config = function()
+      local motd = {
+        'Remember to stand up and stretch today!',
+        'When in doubt, :checkhealth!',
+      }
       require('dashboard').setup({
         theme = 'hyper',
         disable_move = true,
@@ -77,7 +81,7 @@ return {
           },
           footer = {
             '',
-            'Remember to stand up and stretch today!',
+            motd[math.random(#motd)]
           },
         },
       })
@@ -85,12 +89,11 @@ return {
   },
   {
     'stevearc/overseer.nvim',
-    config = function ()
+    config = function()
       -- TODO set up with NeoTest
       require('overseer').setup({
-        strategy = 'toggleterm'
+        strategy = 'toggleterm',
       })
-    end
+    end,
   },
-
 }
