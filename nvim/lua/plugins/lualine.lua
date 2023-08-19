@@ -1,7 +1,7 @@
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = {
-    'kosayoda/nvim-lightbulb',
+    'tiagovla/scope.nvim',
   },
   config = function()
     local function show_macro_recording()
@@ -11,10 +11,6 @@ return {
       else
         return 'Recording @' .. recording_register
       end
-    end
-
-    local function get_lightbulb()
-      return require('nvim-lightbulb').get_status_text()
     end
 
     local function get_term_num()
@@ -44,7 +40,6 @@ return {
             symbols = { added = ' ', modified = ' ', removed = ' ' },
           },
           'diagnostics',
-          get_lightbulb,
         },
         lualine_c = {
           show_macro_recording,
@@ -66,8 +61,10 @@ return {
             },
           },
         },
-        lualine_z = { { 'tabs', mode = 0, use_mode_colors = true, } },
+        lualine_z = { { 'tabs', mode = 0, use_mode_colors = true } },
       },
     })
+
+    require('scope').setup({})
   end,
 }

@@ -146,13 +146,6 @@ return {
           description = 'Find todos',
         },
         {
-          '<Leader>fp',
-          function()
-            vim.cmd('SessionManager load_session')
-          end,
-          description = 'Find project',
-        },
-        {
           '<Leader>fu',
           function()
             telescope.extensions.undo.undo()
@@ -514,15 +507,7 @@ return {
           description = 'view code actions',
         },
       },
-      commands = {
-        {
-          ':AddWorkspace',
-          function()
-            require('projections.workspace').add(vim.loop.cwd())
-          end,
-          description = 'Add current directory as a workspace',
-        },
-      },
+      commands = {},
       funcs = {},
       autocmds = {
         {
