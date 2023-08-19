@@ -359,21 +359,8 @@ return {
           description = 'Close tabpage',
         },
         {
-          '<Leader>wb',
-          function()
-            vim.cmd('TablineBuffersBind ' .. vim.api.nvim_buf_get_name(0))
-          end,
-          -- ':TablineBuffersBind '
-          description = 'Bind current buffer to current tab',
-        },
-        {
-          '<Leader>wu',
-          ':TablineBuffersClearBind<CR>',
-          description = 'Unbind all buffers from current tab',
-        },
-        {
           '<Leader>wr',
-          ':TablineTabRename ',
+          ':LualineTabRename ',
           description = 'Rename current tabpage',
         },
         {
@@ -542,9 +529,9 @@ return {
           'ModeChanged',
           function()
             if
-                ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-                and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-                and not require('luasnip').session.jump_active
+              ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+              and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
+              and not require('luasnip').session.jump_active
             then
               require('luasnip').unlink_current()
             end
