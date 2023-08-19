@@ -55,9 +55,19 @@ return {
         lualine_z = { 'location' },
       },
       tabline = {
-        lualine_a = { 'buffers' },
-        lualine_z = { 'tabs' }
-      }
+        lualine_a = {
+          {
+            'buffers',
+            use_mode_colors = true,
+            symbols = {
+              modified = ' 󰏫 ',
+              alternate_file = '',
+              directory = ' ',
+            },
+          },
+        },
+        lualine_z = { { 'tabs', mode = 1, use_mode_colors = true, } },
+      },
     })
   end,
 }
