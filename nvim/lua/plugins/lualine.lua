@@ -66,7 +66,7 @@ return {
             },
           },
         },
-        lualine_z = { { 'tabs', mode = 1, use_mode_colors = true, } },
+        lualine_z = { { 'tabs', mode = 0, use_mode_colors = true, } },
       },
     })
   end,
