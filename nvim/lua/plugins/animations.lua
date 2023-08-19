@@ -38,6 +38,7 @@ return {
     'declancm/cinnamon.nvim',
     config = function()
       require('cinnamon').setup({
+        max_length = 500,
         scroll_limit = 75,
         extra_keymaps = true,
         extended_keymaps = true,
