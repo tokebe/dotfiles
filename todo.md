@@ -23,25 +23,25 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
 - [x] File tabs 
 - [x] Autoformatting 
 - [ ] Intelligent indenting on paste 
-- [ ] Toggleable terminal 
+- [x] Toggleable terminal 
 - [x] Remove trailing spaces on exit insert mode 
-- [ ] Interactive git blame/figure out where a change came from 
+- [x] Interactive git blame/figure out where a change came from 
 - [x] Command palette 
 - [x] LSP notifications 
 - [x] Theme manager/switcher 
 - [x] Autosave 
 - [x] Sensible folding with obvious markers, mouse-support? 
-- [ ] lazygit/further git integration 
+- [x] lazygit/further git integration 
 - [ ] connect to docker container and lazydocker? 
 - [ ] Jupyter/similar 
 - [x] TODO highlighting/overview 
 - [x] Trouble: list all diagnostics (maybe TODO support?) 
 - [x] Tab management keybinds/different buffer/tab line 
 - [ ] Disable highlighting for extremely large files 
-- [ ] Fix errors coming from treesitter-indent when switching files 
+- [x] Fix errors coming from treesitter-indent when switching files 
 - [ ] Fix statuscol diagnostics click action (remove border, make it stay until cursormove) 
 - [ ] Fix rename symbol jumping up in document when writing 
-- [ ] Fix barbecue not actually getting LSP-context 
+- [x] Fix barbecue not actually getting LSP-context 
 - [ ] Fix ctrl-hjkl when in insert mode
 
 
@@ -63,7 +63,7 @@ And also the random notes for smaller things:
 - [ ] Fix IncRename: needs to ensure diagnostic float is hidden/paused 
 - [ ] Add more signature support somehow (e.g. typescript signatures on variables in bte) 
 - [ ] Code hints not really displaying, might need above fix first ^ 
-- [ ] change nvim-tree icons for git to make more sense 
+- [x] change nvim-tree icons for git to make more sense 
 - [x] ensure dashboard loads after projections and legendary 
 - [x] completely redo the project/session system to something simpler and more consistent 
 - [ ] allow buffer closing from tab switch menu 
