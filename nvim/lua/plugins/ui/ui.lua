@@ -22,7 +22,7 @@ return {
     event = { 'WinNew' },
     config = function()
       require('colorful-winsep').setup({
-        -- symbols = { '═', '║', '╔ ', '╗', '╚', '╝' },
+        symbols = { '─', '│', '┌', '┐', '└', '┘' },
         -- no_exec_files = require('config.filetype_excludes'),
         no_exec_files = {
           'telescopePrompt',
