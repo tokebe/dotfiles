@@ -523,6 +523,11 @@ return {
           end,
           description = 'Prevent luasnip from jumping back after finishing a snippet',
         },
+        {
+          { 'CursorHold', 'CursorHoldI', 'BufEnter', 'FocusGained' },
+          ':checktime',
+          description = 'Check for file changes periodically',
+        },
       },
       extensions = {},
       col_separator_char = ' ',
