@@ -10,7 +10,13 @@ return {
         auto_session_supress_dirs = { '~/' },
         auto_session_use_git_branch = false,
         restore_upcoming_session = true,
-        pre_save_cmds = { 'ScopeSaveState' },
+        pre_save_cmds = {
+          'ScopeSaveState',
+          'NeoTreeClose',
+          function()
+            require('spectre').close()
+          end,
+        },
         post_restore_cmds = { 'ScopeLoadState' },
         session_lens = {
           path_display = { 'truncate' },
