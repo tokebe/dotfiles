@@ -59,7 +59,7 @@ cmd([[au BufEnter * set fo-=c fo-=r fo-=o]]) -- no autocomment on newline
 cmd('filetype plugin indent on') -- filetype detection
 
 -- Neovide config
-vim.o.guifont = 'Tokebe Nerd Font:h16:#e-subpixelantialias'
+vim.o.guifont = 'Tokebe Nerd Font:h14:#e-antialias'
 
 vim.g.neovide_refrest_rate = 100
 vim.g.neovide_no_idle = true

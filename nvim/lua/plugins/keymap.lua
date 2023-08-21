@@ -58,7 +58,7 @@ return {
           '<Tab>',
           function()
             telescope.builtin.buffers(telescope.themes.get_dropdown({
-              sort_lastused = true,
+              -- sort_lastused = true,
               sort_mru = true,
               ignore_current_buffer = true,
               path_display = { 'truncate' },

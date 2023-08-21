@@ -22,6 +22,13 @@ return {
       end
     end
 
+    local function get_pwd_folder()
+      local Path = require('plenary.path')
+      local pwd = Path:new(vim.fn.getcwd())
+      local i = pwd:_split()
+      return ' ' .. pwd:_split()[#i]
+    end
+
     require('lualine').setup({
       options = {
         icons_enabled = true,
@@ -33,6 +40,7 @@ return {
       sections = {
         lualine_a = { 'mode', get_term_num },
         lualine_b = {
+          get_pwd_folder,
           'branch',
           {
             'diff',
