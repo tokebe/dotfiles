@@ -395,4 +395,17 @@ return {
       require('search-replace').setup({})
     end,
   },
+  {
+    'haringsrob/nvim_context_vt',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function()
+      require('nvim_context_vt').setup({
+        prefix = '󱦵',
+        min_rows = 7,
+        disable_ft = require('config.filetype_excludes'),
+      })
+    end,
+  },
 }
