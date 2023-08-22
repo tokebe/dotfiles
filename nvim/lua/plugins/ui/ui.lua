@@ -171,6 +171,13 @@ return {
           return { 'treesitter', 'indent' }
         end,
       })
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = require('config.filetype_excludes'),
+        callback = function()
+          require('ufo').detach()
+          vim.opt_local.foldenable = false
+        end,
+      })
     end,
   },
   {
