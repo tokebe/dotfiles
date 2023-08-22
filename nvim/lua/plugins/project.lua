@@ -7,7 +7,7 @@ return {
     config = function()
       require('auto-session').setup({
         log_level = 'error',
-        auto_session_supress_dirs = { '~/' },
+        auto_session_supress_dirs = { '~' },
         auto_session_use_git_branch = false,
         restore_upcoming_session = true,
         pre_save_cmds = {
@@ -26,6 +26,22 @@ return {
       })
 
       vim.keymap.set('n', '<Leader>fp', require('auto-session.session-lens').search_session, { desc = 'Find Project' })
+    end,
+  },
+  {
+    'ethanholz/nvim-lastplace',
+    config = function()
+      local exclude = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' }
+      local n = #exclude
+      for _, v in ipairs(require('config.filetype_excludes')) do
+        n = n + 1
+        exclude[n] = v
+      end
+      require('nvim-lastplace').setup({
+        lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
+        lastplace_ignore_filetype = exclude,
+        lastplace_open_folds = true,
+      })
     end,
   },
   {
