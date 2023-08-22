@@ -28,6 +28,7 @@ set.hlsearch = true -- highlight search
 set.incsearch = true -- highlight next differently
 set.ignorecase = true -- ignore pattern case
 set.smartcase = true -- case-sensitive if pattern has uppercase
+set.whichwrap:append({ h = true, l = true })
 
 -- [[ General Behaviors ]]
 set.mouse = 'a' -- Enable mouse mode
