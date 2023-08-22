@@ -2,6 +2,8 @@
 vim.api.nvim_set_keymap('n', '<Esc>', ':noh<CR>', { noremap = true, silent = true })
 return {
   'mrjones2014/legendary.nvim',
+  priority = 10000,
+  lazy = false,
   dependencies = {
     'folke/which-key.nvim',
   },
@@ -226,12 +228,12 @@ return {
         },
         -- Jump keybinds
         {
-          '<Leader>jj',
+          '<Leader>jJ',
           ':Portal jumplist backward<CR>',
           description = 'Jump backward in place history',
         },
         {
-          '<Leader>jk',
+          '<Leader>jK',
           ':Portal jumplist forward<CR>',
           description = 'Jump forward in place history',
         },
@@ -447,6 +449,12 @@ return {
             vim.diagnostic.open_float(nil, opts)
           end,
         },
+        {
+          'gm',
+          '%',
+          mode = { 'n', 'v', 'o' },
+          desc = 'Go to match',
+        },
         --   -- Slightly smarter tab, would be better if it could be vscode-like
         --   '<Tab>',
         --   function()
@@ -472,6 +480,7 @@ return {
               vim.api.nvim_feedkeys('_', 'm', false)
             end
           end,
+          mode = { 'n', 'v', 'o' },
           description = 'Go to first char',
         },
         {
@@ -485,6 +494,7 @@ return {
               vim.api.nvim_feedkeys('$', 'm', false)
             end
           end,
+          mode = { 'n', 'v', 'o' },
           description = 'Go to last char',
         },
         -- Fold controls for UFO
