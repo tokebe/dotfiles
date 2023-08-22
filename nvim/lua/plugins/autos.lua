@@ -79,4 +79,17 @@ return {
       })
     end,
   },
+  {
+    'nat-418/boole.nvim',
+    config = function()
+      require('boole').setup({
+        mappings = {
+          increment = '<C-a>',
+          decrement = '<C-x>',
+        },
+        -- NOTE: can add `additions` and `allow_caps_additions`
+        -- these allow new cycles, and case-insenstive, case-aware cycles
+      })
+    end,
+  },
 }
