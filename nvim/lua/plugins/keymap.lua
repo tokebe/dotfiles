@@ -464,7 +464,7 @@ return {
           ':Hypersonic<CR>',
           mode = { 'n', 'v' },
           description = 'Explain selected regex'
-        }
+        },
         --   -- Slightly smarter tab, would be better if it could be vscode-like
         --   '<Tab>',
         --   function()
