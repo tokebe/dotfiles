@@ -408,4 +408,13 @@ return {
       })
     end,
   },
+  {
+    'mvllow/modes.nvim',
+    tag = 'v0.2.0',
+    config = function()
+      require('modes').setup({
+        ignore_filetypes = require('config.filetype_excludes'),
+      })
+    end,
+  },
 }
