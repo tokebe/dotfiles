@@ -112,14 +112,13 @@ return {
     end,
   },
   {
-    'bennypowers/nvim-regexplainer',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'MunifTanjim/nui.nvim',
-    },
+    'tomiis4/hypersonic.nvim',
+    event = 'CmdlineEnter',
+    cmd = 'Hypersonic',
     config = function()
-      require('regexplainer').setup({
-        auto = true,
+      require('hypersonic').setup({
+        border = 'none',
+        enable_cmdline = false,
       })
     end,
   },
@@ -141,22 +140,6 @@ return {
       })
     end,
   },
-  -- {
-  --   'kdheepak/tabline.nvim',
-  --   config = function()
-  --     require('tabline').setup({
-  --       enable = true,
-  --       options = {
-  --         modified_icon = '',
-  --         modified_italic = true,
-  --         section_separators = { '', '' },
-  --         component_separators = { '╱', '╱' },
-  --         show_filename_only = true,
-  --         show_tabs_always = true,
-  --       },
-  --     })
-  --   end,
-  -- },
   {
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async' },
@@ -410,7 +393,6 @@ return {
   },
   {
     'mvllow/modes.nvim',
-    tag = 'v0.2.0',
     config = function()
       require('modes').setup({
         ignore_filetypes = require('config.filetype_excludes'),
