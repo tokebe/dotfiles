@@ -53,13 +53,13 @@ return {
         require('tree-climber').goto_child({ highlight = true })
       end, { desc = 'Jump to child node' })
       vim.keymap.set({ 'v' }, 'in', require('tree-climber').select_node, { desc = '' })
-      vim.keymap.set({ 'n' }, '<c-k>', function()
+      vim.keymap.set({ 'n' }, '<Leader>nk', function()
         require('tree-climber').swap_prev({ highlight = true })
       end, { desc = 'swap node with previous' })
-      vim.keymap.set({ 'n' }, '<c-j>', function()
+      vim.keymap.set({ 'n' }, '<Leader>nj', function()
         require('tree-climber').swap_next({ highlight = true })
       end, { desc = 'swap node with next' })
-      vim.keymap.set({ 'n' }, '<c-h>', require('tree-climber').highlight_node, { desc = 'swap node with next' })
+      vim.keymap.set({ 'n' }, '<Leader>nh', require('tree-climber').highlight_node, { desc = 'swap node with next' })
     end,
   },
   {
