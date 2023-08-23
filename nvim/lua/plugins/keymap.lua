@@ -330,12 +330,12 @@ return {
         -- Window keybinds
         {
           '<Leader>wq',
-          ':bdelete<CR>',
+          ':BufDel<CR>',
           description = 'Close buffer',
         },
         {
           '<Leader>wQ',
-          ':bdelete!<CR>',
+          ':BufDel!<CR>',
           description = 'Close buffer (force)',
         },
         {
