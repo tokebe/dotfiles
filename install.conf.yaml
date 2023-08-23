@@ -29,6 +29,9 @@
         - unzip
         - ripgrep
         - fzf
+        - bat
+        - git-delta
+        - chafa
         - apt: fd-find
           dnf: fd-find
           pac: fd

@@ -9,9 +9,6 @@ return {
   },
   config = function()
     local wk = require('which-key')
-    local telescope = require('telescope')
-    telescope.builtin = require('telescope.builtin')
-    telescope.themes = require('telescope.themes')
     require('legendary').setup({
       keymaps = {
         -- Summon Command palette
@@ -24,15 +21,8 @@ return {
         {
           '<Leader><Tab>',
           function()
-            telescope.builtin.find_files({
-              no_ignore = true,
-              hidden = true,
-              follow = true,
-              path_display = { 'truncate' },
-              -- layout_strategy = 'vertical',
-              -- layout_config = {
-              --   width = 0.5,
-              -- },
+            require('fzf-lua').files({
+              fd_opts = '--no-ignore --hidden',
             })
           end,
           description = 'Find file',
@@ -59,49 +49,37 @@ return {
         {
           '<Tab>',
           function()
-            telescope.builtin.buffers(telescope.themes.get_dropdown({
-              -- sort_lastused = true,
-              sort_mru = true,
-              ignore_current_buffer = true,
-              path_display = { 'truncate' },
-              -- layout_strategy = 'vertical',
-              layout_config = {
+            require('fzf-lua').buffers({
+              winopts = {
                 width = 0.5,
+                height = 0.5,
+                preview = {
+                  layout = 'vertical',
+                  vertical = 'up',
+                },
               },
-              -- jump to file if only one, not great because you can get inintended input
-              -- on_complete = {
-              --   function(picker)
-              --     -- if we have exactly one match, select it
-              --     if picker.manager.linked_states.size == 1 then
-              --       require('telescope.actions').select_default(picker.prompt_bufnr)
-              --     end
-              --   end,
-              -- },
-            }))
+            })
           end,
           description = 'Switch buffers',
         },
         {
           '<S-Tab>',
           ':tabnext<CR>',
-          -- function ()
-          --   require('telescope-tabs').list_tabs()
-          -- end,
           description = 'Switch tabs',
         },
         {
           '<Leader>fh',
-          telescope.builtin.help_tags,
+          require('fzf-lua').help_tags,
           description = 'Find help',
         },
         {
           '<Leader>fs',
-          telescope.builtin.lsp_document_symbols,
+          require('fzf-lua').lsp_document_symbols,
           description = 'Find symbol in buffer',
         },
         {
           '<Leader>fS',
-          telescope.builtin.lsp_dynamic_workspace_symbols,
+          require('fzf-lua').lsp_live_workspace_symbols,
           description = 'Find symbol in workspace',
         },
         {
@@ -120,17 +98,17 @@ return {
         },
         {
           '<Leader>fb',
-          telescope.builtin.current_buffer_fuzzy_find,
+          require('fzf-lua').lgrep_curbuf,
           description = 'Find text in buffer',
         },
         {
           '<Leader>fc',
-          telescope.builtin.registers,
+          require('fzf-lua').registers,
           description = 'Find in clipboard (registers)',
         },
         {
           '<Leader>fi',
-          telescope.builtin.lsp_implementations,
+          require('fzf-lua').lsp_implementations,
           description = 'Find implementations',
         },
         {
@@ -150,7 +128,7 @@ return {
         {
           '<Leader>fu',
           function()
-            telescope.extensions.undo.undo()
+            require('fzf-lua').changes()
           end,
           description = 'Find in undo history',
         },
@@ -158,35 +136,50 @@ return {
         {
           '<Leader>ss',
           function()
-            telescope.builtin.spell_suggest(telescope.themes.get_cursor())
+            require('fzf-lua').spell_suggest({
+              winopts = {
+                height = 11,
+                width = 0.25,
+                relative = 'cursor',
+                row = -13,
+                col = 1,
+              },
+            })
           end,
           description = 'Select spelling',
         },
         {
           '<Leader>sl',
           function()
-            telescope.builtin.filetypes(telescope.themes.get_dropdown())
+            require('fzf-lua').filetypes({
+              winopts = {
+                height = 0.4,
+                width = 0.4,
+              },
+            })
           end,
           description = 'Select language',
         },
         {
           '<Leader>sb',
           function()
-            telescope.builtin.git_branches(telescope.themes.get_dropdown())
+            require('fzf-lua').git_branches()
           end,
           description = 'Select branch',
         },
         {
           '<Leader>sc',
           function()
-            telescope.builtin.colorscheme(telescope.themes.get_dropdown())
+            require('fzf-lua').colorschemes({
+              winopts = {
+                width = 0.3,
+                height = 0.3,
+                row = 0.9,
+                col = 0.9,
+              },
+            })
           end,
           description = 'Select temporary colorscheme',
-        },
-        {
-          '<Leader>sC',
-          require('colorscheme-persist').picker,
-          description = 'Select default colorscheme',
         },
         -- Global operation keymaps
         {
@@ -450,10 +443,21 @@ return {
           end,
         },
         {
+          '<Leader>sd',
+          function()
+            if vim.o.background == 'dark' then
+              vim.o.background = 'light'
+            else
+              vim.o.background = 'dark'
+            end
+          end,
+          description = 'Set dark or light mode',
+        },
+        {
           'gm',
           '%',
           mode = { 'n', 'v', 'o' },
-          desc = 'Go to match',
+          description = 'Go to match',
         },
         {
           '<Leader>er',
@@ -530,9 +534,9 @@ return {
           'ModeChanged',
           function()
             if
-              ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-              and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-              and not require('luasnip').session.jump_active
+                ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+                and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
+                and not require('luasnip').session.jump_active
             then
               require('luasnip').unlink_current()
             end

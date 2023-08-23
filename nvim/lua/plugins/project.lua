@@ -88,7 +88,11 @@ return {
             {
               desc = '󰈞  Find File',
               group = 'Number',
-              action = 'Telescope find_files',
+              action = function()
+                require('fzf-lua').files({
+                  fd_opts = '--no-ignore --hidden',
+                })
+              end,
               key = 'f',
             },
             {
