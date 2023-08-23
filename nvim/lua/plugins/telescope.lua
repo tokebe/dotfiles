@@ -69,4 +69,26 @@ return {
       require('telescope').load_extension('undo')
     end,
   },
+  {
+    'ibhagwan/fzf-lua',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      local actions = require('fzf-lua.actions')
+      require('fzf-lua').setup({
+        actions = {
+          buffers = {
+            ['tab'] = actions.file_edit,
+          },
+        },
+        fzf_opts = {
+          ['--layout'] = 'default',
+        },
+        buffers = {
+          ignore_current_buffer = true,
+        },
+      })
+    end,
+  },
 }

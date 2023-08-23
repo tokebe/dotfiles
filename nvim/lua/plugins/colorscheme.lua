@@ -11,7 +11,7 @@ return {
     'ntk148v/habamax.nvim',
     'nyngwang/nvimgelion',
     -- Persistent colorscheme
-    { 'propet/colorscheme-persist.nvim', dependencies = { 'nvim-telescope/telescope-dap.nvim' } },
+    'raddari/last-color.nvim',
     -- Toggleable background transparency
     'xiyaowong/transparent.nvim',
   },
@@ -25,10 +25,12 @@ return {
       },
     })
     require('rose-pine').setup()
+    require('tokyonight').setup({
+      style = "storm"
+    })
 
-    vim.o.background = 'light';
     vim.g.zenbones = {
-      lightness = 'dim' 
+      lightness = 'dim',
     }
 
     -- require('barbecue').setup({
@@ -39,11 +41,7 @@ return {
         theme = 'auto',
       },
     })
-    local persist_colorscheme = require('colorscheme-persist')
-    persist_colorscheme.setup({
-      fallback = default_theme,
-    })
-    local colorscheme = persist_colorscheme.get_colorscheme()
+    local colorscheme = require('last-color').recall() or default_theme
     vim.cmd('colorscheme ' .. colorscheme)
     require('transparent').setup()
   end,
