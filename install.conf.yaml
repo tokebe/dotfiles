@@ -28,7 +28,6 @@
     - install:
         - unzip
         - ripgrep
-        - fzf
         - bat
         - git-delta
         - chafa
@@ -68,6 +67,7 @@
                   quiet: true
       - brew:
           - lsd
+          - fzf
           - ccat
           - lazygit
           - lazydocker
