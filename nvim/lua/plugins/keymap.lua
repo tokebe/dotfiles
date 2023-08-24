@@ -22,7 +22,7 @@ return {
           '<Leader><Tab>',
           function()
             require('fzf-lua').files({
-              fd_opts = '--no-ignore --hidden',
+              fd_opts = '--no-ignore --hidden --type f',
             })
           end,
           description = 'Find file',
@@ -463,7 +463,7 @@ return {
           '<Leader>er',
           ':Hypersonic<CR>',
           mode = { 'n', 'v' },
-          description = 'Explain selected regex'
+          description = 'Explain selected regex',
         },
         --   -- Slightly smarter tab, would be better if it could be vscode-like
         --   '<Tab>',
@@ -482,8 +482,8 @@ return {
         {
           'H',
           function()
-            local r, c = unpack(vim.api.nvim_win_get_cursor(0))
-            local start, final, match = vim.api.nvim_get_current_line():find('%S')
+            local _, c = unpack(vim.api.nvim_win_get_cursor(0))
+            local start, _, _ = vim.api.nvim_get_current_line():find('%S')
             if c + 1 == start then
               vim.api.nvim_feedkeys('0', 'm', false)
             else
@@ -496,8 +496,8 @@ return {
         {
           'L',
           function()
-            local r, c = unpack(vim.api.nvim_win_get_cursor(0))
-            local start, final, match = vim.api.nvim_get_current_line():find('%S')
+            local _, c = unpack(vim.api.nvim_win_get_cursor(0))
+            local _, final, _ = vim.api.nvim_get_current_line():find('%S')
             if c + 1 == final then
               vim.api.nvim_feedkeys('g_', 'm', false)
             else
@@ -522,7 +522,15 @@ return {
         {
           'ga',
           function()
-            require('actions-preview').code_actions()
+            require('fzf-lua').lsp_code_actions({
+              winopts = {
+                height = 11,
+                width = 0.25,
+                relative = 'cursor',
+                row = -13,
+                col = 1,
+              },
+            })
           end,
           description = 'view code actions',
         },
@@ -534,9 +542,9 @@ return {
           'ModeChanged',
           function()
             if
-                ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-                and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-                and not require('luasnip').session.jump_active
+              ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+              and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
+              and not require('luasnip').session.jump_active
             then
               require('luasnip').unlink_current()
             end

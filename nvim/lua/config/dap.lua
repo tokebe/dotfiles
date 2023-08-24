@@ -20,7 +20,6 @@ return {
     })
     require('dap.ext.vscode').load_launchjs()
     -- TODO add commands
-    require('telescope').load_extension('dap')
     -- TODO change all breakpoint toggles to use persistent_breakpoints
     require('persistent-breakpoints').setup({
       load_breakpoints_event = { 'BufReadPost' },
