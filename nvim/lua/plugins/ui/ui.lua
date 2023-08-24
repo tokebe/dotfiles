@@ -39,34 +39,34 @@ return {
       })
     end,
   },
-  {
-    'prochri/telescope-all-recent.nvim',
-    dependencies = {
-      'nvim-telescope/telescope.nvim',
-      'kkharji/sqlite.lua',
-    },
-    config = function()
-      require('telescope-all-recent').setup({
-        vim_ui_select = {
-          kinds = {
-            overseer_template = {
-              use_cwd = true,
-              prompt = 'Task template',
-              -- include the prompt in the picker name
-              -- helps differentiate between same picker kinds with different prompts
-              name_include_prompt = true,
-            },
-          },
-          -- used as fallback if no kind configuration is available
-          prompts = {
-            ['Load session'] = {
-              use_cwd = false,
-            },
-          },
-        },
-      })
-    end,
-  },
+  -- {
+  --   'prochri/telescope-all-recent.nvim',
+  --   dependencies = {
+  --     'nvim-telescope/telescope.nvim',
+  --     'kkharji/sqlite.lua',
+  --   },
+  --   config = function()
+  --     require('telescope-all-recent').setup({
+  --       vim_ui_select = {
+  --         kinds = {
+  --           overseer_template = {
+  --             use_cwd = true,
+  --             prompt = 'Task template',
+  --             -- include the prompt in the picker name
+  --             -- helps differentiate between same picker kinds with different prompts
+  --             name_include_prompt = true,
+  --           },
+  --         },
+  --         -- used as fallback if no kind configuration is available
+  --         prompts = {
+  --           ['Load session'] = {
+  --             use_cwd = false,
+  --           },
+  --         },
+  --       },
+  --     })
+  --   end,
+  -- },
   -- { -- Doesn't really work in this setup yet. Come back to it.
   --   'smjonas/live-command.nvim',
   --   config = function()
@@ -392,11 +392,33 @@ return {
     end,
   },
   {
-    'mvllow/modes.nvim',
+    'stevearc/dressing.nvim',
     config = function()
-      require('modes').setup({
-        ignore_filetypes = require('config.filetype_excludes'),
+      require('dressing').setup({
+        input = {
+          border = 'none',
+        },
+        -- select = {
+        --   enabled = true,
+        --   backend = { 'fzf_lua', 'telescope', 'builtin', 'nui' },
+        --   fzf_lua = {
+        --     winopts = {
+        --       height = 0.5,
+        --       width = 0.5,
+        --     },
+        --   },
+        -- },
       })
     end,
   },
+  -- { -- Too little contrast for selection in visual mode and can't disable
+  --   'mvllow/modes.nvim',
+  --   config = function()
+  --     require('modes').setup({
+  --       ignore_filetypes = require('config.filetype_excludes'),
+  --       set_cursorline = false, -- doesn't seem to work
+  --       set_number = true,
+  --     })
+  --   end,
+  -- },
 }

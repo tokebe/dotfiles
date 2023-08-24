@@ -17,7 +17,6 @@ return {
     -- { 'hrsh7th/cmp-nvim-lsp-signature-help' },
     { 'L3MON4D3/LuaSnip' },
     { 'hrsh7th/cmp-buffer' },
-    { 'tzachar/cmp-fuzzy-path', dependencies = { 'tzachar/fuzzy.nvim' } },
     { 'hrsh7th/cmp-cmdline' },
     { 'dmitmel/cmp-cmdline-history' },
     { 'tamago324/cmp-zsh' },
@@ -31,14 +30,12 @@ return {
         'jose-elias-alvarez/null-ls.nvim',
       },
     },
-    { 'aznhe21/actions-preview.nvim' },
     -- DAP
     { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap' } },
     { 'jay-babu/mason-nvim-dap.nvim' },
     { 'Weissle/persistent-breakpoints.nvim' },
     { 'theHamsta/nvim-dap-virtual-text' },
     { 'rcarriga/cmp-dap' },
-    { 'nvim-telescope/telescope-dap.nvim' },
     -- LSP rename preview
     { 'smjonas/inc-rename.nvim', dependencies = { 'stevearc/dressing.nvim' } },
     {

@@ -42,7 +42,7 @@ set.autoindent = true -- maintain indent of current line
 set.shiftround = true
 set.shell = 'zsh' -- shell to use for `!`, `:!`, `system()` etc.
 set.foldlevelstart = 99 -- UFO will handle folding
-set.sessionoptions = 'blank,buffers,curdir,folds,globals,tabpages'
+set.sessionoptions = 'blank,buffers,curdir,globals,tabpages'
 -- Auto-refresh on file changes, requires autocommand to work properly
 -- ( see keymap )
 set.autoread = true
