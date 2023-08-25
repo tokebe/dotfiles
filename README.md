@@ -1,6 +1,6 @@
 # Dotfiles
 
-Welcome to my dotfiles. Like any user, my setup is idiosyncratic at best, so bare with me.
+Welcome to my dotfiles. Like any user, my setup is idiosyncratic at best, so bear with me.
 
 ## Installation
 
