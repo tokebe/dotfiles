@@ -460,6 +460,15 @@ return {
           description = 'Go to match',
         },
         {
+          -- Why can I not map this to just 'K' ???
+          '<Leader>K',
+          function()
+            require('hover').hover()
+          end,
+          mode = { 'n' },
+          description = 'Show hover info',
+        },
+        {
           '<Leader>er',
           ':Hypersonic<CR>',
           mode = { 'n', 'v' },

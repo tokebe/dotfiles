@@ -2,18 +2,24 @@ local lsps = require('config.sources').lsp
 return {
   config = function(lsp)
     lsp.set_sign_icons({
-      error = '✘',
-      warn = '▲',
-      hint = '⚑',
-      info = '»',
+      error = ' ',
+      warn = ' ',
+      hint = ' ',
+      info = '󱉵 ',
     })
 
     lsp.on_attach(function(client, bufnr)
       -- require('lsp-format').on_attach(client, bufnr)
       -- keymaps
+      lsp.set_preferences({
+        set_lsp_keymaps = { preserve_mappings = true, omit = { 'K' } },
+      })
       lsp.default_keymaps({
         buffer = bufnr,
-        preserve_mappings = false,
+        preserve_mappings = true,
+        omit = {
+          'K',
+        },
       })
 
       local map = function(mode, lhs, rhs)
@@ -71,11 +77,11 @@ return {
       end,
     })
 
-    require('lspconfig').jedi_language_server.setup({
-      on_attach = function(client, buffer)
-        client.server_capabilities.hoverProvider = false
-      end,
-    })
+    -- require('lspconfig').jedi_language_server.setup({
+    --   on_attach = function(client, buffer)
+    --     client.server_capabilities.hoverProvider = false
+    --   end,
+    -- })
 
     lsp.nvim_workspace() -- Fix "undefined global 'vim'"
 
