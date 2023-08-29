@@ -64,7 +64,7 @@ return {
       require('session_manager').setup({
         autoload_mode = config.AutoloadMode.CurrentDir,
         autosave_ignore_dirs = { '~' },
-        autosave_ignore_filetypes = require('config.filetype_excludes'),
+        -- autosave_ignore_filetypes = require('config.filetype_excludes'),
         autosave_ignore_not_normal = true,
         autosave_only_in_session = true,
       })
