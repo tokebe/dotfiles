@@ -11,16 +11,16 @@ return {
     lsp.on_attach(function(client, bufnr)
       -- require('lsp-format').on_attach(client, bufnr)
       -- keymaps
-      lsp.set_preferences({
-        set_lsp_keymaps = { preserve_mappings = true, omit = { 'K' } },
-      })
-      lsp.default_keymaps({
-        buffer = bufnr,
-        preserve_mappings = true,
-        omit = {
-          'K',
-        },
-      })
+      -- lsp.set_preferences({
+      --   set_lsp_keymaps = { preserve_mappings = true, omit = { 'K' } },
+      -- })
+      -- lsp.default_keymaps({
+      --   buffer = bufnr,
+      --   preserve_mappings = true,
+      --   omit = {
+      --     'K',
+      --   },
+      -- })
 
       local map = function(mode, lhs, rhs)
         local opts = { remap = false, buffer = bufnr }
