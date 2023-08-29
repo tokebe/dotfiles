@@ -4,7 +4,7 @@ return {
   config = function()
     require('mini.cursorword').setup()
     require('mini.move').setup()
-    require('mini.comment').setup()
+    -- require('mini.comment').setup()
     -- require('mini.pairs').setup({
     --   mappings = {
     --     [' '] = { action = 'open', pair = '  ', neigh_pattern = '[{(%[][%])}]' }, -- in-bracket spacing
