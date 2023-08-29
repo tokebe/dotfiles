@@ -22,26 +22,30 @@ return {
           '<Leader><Tab>',
           function()
             require('fzf-lua').files({
-              fd_opts = '--no-ignore --hidden --type f',
+              fd_opts = '--no-ignore --hidden --type f' .. require('filter').formatFilter('fd'),
             })
           end,
           description = 'Find file',
         },
         {
-          '<Leader>fg',
-          function()
-            require('spectre').open()
-          end,
-          description = 'Find in files (grep)',
-        },
-        {
           '<Leader>ff',
           {
             n = function()
-              require('spectre').open_visual({ select_word = true })
+              require('spectre').open_visual({
+                path = string.format(
+                  '!{%s}',
+                  table.concat(vim.split(require('filter').formatFilter(), '\n', { plain = true }), ',')
+                ),
+              })
             end,
             v = function()
-              require('spectre').open_visual()
+              require('spectre').open_visual({
+                path = string.format(
+                  '!{%s}',
+                  table.concat(vim.split(require('filter').formatFilter(), '\n', { plain = true }), ',')
+                ),
+                select_word = true,
+              })
             end,
           },
           description = 'Search word/selection in files',
@@ -428,20 +432,20 @@ return {
           { 'n', 'x' },
           description = 'Up visible line',
         },
-        {
-          'D',
-          function()
-            local opts = {
-              focusable = false,
-              close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
-              border = 'none',
-              source = 'always',
-              prefix = ' ',
-              scope = 'cursor',
-            }
-            vim.diagnostic.open_float(nil, opts)
-          end,
-        },
+        -- {
+        --   'D',
+        --   function()
+        --     local opts = {
+        --       focusable = false,
+        --       close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+        --       border = 'none',
+        --       source = 'always',
+        --       prefix = ' ',
+        --       scope = 'cursor',
+        --     }
+        --     vim.diagnostic.open_float(nil, opts)
+        --   end,
+        -- },
         {
           '<Leader>sd',
           function()
@@ -539,6 +543,24 @@ return {
                 row = -13,
                 col = 1,
               },
+              -- Temporary fix, fzf-lua overrides register_ui_select options after code actions call
+              require('fzf-lua').register_ui_select(function(_, items)
+                local min_h, max_h = 0.15, 0.7
+                local h = #items / vim.o.lines
+                if h < min_h then
+                  h = min_h
+                elseif h > max_h then
+                  h = max_h
+                end
+                return {
+                  winopts = {
+                    row = 0.6,
+                    height = h,
+                    width = 0.4,
+                    relative = 'editor',
+                  },
+                }
+              end),
             })
           end,
           description = 'view code actions',
