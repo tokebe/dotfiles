@@ -1,5 +1,5 @@
 return {
-  {
+  { -- Insert new bullets automatically
     'dkarter/bullets.vim',
     config = function()
       local g = vim.g
@@ -19,7 +19,7 @@ return {
       g.bullets_checkbox_markers = ' x'
     end,
   },
-  {
+  { -- quick selection by syntax node
     'sustech-data/wildfire.nvim',
     event = 'VeryLazy',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
@@ -27,7 +27,7 @@ return {
       require('wildfire').setup()
     end,
   },
-  {
+  { -- Automatic block split/join
     'Wansmer/treesj',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
@@ -37,7 +37,7 @@ return {
       vim.keymap.set('n', '<Leader>gs', ':TSJToggle<CR>', { desc = 'Split/join block using Treesitter' })
     end,
   },
-  {
+  { -- Use treesitter to navigate by syntax nodes
     'drybalka/tree-climber.nvim',
     config = function()
       vim.keymap.set({ 'n', 'v', 'o' }, '<Leader>jj', function()
@@ -62,24 +62,22 @@ return {
       vim.keymap.set({ 'n' }, '<Leader>nh', require('tree-climber').highlight_node, { desc = 'swap node with next' })
     end,
   },
-  {
+  { -- Open links
     'xiyaowong/link-visitor.nvim',
     config = function()
       vim.keymap.set({ 'n' }, '<Leader>gu', require('link-visitor').link_nearest, { desc = 'Open nearest URL' })
     end,
   },
-  {
+  { -- Turbocharged jump-by-type
     'ggandor/lightspeed.nvim',
     dependencies = {
       'tpope/vim-repeat',
     },
     config = function()
-      require('lightspeed').setup({
-        ignore_case = true,
-      })
+      require('lightspeed').setup({})
     end,
   },
-  {
+  { -- Intelligent increment/decrement, with cycles for bools/etc.
     'nat-418/boole.nvim',
     config = function()
       require('boole').setup({
@@ -87,17 +85,64 @@ return {
           increment = '<C-a>',
           decrement = '<C-x>',
         },
+        additions = {},
+        allow_caps_additions = {},
         -- NOTE: can add `additions` and `allow_caps_additions`
         -- these allow new cycles, and case-insenstive, case-aware cycles
       })
     end,
   },
-  {
+  { -- Delete buffers but preserve window layout
     'ojroques/nvim-bufdel',
     config = function()
       require('bufdel').setup({
         quit = false,
       })
+    end,
+  },
+  { -- d deletes instead of cuts, D now cuts
+    'gbprod/cutlass.nvim',
+    config = function()
+      require('cutlass').setup({
+        cut_key = 'D',
+        exclude = { 'ns', 'nS' }, -- Avoid conflict with lightspeed.nvim
+        registers = {
+          select = 's',
+          delete = 'd',
+          change = 'c',
+        },
+      })
+    end,
+  },
+  { -- Intelligent paste indenting. Not treesitter-intelligent; doesn't work on .py etc.
+    'ku1ik/vim-pasta',
+  },
+  {
+    'smoka7/multicursors.nvim',
+    event = 'VeryLazy',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'anuvyklack/hydra.nvim' },
+    opts = {
+      updatetime = 10,
+      generate_hints = {
+        normal = true,
+        insert = true,
+        extend = true,
+      },
+    },
+    cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
+    keys = {
+      {
+        mode = { 'v', 'n' },
+        '<Leader>mm',
+        ':MCstart<CR>',
+        desc = 'Start multicursors on selection',
+      },
+    },
+  },
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
     end,
   },
 }
