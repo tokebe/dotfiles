@@ -35,4 +35,12 @@ end
 require('base_config')
 
 -- [[ Set up plugins ]]
+require('filter').setup({
+  default_filters = {
+    '**/node_modules/**',
+    '**/.git/**',
+  },
+})
 require('plugins')
+
+vim.keymap.set({ 'n' }, 'K', require('hover').hover, { remap = true, desc = 'Show combined hover info' })

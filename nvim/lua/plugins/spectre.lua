@@ -23,7 +23,7 @@ return {
         ['toggle_gitignore'] = {
           map = 'tg',
           cmd = '<cmd>lua require("spectre").change_options("gitignore")<CR>',
-          desc = 'toggle respect .gitignore'
+          desc = 'toggle respect .gitignore',
         },
       },
       find_engine = {
@@ -40,9 +40,9 @@ return {
       },
       default = {
         find = {
-          options = {"ignore-case", "gitignore", "hidden"}
-        }
-      }
+          options = { 'ignore-case', 'gitignore', 'hidden' },
+        },
+      },
     })
   end,
 }
