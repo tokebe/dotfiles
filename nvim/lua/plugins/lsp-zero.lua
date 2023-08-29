@@ -61,7 +61,10 @@ return {
     -- Set up Navbuddy
     require('config.nvim_navbuddy').config()
     -- Set up LSP
-    local lsp = require('lsp-zero').preset('recommended')
+    local lsp = require('lsp-zero').preset({
+      name = 'recommended',
+      set_lsp_keymaps = { preserve_mappings = true, omit = { 'K' } },
+    })
     require('config.lsp_zero').config(lsp)
 
     -- Set up formatters
