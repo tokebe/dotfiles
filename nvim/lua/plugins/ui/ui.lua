@@ -67,18 +67,16 @@ return {
   --     })
   --   end,
   -- },
-  -- { -- Doesn't really work in this setup yet. Come back to it.
-  --   'smjonas/live-command.nvim',
-  --   config = function()
-  --     require('live-command').setup({
-  --       commands = {
-  --         Norm = { cmd = 'norm' },
-  --         G = { cmd = 'g' },
-  --         D = { cmd = 'd' },
-  --       },
-  --     })
-  --   end,
-  -- },
+  { -- Doesn't really work in this setup yet. Come back to it.
+    'smjonas/live-command.nvim',
+    config = function()
+      require('live-command').setup({
+        commands = {
+          Norm = { cmd = 'norm', hl_range = { kind = 'visible' } },
+        },
+      })
+    end,
+  },
   -- {
   --   'lewis6991/satellite.nvim',
   --   config = function()
@@ -291,8 +289,14 @@ return {
       },
       right = {
         {
+          title = 'Spectre',
           ft = 'spectre_panel',
           size = { width = 80 },
+        },
+        {
+          title = 'Neo-Tree',
+          ft = 'neo-tree',
+          size = { width = 0.2 },
         },
       },
     },
@@ -336,7 +340,6 @@ return {
         },
         window = {
           position = 'right',
-          auto_expand_width = true,
         },
         filesystem = {
           filtered_items = {
