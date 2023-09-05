@@ -1,0 +1,25 @@
+-- Better Poetry compatibility
+require('lspconfig').pyright.setup({
+  settings = {
+    python = {
+      analysis = {
+        -- typeCheckingMode = "basic",
+        -- autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+  -- on_attach = function(client, buffer)
+  --   client.server_capabilities.hoverProvider = false
+  -- end,
+  before_init = function(params, config)
+    local Path = require('plenary.path')
+    local venv = Path:new((config.root_dir:gsub('/', Path.path.sep)), '.venv')
+
+    if venv:joinpath('bin'):is_dir() then
+      config.settings.python.pythonPath = tostring(venv:joinpath('bin', 'python'))
+    else
+      config.setting.python.pythonPath = tostring(venv:joinpath('Scripts', 'python.exe'))
+    end
+  end,
+})

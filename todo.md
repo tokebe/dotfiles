@@ -4,19 +4,13 @@ Things this repo needs, basically.
 
 ## NVIM
 
-The basic plan is to replace VSCode with neovim, so, important functionality:
+Running TODO list:
 
 - [x] Syntax Highlighting
   - [x] Better dimming, etc for unused/etc
   - [x] Italics, bold, etc?
-- [-] Intellisense (type-checking, etc)
-  - [ ] auto docstring: see vim-doge
+- [x] Intellisense (type-checking, etc)
 - [x] Code completion (From file and intellisense, etc)
-- [-] Debugging
-  - [ ] Breakpoints, inspection
-  - [ ] Possible vscode debug config support?
-  - [-] vscode task support? (See vs-tasks.nvim for this and launch support)
-  - [ ] javascript/other profiling
 - [x] File Tree
 - [x] Fuzzy file jumping
 - [x] Project management (open a given set of files, remember previously-open files)
@@ -32,26 +26,39 @@ The basic plan is to replace VSCode with neovim, so, important functionality:
 - [x] Autosave
 - [x] Sensible folding with obvious markers, mouse-support?
 - [x] lazygit/further git integration
-- [ ] connect to docker container and lazydocker?
-- [ ] Jupyter/similar
 - [x] TODO highlighting/overview
 - [x] Trouble: list all diagnostics (maybe TODO support?)
 - [x] Tab management keybinds/different buffer/tab line
 - [x] Disable highlighting for extremely large files
 - [x] Fix errors coming from treesitter-indent when switching files
-- [ ] Fix statuscol diagnostics click action (remove border, make it stay until cursormove)
-- [ ] Fix rename symbol jumping up in document when writing
 - [x] Fix barbecue not actually getting LSP-context
-- [ ] Fix ctrl-hjkl when in insert mode
 - [x] Inline markdown preview?
-- [ ] REST client with better workflow than current
-- [ ] Redo tmux setup to be simpler + nvim-compatible
-- [x] Add a configurable default-exclude list for searches, editable through some \<Leader\>o command
-  - [ ] Now make it a robust plugin for others to use
-- [ ] Reorganize all the plugins
 - [x] Fix fzf-lua using winopts from spelling/code actions for project selector
 - [x] Automatic multiline comment continuation in js/ts
+- [x] Better macro controls, using composer or something?
+- [x] REST client with better workflow than current
+- [x] Reorganize all the plugins
+- [x] Quick switch to normal mode from terminal mode
+- [ ] Fix rename symbol jumping up in document when writing
+- [ ] Fix ctrl-hjkl when in insert mode
+- [ ] Redo tmux setup to be simpler + nvim-compatible
+- [ ] connect to docker container and lazydocker? (see https://github.com/jamestthompson3/nvim-remote-containers)
+- [ ] Jupyter/similar (probably something along the lines of magma, etc.)
+- [x] Add a configurable default-exclude list for searches, editable through some \<Leader\>o command
+  - [ ] Now make it a robust plugin for others to use
 - [ ] Persistent syntax/language setting per file (may have to make own plugin)
+- [ ] Better control of edgy windows--hydra to resize or something? Send to buffer?
+- [x] More snippets for different languages
+- [ ] auto docstring: see vim-doge
+- [x] Debugging
+  - [x] Breakpoints, inspection
+  - [x] Possible vscode debug config support?
+    - [ ] Figure out how to show all tasks regardless of current file
+  - [x] vscode task support? (See vs-tasks.nvim for this and launch support)
+  - [x] javascript/other profiling
+- [ ] Fix IncRename: needs to ensure diagnostic float is hidden/paused
+- [ ] Test file managers to replace ranger, then integrate with neovim
+- [ ] Acquire more colorschemes
 
 And also the random notes for smaller things:
 
@@ -64,11 +71,9 @@ And also the random notes for smaller things:
 - [x] Fancier look for telescope
 - [x] Move all keymaps to legendary if feasible
 - [x] See if navbuddy can auto-select the first lsp or something
-- [-] Break up some of the larger configs into folders
 - [x] Keep lualine on bottom regardless of window?
 - [x] Fix \<C-v\> opening telescope search vertical (currently just pastes)
 - [x] menu to open Lazy, Mason, other config stuff
-- [ ] Fix IncRename: needs to ensure diagnostic float is hidden/paused
 - [x] Add more signature support somehow (e.g. typescript signatures on variables in bte)
 - [x] Code hints not really displaying, might need above fix first ^
 - [x] change nvim-tree icons for git to make more sense
@@ -78,11 +83,11 @@ And also the random notes for smaller things:
 
 And, after all this, the obvious way to destroy all my time:
 
-- [ ] A stroll down the entirety of [Awesome-neovim](https://github.com/rockerBOO/awesome-neovim)
+- [x] A stroll down the entirety of [Awesome-neovim](https://github.com/rockerBOO/awesome-neovim)
 
 ## Package Install Automation
 
-- [ ] Automatically installs desired packages
+- [x] Automatically installs desired packages
 
 Require the following:
 
@@ -122,4 +127,4 @@ Things to do:
 
 ## Firefox
 
-- [ ] Fix tab spacing when firefox goes into narrow mode
+- [ ] Fix the layout in general
