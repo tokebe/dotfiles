@@ -15,8 +15,11 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require('lazy').setup({
-  { import = 'plugins' },
-  { import = 'plugins.ui' },
+  { import = 'behavior' },
+  { import = 'bindings' },
+  { import = 'integration' },
+  { import = 'tools' },
+  { import = 'ui' },
 }, {
   change_detection = {
     notify = false,

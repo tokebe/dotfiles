@@ -4,6 +4,7 @@ return {
   'Trouble',
   'help',
   'DressingSelect',
+  'DressingInput',
   'NvimTree',
   'neo-tree',
   'mason',
@@ -19,4 +20,10 @@ return {
   'spectre_panel',
   'Navbuddy',
   'fzf',
+  'dapui_repl',
+  'dapui_console',
+  'dapui_scopes',
+  'dapui_breakpoints',
+  'dapui_stacks',
+  'dapui_watches',
 }

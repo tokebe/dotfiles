@@ -9,9 +9,10 @@ return {
     'marksman', -- Markdown
   },
   dap = { -- Debug Adapter Protocol
-    'node-debug2-adapter',
-    'debugpy',
-    'bash-debug-adapter',
+    'js',
+    -- 'js-debug-adapter', -- VSCode js debug adapter
+    -- 'debugpy',
+    -- 'bash-debug-adapter',
   },
   formatter = {
     -- formatters
@@ -26,5 +27,15 @@ return {
     'eslint_d',
     'flake8',
     'shellharden',
+  },
+  treesitter = {
+    'dap_repl',
+    'regex',
+    'markdown_inline',
+    'http',
+    'json',
+    'python',
+    'typescript',
+    'javascript',
   },
 }

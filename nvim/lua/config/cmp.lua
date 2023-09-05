@@ -3,6 +3,8 @@ return {
     local luasnip = require('luasnip')
     local cmp = require('cmp')
 
+    require('luasnip.loaders.from_vscode').lazy_load()
+
     local has_words_before = function()
       unpack = unpack or table.unpack
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -36,6 +38,11 @@ return {
             return vim_item -- see lspkind #30
           end,
         }),
+      },
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
       },
       mapping = {
         ['<Tab>'] = cmp.mapping(function(fallback)

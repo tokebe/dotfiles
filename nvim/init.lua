@@ -43,4 +43,4 @@ require('filter').setup({
 })
 require('plugins')
 
-vim.keymap.set({ 'n' }, 'K', require('hover').hover, { remap = true, desc = 'Show combined hover info' })
+
