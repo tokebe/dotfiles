@@ -55,6 +55,7 @@
         - cargo
         - ttfautohint
         - { brew: coreutils }
+        - walk
 - if:
     cond: '[[ "$(uname -s)" == *"Linux"* ]]'
     met:
