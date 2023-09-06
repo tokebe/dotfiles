@@ -41,6 +41,5 @@ require('filter').setup({
     '**/.git/**',
   },
 })
+require('lazy-backup')
 require('plugins')
-
-

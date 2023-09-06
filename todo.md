@@ -57,8 +57,10 @@ Running TODO list:
   - [x] vscode task support? (See vs-tasks.nvim for this and launch support)
   - [x] javascript/other profiling
 - [ ] Fix IncRename: needs to ensure diagnostic float is hidden/paused
-- [ ] Test file managers to replace ranger, then integrate with neovim
+- [x] Test file managers to replace ranger, then integrate with neovim
+  - [ ] It's gonna be nnn with a bunch of setup >.<
 - [ ] Acquire more colorschemes
+- [ ] Auto-backup lockfile
 
 And also the random notes for smaller things:
 
