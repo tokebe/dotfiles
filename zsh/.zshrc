@@ -109,6 +109,7 @@ alias lg=lazygit
 alias ls='lsd -AX --group-dirs=first'
 alias notes="( cd ~ && nvim ~/notes )"
 alias cat=ccat
+alias lk='cd $(walk "$@" --icons)'
 if command -v neovide >/dev/null 2>&1; then
     alias nvd='neovide --frame buttonless --multigrid'
 fi
