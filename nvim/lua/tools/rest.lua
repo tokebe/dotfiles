@@ -13,9 +13,13 @@ return {
         show_url = true,
         show_curl_command = false,
       },
+      highlight = {
+        enabled = true,
+        timeout = 150,
+      },
     })
-    util.keymap('n', '<Leader>rh', '<Plug>RestNvim', { desc = 'Run http request under cursor' })
-    util.keymap('n', '<Leader>rp', '<Plug>RestNvimPreview', { desc = 'Preview cURL command for request' })
-    util.keymap('n', '<Leader>r.', '<Plug>RestNvimLast', { desc = 'Re-run last http request' })
+    util.keymap('n', '<Leader>uu', '<Plug>RestNvim', { desc = 'Run http request under cursor' })
+    util.keymap('n', '<Leader>up', '<Plug>RestNvimPreview', { desc = 'Preview cURL command for request' })
+    util.keymap('n', '<Leader>u.', '<Plug>RestNvimLast', { desc = 'Re-run last http request' })
   end,
 }
