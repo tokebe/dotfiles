@@ -6,6 +6,7 @@ return {
       mode = 'document_diagnostics',
     })
   end,
+  event = 'LspAttach',
   keys = {
     {
       '<Leader>ta',

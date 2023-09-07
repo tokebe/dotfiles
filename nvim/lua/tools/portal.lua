@@ -6,18 +6,23 @@ return {
       'cbochs/grapple.nvim',
       'ThePrimeagen/harpoon',
     },
-    config = function() end,
+    config = function()
+      vim.api.nvim_set_hl(0, 'PortalLabel', { link = 'Normal' })
+      vim.api.nvim_set_hl(0, 'PortalTitle', { link = 'Normal' })
+      vim.api.nvim_set_hl(0, 'PortalBorder', { link = 'Normal' })
+      vim.api.nvim_set_hl(0, 'PortalNormal', { link = 'Normal' })
+    end,
     keys = {
 
       {
-        '<Leader>jJ',
+        '<Leader>jj',
         ':Portal jumplist backward<CR>',
-        description = 'Jump backward in place history',
+        desc = 'Jump backward in place history',
       },
       {
-        '<Leader>jK',
+        '<Leader>jk',
         ':Portal jumplist forward<CR>',
-        description = 'Jump forward in place history',
+        desc = 'Jump forward in place history',
       },
     },
   },
