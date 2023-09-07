@@ -128,4 +128,8 @@ return {
   { -- Automatic intelligent tab size detection
     'tpope/vim-sleuth',
   },
+  {
+    'christoomey/vim-tmux-navigator',
+    lazy = false,
+  },
 }
