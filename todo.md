@@ -61,6 +61,7 @@ Running TODO list:
   - [ ] It's gonna be nnn with a bunch of setup >.<
 - [ ] Acquire more colorschemes
 - [ ] Auto-backup lockfile
+- [ ] Re-make hover.lua but just using a custom nui setup
 
 And also the random notes for smaller things:
 
