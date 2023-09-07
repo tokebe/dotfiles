@@ -151,7 +151,6 @@ return {
       'rcarriga/nvim-dap-ui',
     },
     init = function() -- Had to change 'config' -> 'init' to even be called?
-      vim.notify('overseer setup started')
       require('overseer').setup({
         strategy = {
           'toggleterm',
@@ -207,7 +206,6 @@ return {
       util.keymap('n', '<Leader>do', require('dap').step_out, { desc = 'Step out' })
       util.keymap('n', '<Leader>tr', '<CMD>OverseerRun<CR>', { desc = 'Run task...' })
       util.keymap('n', '<Leader>tv', '<CMD>OverseerToggle<CR>', { desc = 'Toggle task view' })
-      vim.notify('debugging keymaps set')
     end,
   },
   {
