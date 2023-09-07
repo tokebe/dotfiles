@@ -236,8 +236,9 @@ return {
         },
       })
       util.keymap('n', '<Leader>qd', function()
-        vim.cmd('BufDelAll')
         vim.cmd('cd ~')
+        vim.cmd('only')
+        vim.cmd('BufDelAll')
         vim.cmd('Dashboard')
       end, {
         desc = 'Quit to dashboard',

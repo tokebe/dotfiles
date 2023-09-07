@@ -51,24 +51,20 @@ util.keymap('n', '<Leader>qQ', ':qa!<CR>', {
 })
 
 -- Movement
-util.keymap({ 'n', 'x' }, 'j', function()
+vim.keymap.set({ 'n', 'v', 'o' }, 'j', function()
   if vim.v.count then
     vim.api.nvim_feedkeys('gj', 'm', false)
   else
     vim.api.nvim_feedkeys('j', 'm', false)
   end
-end, {
-  desc = 'Down visible line',
-})
-util.keymap({ 'n', 'x' }, 'k', function()
+end, { expr = true })
+vim.keymap.set({ 'n', 'v', 'o' }, 'k', function()
   if vim.v.count then
     vim.api.nvim_feedkeys('gk', 'm', false)
   else
     vim.api.nvim_feedkeys('k', 'm', false)
   end
-end, {
-  desc = 'Up visible line',
-})
+end, { expr = true })
 
 util.keymap({ 'n', 'v', 'o' }, 'gm', '%', {
   desc = 'Go to match',

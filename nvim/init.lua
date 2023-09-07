@@ -43,3 +43,4 @@ require('filter').setup({
 })
 require('lazy-backup')
 require('plugins')
+require('config.autocmds')
