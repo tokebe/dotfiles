@@ -43,7 +43,7 @@ return {
         globalstatus = true,
       },
       sections = {
-        lualine_a = { 'mode', get_term_num },
+        lualine_a = { { 'mode', icons_enabled = true }, get_term_num },
         lualine_b = {
           get_pwd_folder,
           'branch',
@@ -52,15 +52,15 @@ return {
             colored = true,
             symbols = { added = ' ', modified = ' ', removed = ' ' },
           },
-          'diagnostics',
+          { 'diagnostics', symbols = { error = ' ', warn = ' ', info = ' ', hint = '󱉵 ' } },
         },
         lualine_c = {
           -- show_macro_recording,
           require('NeoComposer.ui').status_recording,
           { require('noice').api.status.search.get, cond = require('noice').api.status.search.has },
         },
-        lualine_x = { 'overseer', 'encoding', 'fileformat', 'filetype' },
-        lualine_y = { 'progress' },
+        lualine_x = { 'overseer' },
+        lualine_y = { 'encoding', 'fileformat', 'filetype', 'progress' },
         lualine_z = { 'location' },
       },
       tabline = {

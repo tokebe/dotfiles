@@ -23,12 +23,11 @@ return {
               if under_cur and d.message then
                 if not hadDiagnostics then
                   hadDiagnostics = true
-                  value = value .. 'Diagnostics:\n'
+                  value = value .. 'Diagnostics:'
                 end
                 for i, str in ipairs(vim.split(d.message, '\n', { plain = true })) do
                   if i == 1 then
-                    vim.notify(string.format('%d', d.severity))
-                    value = value .. string.format('  %s %s: %s', severity[d.severity], d.source, str)
+                    value = value .. string.format('\n  %s %s: %s', severity[d.severity], d.source, str)
                   else
                     value = value .. string.format('\n   %s', str)
                   end
@@ -69,7 +68,7 @@ return {
           hover.register(multiDiagnostic)
         end,
         preview_opts = {
-          border = 'none',
+          border = 'shadow',
         },
         title = false,
       })

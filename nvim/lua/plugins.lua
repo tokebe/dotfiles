@@ -22,6 +22,6 @@ require('lazy').setup({
   { import = 'ui' },
 }, {
   change_detection = {
-    notify = false,
+    notify = true,
   },
 })

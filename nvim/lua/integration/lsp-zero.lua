@@ -72,7 +72,7 @@ return {
 
     -- Remove borders on hover/signatureHelp
     vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'none' })
-    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'none' })
+    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'shadow' })
 
     -- Set up completion using lsp-zero, etc.
     require('config.cmp').config(lsp)
