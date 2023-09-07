@@ -18,7 +18,7 @@ config.window_background_opacity = 0.85
 config.macos_window_background_blur = 100
 config.font = wezterm.font("Tokebe Nerd Font")
 config.font_size = 16
-config.harfbuzz_features = {'calt=1', 'clig=1', 'liga=1'}
+config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" }
 config.line_height = 1.0
 config.window_decorations = "RESIZE"
 config.enable_scroll_bar = true
@@ -32,28 +32,28 @@ config.hide_tab_bar_if_only_one_tab = true
 config.show_tab_index_in_tab_bar = false
 config.tab_max_width = 64
 config.tab_bar_style = {
-	new_tab = wezterm.format({
-		{ Foreground = { Color = colorscheme_table.selection_bg } },
-		{ Background = { Color = colorscheme_table.ansi[1] } },
-		{ Text = "" },
-		{ Foreground = { Color = colorscheme_table.foreground } },
-		{ Background = { Color = colorscheme_table.selection_bg } },
-		{ Text = " + " },
-		{ Foreground = { Color = colorscheme_table.selection_bg } },
-		{ Background = { Color = colorscheme_table.ansi[1] } },
-		{ Text = '' }
-	}),
-	new_tab_hover = wezterm.format({
-		{ Foreground = { Color = colorscheme_table.brights[5] } },
-		{ Background = { Color = colorscheme_table.ansi[1] } },
-		{ Text = "" },
-		{ Foreground = { Color = colorscheme_table.foreground } },
-		{ Background = { Color = colorscheme_table.brights[5] } },
-		{ Text = " + " },
-		{ Foreground = { Color = colorscheme_table.brights[5] } },
-		{ Background = { Color = colorscheme_table.ansi[1] } },
-		{ Text = '' }
-	}),
+	-- new_tab = wezterm.format({
+	-- 	{ Foreground = { Color = colorscheme_table.selection_bg } },
+	-- 	{ Background = { Color = colorscheme_table.ansi[1] } },
+	-- 	{ Text = "█" },
+	-- 	{ Foreground = { Color = colorscheme_table.foreground } },
+	-- 	{ Background = { Color = colorscheme_table.selection_bg } },
+	-- 	{ Text = " + " },
+	-- 	{ Foreground = { Color = colorscheme_table.selection_bg } },
+	-- 	{ Background = { Color = colorscheme_table.ansi[1] } },
+	-- 	{ Text = "█" },
+	-- }),
+	-- new_tab_hover = wezterm.format({
+	-- 	{ Foreground = { Color = colorscheme_table.brights[5] } },
+	-- 	{ Background = { Color = colorscheme_table.ansi[1] } },
+	-- 	{ Text = "█" },
+	-- 	{ Foreground = { Color = colorscheme_table.foreground } },
+	-- 	{ Background = { Color = colorscheme_table.brights[5] } },
+	-- 	{ Text = " + " },
+	-- 	{ Foreground = { Color = colorscheme_table.brights[5] } },
+	-- 	{ Background = { Color = colorscheme_table.ansi[1] } },
+	-- 	{ Text = "█" },
+	-- }),
 }
 
 -- This function returns the suggested title for a tab.
@@ -76,12 +76,30 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	local bg = colorscheme_table.ansi[1]
 	local text = colorscheme_table.foreground
 	if tab.is_active then
-		fg = colorscheme_table.brights[5]
+		bg = colorscheme_table.brights[5]
+		-- fg = colorscheme_table.brights[5]
 		text = colorscheme_table.ansi[1]
 	end
-	local left_glyph = ""
-	if tab.tab_index == 0 then
-		left_glyph = "█"
+	local left_glyph = "│"
+	local left_glyph_fg = fg
+	if tab.tab_index == 0 and tab.is_active then
+		left_glyph_fg = bg
+	elseif tab.is_active then
+		left_glyph_fg = text
+	end
+	local tab_right_of_active = tab.tab_index > 0 and tabs[tab.tab_index].is_active
+	if tab.is_active or tab.tab_index < 1 or tab_right_of_active then
+		left_glyph = " "
+		if tab.is_active then
+			left_glyph = "█"
+		end
+		-- if tab.tab_index == 0 then
+		-- 	left_glyph = " "
+		-- end
+	end
+	local right_glyph = "█"
+	if tab.tab_index - 1 == #tabs then
+		right_glyph = ""
 	end
 	local title = tab_title(tab)
 	if title:len() + 4 > max_width then
@@ -105,15 +123,18 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		title = final_title
 	end
 	return {
-		{ Foreground = { Color = fg } },
-		{ Background = { Color = bg } },
+		{ Foreground = { Color = left_glyph_fg } },
+		{ Background = { Color = tab.is_active and fg or bg } },
 		{ Text = left_glyph },
-		{ Foreground = { Color = text } },
-		{ Background = { Color = fg } },
-		{ Text = " " .. title .. " " },
-		{ Foreground = { Color = fg } },
+		{ Foreground = { Color = bg } },
 		{ Background = { Color = bg } },
-		{ Text = "" },
+		{ Text = "█" },
+		{ Foreground = { Color = text } },
+		{ Background = { Color = bg } },
+		{ Text = " " .. title .. " " },
+		{ Foreground = { Color = bg } },
+		{ Background = { Color = fg } },
+		{ Text = right_glyph },
 	}
 end)
 
