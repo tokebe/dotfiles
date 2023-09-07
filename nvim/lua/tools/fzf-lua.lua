@@ -107,6 +107,12 @@ return {
       util.keymap('n', '<Leader><Tab>', function()
         require('fzf-lua').files({
           fd_opts = '--no-ignore --hidden --type f' .. require('filter').formatFilter('fd'),
+          winopts = {
+            preview = {
+              layout = 'vertical',
+              vertical = 'up',
+            },
+          },
         })
       end, { desc = 'Find file' })
       util.keymap('n', '<Tab>', function()
