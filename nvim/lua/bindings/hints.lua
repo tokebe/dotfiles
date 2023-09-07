@@ -24,6 +24,10 @@ return {
         o = { name = 'Options...' },
         r = { name = 'Replace / Request...' },
         d = { name = 'Debugging...' },
+        h = { name = 'Hunk...' },
+        p = { name = 'Project...' },
+        u = { name = 'URL...' },
+        q = { name = 'Quit / session...' }
       }, { prefix = '<Leader>' })
       -- Set up misc keybinds
       require('config.misc-keybinds')
