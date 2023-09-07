@@ -104,8 +104,8 @@
     # ranger config
     ~/.config/ranger: ranger
     # tmux
-    ~/.tmux.conf: tmux/.tmux/.tmux.conf
-    ~/.tmux.conf.local: tmux/.tmux.conf.local
+    ~/.tmux/plugins/tpm: tmux/tpm
+    ~/.config/tmux/tmux.conf: tmux/tmux.conf
 - shell:
     - command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
       description: Prepare Neovim
