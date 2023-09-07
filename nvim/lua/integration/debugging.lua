@@ -1,9 +1,9 @@
+local util = require('util')
 return {
-  { 'mfussenegger/nvim-dap' },
+  { 'mfussenegger/nvim-dap', event = { 'LspAttach' } },
   {
     'jay-babu/mason-nvim-dap.nvim',
     dependencies = { 'williamboman/mason-lspconfig.nvim', 'mfussenegger/nvim-dap', 'VonHeikemen/lsp-zero.nvim' },
-    event = { 'LspAttach' },
     config = function()
       require('mason-nvim-dap').setup({
         automatic_installation = true,
@@ -17,7 +17,7 @@ return {
           command = 'node',
           args = {
             require('mason-registry').get_package('js-debug-adapter'):get_install_path()
-            .. '/js-debug/src/dapDebugServer.js',
+              .. '/js-debug/src/dapDebugServer.js',
             '${port}',
           },
         },
@@ -27,7 +27,6 @@ return {
   {
     'rcarriga/nvim-dap-ui',
     dependencies = { 'mfussenegger/nvim-dap', 'nvim-treesitter/nvim-treesitter' },
-    event = { 'LspAttach' },
     config = function()
       local dap, dapui = require('dap'), require('dapui')
       -- Open DAP UI when DAP is initialized
@@ -128,14 +127,14 @@ return {
             size = 10,
           },
         },
-        -- mappings = {
-        --   edit = 'e',
-        --   expand = { '<CR>', '<2-LeftMouse>' },
-        --   open = 'o',
-        --   remove = 'd',
-        --   repl = 'r',
-        --   toggle = 't',
-        -- },
+        mappings = {
+          edit = 'e',
+          expand = { '<CR>', '<2-LeftMouse>' },
+          open = 'o',
+          remove = 'd',
+          repl = 'r',
+          toggle = 't',
+        },
         render = {
           indent = 1,
           max_value_lines = 100,
@@ -151,9 +150,8 @@ return {
       'akinsho/toggleterm.nvim',
       'rcarriga/nvim-dap-ui',
     },
-    event = 'LspAttach',
-    config = function()
-      local util = require('util')
+    init = function() -- Had to change 'config' -> 'init' to even be called?
+      vim.notify('overseer setup started')
       require('overseer').setup({
         strategy = {
           'toggleterm',
@@ -186,7 +184,7 @@ return {
       util.keymap('n', '<Leader>dp', require('dap').pause, { desc = 'Continue' })
       util.keymap('n', '<Leader>dC', require('dap').run_to_cursor, { desc = 'Continue to cursor' })
       util.keymap('n', '<Leader>ds', require('dap').close, { desc = 'Stop' })
-      util.keymap('n', '<Leader>dr', require('dap').restart, { desc = 'Stop' })
+      util.keymap('n', '<Leader>dr', require('dap').restart, { desc = 'Restart' })
       util.keymap('n', '<Leader>dt', require('dapui').toggle, { desc = 'Toggle Debug UI' })
       util.keymap('n', '<Leader>bb', require('dap').toggle_breakpoint, { desc = 'Toggle breakpoint' })
       util.keymap('n', '<Leader>bc', function()
@@ -209,6 +207,7 @@ return {
       util.keymap('n', '<Leader>do', require('dap').step_out, { desc = 'Step out' })
       util.keymap('n', '<Leader>tr', '<CMD>OverseerRun<CR>', { desc = 'Run task...' })
       util.keymap('n', '<Leader>tv', '<CMD>OverseerToggle<CR>', { desc = 'Toggle task view' })
+      vim.notify('debugging keymaps set')
     end,
   },
   {
@@ -238,6 +237,7 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'mfussenegger/nvim-dap',
     },
+    event = { 'LspAttach' },
     config = function()
       require('nvim-dap-repl-highlights').setup()
     end,
