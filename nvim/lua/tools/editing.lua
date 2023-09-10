@@ -54,21 +54,22 @@ return {
       end, {
         desc = 'Search and replace...',
       })
+      util.keymap('v', '<Leader>rs', '<CMD>SearchReplaceWithinVisualSelection<CR>', {
+        desc = 'Search and replace within selection',
+      })
     end,
   },
   {
     'kylechui/nvim-surround',
+    dependencies = { 'ggandor/lightspeed.nvim' }, -- ensure it loads after
     version = '*',
     config = function()
-      require('nvim-surround').setup({})
-    end,
-  },
-  {
-    'roobert/surround-ui.nvim',
-    dependencies = { 'kylechui/nvim-surround', 'folke/which-key.nvim' },
-    config = function()
-      require('surround-ui').setup({
-        root_key = 'S',
+      require('nvim-surround').setup({
+        keymaps = {
+          visual = "aS",
+          delete = "dS",
+          change = "cS",
+        }
       })
     end,
   },
