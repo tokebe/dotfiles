@@ -1,3 +1,4 @@
 libtmux
+dataclasses
 pynvim
 pipx
