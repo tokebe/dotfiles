@@ -16,8 +16,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- disable netrw for nvim-tree and other compatibility
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 -- NOTE Must happen before plugin loading to handle nested session stuff
 -- If opening from inside neovim terminal then do not load all the other plugins

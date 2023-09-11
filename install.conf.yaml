@@ -55,7 +55,9 @@
         - cargo
         - ttfautohint
         - { brew: coreutils }
+        - lf
         - walk
+        - jless
 - if:
     cond: '[[ "$(uname -s)" == *"Linux"* ]]'
     met:
@@ -106,6 +108,8 @@
     # tmux
     ~/.tmux/plugins/tpm: tmux/tpm
     ~/.config/tmux/tmux.conf: tmux/tmux.conf
+    # lf
+    ~/.config/lf: lf
 - shell:
     - command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
       description: Prepare Neovim

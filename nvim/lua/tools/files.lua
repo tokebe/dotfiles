@@ -1,3 +1,4 @@
+local util = require('util')
 return {
   {
     'nvim-neo-tree/neo-tree.nvim',
@@ -36,6 +37,7 @@ return {
           filtered_items = {
             visible = true,
           },
+          hijack_netrw_behavior = 'disabled',
         },
         default_component_configs = {
           indent = {
@@ -82,5 +84,28 @@ return {
         desc = 'Jump to current buffer in tree explorer',
       },
     },
+  },
+  {
+    'lmburns/lf.nvim',
+    dependencies = { 'akinsho/toggleterm.nvim' },
+    config = function()
+      require('lf').setup({
+        border = 'single',
+        default_file_manager = true,
+        highlights = {
+          Normal = { link = 'Normal' },
+          NormalFloat = { link = 'Normal' },
+          FloatBorder = { link = 'Normal' },
+        },
+      })
+
+      util.keymap('n', '<Leader>mf', function()
+        local path = vim.api.nvim_buf_get_name(0)
+        if path == nil then
+          path = vim.fn.getcwd()
+        end
+        require('lf').start()
+      end, { desc = 'Manage Files with lf' })
+    end,
   },
 }
