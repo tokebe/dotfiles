@@ -62,6 +62,10 @@ Running TODO list:
 - [ ] Acquire more colorschemes
 - [ ] Auto-backup lockfile
 - [ ] Re-make hover.lua but just using a custom nui setup
+- [ ] Fix fzf switcher being unable to distinguish between multiple unnamed buffers
+- [ ] Add keybinds for toggling diff on two split files
+- [ ] Fix `x` sometimes deleting, sometimes cutting
+- [ ] Fix Fzf perf when in large directory -- async or timeout?
 
 And also the random notes for smaller things:
 
