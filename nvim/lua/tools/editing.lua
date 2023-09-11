@@ -66,10 +66,10 @@ return {
     config = function()
       require('nvim-surround').setup({
         keymaps = {
-          visual = "aS",
-          delete = "dS",
-          change = "cS",
-        }
+          visual = 'gs',
+          delete = 'dgs',
+          change = 'cgs',
+        },
       })
     end,
   },
