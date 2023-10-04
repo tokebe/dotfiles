@@ -49,6 +49,11 @@ zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh'
 # up-to-date. Cloned files can be used after `z4h init`. This is just an
 # example. If you don't plan to use Oh My Zsh, delete this line.
 z4h install ohmyzsh/ohmyzsh || return
+z4h install se-jaeger/zsh-activate-py-environment || return
+z4h install akash329d/zsh-alias-finder || return
+z4h install RobSis/zsh-completion-generator || return
+z4h install Tarrasch/zsh-bd || return
+z4h install hlissner/zsh-autopair || return
 
 # Install or update core components (fzf, zsh-autosuggestions, etc.) and
 # initialize Zsh. After this point console I/O is unavailable until Zsh
@@ -68,8 +73,19 @@ z4h source ~/.env.zsh
 # Use additional Git repositories pulled in with `z4h install`.
 #
 # This is just an example that you should delete. It does nothing useful.
-z4h source ohmyzsh/ohmyzsh/lib/diagnostics.zsh  # source an individual file
-z4h load   ohmyzsh/ohmyzsh/plugins/emoji-clock  # load a plugin
+# z4h source ohmyzsh/ohmyzsh/lib/diagnostics.zsh  # source an individual file
+# z4h load   ohmyzsh/ohmyzsh/plugins/emoji-clock  # load a plugin
+z4h load ohmyzsh/ohmyzsh/plugins/colored-man-pages
+z4h load se-jaeger/zsh-activate-py-environment
+
+z4h load akash329d/zsh-alias-finder
+export ZSH_ALIAS_FINDER_PREFIX='󱉵 Has Alias: '
+
+z4h load RobSis/zsh-completion-generator
+zstyle :plugin:zsh-completion-generator programs cat
+
+z4h source Tarrasch/zsh-bd/bd.zsh
+z4h load hlissner/zsh-autopair
 
 # Define key bindings.
 z4h bindkey z4h-backward-kill-word  Ctrl+Backspace     Ctrl+H
