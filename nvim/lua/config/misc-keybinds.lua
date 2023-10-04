@@ -95,3 +95,14 @@ end, {
 
 -- Make Esc hide search highlight in normal mode
 util.keymap('n', '<Esc>', ':noh<CR>', { noremap = true, silent = true })
+
+-- Redo
+vim.keymap.set('n', 'U', '<C-r>')
+
+util.keymap('n', '<Leader>dd', function ()
+  if vim.opt.diff:get() then
+    vim.cmd('windo diffoff')
+  else
+    vim.cmd('windo diffthis')
+  end
+end, { desc = 'Diff using current split' })

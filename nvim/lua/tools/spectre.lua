@@ -46,7 +46,7 @@ return {
       },
     })
     util.keymap('n', '<Leader>ff', function()
-      require('spectre').open_visual({
+      require('spectre').open({
         path = string.format(
           '!{%s}',
           table.concat(vim.split(require('filter').formatFilter(), '\n', { plain = true }), ',')

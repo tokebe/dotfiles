@@ -20,7 +20,6 @@
   "dashboard-nvim": { "branch": "master", "commit": "bbe0234168501b8ba46f24b4fb3cb7c5b88c0784" },
   "deadcolumn.nvim": { "branch": "master", "commit": "b9b5e237371ae5379e280e4df9ecf62e4bc8d7a5" },
   "detect-language.nvim": { "branch": "main", "commit": "2aa314ed46b68d89fe939cf3ecb12933c71ce49f" },
-  "diagflow.nvim": { "branch": "main", "commit": "8ccfd5a9206984cfaa5225ae77e63614fd0969c8" },
   "diffview.nvim": { "branch": "main", "commit": "a111d19ccceac6530448d329c63f998f77b5626e" },
   "dressing.nvim": { "branch": "master", "commit": "c1e1d5fa44fe08811b6ef4aadac2b50e602f9504" },
   "edgy.nvim": { "branch": "main", "commit": "4ccc1c67ae2b1a0c55f18c83d03b714e2bb1bae4" },

@@ -73,6 +73,9 @@ return {
         winopts = {
           win_border = 'single',
         },
+        files = {
+          previewer = "bat"
+        },
         actions = {
           buffers = {
             ['tab'] = actions.file_edit,

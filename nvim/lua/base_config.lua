@@ -12,6 +12,7 @@ set.sidescrolloff = 15               -- keep 30 columns around cursor
 set.showmatch = true                 -- matching bracket pairs
 set.cursorline = true                -- highlight current line
 set.number = true                    -- Make line numbers default
+set.wrap = true                      -- Softwrap lines
 set.breakindent = true               -- Wrapped lines preserve indent
 -- set.signcolumn = 'yes' -- Keep signcolumn on by default
 set.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
@@ -20,8 +21,11 @@ set.splitright = true                -- open vertical splits to the right of the
 set.splitkeep = 'screen'
 set.laststatus = 3                   -- always show status line
 set.colorcolumn = '88'               -- default max line length hint
-set.fillchars = 'eob: '
-set.termguicolors = true             -- terminal gui colors
+-- set.fillchars:append({
+--   eob = ' ',
+--   diff = '╱',
+-- })
+set.termguicolors = true -- terminal gui colors
 
 -- [[ Search Config ]]
 set.hlsearch = true   -- highlight search
@@ -29,6 +33,13 @@ set.incsearch = true  -- highlight next differently
 set.ignorecase = true -- ignore pattern case
 set.smartcase = true  -- case-sensitive if pattern has uppercase
 set.whichwrap:append({ h = true, l = true })
+-- Set options for diff
+-- filler: use filler for missing lines
+-- context:3: show 3 lines of context around changes
+-- closeoff: diffoff if a diff window is closed
+-- followwrap: respect global wrap option
+-- linematch:60: allow second-layer diff up to a max of 60 lines (30 for a 2-file diff)
+set.diffopt = 'filler,context:3,closeoff,followwrap,linematch:60'
 
 -- [[ Simple keybinds ]]
 vim.keymap.set('n', 'q:', '<nop>')
@@ -46,6 +57,7 @@ set.shiftround = true
 set.shell = 'zsh'       -- shell to use for `!`, `:!`, `system()` etc.
 set.foldlevelstart = 99 -- UFO will handle folding
 set.sessionoptions = 'blank,buffers,curdir,globals,tabpages'
+vim.g.sessionoptions = 'blank,buffers,curdir,globals,tabpages'
 -- Auto-refresh on file changes, requires autocommand to work properly
 -- ( see keymap )
 set.autoread = true
