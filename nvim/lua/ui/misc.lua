@@ -127,7 +127,7 @@ return {
         {
           title = 'Spectre',
           ft = 'spectre_panel',
-          size = { width = 50 },
+          size = { width = 88 },
         },
         {
           ft = 'OverseerList',

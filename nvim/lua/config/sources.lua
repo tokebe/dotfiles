@@ -20,7 +20,7 @@ return {
     'prettier',
     'black',
     'beautysh',
-    'yamlfix',
+    -- 'yamlfix',
     'stylua',
     -- linters
     'luacheck',

@@ -18,6 +18,7 @@ require('lazy').setup({
   { import = 'behavior' },
   { import = 'bindings' },
   { import = 'integration' },
+  { import = 'integration.language-support' },
   { import = 'tools' },
   { import = 'ui' },
 }, {

@@ -40,6 +40,10 @@ return {
           hijack_netrw_behavior = 'disabled',
         },
         default_component_configs = {
+          icon = {
+            folder_empty = '󰉖 ',
+            folder_empty_open = '󰷏 ',
+          },
           indent = {
             -- with_expanders = true,
           },

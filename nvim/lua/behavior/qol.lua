@@ -3,7 +3,7 @@ return {
   { -- Intelligent paste indenting. Not treesitter-intelligent; doesn't work on .py etc.
     'ku1ik/vim-pasta',
   },
-  { -- d deletes instead of cuts, D now cuts
+  {               -- d deletes instead of cuts, D now cuts
     'gbprod/cutlass.nvim',
     lazy = false, -- Doesn't seem to bind keys without this
     config = function()
@@ -131,5 +131,16 @@ return {
   {
     'christoomey/vim-tmux-navigator',
     lazy = false,
+  },
+  {
+    'chrisgrieser/nvim-early-retirement',
+    event = 'VeryLazy',
+    config = function()
+      require('early-retirement').setup({
+        ignoredFileTypes = require('config.filetype_excludes'),
+        minimumBufferNum = 5,
+        notificationOnAutoClose = true,
+      })
+    end,
   },
 }

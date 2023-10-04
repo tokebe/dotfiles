@@ -195,6 +195,13 @@ return {
                 require('fzf-lua').files({
                   fd_opts = '--type d',
                   cwd = '~',
+                  actions = {
+                    ['default'] = function(selected)
+                      -- Remove icon, don't sub() if icons disabled
+                      local path = selected[1]:sub(7)
+                      vim.cmd('cd ~/' .. path)
+                    end,
+                  },
                 })
               end,
               key = 'F',
@@ -205,6 +212,12 @@ return {
               action = function()
                 require('fzf-lua').files({
                   fd_opts = '--no-ignore --hidden --type f',
+                  winopts = {
+                    preview = {
+                      layout = 'vertical',
+                      vertical = 'up',
+                    },
+                  },
                 })
               end,
               key = 'f',
