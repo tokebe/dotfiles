@@ -35,13 +35,7 @@
           dnf: fd-find
           pac: fd
           brew: fd
-        - pac: ccat
-          brew: ccat
-        - pac: lazygit
-          dnf: lazygit
-          brew: jesseduffield/lazygit/lazygit
         - neofetch
-        - brew: btop
         - luarocks
         - cmake
         - tldr
@@ -67,16 +61,17 @@
                 - command: ln -sf $(which fdfind) ~/.local/bin/fd
                   description: Fix fd access
                   quiet: true
-      - brew:
-          - lsd
-          - fzf
-          - ccat
-          - lazygit
-          - lazydocker
-          - btop
-          - nvim
-          - pyenv
-          - openssl # pyenv compatibility with linuxbrew
+- brew:
+    - lsd
+    - fzf
+    - ccat
+    - jesseduffield/lazygit/lazygit
+    - lazydocker
+    - btop
+    - nvim
+    - pyenv
+    - openssl # pyenv compatibility with linuxbrew
+    - duf
 - shell:
     - command: brew analytics off
       quiet: true
@@ -102,8 +97,6 @@
     ~/.zfunc: zsh/.zfunc
     # iosevka font gen
     ~/.config/iosevka/config.ini: iosevka/config.ini
-    # ranger config
-    ~/.config/ranger: ranger
     # tmux
     ~/.tmux/plugins/tpm: tmux/tpm
     ~/.config/tmux/tmux.conf: tmux/tmux.conf
