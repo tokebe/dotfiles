@@ -19,3 +19,6 @@
 [submodule "tmux/tpm"]
 	path = tmux/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "neofetch/neofetch-themes"]
+	path = neofetch/neofetch-themes
+	url = https://github.com/Chick2D/neofetch-themes
