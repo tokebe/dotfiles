@@ -51,6 +51,8 @@
         - lf
         - walk
         - jless
+        - figlet
+        - lolcat
 - if:
     cond: '[[ "$(uname -s)" == *"Linux"* ]]'
     met:
