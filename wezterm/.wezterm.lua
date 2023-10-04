@@ -11,7 +11,7 @@ if wezterm.config_builder then
 end
 
 -- Appearance
-local colorscheme = 'tokyonight-storm'
+local colorscheme = 'rose-pine'
 local colorscheme_table = wezterm.color.get_builtin_schemes()[colorscheme]
 config.color_scheme = colorscheme
 config.window_background_opacity = 0.85
