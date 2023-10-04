@@ -60,12 +60,16 @@ Running TODO list:
 - [x] Test file managers to replace ranger, then integrate with neovim
   - [ ] It's gonna be nnn with a bunch of setup >.<
 - [ ] Acquire more colorschemes
-- [ ] Auto-backup lockfile
+- [x] Auto-backup lockfile
 - [ ] Re-make hover.lua but just using a custom nui setup
 - [ ] Fix fzf switcher being unable to distinguish between multiple unnamed buffers
 - [ ] Add keybinds for toggling diff on two split files
 - [ ] Fix `x` sometimes deleting, sometimes cutting
-- [ ] Fix Fzf perf when in large directory -- async or timeout?
+- [x] Fix Fzf perf when in large directory -- async or timeout?
+- [ ] Fix overseer output not showing errors
+- [ ] Improved debug experience -- sourcemaps, scopes indentation?
+- [ ] Incorporate nvim-treesitter-textobjects
+- [ ] Format visual selection by (choose language), for stuff such as Hurl files
 
 And also the random notes for smaller things:
 
