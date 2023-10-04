@@ -83,6 +83,10 @@
       stdout: true
       stderr: true
       stdin: true
+    - command: ./neofetch/setup
+      description: copy neofetch config
+      quiet: true
+
 - pip:
     file: python-packages.txt
 - pipx:
@@ -104,6 +108,8 @@
     ~/.config/tmux/tmux.conf: tmux/tmux.conf
     # lf
     ~/.config/lf: lf
+    # neofetch
+    ~/.config/neofetch: neofetch/config
 - shell:
     - command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
       description: Prepare Neovim
