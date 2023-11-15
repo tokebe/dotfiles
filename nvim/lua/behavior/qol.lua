@@ -138,9 +138,13 @@ return {
     config = function()
       require('early-retirement').setup({
         ignoredFileTypes = require('config.filetype_excludes'),
-        minimumBufferNum = 5,
+        minimumBufferNum = 10,
         notificationOnAutoClose = true,
       })
     end,
+  },
+  {
+    'ZSaberLv0/eregex.vim',
+    lazy = false,
   },
 }

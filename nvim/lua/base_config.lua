@@ -61,6 +61,9 @@ vim.g.sessionoptions = 'blank,buffers,curdir,globals,tabpages'
 -- Auto-refresh on file changes, requires autocommand to work properly
 -- ( see keymap )
 set.autoread = true
+-- Disables swap file since autosave is used
+-- Disable this if you have crashes that lose progress
+set.swapfile = true 
 
 -- Sync clipboard between OS and Neovim.
 --  See `:help 'clipboard'`
