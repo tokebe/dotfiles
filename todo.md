@@ -70,6 +70,7 @@ Running TODO list:
 - [ ] Improved debug experience -- sourcemaps, scopes indentation?
 - [ ] Incorporate nvim-treesitter-textobjects
 - [ ] Format visual selection by (choose language), for stuff such as Hurl files
+- [ ] Automatic .yamllint and other configs to their respective linters/formatters/etc
 
 And also the random notes for smaller things:
 

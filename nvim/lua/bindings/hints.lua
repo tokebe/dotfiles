@@ -28,7 +28,7 @@ return {
         h = { name = 'Hunk...' },
         p = { name = 'Project...' },
         u = { name = 'URL...' },
-        q = { name = 'Quit / session...' }
+        q = { name = 'Quit / session...' },
       }, { prefix = '<Leader>' })
       -- Set up misc keybinds
       require('config.misc-keybinds')
@@ -45,12 +45,12 @@ return {
       require('legendary').setup({
         extensions = {
           diffview = true,
+          which_key = {
+            auto_register = true,
+          },
         },
         select_prompt = '> ',
         col_separator_char = '',
-        which_key = {
-          auto_register = true,
-        },
         keymaps = {
           { -- Summon Command palette
             '<Leader><Leader>',
