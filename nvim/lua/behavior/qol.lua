@@ -143,8 +143,8 @@ return {
       })
     end,
   },
-  {
-    'ZSaberLv0/eregex.vim',
-    lazy = false,
-  },
+  -- { -- Substitution is broken
+  --   'ZSaberLv0/eregex.vim',
+  --   lazy = false,
+  -- },
 }
