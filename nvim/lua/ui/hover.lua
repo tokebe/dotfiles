@@ -1,6 +1,7 @@
 return {
   {
     'lewis6991/hover.nvim',
+    commit = "f74d2924564ba5fd8faa2d7e7cf6065de26f9820",
     config = function()
       local multiDiagnostic = {
         name = 'multiDiagnostic',
