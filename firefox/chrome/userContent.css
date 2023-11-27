@@ -1,6 +1,6 @@
 @-moz-document url("about:home"), url("about:newtab") {
   body {
-    background: -moz-linear-gradient(#5937b2, #e50371, #ff741b, #ffee49) !important;
+/*     background: -moz-linear-gradient(70deg, #5937b2, #e50371, #ff741b, #ffee49) !important; */
   }
 
   .logo {
