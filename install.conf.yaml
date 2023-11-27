@@ -22,10 +22,21 @@
             stdout: true
             stderr: true
             stdin: true
+      - shell:
+          - command: >
+              (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/rebel/.bashrc && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+            description: Add brew to path
+            quiet: true
+            stdout: true
+            stderr: true
+            stdin: true
 - omnipkg:
     - update
     - upgrade
     - install:
+        - zsh
+        - gstreamer1-plugin-openh264
+        - mozilla-openh264
         - unzip
         - ripgrep
         - bat
@@ -35,6 +46,9 @@
           dnf: fd-find
           pac: fd
           brew: fd
+        - apt: python3-dev
+          dnf: python3-devel
+          brew: python3-dev
         - neofetch
         - luarocks
         - cmake
@@ -74,6 +88,10 @@
     - pyenv
     - openssl # pyenv compatibility with linuxbrew
     - duf
+    - pnpm
+    - tcl-tk
+    - zlib
+    - bzip2
 - shell:
     - command: brew analytics off
       quiet: true
@@ -86,6 +104,12 @@
     - command: ./neofetch/setup
       description: copy neofetch config
       quiet: true
+    - command: >
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+      description: Install nvm
+      quiet: true
+    - command: nvm install --lts
+      description: Install latest LTS node & npm
 
 - pip:
     file: python-packages.txt
