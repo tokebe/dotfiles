@@ -21,10 +21,10 @@
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
   body {
-    animation: GradientAnimation 2s ease infinite !important;
+    animation: GradientAnimation 10s ease infinite !important;
     height: 100% !important;
     margin: 0 !important;
-    background-size: 200% 200% !important;
+    background-size: 300% 300% !important;
   }
 
   .wordmark {
