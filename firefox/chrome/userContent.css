@@ -1,6 +1,6 @@
 @-moz-document url("about:home"), url("about:newtab") {
   body {
-/*     background: -moz-linear-gradient(70deg, #5937b2, #e50371, #ff741b, #ffee49) !important; */
+    background: -moz-linear-gradient(70deg, #5937b2, #e50371, #ff741b, #ffee49);
   }
 
   .logo {
@@ -11,7 +11,7 @@
 
 @-moz-document url("about:privatebrowsing") {
   body {
-/*     background: -moz-linear-gradient(70deg, #2e2056, #6c40cb, #f24fa8, #ff7f79) !important; */
+    background: -moz-linear-gradient(70deg, #2e2056, #6c40cb, #f24fa8, #ff7f79);
   }
 
   .logo {
@@ -21,8 +21,6 @@
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
   body {
-    -moz-animation: GradientAnimation 2s ease infinite !important;
-    -webkit-animation: GradientAnimation 2s ease infinite !important;
     animation: GradientAnimation 2s ease infinite !important;
     height: 100% !important;
     margin: 0 !important;
@@ -65,31 +63,4 @@
     }
   }
 
-  @-webkit-keyframes GradientAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
 
-    50% {
-      background-position: 100% 50%;
-    }
-
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  @-moz-keyframes GradientAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
-
-    50% {
-      background-position: 100% 50%;
-    }
-
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-}
