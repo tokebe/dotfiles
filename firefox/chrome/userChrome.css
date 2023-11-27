@@ -1,0 +1,265 @@
+/* 
+__     __
+\ \   / /_ _ _ __ ___
+ \ \ / / _` | '__/ __|
+  \ V / (_| | |  \__ \
+   \_/ \__,_|_|  |___/
+*/
+:root {
+  --in-transition: font-size 200ms, padding 200ms, margin 200ms, max-width 200ms, opacity 200ms 150ms;
+  --out-transition: font-size 200ms 400ms, padding 200ms 400ms, margin 200ms 400ms, max-width 200ms 400ms, opacity 100ms;
+}
+
+/*
+ _   _             _
+| \ | | __ ___   _| |__   __ _ _ __
+|  \| |/ _` \ \ / / '_ \ / _` | '__|
+| |\  | (_| |\ V /| |_) | (_| | |
+|_| \_|\__,_| \_/ |_.__/ \__,_|_|
+*/
+
+/* hide back/forward when not applicable */
+#back-button[disabled="true"], #forward-button[disabled="true"] {
+  display: none !important;
+}
+
+/* Truncate https:// */
+#urlbar-input {
+  z-index: 0 !important;
+  transition: all ease-in-out 200ms;
+}
+.verifiedDomain~.urlbar-input-box:not(:focus-within, :hover) #urlbar-input {
+  margin-left: -5ch !important;
+  mask: linear-gradient(to right, transparent 4ch, black 5ch calc(100% - 3ch), transparent) !important;
+}
+.verifiedDomain {
+  z-index: 1000 !important;
+}
+#tracking-protection-container{
+  z-index: 10 !important;
+}
+
+/* Hide unimportant buttons/indicators in urlbar when not hovered */
+#urlbar-container:not(:hover) :where(
+#star-button-box,
+#userContext-label,
+.urlbar-page-action,
+#tracking-protection-icon-container,
+) {
+  opacity: 0 !important;
+  font-size: 0 !important;
+  max-width: 0 !important;
+  margin-inline: 0 !important;
+  padding: 0 !important;
+  transition: var(--out-transition) !important;
+}
+#urlbar-container:hover :where(
+#star-button-box,
+#userContext-label,
+.urlbar-page-action,
+#tracking-protection-icon-container,
+) {
+  transition: var(--in-transition) !important;
+}
+
+/* Flatten colors of urlbar */
+#urlbar:not([focused="true"]) #urlbar-input-container:not([extended="true"]), #urlbar:not([focused="true"]) #urlbar-container:not([extended="true"]) {
+  background: var(--lwt-accent-color) !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+#urlbar-background, #searchbar {
+  background: var(--lwt-accent-color) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+#urlbar[extend="true"] #urlbar-background #urlbar[extend="true"] #searchbar {
+  border: 1px solid var(--toolbar-field-border-color)
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.13) !important;
+}
+
+/* Flatten colors of navbar */
+#nav-bar {
+  background: var(--lwt-accent-color) !important;
+  border: none !important;
+}
+
+/* Hide border above navbar */
+#nav-bar {
+  box-shadow: none !important;
+}
+
+/* Greyscale extension icons */
+.webextension-browser-action>*>.toolbarbutton-icon {
+  filter: grayscale(1) invert(1) contrast(0.75);
+}
+
+/*
+ ____              _                         _
+| __ )  ___   ___ | | ___ __ ___   __ _ _ __| | _____
+|  _ \ / _ \ / _ \| |/ / '_ ` _ \ / _` | '__| |/ / __|
+| |_) | (_) | (_) |   <| | | | | | (_| | |  |   <\__ \
+|____/ \___/ \___/|_|\_\_| |_| |_|\__,_|_|  |_|\_\___/
+*/
+
+/* Flatten colors of bookmarks bar */
+#PersonalToolbar {
+  background: var(--lwt-accent-color) !important;
+  border: none !important;
+}
+
+/* Show bookmarks bar on hover */
+#PersonalToolbar:not([customizing]) {
+  transition: margin 150ms linear, padding 150ms linear !important;
+  z-index: 1 !important;
+  margin-top: -24px !important;
+}
+/* Appear over page rather than resizing page */
+#PersonalToolbar {
+  position: absolute !important;
+  width: 100% !important;
+  top: 7.1em !important;
+}
+#nav-bar {
+  z-index: 2 !important;
+}
+
+#nav-bar:is(:hover, :focus-within)+#PersonalToolbar, #PersonalToolbar:hover, #PersonalToolbar[customizing] {
+  transition: margin 150ms linear, padding 150ms linear !important;
+  margin-top: 0px !important;
+  padding-top: 2px !important;
+  padding-bottom: 5px !important;
+}
+toolbarbutton:is(.bookmark-item) {
+  transition: margin 150ms linear, padding 150ms linear !important;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  transition: padding 200ms linear;
+}
+#nav-bar:is(:hover, :focus-within)+#PersonalToolbar toolbarbutton:is(.bookmark-item), #PersonalToolbar:is(:hover, [customizing]) toolbarbutton:is(.bookmark-item) {
+  transition: margin 150ms linear, padding 150ms linear !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  transition: padding 200ms linear;
+}
+
+/*
+ _____     _
+|_   _|_ _| |__  ___
+  | |/ _` | '_ \/ __|
+  | | (_| | |_) \__ \
+  |_|\__,_|_.__/|___/
+*/
+
+/* Flatten tab colors */
+#navigator-toolbox {
+  background: var(--lwt-accent-color) !important;
+}
+
+.tab-background {
+  transition: background 200ms !important;
+  outline: none !important;
+  border: none !important;
+}
+
+/* Calmer active tab background */
+.tab-background[selected], .tab-background:hover, .tab-background[multiselected] {
+  background: var(--toolbar-bgcolor) !important;
+}
+
+/* Remove starting titlebar spacer */
+.titlebar-spacer[type='pre-tabs'] {
+  display: none !important;
+}
+
+/* Remove separator before tab bar */
+#tabbrowser-tabs {
+  margin-left: 0px !important;
+  padding-left: 0px !important;
+  border-left: none !important;
+}
+
+/* Full width tabs */
+.tabbrowser-tab[fadein]:not([pinned]) {
+  max-width: none !important;
+  overflow: hidden !important;
+}
+
+/* Desaturate inactive tab icons */
+.tabbrowser-tab:not([selected]):not(:hover) .tab-icon-image {
+  filter: saturate(0.3) !important;
+  transition: filter 200ms ease-in-out !important;
+}
+
+/* Hide tab close button until hovered */
+.tabbrowser-tab:not([pinned]):not(:hover) .tab-close-button {
+  display: none !important;
+}
+
+/* Circular tab close button */
+.tab-close-button,
+.tab-close-button>.toolbarbutton-icon {
+  display: -moz-box !important;
+  border-radius: 2em !important;
+}
+
+/* Remove tab shadow */
+.tabbrowser-tab>.tab-stack>.tab-background {
+  box-shadow: none !important;
+}
+
+/* Remove tab multi-select outline */
+.tabbrowser-tab:is([multiselected])>.tab-stack>.tab-background:-moz-lwtheme {
+  border: 0px !important;
+  outline: none !important;
+}
+
+/* Container context line on bottom of tab */
+.tabbrowser-tab[usercontextid]>.tab-stack>.tab-background>.tab-context-line {
+  height: 1px !important;
+  order: 2 !important;
+  margin-bottom: 1px !important;
+}
+
+/*
+ __  __ _
+|  \/  (_)___  ___
+| |\/| | / __|/ __|
+| |  | | \__ \ (__ _
+|_|  |_|_|___/\___(_)
+*/
+
+/* Firefox logo for hamburger menu */
+#PanelUI-menu-button {
+  list-style-image: url("./ffox.png") !important;
+  filter: none !important;
+}
+/* Replace private browsing indicator with different hamburger icon */
+#main-window[privatebrowsingmode] #PanelUI-menu-button {
+  list-style-image: url("./ffox-private.png") !important;
+  filter: none !important;
+}
+#private-browsing-indicator-with-label {
+  display: none !important;
+}
+#PanelUI-menu-button>.toolbarbutton-badge-stack>.toolbarbutton-icon {
+  width: 20px !important;
+  height: 20px !important;
+}
+#PanelUI-menu-button>.toolbarbutton-badge-stack {
+  padding: 6px !important;
+  border-radius: 2em !important;
+}
+
+/* Increase bookmark dropdown spacing */
+#PlacesToolbar menu.bookmark-item, #PlacesToolbar menuitem.bookmark-item {
+  padding-block: 10px !important;
+}
+
+/* Ensure gradient separator remains */
+#appMenu-fxa-separator {
+/*   border-image: unset !important; */
+  border-top: 1px solid transparent !important;
+  border-image: linear-gradient(90deg, #5937b2 30%, #e50371 60%, #ff741b 90%, #ffee49 100%) 1 !important;
+/*   background: red !important; */
+}
