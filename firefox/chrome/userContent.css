@@ -1,0 +1,95 @@
+@-moz-document url("about:home"), url("about:newtab") {
+  body {
+    background: -moz-linear-gradient(#5937b2, #e50371, #ff741b, #ffee49) !important;
+  }
+
+  .logo {
+    background: url("./ffox.png") no-repeat center !important;
+  }
+
+}
+
+@-moz-document url("about:privatebrowsing") {
+  body {
+/*     background: -moz-linear-gradient(70deg, #2e2056, #6c40cb, #f24fa8, #ff7f79) !important; */
+  }
+
+  .logo {
+    background: url("./ffox-private.png") no-repeat center !important;
+  }
+}
+
+@-moz-document url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
+  body {
+    -moz-animation: GradientAnimation 2s ease infinite !important;
+    -webkit-animation: GradientAnimation 2s ease infinite !important;
+    animation: GradientAnimation 2s ease infinite !important;
+    height: 100% !important;
+    margin: 0 !important;
+    background-size: 200% 200% !important;
+  }
+
+  .wordmark {
+    display: none !important;
+  }
+
+  .logo {
+    background-size: 80% !important;
+    height: 50vmin !important;
+    width: 50vmin !important;
+    transition: background-size 2s ease !important;
+
+  }
+
+  .logo:hover {
+    background-size: 95% !important;
+    transition: background-size 1s ease !important;
+  }
+  
+  .personalize-button {
+    top: unset !important;
+    bottom: 16px !important;
+  }
+
+  @keyframes GradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @-webkit-keyframes GradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @-moz-keyframes GradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
