@@ -1,0 +1,8 @@
+---
+- shell:
+    - command: ./iosevka/setup
+      description: Generate Custom Iosevka Fonts
+      quiet: true
+      stdout: true
+      stderr: true
+      stdin: true
