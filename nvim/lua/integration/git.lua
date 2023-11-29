@@ -7,7 +7,7 @@ return {
     'linrongbin16/gitlinker.nvim',
     config = function()
       require('gitlinker').setup({
-        mapping = {
+        mappings = {
           ['<Leader>gl'] = {
             action = require('gitlinker.actions').system,
             desc = 'Open on GitHub',

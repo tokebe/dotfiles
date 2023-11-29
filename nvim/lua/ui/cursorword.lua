@@ -12,8 +12,6 @@ return {
       vim.api.nvim_set_hl(0, 'IlluminatedWordText', { underdotted = true })
       vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { underdotted = true })
       vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { underdotted = true })
-      local a = 0
-      print(a)
     end,
   },
   { -- highlight occurances of word
