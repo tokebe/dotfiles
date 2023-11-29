@@ -15,8 +15,11 @@
 - clean: ["~"]
 - create: [~/Applications, ~/Downloads, ~/Projects]
 - include: 'software.yaml'
+- shell:
+    - command: test -f "wezterm/fontsize.lua" || cp wezterm/fontsize-default.lua wezterm/fontsize.lua 
+      description: Ensure wezterm fontsize config file
 - link:
-    ~/.wezterm.lua: wezterm/.wezterm.lua
+    ~/.config/wezterm: wezterm
     # neovim
     ~/.config/nvim: nvim
     # zsh
