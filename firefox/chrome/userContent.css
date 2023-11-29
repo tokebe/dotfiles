@@ -21,7 +21,7 @@
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
   body {
-    animation: GradientAnimation 10s ease infinite !important;
+    animation: GradientAnimation 15s ease infinite !important;
     height: 100% !important;
     margin: 0 !important;
     background-size: 300% 300% !important;
@@ -32,15 +32,14 @@
   }
 
   .logo {
-    background-size: 80% !important;
-    height: 50vmin !important;
-    width: 50vmin !important;
+    background-size: 45vmin !important;
+    height: 55vmin !important;
+    width: 55vmin !important;
     transition: background-size 2s ease !important;
-
   }
 
   .logo:hover {
-    background-size: 95% !important;
+    background-size: 50vmin !important;
     transition: background-size 1s ease !important;
   }
   
@@ -51,15 +50,15 @@
 
   @keyframes GradientAnimation {
     0% {
-      background-position: 0% 50%;
+      background-position: 0% 100%;
     }
 
     50% {
-      background-position: 100% 50%;
+      background-position: 90% 10%;
     }
 
     100% {
-      background-position: 0% 50%;
+      background-position: 0% 100%;
     }
   }
 
