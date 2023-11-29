@@ -1,120 +1,20 @@
 ---
 - plugins:
+    - dotbot-plugins/dotbot-include
     - dotbot-plugins/dotbot-omnipkg
     - dotbot-plugins/dotbot-if
     - dotbot-plugins/dotbot-brew
     - dotbot-plugins/dotbot-pip
+    - dotbot-plugins/dotbot-flatpak
+    - dotbot-plugins/dotbot-gh-extensions
 - defaults:
     link:
       create: true
       relink: true
       force: true
 - clean: ["~"]
-- create: [~/applications, ~/downloads]
-- if:
-    cond: command -v brew &> /dev/null
-    unmet:
-      - shell:
-          - command: >
-              /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            description: Install brew package manager
-            quiet: true
-            stdout: true
-            stderr: true
-            stdin: true
-      - shell:
-          - command: >
-              (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/rebel/.bashrc && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-            description: Add brew to path
-            quiet: true
-            stdout: true
-            stderr: true
-            stdin: true
-- omnipkg:
-    - update
-    - upgrade
-    - install:
-        - zsh
-        - gstreamer1-plugin-openh264
-        - mozilla-openh264
-        - unzip
-        - ripgrep
-        - bat
-        - git-delta
-        - chafa
-        - apt: fd-find
-          dnf: fd-find
-          pac: fd
-          brew: fd
-        - apt: python3-dev
-          dnf: python3-devel
-          brew: python3-dev
-        - neofetch
-        - luarocks
-        - cmake
-        - tldr
-        - python3
-        - python3-venv
-        - python3-pip
-        - python-is-python3
-        - fontforge
-        - python3-fontforge
-        - cargo
-        - ttfautohint
-        - { brew: coreutils }
-        - lf
-        - walk
-        - jless
-        - figlet
-        - lolcat
-- if:
-    cond: '[[ "$(uname -s)" == *"Linux"* ]]'
-    met:
-      - if:
-          cond: command -v fd &> /dev/null
-          met:
-            - shell:
-                - command: ln -sf $(which fdfind) ~/.local/bin/fd
-                  description: Fix fd access
-                  quiet: true
-- brew:
-    - lsd
-    - fzf
-    - ccat
-    - jesseduffield/lazygit/lazygit
-    - lazydocker
-    - btop
-    - nvim
-    - pyenv
-    - openssl # pyenv compatibility with linuxbrew
-    - duf
-    - pnpm
-    - tcl-tk
-    - zlib
-    - bzip2
-- shell:
-    - command: brew analytics off
-      quiet: true
-    - command: ./zsh/setup
-      description: Install ZSH for Humans
-      quiet: true
-      stdout: true
-      stderr: true
-      stdin: true
-    - command: ./neofetch/setup
-      description: copy neofetch config
-      quiet: true
-    - command: >
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-      description: Install nvm
-      quiet: true
-    - command: nvm install --lts
-      description: Install latest LTS node & npm
-
-- pip:
-    file: python-packages.txt
-- pipx:
-    file: pipx-packages.txt
+- create: [~/Applications, ~/Downloads, ~/Projects]
+- include: 'software.yaml'
 - link:
     ~/.wezterm.lua: wezterm/.wezterm.lua
     # neovim
@@ -133,16 +33,5 @@
     # lf
     ~/.config/lf: lf
     # neofetch
-    ~/.config/neofetch: neofetch/config
-- shell:
-    - command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
-      description: Prepare Neovim
-      quiet: true
-      stdout: true
-      stderr: true
-    - command: ./iosevka/setup
-      description: Generate Custom Iosevka Fonts
-      quiet: true
-      stdout: true
-      stderr: true
-      stdin: true
+    ~/.config/neofetch/config: neofetch/neofetch-themes/normal/config.conf
+- include: 'themes.yaml'
