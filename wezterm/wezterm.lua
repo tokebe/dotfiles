@@ -17,7 +17,7 @@ config.color_scheme = colorscheme
 config.window_background_opacity = 0.85
 config.macos_window_background_blur = 100
 config.font = wezterm.font('Tokebe Nerd Font')
-config.font_size = 13
+config.font_size = require('fontsize')
 config.harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' }
 config.line_height = 1.0
 config.window_decorations = 'RESIZE'
