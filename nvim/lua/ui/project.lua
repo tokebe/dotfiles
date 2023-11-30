@@ -175,7 +175,7 @@ return {
               desc = '  dotfiles',
               group = 'Number',
               action = function()
-                vim.cmd('cd ~/dotfiles')
+                vim.cmd('cd ~/.dotfiles')
                 vim.cmd('SessionManager load_current_dir_session')
               end,
               key = 'd',
