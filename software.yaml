@@ -53,6 +53,7 @@
         - { brew: coreutils }
         - figlet
         - lolcat
+        - xclip  # ensures nvim clipboard works in wayland
 - if:
     cond: command -v fdfind
     met:
@@ -128,7 +129,6 @@
     - com.visualstudio.code
     - md.obsidian.Obsidian
     - org.mozilla.firefox
-    - org.wezfurlong.wezterm
     - app.drey.Warp
     - com.github.neithern.g4music
     - org.kde.krita
