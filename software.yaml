@@ -12,7 +12,9 @@
             stdin: true
       - shell:
           - command: >
-              (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/rebel/.bashrc && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+              (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"')
+              >> /home/rebel/.bashrc && eval "$(/home/linuxbrew/.linuxbrew/bin/brew
+              shellenv)"
             description: Add brew to path
             quiet: true
             stdout: true
@@ -52,7 +54,7 @@
         - figlet
         - lolcat
 - if:
-    cond: 'command -v fdfind'
+    cond: command -v fdfind
     met:
       - if:
           cond: command -v fd &> /dev/null
@@ -81,6 +83,8 @@
     - lf
     - jless
     - gh
+    - hyfetch
+    - cpufetch
 - shell:
     - command: ./zsh/setup
       description: Install ZSH for Humans
@@ -89,7 +93,8 @@
       stderr: true
       stdin: true
     - command: >
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
+        | bash
       description: Install nvm
       quiet: true
     - command: nvm install --lts
@@ -106,9 +111,7 @@
       stdout: true
       stderr: true
       stdin: true
-- ghe:
-    - mintarchit/gh-contribs
-    - sheepla/gh-userfetch
+- ghe: [mintarchit/gh-contribs, sheepla/gh-userfetch]
 - pip:
     file: python-packages.txt
 - pipx:
