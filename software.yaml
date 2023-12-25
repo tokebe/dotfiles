@@ -27,6 +27,7 @@
     - update
     - upgrade
     - install:
+        - go
         - zsh
         - gstreamer1-plugin-openh264
         - mozilla-openh264
@@ -64,6 +65,8 @@
                 - command: ln -sf $(which fdfind) ~/.local/bin/fd
                   description: Fix fd access
                   quiet: true
+- tap:
+    - noahgorstein/tap
 - brew:
     - lsd
     - fzf
@@ -86,6 +89,8 @@
     - gh
     - hyfetch
     - cpufetch
+    - jqp
+    - nap
 - shell:
     - command: ./zsh/setup
       description: Install ZSH for Humans
