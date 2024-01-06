@@ -1,1 +1,3 @@
 poetry
+asciinema
+yq

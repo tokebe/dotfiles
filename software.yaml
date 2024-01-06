@@ -55,6 +55,7 @@
         - figlet
         - lolcat
         - xclip  # ensures nvim clipboard works in wayland
+        - yank
 - if:
     cond: command -v fdfind
     met:
@@ -80,8 +81,6 @@
     - duf
     - pnpm
     - tcl-tk
-    - zlib
-    - bzip2
     - onefetch
     - walk
     - lf
@@ -91,6 +90,12 @@
     - cpufetch
     - jqp
     - nap
+    - tidy-viewer
+    - xh
+    - rm-improved
+    - dua-cli
+    - navi
+    - portal
 - shell:
     - command: ./zsh/setup
       description: Install ZSH for Humans
