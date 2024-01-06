@@ -66,9 +66,9 @@ vim.keymap.set({ 'n', 'v', 'o' }, 'k', function()
   end
 end, { expr = true })
 
-util.keymap({ 'n', 'v', 'o' }, 'gm', '%', {
-  desc = 'Go to match',
-})
+-- util.keymap({ 'n', 'v', 'o' }, 'gm', '%', {
+--   desc = 'Go to match',
+-- })
 
 util.keymap({ 'n', 'v', 'o' }, 'H', function()
   local _, c = unpack(vim.api.nvim_win_get_cursor(0))
