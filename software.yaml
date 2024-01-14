@@ -27,6 +27,7 @@
     - update
     - upgrade
     - install:
+        - tmux
         - go
         - zsh
         - gstreamer1-plugin-openh264
