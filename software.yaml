@@ -70,8 +70,8 @@
 - tap:
     - noahgorstein/tap
 - brew:
-    - lsd
-    - fzf
+    - lsd # https://github.com/lsd-rs/lsd
+    - fzf # https://github.com/junegunn/fzf
     - ccat
     - jesseduffield/lazygit/lazygit
     - lazydocker
