@@ -24,6 +24,8 @@ return {
     { 'lvimuser/lsp-inlayhints.nvim' },
     -- Winbar breadcrumbs
     { 'SmiteshP/nvim-navic', dependencies = { 'neovim/nvim-lspconfig' } },
+    -- Toggleable diagnostics
+    { 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim' },
   },
   -- TODO fix occasional (load order?) error between this and mason-lspconfig
   config = function() -- LSP loading status
@@ -72,10 +74,14 @@ return {
 
     -- Remove borders on hover/signatureHelp
     vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'none' })
-    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'shadow' })
+    vim.lsp.handlers['textDocument/signatureHelp'] =
+      vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'shadow' })
 
     -- Set up completion using lsp-zero, etc.
     require('config.cmp').config(lsp)
+
+    -- Set up diagnostic toggle
+    require('toggle_lsp_diagnostics').init()
 
     util.keymap('n', '<Leader>od', function()
       require('toggle_lsp_diagnostics').toggle_virtual_text()
