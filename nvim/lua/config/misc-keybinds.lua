@@ -57,14 +57,14 @@ vim.keymap.set({ 'n', 'v', 'o' }, 'j', function()
   else
     vim.api.nvim_feedkeys('j', 'm', false)
   end
-end, { expr = true })
+end, { expr = true, noremap = true })
 vim.keymap.set({ 'n', 'v', 'o' }, 'k', function()
   if vim.v.count then
     vim.api.nvim_feedkeys('gk', 'm', false)
   else
     vim.api.nvim_feedkeys('k', 'm', false)
   end
-end, { expr = true })
+end, { expr = true, noremap = true })
 
 -- util.keymap({ 'n', 'v', 'o' }, 'gm', '%', {
 --   desc = 'Go to match',
@@ -99,7 +99,7 @@ util.keymap('n', '<Esc>', ':noh<CR>', { noremap = true, silent = true })
 -- Redo
 vim.keymap.set('n', 'U', '<C-r>')
 
-util.keymap('n', '<Leader>dd', function ()
+util.keymap('n', '<Leader>dd', function()
   if vim.opt.diff:get() then
     vim.cmd('windo diffoff')
   else
