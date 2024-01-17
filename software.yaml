@@ -97,6 +97,7 @@
     - dua-cli
     - navi
     - portal
+    - zoxide
 - shell:
     - command: ./zsh/setup
       description: Install ZSH for Humans
