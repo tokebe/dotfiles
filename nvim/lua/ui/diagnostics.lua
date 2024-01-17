@@ -29,16 +29,29 @@ vim.diagnostic.handlers.signs = {
 }
 
 return {
-  -- { -- Disabled until it can be set to ignore certain file types
-  --   'dgagn/diagflow.nvim',
-  --   event = 'LspAttach',
-  --   config = function()
-  --     require('diagflow').setup({
-  --       padding_right = 5,
-  --       scope = 'line',
-  --       show_sign = true,
-  --       gap_size = 1,
-  --     })
-  --   end,
-  -- },
+  { -- Disabled until it can be set to ignore certain file types
+    'dgagn/diagflow.nvim',
+    event = 'LspAttach',
+    config = function()
+      require('diagflow').setup({
+        padding_right = 5,
+        scope = 'line',
+        show_sign = true,
+        gap_size = 1,
+        update_event = { 'DiagnosticChanged' },
+        format = function(diagnostic)
+          return diagnostic.message .. '  ' .. diagnostic.col
+        end,
+        enable = function()
+          local disabled = false
+          for _, v in pairs(require('config.filetype_excludes')) do
+            if v == vim.bo.filetype then
+              disabled = true
+            end
+          end
+          return not disabled
+        end,
+      })
+    end,
+  },
 }
