@@ -25,7 +25,7 @@ return {
       util.keymap('n', '<Leader>we', ':WindowsEqualize<CR>', {
         desc = 'Equalize windows',
       })
-      util.keymap('n', '<Leader>wa', ':WindowsToggleAutowidth<CR>', {
+      util.keymap('n', '<Leader>wW', ':WindowsToggleAutowidth<CR>', {
         desc = 'Toggle window autowidth',
       })
       util.keymap('n', '<Leader>wh', ':WindowsMaximizeHorizontally<CR>', {

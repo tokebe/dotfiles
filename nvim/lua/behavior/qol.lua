@@ -24,12 +24,23 @@ return {
       require('bufdel').setup({
         quit = false,
       })
-
       util.keymap('n', '<Leader>wq', ':BufDel<CR>', {
         desc = 'Close buffer',
       })
       util.keymap('n', '<Leader>wQ', ':BufDel!<CR>', {
         desc = 'Close buffer (force)',
+      })
+      util.keymap('n', '<Leader>wa', ':BufDelAll<CR>', {
+        desc = "Close all buffers"
+      })
+      util.keymap('n', '<Leader>wA', ':BufDelAll!<CR>', {
+        desc = "Close all buffers (force)"
+      })
+      util.keymap('n', '<Leader>wo', ':BufDelOthers<CR>', {
+        desc = "Close all other buffers"
+      })
+      util.keymap('n', '<Leader>wO', ':BufDelOthers!<CR>', {
+        desc = "Close all other buffers (force)"
       })
     end,
   },
