@@ -34,18 +34,6 @@ return {
       })
     end,
   },
-  { -- Smoothly scroll window
-    'declancm/cinnamon.nvim',
-    config = function()
-      require('cinnamon').setup({
-        max_length = 500,
-        default_delay = 1,
-        -- scroll_limit = 75,
-        extra_keymaps = true,
-        extended_keymaps = true,
-      })
-    end,
-  },
   { -- misc animations
     'echasnovski/mini.animate',
     config = function()
@@ -54,7 +42,7 @@ return {
           enable = false, -- handled by SmoothCursor.nvim
         },
         scroll = {
-          enable = false, -- handled by cinnamon.nvim
+          enable = false, -- Meh
         },
         resize = {
           enable = false, -- handled in neovide
