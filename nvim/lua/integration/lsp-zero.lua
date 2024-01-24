@@ -26,6 +26,8 @@ return {
     { 'SmiteshP/nvim-navic', dependencies = { 'neovim/nvim-lspconfig' } },
     -- Toggleable diagnostics
     { 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim' },
+    -- LSP autokill for performance
+    { 'hinell/lsp-timeout.nvim', dependencies = { 'neovim/nvim-lspconfig' } },
   },
   -- TODO fix occasional (load order?) error between this and mason-lspconfig
   config = function() -- LSP loading status
