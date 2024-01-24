@@ -24,7 +24,7 @@ return {
         o = { name = 'Options...' },
         r = { name = 'Replace / Request...' },
         D = { name = 'Debugging...' },
-        d = { name = 'Diff...' },
+        d = { name = 'Diff / Detect...' },
         h = { name = 'Hunk...' },
         p = { name = 'Project...' },
         u = { name = 'URL...' },
