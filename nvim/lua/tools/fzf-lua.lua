@@ -74,7 +74,7 @@ return {
           win_border = 'single',
         },
         files = {
-          previewer = "bat"
+          previewer = 'bat',
         },
         actions = {
           buffers = {
@@ -176,7 +176,7 @@ return {
             col = 0.9,
           },
         })
-      end, { desc = 'Select temporary colorscheme' })
+      end, { desc = 'Select colorscheme' })
       util.keymap('n', 'ga', function()
         require('fzf-lua').lsp_code_actions({
           winopts = {
