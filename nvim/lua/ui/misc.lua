@@ -42,34 +42,34 @@ return {
             ['cmp.entry.get_documentation'] = true,
           },
         },
-        routes = {
-          {
-            view = 'popup',
-            filter = { cmdline = true, min_height = 3 },
-          },
-          {
-            view = 'split',
-            filter = { error = true, min_height = 3 },
-          },
-        },
-        messages = {
-          view_search = false,
-        },
-        views = {
-          mini = {
-            timeout = 3000,
-          },
-          popupmenu = {
-            border = {
-              style = 'none',
-            },
-          },
-          popup = {
-            border = {
-              style = 'none',
-            },
-          },
-        },
+        -- routes = {
+        --   {
+        --     view = 'popup',
+        --     filter = { cmdline = true, min_height = 3 },
+        --   },
+        --   {
+        --     view = 'split',
+        --     filter = { error = true, min_height = 3 },
+        --   },
+        -- },
+        -- messages = {
+        --   view_search = false,
+        -- },
+        -- views = {
+        --   mini = {
+        --     timeout = 3000,
+        --   },
+        --   popupmenu = {
+        --     border = {
+        --       style = 'none',
+        --     },
+        --   },
+        --   popup = {
+        --     border = {
+        --       style = 'none',
+        --     },
+        --   },
+        -- },
       })
     end,
   },
@@ -134,12 +134,10 @@ return {
           title = 'Task List',
           size = { width = 50 },
         },
-      },
-      left = {
         {
           ft = 'dapui_scopes',
           title = 'Scopes',
-          size = { width = 50 },
+          size = { width = 88 },
         },
         {
           ft = 'dapui_breakpoints',
@@ -157,6 +155,7 @@ return {
           size = { width = 50 },
         },
       },
+      left = {},
     },
   },
   {
@@ -169,6 +168,14 @@ return {
         prefix = '󱦵',
         min_rows = 7,
         disable_ft = require('config.filetype_excludes'),
+      })
+    end,
+  },
+  {
+    'mawkler/modicator.nvim',
+    config = function()
+      require('modicator').setup({
+        show_warnings = false,
       })
     end,
   },

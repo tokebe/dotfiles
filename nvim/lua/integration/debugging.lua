@@ -1,6 +1,17 @@
 local util = require('util')
 return {
-  { 'mfussenegger/nvim-dap', event = { 'LspAttach' } },
+  {
+    'mfussenegger/nvim-dap',
+    event = { 'LspAttach' },
+    config = function()
+      local dap = require('dap')
+      dap.defaults.fallback.external_terminal = {
+        command = 'tmux',
+        args = { 'split-pane', '-l', '30%' },
+      }
+      -- dap.defaults.fallback.force_external_terminal = true
+    end,
+  },
   {
     'jay-babu/mason-nvim-dap.nvim',
     dependencies = { 'williamboman/mason-lspconfig.nvim', 'mfussenegger/nvim-dap', 'VonHeikemen/lsp-zero.nvim' },
@@ -9,7 +20,7 @@ return {
         automatic_installation = true,
         ensure_installed = require('config.sources').dap,
       })
-      require('dap').adapters['pwa-node'] = {
+      local node_config = {
         type = 'server',
         host = 'localhost',
         port = '${port}',
@@ -22,6 +33,7 @@ return {
           },
         },
       }
+      require('dap').adapters['pwa-node'] = node_config
     end,
   },
   {
@@ -167,6 +179,7 @@ return {
           },
         },
       })
+      require('overseer').patch_dap(true)
       local continue = function(opts)
         if vim.fn.filereadable('.vscode/launch.json') then
           require('dap.ext.vscode').json_decode = require('overseer.json').decode
@@ -177,12 +190,26 @@ return {
         require('dap').continue(opts)
       end
       util.keymap('n', '<Leader>Dd', function()
-        continue({ new = true })
+        if vim.fn.filereadable('.vscode/launch.json') then
+          require('dap.ext.vscode').json_decode = require('overseer.json').decode
+          require('dap.ext.vscode').load_launchjs(nil, {
+            ['pwa-node'] = { 'javascript', 'typescript' },
+          })
+        end
+        require('fzf-lua').dap_configurations({
+          winopts = {
+            height = 0.3,
+            width = 0.4,
+            row = 0.9,
+            col = 0.9,
+            relative = 'editor',
+          },
+        })
       end, { desc = 'Start a debugging session' })
       util.keymap('n', '<Leader>Dc', continue, { desc = 'Continue' })
-      util.keymap('n', '<Leader>Dp', require('dap').pause, { desc = 'Continue' })
+      util.keymap('n', '<Leader>Dp', require('dap').pause, { desc = 'Pause' })
       util.keymap('n', '<Leader>DC', require('dap').run_to_cursor, { desc = 'Continue to cursor' })
-      util.keymap('n', '<Leader>Ds', require('dap').close, { desc = 'Stop' })
+      util.keymap('n', '<Leader>Ds', require('dap').terminate, { desc = 'Stop' })
       util.keymap('n', '<Leader>Dr', require('dap').restart, { desc = 'Restart' })
       util.keymap('n', '<Leader>Dt', require('dapui').toggle, { desc = 'Toggle Debug UI' })
       util.keymap('n', '<Leader>bb', require('dap').toggle_breakpoint, { desc = 'Toggle breakpoint' })
@@ -209,16 +236,6 @@ return {
     end,
   },
   {
-    'Weissle/persistent-breakpoints.nvim',
-    dependencies = { 'mfussenegger/nvim-dap' },
-    event = { 'LspAttach' },
-    config = function()
-      require('persistent-breakpoints').setup({
-        load_breakpoints_event = { 'BufReadPost' },
-      })
-    end,
-  },
-  {
     'theHamsta/nvim-dap-virtual-text',
     dependencies = { 'mfussenegger/nvim-dap', 'nvim-treesitter/nvim-treesitter' },
     event = { 'LspAttach' },
@@ -240,26 +257,4 @@ return {
       require('nvim-dap-repl-highlights').setup()
     end,
   },
-  -- {
-  --   'mxsdev/nvim-dap-vscode-js',
-  --   dependencies = { 'mfussenegger/nvim-dap' },
-  --   event = { 'LspAttach' },
-  --   config = function()
-  --     -- require('dap-vscode-js').setup({
-  --     --   debugger_path = vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter',
-  --     --   adapters = { 'node', 'pwa-node', 'chrome', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
-  --     -- })
-  --     -- for _, language in ipairs({ 'typescript', 'javascript' }) do
-  --     --   require('dap').configurations[language] = {
-  --     --     {
-  --     --       type = 'pwa-node',
-  --     --       request = 'launch',
-  --     --       name = 'Launch file',
-  --     --       program = '${file}',
-  --     --       cwd = '${workspaceFolder}',
-  --     --     },
-  --     --   }
-  --     -- end
-  --   end,
-  -- },
 }

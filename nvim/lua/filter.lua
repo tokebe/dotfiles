@@ -103,7 +103,7 @@ return {
         (vim.g.PersistentFiltersEnabled and 'Enabled' or 'Disabled') .. ' persistent filter',
         vim.log.levels.INFO
       )
-    end)
+    end, { desc = 'Toggle persistent filters' })
   end,
   formatFilter = formatFilter,
 }
