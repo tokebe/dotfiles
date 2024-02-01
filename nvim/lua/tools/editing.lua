@@ -18,6 +18,20 @@ return {
       util.keymap('n', '<Leader>gs', ':TSJToggle<CR>', { desc = 'Split/join block using Treesitter' })
     end,
   },
+  {
+    'chrisgrieser/nvim-various-textobjs',
+    lazy = false,
+    opts = {
+      useDefaultKeymaps = true,
+      disabledKeymaps = {
+        'ag',
+        'ig',
+        'iS',
+        'aS',
+        'gc',
+      },
+    },
+  },
   { -- Intelligent increment/decrement, with cycles for bools/etc.
     'nat-418/boole.nvim',
     config = function()
