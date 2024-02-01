@@ -19,8 +19,19 @@ return {
           end,
         },
       })
-      -- Auto-install parsers when entering filetype for first time
       local ts_parsers = require('nvim-treesitter.parsers')
+      -- Add Hurl support
+      vim.tbl_extend('force', ts_parsers.get_parser_configs().hurl, {
+        install_info = {
+          url = 'https://github.com/kjuulh/tree-sitter-hurl',
+          files = { 'src/parser.c' },
+        },
+        filetype = '*.hurl*',
+      })
+      vim.filetype.add({
+        pattern = { ['.*.hurl.*'] = 'hurl' },
+      })
+      -- Auto-install parsers when entering filetype for first time
       vim.api.nvim_create_autocmd('BufEnter', {
         pattern = { '*' },
         callback = function()
