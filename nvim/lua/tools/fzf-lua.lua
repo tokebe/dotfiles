@@ -179,31 +179,36 @@ return {
       end, { desc = 'Select colorscheme' })
       util.keymap('n', 'ga', function()
         require('fzf-lua').lsp_code_actions({
+          -- previewer = 'codeaction_native',
           winopts = {
             height = 11,
-            width = 0.25,
+            width = 0.75,
             relative = 'cursor',
             row = -13,
             col = 1,
+            preview = {
+              layout = 'flex',
+              -- vertical = 'up',
+            },
           },
           -- Temporary fix, fzf-lua overrides register_ui_select options after code actions call
-          require('fzf-lua').register_ui_select(function(_, items)
-            local min_h, max_h = 0.15, 0.7
-            local h = #items / vim.o.lines
-            if h < min_h then
-              h = min_h
-            elseif h > max_h then
-              h = max_h
-            end
-            return {
-              winopts = {
-                row = 0.6,
-                height = h,
-                width = 0.4,
-                relative = 'editor',
-              },
-            }
-          end),
+          -- require('fzf-lua').register_ui_select(function(_, items)
+          --   local min_h, max_h = 0.15, 0.7
+          --   local h = #items / vim.o.lines
+          --   if h < min_h then
+          --     h = min_h
+          --   elseif h > max_h then
+          --     h = max_h
+          --   end
+          --   return {
+          --     winopts = {
+          --       row = 0.6,
+          --       height = h,
+          --       width = 0.4,
+          --       relative = 'editor',
+          --     },
+          --   }
+          -- end),
         })
       end, { desc = 'view code actions' })
     end,
