@@ -177,3 +177,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# Navi integration
+eval "$(navi widget zsh)"
+
