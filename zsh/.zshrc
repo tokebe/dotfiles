@@ -67,6 +67,7 @@ path=(~/bin $path)
 # Export environment variables.
 export GPG_TTY=$TTY
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # colorful manpages
+export HOMEBREW_NO_AUTO_UPDATE=1 # for those slow-internet days
 
 # Source additional local files if they exist.
 z4h source ~/.env.zsh
