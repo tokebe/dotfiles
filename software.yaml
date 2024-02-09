@@ -70,6 +70,7 @@
 - tap:
     - noahgorstein/tap
 - brew:
+    - eget
     - lsd # https://github.com/lsd-rs/lsd
     - fzf # https://github.com/junegunn/fzf
     - ccat
