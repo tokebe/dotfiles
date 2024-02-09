@@ -100,8 +100,8 @@ z4h bindkey redo Alt+/             # redo the last undone command line change
 
 # z4h bindkey z4h-cd-back    Alt+Left   # cd into the previous directory
 # z4h bindkey z4h-cd-forward Alt+Right  # cd into the next directory
-z4h bindkey z4h-cd-up      Alt+Up     # cd into the parent directory
-z4h bindkey z4h-cd-down    Alt+Down   # cd into a child directory
+# z4h bindkey z4h-cd-up      Alt+Up     # cd into the parent directory
+# z4h bindkey z4h-cd-down    Alt+Down   # cd into a child directory
 
 # Make transient prompt ssh friendly
 z4h bindkey z4h-eof Ctrl+D
