@@ -66,6 +66,7 @@ path=(~/bin $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY
+export MANPAGER="sh -c 'col -bx | bat -l man -p'" # colorful manpages
 
 # Source additional local files if they exist.
 z4h source ~/.env.zsh
@@ -75,7 +76,7 @@ z4h source ~/.env.zsh
 # This is just an example that you should delete. It does nothing useful.
 # z4h source ohmyzsh/ohmyzsh/lib/diagnostics.zsh  # source an individual file
 # z4h load   ohmyzsh/ohmyzsh/plugins/emoji-clock  # load a plugin
-z4h load ohmyzsh/ohmyzsh/plugins/colored-man-pages
+# z4h load ohmyzsh/ohmyzsh/plugins/colored-man-pages
 z4h load se-jaeger/zsh-activate-py-environment
 
 z4h load akash329d/zsh-alias-finder
