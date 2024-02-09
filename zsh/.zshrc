@@ -79,6 +79,8 @@ z4h source ~/.env.zsh
 # z4h load   ohmyzsh/ohmyzsh/plugins/emoji-clock  # load a plugin
 # z4h load ohmyzsh/ohmyzsh/plugins/colored-man-pages
 z4h load se-jaeger/zsh-activate-py-environment
+z4h load ohmyzsh/ohmyzsh/plugins/autojump
+
 
 z4h load akash329d/zsh-alias-finder
 export ZSH_ALIAS_FINDER_PREFIX='󱉵 Has Alias: '
@@ -167,5 +169,3 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# autojump
-[ -f /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh
