@@ -38,4 +38,10 @@
     ~/.config/lf: lf
     # neofetch
     ~/.config/neofetch/config: neofetch/neofetch-themes/normal/config.conf
+    ~/.config/:
+        glob: true
+        path: misc/.?*
+    ~/:
+        glob: true
+        path: misc-home/.?*
 - include: themes.yaml
