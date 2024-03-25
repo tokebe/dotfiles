@@ -27,6 +27,7 @@ return {
     'eslint_d',
     'flake8',
     'shellharden',
+    'shellcheck',
   },
   treesitter = {
     'dap_repl',
