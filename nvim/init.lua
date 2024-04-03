@@ -39,6 +39,8 @@ require('filter').setup({
   default_filters = {
     '**/node_modules/**',
     '**/.git/**',
+    '**/__test__/**',
+    '**/built/**',
   },
 })
 require('lazy-backup')
