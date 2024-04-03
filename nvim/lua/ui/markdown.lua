@@ -1,9 +1,10 @@
 return {
-  'lukas-reineke/headlines.nvim',
+  'MeanderingProgrammer/markdown.nvim',
+  name = 'render-markdown',
   dependencies = {
     'nvim-treesitter/nvim-treesitter',
   },
   config = function()
-    require('headlines').setup({})
+    require('render-markdown').setup({})
   end,
 }
