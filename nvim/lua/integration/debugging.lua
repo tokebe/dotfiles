@@ -38,7 +38,11 @@ return {
   },
   {
     'rcarriga/nvim-dap-ui',
-    dependencies = { 'mfussenegger/nvim-dap', 'nvim-treesitter/nvim-treesitter' },
+    dependencies = {
+      'mfussenegger/nvim-dap',
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-neotest/nvim-nio'
+    },
     config = function()
       local dap, dapui = require('dap'), require('dapui')
       -- Open DAP UI when DAP is initialized
@@ -184,7 +188,6 @@ return {
         },
       })
       overseer.patch_dap(true)
-
 
       local Hydra = require('hydra')
 
