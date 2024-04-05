@@ -14,8 +14,18 @@ return {
           vim.keymap.set('n', '<CR>', function()
             local file = vim.api.nvim_buf_get_name(buff)
             gp.close_all_win({ skip_curr_window = false })
-            vim.cmd('e ' .. file)
+            vim.cmd('e! ' .. file)
+            vim.api.nvim_buf_del_keymap(buff, 'n', '<CR>')
+            vim.api.nvim_buf_del_keymap(buff, 'n', 'q')
           end, { buffer = buff })
+          vim.api.nvim_create_autocmd({ 'WinResized' }, {
+            description = 'Disable special keybinds when preview moved',
+            callback = function(event)
+              vim.api.nvim_buf_del_keymap(buff, 'n', '<CR>')
+              vim.api.nvim_buf_del_keymap(buff, 'n', 'q')
+              return true
+            end,
+          })
         end,
       })
       util.keymap('n', 'gd', gp.goto_preview_definition)
