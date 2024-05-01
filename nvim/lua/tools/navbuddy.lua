@@ -49,7 +49,7 @@ return {
   end,
   keys = {
     {
-      '<Leader>ms',
+      '<Leader>fs',
       ':Navbuddy<CR>',
       desc = 'Manage symbols with Navbuddy',
     },
