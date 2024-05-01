@@ -131,14 +131,15 @@ return {
         })
       end, { desc = 'Switch buffers' })
       util.keymap('n', '<Leader>fh', require('fzf-lua').help_tags, { desc = 'Find help' })
-      util.keymap('n', '<Leader>fs', require('fzf-lua').lsp_document_symbols, { desc = 'Find symbol in buffer' })
       util.keymap(
         'n',
         '<Leader>fS',
         require('fzf-lua').lsp_live_workspace_symbols,
         { desc = 'Find symbol in workspace' }
       )
-      util.keymap('n', '<Leader>fb', require('fzf-lua').lgrep_curbuf, { desc = 'Find text in buffer' })
+      util.keymap('n', '<Leader>fb', function()
+        require('fzf-lua').lgrep_curbuf({ winopts = { preview = { layout = 'vertical', vertical = 'up' } } })
+      end, { desc = 'Find text in buffer' })
       util.keymap('n', '<Leader>fc', require('fzf-lua').registers, { desc = 'Find in clipboard (registers)' })
       util.keymap('n', '<Leader>fi', require('fzf-lua').lsp_implementations, { desc = 'Find implementations' })
       util.keymap('n', '<Leader>fu', function()
