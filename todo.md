@@ -57,7 +57,7 @@ Running TODO list:
   - [x] vscode task support? (See vs-tasks.nvim for this and launch support)
   - [x] javascript/other profiling
   - [ ] fix statuscol -- stopped info not showing in own col
-  - [ ] make debugging run in a hydra for ease-of-use
+  - [x] make debugging run in a hydra for ease-of-use
   - [ ] toggle key for swapping term/repl
   - [ ] maybe launch in tmux pane and then attach to (this would be incredibly complicated)?
   - [x] kill process on debug stop
@@ -74,6 +74,11 @@ Running TODO list:
 - [x] Improved debug experience -- sourcemaps, scopes indentation?
 - [ ] Incorporate nvim-treesitter-textobjects
 - [ ] Automatic .yamllint and other configs to their respective linters/formatters/etc
+- [ ] Fix same-buffer goto definition behavior when hitting enter
+- [ ] restart LSP after language changed
+- [ ] fix closing nested goto previews
+- [ ] show dashboard when all buffers closed
+- [ ] better uses of fzf for find-, select-, and manage- prefixes
 
 And also the random notes for smaller things:
 
