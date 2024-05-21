@@ -41,7 +41,7 @@ return {
     dependencies = {
       'mfussenegger/nvim-dap',
       'nvim-treesitter/nvim-treesitter',
-      'nvim-neotest/nvim-nio'
+      'nvim-neotest/nvim-nio',
     },
     config = function()
       local dap, dapui = require('dap'), require('dapui')
@@ -211,9 +211,11 @@ _f_: Find Breakpoints            _t_: Run Task...                   _u_: Toggle 
           description = 'Debugging Mode',
           hint = {
             type = 'window',
-            border = 'shadow',
             offset = 1,
             position = 'bottom-left',
+            float_opts = {
+              border = 'shadow',
+            },
           },
         },
         heads = {
