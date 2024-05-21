@@ -79,6 +79,7 @@ Running TODO list:
 - [ ] fix closing nested goto previews
 - [ ] show dashboard when all buffers closed
 - [ ] better uses of fzf for find-, select-, and manage- prefixes
+- [ ] better quick fix management
 
 And also the random notes for smaller things:
 
