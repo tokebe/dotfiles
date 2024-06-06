@@ -79,6 +79,7 @@
     - btop
     - nvim
     - pyenv
+    - pyenv-virtualenv
     - openssl # pyenv compatibility with linuxbrew
     - duf
     - pnpm
@@ -138,6 +139,11 @@
       quiet: true
       stdout: true
       stderr: true
+- shell:
+    - command:
+        pyenv virtualenv 3.11 py3nvim && \
+        pyenv activate py3nvim && \
+        python3 -m pip install pynvim neovim
 - flatpak:
     - com.discordapp.Discord
     - com.github.tchx84.Flatseal
