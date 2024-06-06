@@ -46,6 +46,7 @@ vim.keymap.set('n', 'q:', '<nop>')
 
 -- [[ General Behaviors ]]
 set.mouse = 'a'         -- Enable mouse mode
+set.mousemoveevent = true
 set.expandtab = true    -- Insert spaces instead of tab
 set.softtabstop = 2
 set.shiftwidth = 2      -- spaces per tab (when shifting), when using the >> or << commands, shift lines by 4 spaces
