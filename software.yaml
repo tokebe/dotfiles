@@ -5,7 +5,7 @@
       - shell:
           - command: >
               /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            description: Install brew package manager
+            description: Install brew package manager # https://brew.sh/
             quiet: true
             stdout: true
             stderr: true
@@ -27,38 +27,37 @@
     - update
     - upgrade
     - install:
-        - tmux
-        - go
-        - zsh
-        - gstreamer1-plugin-openh264
-        - mozilla-openh264
-        - unzip
-        - ripgrep
-        - bat
-        - git-delta
-        - chafa
-        - [fd, fd-find]
-        - [python3-dev, python3-devel]
-        - [font-noto, google-noto-sans-*]
-        - neofetch
-        - luarocks
-        - cmake
-        - tldr
-        - python3
-        - python3-venv
-        - python3-pip
-        - python-is-python3
-        - fontforge
-        - python3-fontforge
-        - cargo
-        - ttfautohint
-        - { brew: coreutils }
-        - figlet
-        - lolcat
-        - xclip  # ensures nvim clipboard works in wayland
-        - yank
+        # Languages
+        - cargo # Rust package manager | https://www.rust-lang.org/
+        - cmake # Why is this not on be default
+        - go # Go | https://go.dev/
+        - luarocks # Lua package manager | https://luarocks.org/
+        - python3 # Python 3.x | https://www.python.org/
+        - [python3-dev, python3-devel] # Ensure dev support
+        - python3-fontforge # Fontforge support
+        - python-is-python3 # Python -> python3. 2 is old.
+        - python3-pip # Ensure pip3
+        - python3-venv # Virtualenv support
+        # System apps
+        - unzip # .zip support
+        - zsh  # Z Shell | https://www.zsh.org/
+        # System dependencies
+        - chafa # Terminal graphics support | https://github.com/hpjansson/chafa
+        - { brew: coreutils } # Ensure coreutils on MacOS
+        - gstreamer1-plugin-openh264 # Ensure video support on linux
+        - [font-noto, google-noto-sans-*] # Ensure full font support on linux
+        - mozilla-openh264 # Ensure video support in firefox on linux
+        - ttfautohint # More font building support | https://freetype.org/ttfautohint/
+        - xclip # Ensure nvim clipboard works in wayland
+        # Utilities
+        - [fd, fd-find] # Faster/friendlier find | https://github.com/sharkdp/fd
+        - figlet # Big text | http://www.figlet.org/
+        - fontforge # Font builder | https://github.com/fontforge/fontforge
+        - git-delta # Pager/file comparison | https://github.com/dandavison/delta
+        - lolcat # Colorful text | https://github.com/busyloop/lolcat
+        - yank # Terminal output -> Clipboard | https://github.com/mptre/yank
 - if:
-    cond: command -v fdfind
+    cond: command -v fdfind &> /dev/null
     met:
       - if:
           cond: command -v fd &> /dev/null
@@ -67,42 +66,55 @@
                 - command: ln -sf $(which fdfind) ~/.local/bin/fd
                   description: Fix fd access
                   quiet: true
-- tap:
-    - noahgorstein/tap
+- tap: [noahgorstein/tap]
 - brew:
-    - eget
-    - lsd # https://github.com/lsd-rs/lsd
-    - fzf # https://github.com/junegunn/fzf
-    - ccat
-    - jesseduffield/lazygit/lazygit
-    - lazydocker
-    - btop
-    - nvim
-    - pyenv
-    - pyenv-virtualenv
-    - openssl # pyenv compatibility with linuxbrew
-    - duf
-    - pnpm
-    - tcl-tk
-    - onefetch
-    - walk
-    - lf
-    - jless
-    - gh
-    - hyfetch
-    - cpufetch
-    - jqp
-    - nap
-    - tidy-viewer
-    - xh
-    - rm-improved
-    - dua-cli
-    - navi
-    - portal
-    - autojump
+    # Data tools
+    - jless # TUI JSON viewer | https://github.com/PaulJuliusMartinez/jless
+    - jq # CLI JSON transformer | https://github.com/jqlang/jq
+    - jqp # TUI for JQ | https://github.com/noahgorstein/jqp
+    - tidy-viewer # CLI csv pretty printer | https://github.com/alexhallam/tv
+    # Dependencies
+    - openssl # Pyenv compatibility with linuxbrew
+    - tcl-tk # Python tkinter support
+    # Editors
+    - nvim # Modal editor | https://github.com/neovim/neovim
+    # Fetches
+    - cpufetch # CPU information | https://github.com/Dr-Noob/cpufetch
+    - hyfetch # Neofetch with Pride | https://github.com/hykilpikonna/hyfetch
+    - onefetch # Git repo info | https://github.com/o2sh/onefetch
+    # File management
+    - dua-cli # TUI disk usage analyzer | https://github.com/Byron/dua-cli
+    - lf # Lightweight TUI file manager | https://github.com/gokcehan/lf
+    - rm-improved # Safe rm | https://github.com/nivekuil/rip
+    - walk # inline TUI file manager | https://github.com/antonmedv/walk
+    # Git
+    - jesseduffield/lazygit/lazygit # TUI git manager | https://github.com/jesseduffield/lazygit
+    - gh # GitHub CLI | https://cli.github.com/
+    # Package/language management
+    - eget # Github prebuilt binary installer | https://github.com/zyedidia/eget
+    - pnpm # Performant NPM | https://github.com/pnpm/pnpm
+    - pyenv # Python version management | https://github.com/pyenv/pyenv
+    - pyenv-virtualenv # Pyenv venv support | https://github.com/pyenv/pyenv-virtualenv
+    # Utilities
+    # TODO: replace autojump
+    - autojump # Quick cd'ing | https://github.com/wting/autojump
+    - bat # Better cat/less | https://github.com/sharkdp/bat
+    - btop # Better top | https://github.com/aristocratos/btop
+    - ccat # Colorful cat | https://github.com/owenthereal/ccat
+    - cloc # LOC counter | https://github.com/AlDanial/cloc
+    - fzf # TUI Fuzzy finder | https://github.com/junegunn/fzf
+    - lazydocker # TUI Docker management | https://github.com/jesseduffield/lazydocker
+    - lsd # Deluxe ls |  # https://github.com/lsd-rs/lsd
+    - nap # TUI snippet manager | https://github.com/maaslalani/nap
+    - navi # FZF Cheatsheet | https://github.com/denisidoro/navi
+    - portal # Internet file transfer | https://github.com/SpatiumPortae/portal
+    - ripgrep # Recursive grep | https://github.com/BurntSushi/ripgrep
+    - tldr # Manpage; TLDR | https://github.com/tldr-pages/tldr
+    - tmux # Terminal multiplexer | https://github.com/tmux/tmux
+    - xh # Friendlier cURL | https://github.com/ducaale/xh
 - shell:
     - command: ./zsh/setup
-      description: Install ZSH for Humans
+      description: Install ZSH for Humans # A really solid CLI environment/prompt
       quiet: true
       stdout: true
       stderr: true
@@ -110,7 +122,7 @@
     - command: >
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
         | bash
-      description: Install nvm
+      description: Install nvm # Node Version Manager
       quiet: true
     - command: nvm install --lts
       description: Install latest LTS node & npm
@@ -132,24 +144,27 @@
 - pipx:
     file: pipx-packages.txt
 - npm:
-    - neovim 
+    - neovim # neovim support for Node
+- shell:
+    - command:
+        pyenv virtualenv 3.11 py3nvim && \ pyenv activate py3nvim && \ python3
+        -m pip install pynvim neovim
+      description: Setup neovim-specific venv
+      quiet: true
+      stdout: false
+      stderr: true
 - shell:
     - command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
       description: Prepare Neovim
       quiet: true
       stdout: true
       stderr: true
-- shell:
-    - command:
-        pyenv virtualenv 3.11 py3nvim && \
-        pyenv activate py3nvim && \
-        python3 -m pip install pynvim neovim
-- flatpak:
-    - com.discordapp.Discord
-    - com.github.tchx84.Flatseal
-    - com.visualstudio.code
-    - md.obsidian.Obsidian
-    - org.mozilla.firefox
-    - app.drey.Warp
-    - com.github.neithern.g4music
-    - org.kde.krita
+- flatpak: # For linux desktop
+    - com.discordapp.Discord # Discord | https://discord.com/
+    - com.github.tchx84.Flatseal # Flatpak permissions | https://github.com/tchx84/Flatseal
+    - com.visualstudio.code # One day nvim will be good for debugging | https://code.visualstudio.com/
+    - md.obsidian.Obsidian # Notetaking done good | https://obsidian.md/
+    - org.mozilla.firefox # Better than Chrome | https://www.mozilla.org/en-US/firefox/
+    - app.drey.Warp # Like portal, but GUI | https://apps.gnome.org/Warp/
+    - com.github.neithern.g4music # Pretty music GUI | https://gitlab.gnome.org/neithern/g4music
+    - org.kde.krita # Art! | https://krita.org/en/
