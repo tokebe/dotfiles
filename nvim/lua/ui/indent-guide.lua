@@ -29,6 +29,7 @@ return {
     config = function()
       require('hlchunk').setup({
         chunk = {
+          enable = true,
           chars = {
             right_arrow = '─',
           },
@@ -36,7 +37,7 @@ return {
         },
         indent = {
           enable = true,
-          chars = { '│', '┊' }
+          chars = { '│', '┊' },
         },
         line_num = {
           enable = true,
@@ -44,8 +45,9 @@ return {
         blank = {
           enable = false,
           chars = {
-            '░', ' '
-          }
+            '░',
+            ' ',
+          },
         },
       })
     end,
