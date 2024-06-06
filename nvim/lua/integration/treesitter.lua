@@ -8,7 +8,7 @@ return {
         ensure_installed = require('config.sources').treesitter,
         auto_install = true,
         highlight = {
-          enabled = true,
+          enable = true,
           language_tree = true,
           disable = function(lang, bufnr)
             local max_filesize = 1024 * 1024 -- 1MB
@@ -16,6 +16,7 @@ return {
             if ok and stats and stats.size > max_filesize then
               return true
             end
+            return false
           end,
         },
       })
@@ -50,6 +51,9 @@ return {
           end
         end,
       })
+
+      -- Set special pyenv virtualenv
+      vim.g.python3_host_prog = '~/.pyenv/versions/py3nvim/bin/python'
     end,
   },
   {
