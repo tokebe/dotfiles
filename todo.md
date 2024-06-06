@@ -42,7 +42,6 @@ Running TODO list:
 - [ ] Fix rename symbol jumping up in document when writing
 - [ ] Fix ctrl-hjkl when in insert mode
 - [x] Redo tmux setup to be simpler + nvim-compatible
-- [ ] connect to docker container and lazydocker? (see https://github.com/jamestthompson3/nvim-remote-containers)
 - [ ] Jupyter/similar (probably something along the lines of magma, etc.)
 - [x] Add a configurable default-exclude list for searches, editable through some \<Leader\>o command
   - [ ] Now make it a robust plugin for others to use
