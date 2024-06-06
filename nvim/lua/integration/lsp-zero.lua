@@ -19,6 +19,7 @@ return {
     {
       'L3MON4D3/LuaSnip',
       dependencies = { 'hrsh7th/nvim-cmp', 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets' },
+      build = 'make install_jsregexp'
     },
     -- Inlay type hints
     { 'lvimuser/lsp-inlayhints.nvim' },
