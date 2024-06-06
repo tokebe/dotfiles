@@ -1,7 +1,7 @@
 return {
   lsp = { -- Language Server Protocol
     'lua_ls', -- Lua
-    'tsserver', -- Typescript/Javascript
+    -- 'tsserver', -- Typescript/Javascript
     'pyright', -- Python
     'taplo', -- TOML
     'bashls', -- Bash
@@ -38,5 +38,6 @@ return {
     'python',
     'typescript',
     'javascript',
+    'latex',
   },
 }
