@@ -117,6 +117,9 @@ return {
             return vim.bo[buf].buftype == 'nofile'
           end,
         },
+        {
+          ft = 'qf',
+        }
       },
       right = {
         {
@@ -125,8 +128,8 @@ return {
           size = { width = 50 },
         },
         {
-          title = 'Spectre',
-          ft = 'spectre_panel',
+          title = 'Grug',
+          ft = 'grug-far',
           size = { width = 88 },
         },
         {
