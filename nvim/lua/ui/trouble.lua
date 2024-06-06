@@ -21,16 +21,9 @@ return {
     {
       '<Leader>fd',
       function()
-        vim.cmd('Trouble document_diagnostics')
+        vim.cmd('Trouble diagnostics')
       end,
       desc = 'Find diagnostics',
-    },
-    {
-      '<Leader>fD',
-      function()
-        vim.cmd('Trouble workspace_diagnostics')
-      end,
-      desc = 'Find workspace diagnostics',
     },
     {
       '<Leader>fq',
