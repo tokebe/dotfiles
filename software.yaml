@@ -130,6 +130,8 @@
     file: python-packages.txt
 - pipx:
     file: pipx-packages.txt
+- npm:
+    - neovim 
 - shell:
     - command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
       description: Prepare Neovim

@@ -31,3 +31,6 @@
 [submodule "dotbot-plugins/dotbot-gh-extensions"]
 	path = dotbot-plugins/dotbot-gh-extensions
 	url = https://github.com/fundor333/dotbot-gh-extension.git
+[submodule "dotbot-plugins/dotbot-npm"]
+	path = dotbot-plugins/dotbot-npm
+	url = https://github.com/ameliagapin/dotbot-npm.git
