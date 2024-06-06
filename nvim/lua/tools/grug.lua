@@ -4,6 +4,7 @@ return {
     'MagicDuck/grug-far.nvim',
     config = function()
       require('grug-far').setup({
+        startInInsertMode = false,
         keymaps = {
           close = { n = 'q' },
         },
