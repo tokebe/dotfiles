@@ -33,11 +33,12 @@ return {
           chars = {
             right_arrow = '─',
           },
-          use_treesitter = false,
+          use_treesitter = true,
         },
         indent = {
           enable = true,
           chars = { '│', '┊' },
+          use_treesitter = true,
         },
         line_num = {
           enable = true,
