@@ -4,13 +4,8 @@ setup () {
     cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     source ../scripts/yesno
 
-    if ! (test -f "$HOME/.shh/id_ed25519.pub") && yesno 'setup git ssh key?' $?
-    then
-        the_email=""
-        read -p "Github email: " arg1
-        ssh-keygen -t ed25519 -C "$the_email"
-        ssh-add ~/.ssh/id_ed25519
-    fi
+    ssh -T git@github.com
+
     cd "$cwd"
 }
 setup
