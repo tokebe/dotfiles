@@ -13,8 +13,8 @@
       - shell:
           - command: >
               (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"')
-              >> /home/rebel/.bashrc && eval "$(/home/linuxbrew/.linuxbrew/bin/brew
-              shellenv)"
+              >> ~/.bashrc && eval "$(/home/linuxbrew/.linuxbrew/bin/brew
+              shellenv)" && source ~/.bashrc
             description: Add brew to path
             quiet: true
             stdout: true
@@ -40,7 +40,7 @@
         - python3-venv # Virtualenv support
         # System apps
         - unzip # .zip support
-        - zsh  # Z Shell | https://www.zsh.org/
+        - zsh # Z Shell | https://www.zsh.org/
         # System dependencies
         - chafa # Terminal graphics support | https://github.com/hpjansson/chafa
         - { brew: coreutils } # Ensure coreutils on MacOS
@@ -49,6 +49,8 @@
         - mozilla-openh264 # Ensure video support in firefox on linux
         - ttfautohint # More font building support | https://freetype.org/ttfautohint/
         - xclip # Ensure nvim clipboard works in wayland
+        - clutter-gtk # Ensure gnome addon TopHat works
+        - gamemode # Game mode utility
         # Utilities
         - [fd, fd-find] # Faster/friendlier find | https://github.com/sharkdp/fd
         - figlet # Big text | http://www.figlet.org/
@@ -125,10 +127,10 @@
         | bash
       description: Install nvm # Node Version Manager
       quiet: true
-    - command: nvm install --lts
+    - command: source ~/.bashrc && nvm install --lts
       description: Install latest LTS node & npm
     - command: ./git/setup
-      description: Setup git ssh key
+      description: Setup github known host
       quiet: true
       stdout: true
       stderr: true
@@ -144,24 +146,26 @@
     file: python-packages.txt
 - pipx:
     file: pipx-packages.txt
-- npm:
-    - neovim # neovim support for Node
 - shell:
+    - command: npm install neovim -g
+      description: Neovim node support
+      stdout: false
+      stderr: true
     - command:
-        pyenv virtualenv 3.11 py3nvim && \ pyenv activate py3nvim && \ python3
+        pyenv install 3.11 -s && pyenv virtualenv 3.11 py3nvim && \ pyenv activate py3nvim && \ python3
         -m pip install pynvim neovim
       description: Setup neovim-specific venv
       quiet: true
       stdout: false
       stderr: true
-- shell:
     - command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
       description: Prepare Neovim
       quiet: true
-      stdout: true
+      stdout: false
       stderr: true
 - flatpak: # For linux desktop
-    - com.discordapp.Discord # Discord | https://discord.com/
+    # Generic
+    - com.vencord.Vesktop # Modified Discord client | https://github.com/Vencord/Vesktop
     - com.github.tchx84.Flatseal # Flatpak permissions | https://github.com/tchx84/Flatseal
     - com.visualstudio.code # One day nvim will be good for debugging | https://code.visualstudio.com/
     - md.obsidian.Obsidian # Notetaking done good | https://obsidian.md/
@@ -169,3 +173,5 @@
     - app.drey.Warp # Like portal, but GUI | https://apps.gnome.org/Warp/
     - com.github.neithern.g4music # Pretty music GUI | https://gitlab.gnome.org/neithern/g4music
     - org.kde.krita # Art! | https://krita.org/en/
+    # Gnome-specific
+    - com.github.GradenceTeam.Gradience
