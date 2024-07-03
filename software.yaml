@@ -56,6 +56,7 @@
         - git-delta # Pager/file comparison | https://github.com/dandavison/delta
         - lolcat # Colorful text | https://github.com/busyloop/lolcat
         - yank # Terminal output -> Clipboard | https://github.com/mptre/yank
+        - input-remapper # Remap inputs from peripherals | https://github.com/sezanzeb/input-remapper
 - if:
     cond: command -v fdfind &> /dev/null
     met:
