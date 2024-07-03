@@ -2,7 +2,10 @@ local util = require('util')
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    dependencies = {},
+    dependencies = {
+      -- Ensure loading after ts parser added
+      'LiadOz/nvim-dap-repl-highlights'
+    },
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = require('config.sources').treesitter,
