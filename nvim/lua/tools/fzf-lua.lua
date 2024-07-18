@@ -109,7 +109,7 @@ return {
       end)
       util.keymap('n', '<Leader><Tab>', function()
         require('fzf-lua').files({
-          fd_opts = '--no-ignore --hidden --type f' .. require('filter').formatFilter('fd'),
+          cmd = "rg --files --color=never --hidden --glob '" .. require('filter').getFilter() .. "'",
           winopts = {
             preview = {
               layout = 'vertical',
