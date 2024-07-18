@@ -8,6 +8,6 @@ return {
     require('detect-language').setup({
       events = { 'FileReadPost' },
     })
-    util.keymap('n', '<Leader>dl', '<CMD>DetectLanguage<CR>', { desc = 'Detect Langauge' })
+    vim.keymap.set('n', '<Leader>dl', '<CMD>DetectLanguage<CR>', { desc = 'Detect Langauge' })
   end,
 }

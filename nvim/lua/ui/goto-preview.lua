@@ -58,9 +58,9 @@ return {
   --         })
   --       end,
   --     })
-  --     util.keymap('n', 'gd', gp.goto_preview_definition)
-  --     util.keymap('n', 'gT', gp.goto_preview_declaration)
-  --     util.keymap('n', 'gt', gp.goto_preview_type_definition)
+  --     vim.keymap.set('n', 'gd', gp.goto_preview_definition)
+  --     vim.keymap.set('n', 'gT', gp.goto_preview_declaration)
+  --     vim.keymap.set('n', 'gt', gp.goto_preview_type_definition)
   --   end,
   -- },
   {
@@ -68,7 +68,7 @@ return {
     config = function()
       local detour = require('detour')
       local features = require('detour.features')
-      util.keymap('n', 'gd', function()
+      vim.keymap.set('n', 'gd', function()
         local popup_id = detour.DetourCurrentWindow()
         if not popup_id then
           return
@@ -78,7 +78,7 @@ return {
         add_keymap()
       end)
 
-      util.keymap('n', 'gT', function()
+      vim.keymap.set('n', 'gT', function()
         local popup_id = detour.DetourCurrentWindow()
         if not popup_id then
           return
@@ -88,7 +88,7 @@ return {
         add_keymap()
       end)
 
-      util.keymap('n', 'gt', function()
+      vim.keymap.set('n', 'gt', function()
         local popup_id = detour.DetourCurrentWindow()
         if not popup_id then
           return

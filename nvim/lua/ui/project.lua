@@ -23,8 +23,8 @@ return {
   --       },
   --     })
   --
-  --     util.keymap('n', '<Leader>fp', ':Autosession search<CR>', { desc = 'Find Project' })
-  --     util.keymap('n', '<Leader>dp', ':Autosession delete<CR>', { desc = 'Delete Project' })
+  --     vim.keymap.set('n', '<Leader>fp', ':Autosession search<CR>', { desc = 'Find Project' })
+  --     vim.keymap.set('n', '<Leader>dp', ':Autosession delete<CR>', { desc = 'Delete Project' })
   --   end,
   -- },
   -- {
@@ -47,10 +47,10 @@ return {
   --         vim.cmd('ScopeLoadState')
   --       end,
   --     })
-  --     util.keymap('n', '<Leader>pp', function()
+  --     vim.keymap.set('n', '<Leader>pp', function()
   --       require('nvim-possession').list()
   --     end, { desc = 'Find Project' })
-  --     util.keymap('n', '<Leader>pn', function()
+  --     vim.keymap.set('n', '<Leader>pn', function()
   --       require('nvim-possession').new()
   --     end, { desc = 'New Project' })
   --   end,
@@ -97,17 +97,17 @@ return {
           -- overseer.load_task_bundle(util.get_cwd_as_name(), { ignore_missing = true })
         end,
       })
-      util.keymap('n', '<Leader>pp', function()
+      vim.keymap.set('n', '<Leader>pp', function()
         vim.cmd('SessionManager load_session')
       end, { desc = 'Find Project (session)' })
-      util.keymap('n', '<Leader>ps', function()
+      vim.keymap.set('n', '<Leader>ps', function()
         vim.cmd('SessionManager save_current_session')
       end, { desc = 'Save Project (session)' })
-      util.keymap('n', '<Leader>pd', function()
+      vim.keymap.set('n', '<Leader>pd', function()
         vim.cmd('SessionManager delete_session')
       end, { desc = 'Delete Project (session)' })
 
-      util.keymap('n', '<Leader>qs', ':SessionManager save_current_session<CR>', {
+      vim.keymap.set('n', '<Leader>qs', ':SessionManager save_current_session<CR>', {
         desc = 'Save current session',
       })
     end,
@@ -248,7 +248,7 @@ return {
           },
         },
       })
-      util.keymap('n', '<Leader>qd', function()
+      vim.keymap.set('n', '<Leader>qd', function()
         vim.cmd('cd ~')
         vim.cmd('only')
         vim.cmd('BufDelAll')

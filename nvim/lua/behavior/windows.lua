@@ -19,19 +19,19 @@ return {
         },
       })
 
-      util.keymap('n', '<Leader>ww', ':WindowsMaximize<CR>', {
+      vim.keymap.set('n', '<Leader>ww', ':WindowsMaximize<CR>', {
         desc = 'Maximize current window',
       })
-      util.keymap('n', '<Leader>we', ':WindowsEqualize<CR>', {
+      vim.keymap.set('n', '<Leader>we', ':WindowsEqualize<CR>', {
         desc = 'Equalize windows',
       })
-      util.keymap('n', '<Leader>wW', ':WindowsToggleAutowidth<CR>', {
+      vim.keymap.set('n', '<Leader>wW', ':WindowsToggleAutowidth<CR>', {
         desc = 'Toggle window autowidth',
       })
-      util.keymap('n', '<Leader>wh', ':WindowsMaximizeHorizontally<CR>', {
+      vim.keymap.set('n', '<Leader>wh', ':WindowsMaximizeHorizontally<CR>', {
         desc = 'Maximize window horizontally',
       })
-      util.keymap('n', '<Leader>wv', ':WindowsMaximizeVertically<CR>', {
+      vim.keymap.set('n', '<Leader>wv', ':WindowsMaximizeVertically<CR>', {
         desc = 'Maximize window vertically',
       })
     end,

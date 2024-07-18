@@ -46,13 +46,13 @@ return {
 
     lsp.on_attach(function(client, bufnr)
       -- LSP actions
-      -- util.keymap('n', 'gd', ':Trouble lsp_definitions<CR>')
-      util.keymap('n', 'gi', ':Trouble lsp_implementations<CR>')
-      -- util.keymap('n', 'gt', ':Trouble lsp_type_definitions<CR>')
-      util.keymap('n', 'gr', ':Trouble lsp_references<CR>')
-      util.keymap('n', '<F2>', ':IncRename' .. vim.fn.expand('<cword>'))
-      util.keymap('n', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
-      util.keymap('x', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
+      -- vim.keymap.set('n', 'gd', ':Trouble lsp_definitions<CR>')
+      vim.keymap.set('n', 'gi', ':Trouble lsp_implementations<CR>')
+      -- vim.keymap.set('n', 'gt', ':Trouble lsp_type_definitions<CR>')
+      vim.keymap.set('n', 'gr', ':Trouble lsp_references<CR>')
+      vim.keymap.set('n', '<F2>', ':IncRename' .. vim.fn.expand('<cword>'))
+      vim.keymap.set('n', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
+      vim.keymap.set('x', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
 
       -- attach for breadcrumbs (see barbecue)
       if client.server_capabilities['documentSymbolProvider'] then
@@ -86,7 +86,7 @@ return {
     -- Set up diagnostic toggle
     require('toggle_lsp_diagnostics').init()
 
-    util.keymap('n', '<Leader>od', function()
+    vim.keymap.set('n', '<Leader>od', function()
       require('toggle_lsp_diagnostics').toggle_virtual_text()
     end, {
       desc = 'Toggle LSP diagnostic text',

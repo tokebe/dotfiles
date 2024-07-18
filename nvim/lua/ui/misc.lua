@@ -22,6 +22,7 @@ return {
     dependencies = {
       'MunifTanjim/nui.nvim',
     },
+    version = '4.3.1',
     config = function()
       require('noice').setup({
         cmdline = {
@@ -127,11 +128,11 @@ return {
           ft = 'neo-tree',
           size = { width = 50 },
         },
-        {
-          title = 'Grug',
-          ft = 'grug-far',
-          size = { width = 88 },
-        },
+        -- {
+        --   title = 'Grug',
+        --   ft = 'grug-far',
+        --   size = { width = 88 },
+        -- },
         {
           ft = 'OverseerList',
           title = 'Task List',

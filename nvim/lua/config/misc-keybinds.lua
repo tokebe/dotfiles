@@ -1,10 +1,10 @@
 local util = require('util')
 
 -- Format file
-util.keymap('n', '<Leader>gf', function()
+vim.keymap.set('n', '<Leader>gf', function()
   vim.lsp.buf.format({ async = true })
 end, { desc = 'Format file' })
-util.keymap('v', '<Leader>gf', function()
+vim.keymap.set('v', '<Leader>gf', function()
   vim.lsp.buf.format({
     async = true,
     range = {
@@ -15,38 +15,38 @@ util.keymap('v', '<Leader>gf', function()
 end, { desc = 'Format file' })
 
 -- Manage Lazy plugins
-util.keymap('n', '<Leader>op', ':Lazy<CR>', {
+vim.keymap.set('n', '<Leader>op', ':Lazy<CR>', {
   desc = 'Manage plugins with Lazy',
 })
 
 -- Buffer/tab management
-util.keymap('n', '<lt>', ':bprev<CR>', {
+vim.keymap.set('n', '<lt>', ':bprev<CR>', {
   desc = 'Next buffer',
 })
-util.keymap('n', '>', ':bnext<CR>', {
+vim.keymap.set('n', '>', ':bnext<CR>', {
   desc = 'Previous buffer',
 })
-util.keymap('n', '<A-lt>', ':tabprev<CR>', {
+vim.keymap.set('n', '<A-lt>', ':tabprev<CR>', {
   desc = 'Previous Tabpage',
 })
-util.keymap('n', '<A->>', ':tabnext<CR>', {
+vim.keymap.set('n', '<A->>', ':tabnext<CR>', {
   desc = 'Next Tabpage',
 })
-util.keymap('n', '<Leader>wn', ':enew<CR>', {
+vim.keymap.set('n', '<Leader>wn', ':enew<CR>', {
   desc = 'New buffer',
 })
-util.keymap('n', '<Leader>wt', ':tabnew<CR>', {
+vim.keymap.set('n', '<Leader>wt', ':tabnew<CR>', {
   desc = 'New tabpage',
 })
-util.keymap('n', '<Leader>wc', ':tabclose<CR>', {
+vim.keymap.set('n', '<Leader>wc', ':tabclose<CR>', {
   desc = 'Close tabpage',
 })
 
 -- Session
-util.keymap('n', '<Leader>qq', ':qa<CR>', {
+vim.keymap.set('n', '<Leader>qq', ':qa<CR>', {
   desc = 'Close NVIM',
 })
-util.keymap('n', '<Leader>qQ', ':qa!<CR>', {
+vim.keymap.set('n', '<Leader>qQ', ':qa!<CR>', {
   desc = 'Force close NVIM',
 })
 
@@ -66,11 +66,11 @@ vim.keymap.set({ 'n', 'v', 'o' }, 'k', function()
   end
 end, { expr = true, noremap = true })
 
--- util.keymap({ 'n', 'v', 'o' }, 'gm', '%', {
+-- vim.keymap.set({ 'n', 'v', 'o' }, 'gm', '%', {
 --   desc = 'Go to match',
 -- })
 
-util.keymap({ 'n', 'v', 'o' }, 'H', function()
+vim.keymap.set({ 'n', 'v', 'o' }, 'H', function()
   local _, c = unpack(vim.api.nvim_win_get_cursor(0))
   local start, _, _ = vim.api.nvim_get_current_line():find('%S')
   if c + 1 == start then
@@ -81,7 +81,7 @@ util.keymap({ 'n', 'v', 'o' }, 'H', function()
 end, {
   desc = 'Go to first char',
 })
-util.keymap({ 'n', 'v', 'o' }, 'L', function()
+vim.keymap.set({ 'n', 'v', 'o' }, 'L', function()
   local _, c = unpack(vim.api.nvim_win_get_cursor(0))
   local _, final, _ = vim.api.nvim_get_current_line():find('%S')
   if c + 1 == final then
@@ -94,12 +94,12 @@ end, {
 })
 
 -- Make Esc hide search highlight in normal mode
-util.keymap('n', '<Esc>', ':noh<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Esc>', ':noh<CR>', { noremap = true, silent = true })
 
 -- Redo
 vim.keymap.set('n', 'U', '<C-r>')
 
-util.keymap('n', '<Leader>dd', function()
+vim.keymap.set('n', '<Leader>dd', function()
   if vim.opt.diff:get() then
     vim.cmd('windo diffoff')
   else

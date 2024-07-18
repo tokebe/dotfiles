@@ -15,7 +15,7 @@ return {
       require('treesj').setup({
         use_default_keymaps = false,
       })
-      util.keymap('n', '<Leader>gs', ':TSJToggle<CR>', { desc = 'Split/join block using Treesitter' })
+      vim.keymap.set('n', '<Leader>gs', ':TSJToggle<CR>', { desc = 'Split/join block using Treesitter' })
     end,
   },
   {
@@ -57,18 +57,18 @@ return {
     'roobert/search-replace.nvim',
     config = function()
       require('search-replace').setup({})
-      util.keymap('n', '<Leader>rr', '<CMD>SearchReplaceSingleBufferCWord<CR>', {
+      vim.keymap.set('n', '<Leader>rr', '<CMD>SearchReplaceSingleBufferCWord<CR>', {
         desc = 'Search and replace selected',
       })
-      util.keymap('v', '<Leader>rr', '"sy:%s/<C-r>s//gc<left><left><left>', {
+      vim.keymap.set('v', '<Leader>rr', '"sy:%s/<C-r>s//gc<left><left><left>', {
         desc = 'Search and replace selected',
       })
-      util.keymap('n', '<Leader>rs', function()
+      vim.keymap.set('n', '<Leader>rs', function()
         vim.cmd('SearchReplaceSingleBufferOpen')
       end, {
         desc = 'Search and replace...',
       })
-      util.keymap('v', '<Leader>rs', '<CMD>SearchReplaceWithinVisualSelection<CR>', {
+      vim.keymap.set('v', '<Leader>rs', '<CMD>SearchReplaceWithinVisualSelection<CR>', {
         desc = 'Search and replace within selection',
       })
     end,

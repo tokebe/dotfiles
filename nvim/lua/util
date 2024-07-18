@@ -1,0 +1,16 @@
+local M = {}
+
+M.get_cwd_as_name = function()
+  local dir = vim.fn.getcwd(0)
+  return dir:gsub('[^A-Za-z0-9]', '_')
+end
+
+M.copy_table = function(table)
+  local table_copy = {}
+  for k, v in pairs(table) do
+    table_copy[k] = v
+  end
+  return table_copy
+end
+
+return M

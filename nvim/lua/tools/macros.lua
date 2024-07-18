@@ -20,7 +20,7 @@
 --           cycle_prev = '<Leader>mk',
 --         },
 --       })
---       util.keymap('n', '<Leader>md', '<CMD>ToggleDelay<CR>', { desc = 'Toggle macro delay' })
+--       vim.keymap.set('n', '<Leader>md', '<CMD>ToggleDelay<CR>', { desc = 'Toggle macro delay' })
 --     end,
 --   },
 -- }

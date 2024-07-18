@@ -73,7 +73,7 @@ return {
         },
         title = false,
       })
-      require('util').keymap({ 'n' }, 'K', require('hover').hover, { remap = true, desc = 'Show combined hover info' })
+      vim.keymap.set({ 'n' }, 'K', require('hover').hover, { remap = true, desc = 'Show combined hover info' })
     end,
   },
 }

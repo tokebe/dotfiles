@@ -268,23 +268,23 @@ _f_: Find Breakpoints            _t_: Run Task...                   _u_: Toggle 
         },
       })
 
-      util.keymap('n', '<Leader>tr', '<CMD>OverseerRun<CR>', { desc = 'Run task...', private = true })
-      util.keymap('n', '<Leader>tv', '<CMD>OverseerToggle<CR>', { desc = 'Toggle task view', private = true })
-      util.keymap('n', '<Leader>bb', dap.toggle_breakpoint, { desc = 'Toggle breakpoint', private = true })
-      util.keymap('n', '<Leader>bc', function()
+      vim.keymap.set('n', '<Leader>tr', '<CMD>OverseerRun<CR>', { desc = 'Run task...' })
+      vim.keymap.set('n', '<Leader>tv', '<CMD>OverseerToggle<CR>', { desc = 'Toggle task view' })
+      vim.keymap.set('n', '<Leader>bb', dap.toggle_breakpoint, { desc = 'Toggle breakpoint' })
+      vim.keymap.set('n', '<Leader>bc', function()
         vim.ui.input({ prompt = 'Breakpoint condition: ' }, function(input)
           if input ~= nil then
             dap.set_breakpoint(input)
           end
         end)
       end, { desc = 'Set conditional breakpoint' })
-      util.keymap('n', '<Leader>bl', function()
+      vim.keymap.set('n', '<Leader>bl', function()
         vim.ui.input({ prompt = 'Logpoint message: ' }, function(input)
           if input ~= nil then
             dap.set_breakpoint({ nil, nil, input })
           end
         end)
-      end, { desc = 'Set Logpoint', private = true })
+      end, { desc = 'Set Logpoint' })
       -- local continue = function(opts)
       --   if vim.fn.filereadable('.vscode/launch.json') then
       --     require('dap.ext.vscode').json_decode = require('overseer.json').decode
@@ -294,7 +294,7 @@ _f_: Find Breakpoints            _t_: Run Task...                   _u_: Toggle 
       --   end
       --   require('dap').continue(opts)
       -- end
-      -- util.keymap('n', '<Leader>Dd', function()
+      -- vim.keymap.set('n', '<Leader>Dd', function()
       --   if vim.fn.filereadable('.vscode/launch.json') then
       --     require('dap.ext.vscode').json_decode = require('overseer.json').decode
       --     require('dap.ext.vscode').load_launchjs(nil, {
@@ -311,33 +311,33 @@ _f_: Find Breakpoints            _t_: Run Task...                   _u_: Toggle 
       --     },
       --   })
       -- end, { desc = 'Start a debugging session' })
-      -- util.keymap('n', '<Leader>Dc', continue, { desc = 'Continue' })
-      -- util.keymap('n', '<Leader>Dp', require('dap').pause, { desc = 'Pause' })
-      -- util.keymap('n', '<Leader>DC', require('dap').run_to_cursor, { desc = 'Continue to cursor' })
-      -- util.keymap('n', '<Leader>Ds', require('dap').terminate, { desc = 'Stop' })
-      -- util.keymap('n', '<Leader>Dr', require('dap').restart, { desc = 'Restart' })
-      -- util.keymap('n', '<Leader>Dt', require('dapui').toggle, { desc = 'Toggle Debug UI' })
-      -- util.keymap('n', '<Leader>bb', require('dap').toggle_breakpoint, { desc = 'Toggle breakpoint' })
-      -- util.keymap('n', '<Leader>bc', function()
+      -- vim.keymap.set('n', '<Leader>Dc', continue, { desc = 'Continue' })
+      -- vim.keymap.set('n', '<Leader>Dp', require('dap').pause, { desc = 'Pause' })
+      -- vim.keymap.set('n', '<Leader>DC', require('dap').run_to_cursor, { desc = 'Continue to cursor' })
+      -- vim.keymap.set('n', '<Leader>Ds', require('dap').terminate, { desc = 'Stop' })
+      -- vim.keymap.set('n', '<Leader>Dr', require('dap').restart, { desc = 'Restart' })
+      -- vim.keymap.set('n', '<Leader>Dt', require('dapui').toggle, { desc = 'Toggle Debug UI' })
+      -- vim.keymap.set('n', '<Leader>bb', require('dap').toggle_breakpoint, { desc = 'Toggle breakpoint' })
+      -- vim.keymap.set('n', '<Leader>bc', function()
       --   vim.ui.input({ prompt = 'Breakpoint condition: ' }, function(input)
       --     if input ~= nil then
       --       require('dap').set_breakpoint(input)
       --     end
       --   end)
       -- end, { desc = 'Set conditional breakpoint' })
-      -- util.keymap('n', '<Leader>bl', function()
+      -- vim.keymap.set('n', '<Leader>bl', function()
       --   vim.ui.input({ prompt = 'Logpoint message: ' }, function(input)
       --     if input ~= nil then
       --       require('dap').set_breakpoint({ nil, nil, input })
       --     end
       --   end)
       -- end, { desc = 'Set Logpoint' })
-      -- util.keymap('n', '<Leader>B', require('dap').list_breakpoints, { desc = 'List breakpoints' })
-      -- util.keymap('n', '<Leader>Dv', require('dap').step_over, { desc = 'Step over' })
-      -- util.keymap('n', '<Leader>Di', require('dap').step_into, { desc = 'Step into' })
-      -- util.keymap('n', '<Leader>Do', require('dap').step_out, { desc = 'Step out' })
-      -- util.keymap('n', '<Leader>tr', '<CMD>OverseerRun<CR>', { desc = 'Run task...' })
-      -- util.keymap('n', '<Leader>tv', '<CMD>OverseerToggle<CR>', { desc = 'Toggle task view' })
+      -- vim.keymap.set('n', '<Leader>B', require('dap').list_breakpoints, { desc = 'List breakpoints' })
+      -- vim.keymap.set('n', '<Leader>Dv', require('dap').step_over, { desc = 'Step over' })
+      -- vim.keymap.set('n', '<Leader>Di', require('dap').step_into, { desc = 'Step into' })
+      -- vim.keymap.set('n', '<Leader>Do', require('dap').step_out, { desc = 'Step out' })
+      -- vim.keymap.set('n', '<Leader>tr', '<CMD>OverseerRun<CR>', { desc = 'Run task...' })
+      -- vim.keymap.set('n', '<Leader>tv', '<CMD>OverseerToggle<CR>', { desc = 'Toggle task view' })
     end,
   },
   {
