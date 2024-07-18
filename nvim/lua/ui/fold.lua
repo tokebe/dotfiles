@@ -34,10 +34,10 @@ return {
         end,
       })
 
-      util.keymap('n', 'zR', require('ufo').openAllFolds, {
+      vim.keymap.set('n', 'zR', require('ufo').openAllFolds, {
         desc = 'Open all folds',
       })
-      util.keymap('n', 'zM', require('ufo').closeAllFolds, {
+      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, {
         desc = 'Close all folds',
       })
     end,

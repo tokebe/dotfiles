@@ -107,7 +107,7 @@ return {
           },
         }
       end)
-      util.keymap('n', '<Leader><Tab>', function()
+      vim.keymap.set('n', '<Leader><Tab>', function()
         require('fzf-lua').files({
           cmd = "rg --files --color=never --hidden --glob '" .. require('filter').getFilter() .. "'",
           winopts = {
@@ -118,7 +118,7 @@ return {
           },
         })
       end, { desc = 'Find file' })
-      util.keymap('n', '<Tab>', function()
+      vim.keymap.set('n', '<Tab>', function()
         require('fzf-lua').buffers({
           winopts = {
             width = 0.5,
@@ -130,23 +130,23 @@ return {
           },
         })
       end, { desc = 'Switch buffers' })
-      util.keymap('n', '<Leader>fh', require('fzf-lua').help_tags, { desc = 'Find help' })
-      util.keymap(
+      vim.keymap.set('n', '<Leader>fh', require('fzf-lua').help_tags, { desc = 'Find help' })
+      vim.keymap.set(
         'n',
         '<Leader>fS',
         require('fzf-lua').lsp_live_workspace_symbols,
         { desc = 'Find symbol in workspace' }
       )
-      util.keymap('n', '<Leader>fb', function()
+      vim.keymap.set('n', '<Leader>fb', function()
         require('fzf-lua').lgrep_curbuf({ winopts = { preview = { layout = 'vertical', vertical = 'up' } } })
       end, { desc = 'Find text in buffer' })
-      util.keymap('n', '<Leader>fc', require('fzf-lua').registers, { desc = 'Find in clipboard (registers)' })
-      util.keymap('n', '<Leader>fi', require('fzf-lua').lsp_implementations, { desc = 'Find implementations' })
-      util.keymap('n', '<Leader>fu', function()
+      vim.keymap.set('n', '<Leader>fc', require('fzf-lua').registers, { desc = 'Find in clipboard (registers)' })
+      vim.keymap.set('n', '<Leader>fi', require('fzf-lua').lsp_implementations, { desc = 'Find implementations' })
+      vim.keymap.set('n', '<Leader>fu', function()
         require('fzf-lua').changes()
       end, { desc = 'Find in undo history' })
       -- Select keymaps
-      util.keymap('n', '<Leader>ss', function()
+      vim.keymap.set('n', '<Leader>ss', function()
         require('fzf-lua').spell_suggest({
           winopts = {
             height = 11,
@@ -157,7 +157,7 @@ return {
           },
         })
       end, { desc = 'Select spelling' })
-      util.keymap('n', '<Leader>sl', function()
+      vim.keymap.set('n', '<Leader>sl', function()
         require('fzf-lua').filetypes({
           winopts = {
             height = 0.4,
@@ -165,10 +165,10 @@ return {
           },
         })
       end, { desc = 'Select language' })
-      util.keymap('n', '<Leader>sb', function()
+      vim.keymap.set('n', '<Leader>sb', function()
         require('fzf-lua').git_branches()
       end, { desc = 'Select branch' })
-      util.keymap('n', '<Leader>sc', function()
+      vim.keymap.set('n', '<Leader>sc', function()
         require('fzf-lua').colorschemes({
           winopts = {
             width = 0.3,
@@ -178,7 +178,7 @@ return {
           },
         })
       end, { desc = 'Select colorscheme' })
-      util.keymap('n', 'ga', function()
+      vim.keymap.set('n', 'ga', function()
         require('fzf-lua').lsp_code_actions({
           -- previewer = 'codeaction_native',
           winopts = {

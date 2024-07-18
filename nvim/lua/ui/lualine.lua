@@ -91,7 +91,7 @@ return {
 
       require('scope').setup({})
 
-      util.keymap('n', '<Leader>wr', ':LualineTabRename ', {
+      vim.keymap.set('n', '<Leader>wr', ':LualineTabRename ', {
         desc = 'Rename current tabpage',
       })
     end,

@@ -8,8 +8,11 @@ return {
         keymaps = {
           close = { n = 'q' },
         },
+        prefills = {
+          flags = '--ignore-case --no-ignore'
+        }
       })
-      util.keymap('n', '<Leader>ff', function()
+      vim.keymap.set('n', '<Leader>ff', function()
         require('grug-far').grug_far({
           prefills = {
             filesFilter = require('filter').getFilter(),
@@ -17,7 +20,7 @@ return {
         })
       end, { desc = 'Search within files' })
 
-      util.keymap('n', '<Leader>fF', function()
+      vim.keymap.set('n', '<Leader>fF', function()
         require('grug-far').grug_far({
           prefills = {
             filesFilter = vim.fn.expand('%'),

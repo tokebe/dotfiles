@@ -36,24 +36,23 @@ return {
         pattern = { ['.*.hurl.*'] = 'hurl' },
       })
       -- Auto-install parsers when entering filetype for first time
-      vim.api.nvim_create_autocmd('BufEnter', {
-        pattern = { '*' },
-        callback = function()
-          local ts_parsers = require('nvim-treesitter.parsers')
-          local ft = vim.bo.filetype
-          if not ft or require('config.filetype_excludes')[ft] ~= nil then
-            return
-          end
-          local parser = ts_parsers.filetype_to_parsername[ft]
-          if not parser then
-            return
-          end
-          local is_installed = ts_parsers.has_parser(ts_parsers.ft_to_lang(ft))
-          if not is_installed then
-            vim.cmd('TSInstall ' .. parser)
-          end
-        end,
-      })
+      -- vim.api.nvim_create_autocmd('BufEnter', {
+      --   pattern = { '*' },
+      --   callback = function()
+      --     local ft = vim.bo.filetype
+      --     if not ft or require('config.filetype_excludes')[ft] ~= nil then
+      --       return
+      --     end
+      --     local parser = ts_parsers.filetype_to_parsername[ft]
+      --     if not parser then
+      --       return
+      --     end
+      --     local is_installed = ts_parsers.has_parser(ts_parsers.ft_to_lang(ft))
+      --     if not is_installed then
+      --       vim.cmd('TSInstall ' .. parser)
+      --     end
+      --   end,
+      -- })
 
       -- Set special pyenv virtualenv
       vim.g.python3_host_prog = '~/.pyenv/versions/py3nvim/bin/python'

@@ -8,7 +8,7 @@ return {
     config = function()
       require('mason').setup()
 
-      util.keymap('n', '<Leader>om', ':Mason<CR>', {
+      vim.keymap.set('n', '<Leader>om', ':Mason<CR>', {
         desc = 'Manage LSPs with Mason',
       })
     end,

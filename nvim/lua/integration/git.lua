@@ -42,8 +42,8 @@ return {
           },
         },
       })
-      util.keymap('n', '<Leader>gd', ':DiffviewOpen<CR>', { desc = 'Open git diff view' })
-      util.keymap('n', '<Leader>gh', ':DiffviewFileHistory<CR>', { desc = 'Open file history' })
+      vim.keymap.set('n', '<Leader>gd', ':DiffviewOpen<CR>', { desc = 'Open git diff view' })
+      vim.keymap.set('n', '<Leader>gh', ':DiffviewFileHistory<CR>', { desc = 'Open file history' })
     end,
   },
   -- UI
@@ -83,22 +83,22 @@ return {
           end, { expr = true })
 
           -- Actions
-          util.keymap('n', '<leader>hs', gs.stage_hunk, { desc = 'Stage hunk' })
-          util.keymap('n', '<leader>hr', gs.reset_hunk, { desc = 'Reset hunk' })
-          util.keymap('v', '<leader>hs', function()
+          vim.keymap.set('n', '<leader>hs', gs.stage_hunk, { desc = 'Stage hunk' })
+          vim.keymap.set('n', '<leader>hr', gs.reset_hunk, { desc = 'Reset hunk' })
+          vim.keymap.set('v', '<leader>hs', function()
             gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
           end, { desc = 'Stage selection' })
-          util.keymap('v', '<leader>hr', function()
+          vim.keymap.set('v', '<leader>hr', function()
             gs.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
           end, { desc = 'Reset selection' })
-          util.keymap('n', '<leader>hS', gs.stage_buffer, { desc = 'Stage buffer' })
-          util.keymap('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'Unstage hunk' })
-          util.keymap('n', '<leader>hR', gs.reset_buffer, { desc = 'Reset buffer' })
-          util.keymap('n', '<leader>hp', gs.preview_hunk_inline, { desc = 'Preview hunk' })
-          util.keymap('n', '<leader>hd', gs.toggle_deleted, { desc = 'Toggle show deleted' })
+          vim.keymap.set('n', '<leader>hS', gs.stage_buffer, { desc = 'Stage buffer' })
+          vim.keymap.set('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'Unstage hunk' })
+          vim.keymap.set('n', '<leader>hR', gs.reset_buffer, { desc = 'Reset buffer' })
+          vim.keymap.set('n', '<leader>hp', gs.preview_hunk_inline, { desc = 'Preview hunk' })
+          vim.keymap.set('n', '<leader>hd', gs.toggle_deleted, { desc = 'Toggle show deleted' })
 
           -- Text object
-          util.keymap({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+          vim.keymap.set({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
         end,
       })
     end,
@@ -116,9 +116,9 @@ return {
         delay = 1000,
       })
 
-      util.keymap('n', 'gb', ':GitBlameToggle<CR>', { desc = 'Toggle blame' })
-      util.keymap('n', '<Leader>gc', ':GitBlameOpenCommitURL<CR>', { desc = 'Open commit on GitHub' })
-      util.keymap('n', '<Leader>gC', ':GitBlameCopySHA<CR>', { desc = 'Copy commit SHA' })
+      vim.keymap.set('n', 'gb', ':GitBlameToggle<CR>', { desc = 'Toggle blame' })
+      vim.keymap.set('n', '<Leader>gc', ':GitBlameOpenCommitURL<CR>', { desc = 'Open commit on GitHub' })
+      vim.keymap.set('n', '<Leader>gC', ':GitBlameCopySHA<CR>', { desc = 'Copy commit SHA' })
     end,
   },
 }

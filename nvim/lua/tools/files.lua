@@ -103,7 +103,7 @@ return {
         },
       })
 
-      util.keymap('n', '<Leader>mf', function()
+      vim.keymap.set('n', '<Leader>mf', function()
         local path = vim.api.nvim_buf_get_name(0)
         if path == nil then
           path = vim.fn.getcwd()

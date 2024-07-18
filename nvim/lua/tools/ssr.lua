@@ -5,7 +5,7 @@ return {
     require('ssr').setup({
       border = 'none',
     })
-    util.keymap({ 'n', 'v' }, '<Leader>gR', function()
+    vim.keymap.set({ 'n', 'v' }, '<Leader>gR', function()
       require('ssr').open()
     end, { desc = 'Structural replace' })
   end,
