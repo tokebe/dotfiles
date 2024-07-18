@@ -12,10 +12,7 @@ return {
       util.keymap('n', '<Leader>ff', function()
         require('grug-far').grug_far({
           prefills = {
-            filesFilter = string.format(
-              '!{%s}',
-              table.concat(vim.split(require('filter').formatFilter(), '\n', { plain = true }), ',')
-            ),
+            filesFilter = require('filter').getFilter(),
           },
         })
       end, { desc = 'Search within files' })
