@@ -4,6 +4,7 @@ return {
   config = function()
     require('trouble').setup({
       mode = 'document_diagnostics',
+      focus = true,
     })
   end,
   event = 'LspAttach',
@@ -12,11 +13,6 @@ return {
       '<Leader>ta',
       ':TroubleToggle<CR>',
       desc = 'Toggle Trouble view',
-    },
-    {
-      '<S-Tab>',
-      ':tabnext<CR>',
-      desc = 'Switch tabs',
     },
     {
       '<Leader>fd',
