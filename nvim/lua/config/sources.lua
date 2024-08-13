@@ -17,7 +17,7 @@ return {
   formatter = {
     -- formatters
     'sytlua',
-    'prettier',
+    'prettierd',
     'black',
     'beautysh',
     -- 'yamlfix',
