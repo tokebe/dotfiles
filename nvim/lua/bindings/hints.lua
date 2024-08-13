@@ -13,6 +13,7 @@ return {
         },
       })
       which_key.add({
+        { '<Leader>_', group = 'Hydras' },
         { '<Leader>f', group = 'Find...' },
         { '<Leader>s', group = 'Select...' },
         { '<Leader>g', group = 'Global...' },
