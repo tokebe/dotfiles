@@ -109,7 +109,7 @@ return {
       end)
       vim.keymap.set('n', '<Leader><Tab>', function()
         require('fzf-lua').files({
-          cmd = "rg --files --color=never --hidden --glob '" .. require('filter').getFilter() .. "'",
+          cmd = "rg --files --color=never --no-ignore --hidden --glob '" .. require('filter').getFilter() .. "'",
           winopts = {
             preview = {
               layout = 'vertical',
@@ -140,7 +140,7 @@ return {
       vim.keymap.set('n', '<Leader>fb', function()
         require('fzf-lua').lgrep_curbuf({ winopts = { preview = { layout = 'vertical', vertical = 'up' } } })
       end, { desc = 'Find text in buffer' })
-      vim.keymap.set('n', '<Leader>fc', require('fzf-lua').registers, { desc = 'Find in clipboard (registers)' })
+      vim.keymap.set('n', '<Leader>sr', require('fzf-lua').registers, { desc = 'Select from registers' })
       vim.keymap.set('n', '<Leader>fi', require('fzf-lua').lsp_implementations, { desc = 'Find implementations' })
       vim.keymap.set('n', '<Leader>fu', function()
         require('fzf-lua').changes()
