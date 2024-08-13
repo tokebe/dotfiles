@@ -32,6 +32,7 @@ vim.keymap.set('n', '<A-lt>', ':tabprev<CR>', {
 vim.keymap.set('n', '<A->>', ':tabnext<CR>', {
   desc = 'Next Tabpage',
 })
+vim.keymap.set('n', '<S-Tab>', ':tabnext<CR>', { desc = 'Cycle Tabpages' })
 vim.keymap.set('n', '<Leader>wn', ':enew<CR>', {
   desc = 'New buffer',
 })
