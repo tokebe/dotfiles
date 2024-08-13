@@ -36,7 +36,7 @@ require('base_config')
 
 -- [[ Set up plugins ]]
 require('filter').setup({
-  default_filter = "!{**/node_modules/**,**/.git/**,**/__test__/**,**/built/**}",
+  default_filter = "!{**/.venv/**,**/node_modules/**,**/.git/**,**/__test__/**,**/built/**}",
 })
 require('lazy-backup')
 require('plugins')
