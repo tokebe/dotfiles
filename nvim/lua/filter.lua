@@ -72,7 +72,7 @@ end
 -- end
 
 local function getFilter()
-  return vim.g.PersistentFilter
+  return vim.g.PersistentFilter or vim.g.PersistentFilterDefault
 end
 
 return {
