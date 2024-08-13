@@ -44,7 +44,7 @@ return {
       })
       local colorscheme = require('last-color').recall() or default_theme
       vim.cmd('colorscheme ' .. colorscheme)
-      require('transparent').setup()
+      require('transparent').setup({})
 
       vim.keymap.set('n', '<Leader>ot', ':TransparentToggle<CR>', {
         desc = 'Toggle transparent background',
