@@ -15,8 +15,8 @@ return {
 
     cmp.setup(lsp.defaults.cmp_config({
       window = {
-        completion = { border = 'shadow' },
-        documentation = { border = 'shadow' },
+        completion = { border = 'solid' },
+        documentation = { border = 'solid' },
       },
       enabled = function()
         return vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt' or require('cmp_dap').is_dap_buffer()
