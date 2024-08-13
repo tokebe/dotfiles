@@ -2,7 +2,8 @@ local util = require('util')
 return {
   { -- quick selection by syntax node
     'sustech-data/wildfire.nvim',
-    event = 'VeryLazy',
+    lazy = false,
+    -- event = 'VeryLazy',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('wildfire').setup()
