@@ -11,12 +11,6 @@ return {
     config = function()
       vim.g.neo_tree_remove_legacy_commands = 1
 
-      -- Diagnostic signs
-      vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
-      vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
-      vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
-      vim.fn.sign_define('DiagnosticSignHint', { text = '󱉵 ', texthl = 'DiagnosticSignHint' })
-
       require('neo-tree').setup({
         open_files_do_not_replace_types = { 'terminal', 'Trouble', 'toggleterm', 'qf', 'edgy' },
         add_blank_line_at_top = true,

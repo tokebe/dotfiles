@@ -24,16 +24,39 @@ return {
             ft_ignore = require('config.filetype_excludes'),
             segments = {
               {
-                sign = { name = { 'Diagnostic', 'todo.*' }, maxwidth = 2, colwidth = 2, auto = false },
+                sign = {
+                  name = { 'todo' },
+                  namespace = { 'diagnostic/signs' },
+                  maxwidth = 2,
+                  colwidth = 2,
+                  auto = false,
+                },
                 click = 'v:lua.ScSa',
               },
               {
-                sign = { name = { 'Breakpoint' }, maxwidth = 2, colwidth = 2, auto = true },
+                sign = { name = { 'Marks' } },
+                maxwidth = 2,
+                colwidth = 2,
+                auto = true,
+              },
+              {
+                sign = { name = { '.*' }, namespace = { '.*' }, text = { '.*' } },
+                maxwidth = 1,
+                colwidth = 1,
+                auto = true,
+              },
+              {
+                sign = { name = { 'Breakpoint', 'Dap' }, maxwidth = 2, colwidth = 2, auto = true },
                 click = 'v:lua.ScSa',
               },
               { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
               {
-                sign = { name = { '.*' }, maxwidth = 1, colwidth = 1, auto = false },
+                sign = {
+                  namespace = { 'gitsigns' },
+                  maxwidth = 1,
+                  colwidth = 1,
+                  auto = false,
+                },
                 click = 'v:lua.ScSa',
               },
               { text = { builtin.foldfunc, ' ' }, click = 'v:lua.ScFa' },
