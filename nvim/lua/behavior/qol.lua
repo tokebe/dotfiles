@@ -3,19 +3,19 @@ return {
   { -- Intelligent paste indenting. Not treesitter-intelligent; doesn't work on .py etc.
     'ku1ik/vim-pasta',
   },
-  {               -- d deletes instead of cuts, D now cuts
-    'gbprod/cutlass.nvim',
-    lazy = false, -- Doesn't seem to bind keys without this
+  {
+    'tenxsoydev/karen-yank.nvim',
     config = function()
-      require('cutlass').setup({
-        cut_key = 'D',
-        exclude = { 'ns', 'nS' }, -- Avoid conflict with lightspeed.nvim
-        registers = {
-          select = 's',
-          delete = 'd',
-          change = 'c',
-        },
+      require('karen-yank').setup()
+    end,
+  },
+  {
+    'ptdewey/yankbank-nvim',
+    config = function()
+      require('yankbank').setup({
+        max_entries = 10,
       })
+      vim.keymap.set('n', '<Leader>sy', '<CMD>YankBank<CR>', { noremap = true, desc = 'Select & paste from clipboard' })
     end,
   },
   { -- Delete buffers but preserve window layout
@@ -31,16 +31,16 @@ return {
         desc = 'Close buffer (force)',
       })
       vim.keymap.set('n', '<Leader>wa', ':BufDelAll<CR>', {
-        desc = "Close all buffers"
+        desc = 'Close all buffers',
       })
       vim.keymap.set('n', '<Leader>wA', ':BufDelAll!<CR>', {
-        desc = "Close all buffers (force)"
+        desc = 'Close all buffers (force)',
       })
       vim.keymap.set('n', '<Leader>wo', ':BufDelOthers<CR>', {
-        desc = "Close all other buffers"
+        desc = 'Close all other buffers',
       })
       vim.keymap.set('n', '<Leader>wO', ':BufDelOthers!<CR>', {
-        desc = "Close all other buffers (force)"
+        desc = 'Close all other buffers (force)',
       })
     end,
   },
@@ -154,8 +154,4 @@ return {
       })
     end,
   },
-  -- { -- Substitution is broken
-  --   'ZSaberLv0/eregex.vim',
-  --   lazy = false,
-  -- },
 }
