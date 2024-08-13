@@ -2,6 +2,7 @@ local util = require('util')
 return {
   {
     'mfussenegger/nvim-dap',
+    dependencies = { 'folke/which-key.nvim' },
     event = { 'LspAttach' },
     config = function()
       local dap = require('dap')
@@ -193,80 +194,103 @@ return {
 
       -- TODO: re-implement using nvim-libmodal?
 
-      Hydra({
-        name = 'Debugging',
-        hint = [[
-_d_: Start a Debugging Session   _c_: Continue                      _C_: Continue to Cursor
-_p_: Pause                       _s_: Stop                          _r_: Restart
-_H_: Step Out                    _J_: Step Over                     _L_: Step Into
-_f_: Find Breakpoints            _t_: Run Task...                   _u_: Toggle UI
-                               ^^_q_: Exit Debug Mode
-        ]],
-        mode = { 'n' },
-        body = '<Leader>D',
-        config = {
-          color = 'pink',
-          buffer = false,
-          invoke_on_body = true,
-          description = 'Debugging Mode',
-          hint = {
-            type = 'window',
-            offset = 1,
-            position = 'bottom-left',
-            float_opts = {
-              border = 'shadow',
-            },
+      -- Hydra({
+      --   name = 'Debugging',
+      --   hint = [[
+      -- _d_: Start a Debugging Session   _c_: Continue                      _C_: Continue to Cursor
+      -- _p_: Pause                       _s_: Stop                          _r_: Restart
+      -- _H_: Step Out                    _J_: Step Over                     _L_: Step Into
+      -- _f_: Find Breakpoints            _t_: Run Task...                   _u_: Toggle UI
+      --                                ^^_q_: Exit Debug Mode
+      --         ]],
+      --   mode = { 'n' },
+      --   body = '<Leader>D',
+      --   config = {
+      --     color = 'pink',
+      --     buffer = false,
+      --     invoke_on_body = true,
+      --     description = 'Debugging Mode',
+      --     hint = {
+      --       type = 'window',
+      --       offset = 1,
+      --       position = 'bottom-left',
+      --       float_opts = {
+      --         border = 'shadow',
+      --       },
+      --     },
+      --   },
+      --   heads = {
+      --     {
+      --       'q',
+      --       nil,
+      --       {
+      --         desc = 'Exit',
+      --         private = true,
+      --         exit = true,
+      --       },
+      --     },
+      --     {
+      --       'd',
+      --       function()
+      --         if vim.fn.filereadable('.vscode/launch.json') then
+      --           require('dap.ext.vscode').json_decode = require('overseer.json').decode
+      --           require('dap.ext.vscode').load_launchjs(nil, {
+      --             ['pwa-node'] = { 'javascript', 'typescript' },
+      --           })
+      --         end
+      --         require('fzf-lua').dap_configurations({
+      --           winopts = {
+      --             height = 0.3,
+      --             width = 0.4,
+      --             row = 0.9,
+      --             col = 0.9,
+      --             relative = 'editor',
+      --           },
+      --         })
+      --       end,
+      --       {
+      --         desc = 'Start a debugging session',
+      --         private = true,
+      --         exit = true,
+      --         nowait = true,
+      --       },
+      --     },
+      --   },
+      -- })
+
+      local wk = require('which-key')
+      vim.keymap.set('n', '<Leader>D', function()
+        wk.show({ loop = true, keys = '<Leader>_d' })
+      end, { desc = 'Debugging...' })
+
+      vim.keymap.set('n', '<Leader>_dd', function()
+        if vim.fn.filereadable('.vscode/launch.json') then
+          require('dap.ext.vscode').json_decode = require('overseer.json').decode
+          require('dap.ext.vscode').load_launchjs(nil, {
+            ['pwa-node'] = { 'javascript', 'typescript' },
+          })
+        end
+        require('fzf-lua').dap_configurations({
+          winopts = {
+            height = 0.3,
+            width = 0.4,
+            row = 0.9,
+            col = 0.9,
+            relative = 'editor',
           },
-        },
-        heads = {
-          {
-            'q',
-            nil,
-            {
-              desc = 'Exit',
-              private = true,
-              exit = true,
-            },
-          },
-          {
-            'd',
-            function()
-              if vim.fn.filereadable('.vscode/launch.json') then
-                require('dap.ext.vscode').json_decode = require('overseer.json').decode
-                require('dap.ext.vscode').load_launchjs(nil, {
-                  ['pwa-node'] = { 'javascript', 'typescript' },
-                })
-              end
-              require('fzf-lua').dap_configurations({
-                winopts = {
-                  height = 0.3,
-                  width = 0.4,
-                  row = 0.9,
-                  col = 0.9,
-                  relative = 'editor',
-                },
-              })
-            end,
-            {
-              desc = 'Start a debugging session',
-              private = true,
-              exit = true,
-              nowait = true,
-            },
-          },
-          { 'p', dap.pause, { desc = 'Pause', private = true, nowait = true } },
-          { 'c', dap.continue, { desc = 'Continue', private = true, nowait = true } },
-          { 'C', dap.run_to_cursor, { desc = 'Continue to cursor', private = true, nowait = true } },
-          { 's', dap.terminate, { desc = 'Stop', private = true, nowait = true } },
-          { 'r', dap.restart, { desc = 'Restart', private = true, nowait = true } },
-          { 'u', dapui.toggle, { desc = 'Toggle Debug UI', private = true, nowait = true } },
-          { 'f', dap.list_breakpoints, { desc = 'Find breakpoints', private = true, nowait = true } },
-          { 'J', dap.step_over, { desc = 'Step over', private = true, nowait = true } },
-          { 'L', dap.step_into, { desc = 'Step into', private = true, nowait = true } },
-          { 'H', dap.step_out, { desc = 'Step out', private = true, nowait = true } },
-          { 't', '<CMD>OverseerRun<CR>', { desc = 'Run task...', private = true, nowait = true } },
-        },
-      })
+        })
+      end, { desc = 'Start a debugging session' })
+      vim.keymap.set('n', '<Leader>_dp', dap.pause, { desc = 'Pause' })
+      vim.keymap.set('n', '<Leader>_dc', dap.continue, { desc = 'Continue' })
+      vim.keymap.set('n', '<Leader>_dC', dap.run_to_cursor, { desc = 'Continue to cursor' })
+      vim.keymap.set('n', '<Leader>_ds', dap.terminate, { desc = 'Stop' })
+      vim.keymap.set('n', '<Leader>_dr', dap.restart, { desc = 'Restart' })
+      vim.keymap.set('n', '<Leader>_du', dapui.toggle, { desc = 'Toggle Debug UI' })
+      vim.keymap.set('n', '<Leader>_df', dap.list_breakpoints, { desc = 'Find breakpoints' })
+      vim.keymap.set('n', '<Leader>_dJ', dap.step_over, { desc = 'Step over' })
+      vim.keymap.set('n', '<Leader>_dL', dap.step_into, { desc = 'Step into' })
+      vim.keymap.set('n', '<Leader>_dH', dap.step_out, { desc = 'Step out' })
+      vim.keymap.set('n', '<Leader>_dt', '<CMD>OverseerRun<CR>', { desc = 'Run task...' })
 
       vim.keymap.set('n', '<Leader>tr', '<CMD>OverseerRun<CR>', { desc = 'Run task...' })
       vim.keymap.set('n', '<Leader>tv', '<CMD>OverseerToggle<CR>', { desc = 'Toggle task view' })
@@ -340,17 +364,17 @@ _f_: Find Breakpoints            _t_: Run Task...                   _u_: Toggle 
       -- vim.keymap.set('n', '<Leader>tv', '<CMD>OverseerToggle<CR>', { desc = 'Toggle task view' })
     end,
   },
-  {
-    'theHamsta/nvim-dap-virtual-text',
-    dependencies = { 'mfussenegger/nvim-dap', 'nvim-treesitter/nvim-treesitter' },
-    event = { 'LspAttach' },
-    config = function()
-      require('nvim-dap-virtual-text').setup({
-        all_references = true,
-        -- commented = true,
-      })
-    end,
-  },
+  -- {
+  --   'theHamsta/nvim-dap-virtual-text',
+  --   dependencies = { 'mfussenegger/nvim-dap', 'nvim-treesitter/nvim-treesitter' },
+  --   event = { 'LspAttach' },
+  --   config = function()
+  --     require('nvim-dap-virtual-text').setup({
+  --       all_references = true,
+  --       -- commented = true,
+  --     })
+  --   end,
+  -- },
   {
     'LiadOz/nvim-dap-repl-highlights', -- DAP highlighting support
     dependencies = {
