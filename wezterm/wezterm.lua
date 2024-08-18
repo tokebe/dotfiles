@@ -21,7 +21,7 @@ config.font_size = require('fontsize')
 config.harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' }
 config.line_height = 1.0
 config.window_decorations = 'RESIZE'
-config.enable_scroll_bar = true
+config.enable_scroll_bar = false
 config.window_padding = {
   right = '10px',
   left = '10px',
