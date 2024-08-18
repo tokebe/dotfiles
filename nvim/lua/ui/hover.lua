@@ -1,96 +1,43 @@
 return {
-  -- {
-  --   'lewis6991/hover.nvim',
-  --   commit = "f74d2924564ba5fd8faa2d7e7cf6065de26f9820",
-  --   config = function()
-  --     local multiDiagnostic = {
-  --       name = 'multiDiagnostic',
-  --       priority = 1000,
-  --       enabled = function()
-  --         return true
-  --       end,
-  --       execute = function(done)
-  --         local util = vim.lsp.util
-  --         local params = util.make_position_params()
-  --         local _, cur_col = unpack(vim.api.nvim_win_get_cursor(0))
-  --         local severity = { ' ', ' ', ' ', '󱉵 ' }
-  --         vim.lsp.buf_request_all(0, 'textDocument/hover', params, function(responses)
-  --           local value = ' '
-  --           local _, row = unpack(vim.fn.getpos('.'))
-  --           local lineDiag = vim.diagnostic.get(0, { lnum = row - 1 })
-  --           local hadDiagnostics = false
-  --           for _, d in pairs(lineDiag) do
-  --             local under_cur = cur_col >= d.col and (d.end_col == nil or cur_col <= d.end_col)
-  --             if under_cur and d.message then
-  --               if not hadDiagnostics then
-  --                 hadDiagnostics = true
-  --                 value = value .. 'Diagnostics:'
-  --               end
-  --               for i, str in ipairs(vim.split(d.message, '\n', { plain = true })) do
-  --                 if i == 1 then
-  --                   value = value .. string.format('\n  %s %s: %s', severity[d.severity], d.source, str)
-  --                 else
-  --                   value = value .. string.format('\n   %s', str)
-  --                 end
-  --               end
-  --               value = value .. string.format(' \\[%s\\]', d.code)
-  --             end
-  --           end
-  --           value = value:gsub('\r', '')
-  --           if hadDiagnostics then
-  --             value = value .. '\n---'
-  --           end
-  --
-  --           for _, response in pairs(responses) do
-  --             local result = response.result
-  --             if result and result.contents and result.contents.value then
-  --               if value ~= '' then
-  --                 value = value .. '\n'
-  --               end
-  --               value = value .. result.contents.value
-  --             end
-  --           end
-  --
-  --           if value:match('^%s*$') then
-  --             value = 'No information found.'
-  --           end
-  --           if value ~= ' ' then
-  --             done({ lines = vim.split(value, '\n', { plain = true }), filetype = 'markdown' })
-  --           else
-  --             done()
-  --           end
-  --         end)
-  --       end,
-  --     }
-  --
-  --     local hover = require('hover')
-  --     hover.setup({
-  --       init = function()
-  --         hover.register(multiDiagnostic)
-  --         -- require('hover.providers.lsp')
-  --         -- require('hover.providers.diagnostic')
-  --       end,
-  --       preview_opts = {
-  --         border = 'shadow',
-  --       },
-  --       title = false,
-  --     })
-  --     vim.keymap.set({ 'n' }, 'K', require('hover').hover, { remap = true, desc = 'Show combined hover info' })
-  --   end,
-  -- },
   {
-    'Fildo7525/pretty_hover',
-    events = 'LspAttach',
+    'lewis6991/hover.nvim',
     config = function()
-      local ph = require('pretty_hover')
-      ph.setup({
-        border = 'shadow',
+      local hover = require('hover')
+      hover.setup({
+        init = function()
+          -- hover.register(multiDiagnostic)
+          require('hover.providers.lsp')
+          require('hover.providers.diagnostic')
+          require('hover.providers.dictionary')
+        end,
+        preview_opts = {
+          border = 'solid',
+        },
+        title = true,
+        preview_window = true,
       })
-
-      vim.keymap.set({ 'n' }, 'K', function()
-        ph.hover()
-      end, { remap = true, desc = 'Show LSP info' })
-      -- vim.keymap.set({ 'n' }, 'D', vim.diagnostic.open_float, { remap = true, desc = 'Show diagnostics' })
+      vim.keymap.set({ 'n' }, 'K', hover.hover, { remap = true, desc = 'Show combined hover info' })
+      vim.keymap.set({ 'n' }, '<C-k>', function()
+        local hover_win = vim.b.hover_preview
+        if hover_win and vim.api.nvim_win_is_valid(hover_win) then
+          vim.api.nvim_set_current_win(hover_win)
+        end
+      end, { remap = true, desc = 'Enter hover info' })
     end,
   },
+  -- {
+  --   'Fildo7525/pretty_hover',
+  --   events = 'LspAttach',
+  --   config = function()
+  --     local ph = require('pretty_hover')
+  --     ph.setup({
+  --       border = 'shadow',
+  --     })
+  --
+  --     vim.keymap.set({ 'n' }, 'K', function()
+  --       ph.hover()
+  --     end, { remap = true, desc = 'Show LSP info' })
+  --     -- vim.keymap.set({ 'n' }, 'D', vim.diagnostic.open_float, { remap = true, desc = 'Show diagnostics' })
+  --   end,
+  -- },
 }
