@@ -52,20 +52,20 @@ vim.keymap.set('n', '<Leader>qQ', ':qa!<CR>', {
 })
 
 -- Movement
-vim.keymap.set({ 'n', 'v', 'o' }, 'j', function()
-  if vim.v.count then
-    vim.api.nvim_feedkeys('gj', 'm', false)
-  else
-    vim.api.nvim_feedkeys('j', 'm', false)
-  end
-end, { expr = true, noremap = true })
-vim.keymap.set({ 'n', 'v', 'o' }, 'k', function()
-  if vim.v.count then
-    vim.api.nvim_feedkeys('gk', 'm', false)
-  else
-    vim.api.nvim_feedkeys('k', 'm', false)
-  end
-end, { expr = true, noremap = true })
+-- vim.keymap.set({ 'n', 'v', 'o' }, 'j', function()
+--   if vim.v.count then
+--     vim.api.nvim_feedkeys('j', 'm', false)
+--   else
+--     vim.api.nvim_feedkeys('gj', 'm', false)
+--   end
+-- end, { expr = true, noremap = true })
+-- vim.keymap.set({ 'n', 'v', 'o' }, 'k', function()
+--   if vim.v.count then
+--     vim.api.nvim_feedkeys('k', 'm', false)
+--   else
+--     vim.api.nvim_feedkeys('gk', 'm', false)
+--   end
+-- end, { expr = true, noremap = true })
 
 -- vim.keymap.set({ 'n', 'v', 'o' }, 'gm', '%', {
 --   desc = 'Go to match',
