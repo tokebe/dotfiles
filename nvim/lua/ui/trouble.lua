@@ -35,5 +35,19 @@ return {
       end,
       desc = 'Find todos',
     },
+    {
+      '<Leader>fi',
+      function()
+        vim.cmd('Trouble lsp_implementations')
+      end,
+      desc = 'Goto implementations',
+    },
+    {
+      'gr',
+      function()
+        vim.cmd('Trouble lsp_references')
+      end,
+      desc = 'Goto references'
+    },
   },
 }
