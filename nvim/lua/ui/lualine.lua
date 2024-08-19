@@ -60,7 +60,6 @@ return {
           lualine_c = {
             -- show_macro_recording,
             require('NeoComposer.ui').status_recording,
-            require('cool-substitute.status').status_with_icons,
             { require('noice').api.status.search.get, cond = require('noice').api.status.search.has },
           },
           lualine_x = { 'overseer' },

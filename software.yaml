@@ -13,8 +13,8 @@
       - shell:
           - command: >
               (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"')
-              >> ~/.bashrc && eval "$(/home/linuxbrew/.linuxbrew/bin/brew
-              shellenv)" && source ~/.bashrc
+              >> ~/.bashrc && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+              && source ~/.bashrc
             description: Add brew to path
             quiet: true
             stdout: true
@@ -112,6 +112,7 @@
     - navi # FZF Cheatsheet | https://github.com/denisidoro/navi
     - portal # Internet file transfer | https://github.com/SpatiumPortae/portal
     - ripgrep # Recursive grep | https://github.com/BurntSushi/ripgrep
+    - ast-grep # Structural grep & replace | https://github.com/ast-grep/ast-grep
     - tldr # Manpage; TLDR | https://github.com/tldr-pages/tldr
     - tmux # Terminal multiplexer | https://github.com/tmux/tmux
     - xh # Friendlier cURL | https://github.com/ducaale/xh
@@ -151,9 +152,8 @@
       description: Neovim node support
       stdout: false
       stderr: true
-    - command:
-        pyenv install 3.11 -s && pyenv virtualenv 3.11 py3nvim && \ pyenv activate py3nvim && \ python3
-        -m pip install pynvim neovim
+    - command: pyenv install 3.11 -s && pyenv virtualenv 3.11 py3nvim && \ pyenv
+        activate py3nvim && \ python3 -m pip install pynvim neovim
       description: Setup neovim-specific venv
       quiet: true
       stdout: false
