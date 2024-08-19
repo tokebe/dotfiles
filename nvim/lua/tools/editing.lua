@@ -3,10 +3,12 @@ return {
   { -- quick selection by syntax node
     'sustech-data/wildfire.nvim',
     lazy = false,
-    -- event = 'VeryLazy',
+    event = 'UIEnter',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
-      require('wildfire').setup()
+      require('wildfire').setup({
+        filetype_exclude = require('config.filetype_excludes'),
+      })
     end,
   },
   { -- Automatic block split/join
@@ -19,7 +21,7 @@ return {
       vim.keymap.set('n', '<Leader>gs', ':TSJToggle<CR>', { desc = 'Split/join block using Treesitter' })
     end,
   },
-  {
+  { -- Used mainly to add quote text objects
     'chrisgrieser/nvim-various-textobjs',
     lazy = false,
     opts = {
@@ -54,7 +56,7 @@ return {
       require('Comment').setup()
     end,
   },
-  {
+  { -- Quick search and replace
     'roobert/search-replace.nvim',
     config = function()
       require('search-replace').setup({})
@@ -74,7 +76,7 @@ return {
       })
     end,
   },
-  {
+  { -- Smart handling of surrounding brackets
     'kylechui/nvim-surround',
     dependencies = { 'ggandor/lightspeed.nvim' }, -- ensure it loads after
     version = '*',
