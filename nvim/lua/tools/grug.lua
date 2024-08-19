@@ -1,32 +1,54 @@
-local util = require('util')
+local filter = require('filter')
 return {
   {
     'MagicDuck/grug-far.nvim',
     config = function()
-      require('grug-far').setup({
+      local grug = require('grug-far')
+      grug.setup({
         startInInsertMode = false,
         keymaps = {
           close = { n = 'q' },
         },
         prefills = {
-          flags = '--ignore-case --no-ignore'
-        }
+          flags = '--ignore-case --no-ignore',
+        },
       })
+
       vim.keymap.set('n', '<Leader>ff', function()
-        require('grug-far').grug_far({
+        grug.grug_far({
           prefills = {
-            filesFilter = require('filter').getFilter(),
+            filesFilter = filter.getFilter(),
           },
         })
       end, { desc = 'Search within files' })
 
       vim.keymap.set('n', '<Leader>fF', function()
-        require('grug-far').grug_far({
+        grug.grug_far({
           prefills = {
             filesFilter = vim.fn.expand('%'),
           },
         })
       end, { desc = 'Search within current file' })
+
+      vim.keymap.set('n', '<Leader>fa', function()
+        grug.grug_far({
+          engine = 'astgrep',
+          prefills = {
+            filesFilter = filter.getFilter(),
+            flags = '',
+          },
+        })
+      end, { desc = 'Search AST within files' })
+
+      vim.keymap.set('n', '<Leader>fA', function()
+        grug.grug_far({
+          engine = 'astgrep',
+          prefills = {
+            filesFilter = vim.fn.expand('%'),
+            flags = '',
+          },
+        })
+      end, { desc = 'Search AST within files' })
     end,
   },
 }
