@@ -1,5 +1,12 @@
 return {
   {
+    'echasnovski/mini.trailspace',
+    version = '*',
+    config = function()
+      require('mini.trailspace').setup()
+    end,
+  },
+  {
     'm-demare/hlargs.nvim',
     config = function()
       require('hlargs').setup()
