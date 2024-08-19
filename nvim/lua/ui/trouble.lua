@@ -2,8 +2,8 @@ return {
   'folke/trouble.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
-    require('trouble').setup({
-      mode = 'document_diagnostics',
+    local trouble = require('trouble')
+    trouble.setup({
       focus = true,
     })
   end,
@@ -16,38 +16,38 @@ return {
     },
     {
       '<Leader>fd',
-      function()
-        vim.cmd('Trouble diagnostics')
-      end,
+      ':Trouble diagnostics<CR>',
       desc = 'Find diagnostics',
     },
     {
       '<Leader>fq',
-      function()
-        vim.cmd('Trouble quickfix')
-      end,
+      ':Trouble quickfix<CR>',
       desc = 'Find quickfix',
     },
     {
       '<Leader>ft',
-      function()
-        vim.cmd('TodoTrouble')
-      end,
+      ':TodoTrouble<CR>',
       desc = 'Find todos',
     },
     {
+      '<Leader>fT',
+      ':Trouble lsp_type_definitions<CR>',
+      desc = 'Find type defintions',
+    },
+    {
       '<Leader>fi',
-      function()
-        vim.cmd('Trouble lsp_implementations')
-      end,
-      desc = 'Goto implementations',
+      ':Trouble lsp_implementations<CR>',
+      desc = 'Find implementations',
+    },
+    {
+      '<Leader>fc',
+      ':Trouble lsp_incoming_calls<CR>',
+      desc = 'Find incoming calls',
     },
     {
       'gr',
-      function()
-        vim.cmd('Trouble lsp_references')
-      end,
-      desc = 'Goto references'
+      ':Trouble lsp_references<CR>',
+      desc = 'Goto references',
     },
   },
 }

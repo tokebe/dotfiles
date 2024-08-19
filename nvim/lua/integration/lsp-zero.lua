@@ -46,7 +46,6 @@ return {
 
     lsp.on_attach(function(client, bufnr)
       -- LSP actions
-      vim.keymap.set('n', 'gr', ':Trouble lsp_references<CR>')
       vim.keymap.set('n', '<F2>', ':IncRename' .. vim.fn.expand('<cword>'))
       vim.keymap.set('n', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
       vim.keymap.set('x', '<F4>', ':lua require("actions-preview").code_actions()<CR>')
