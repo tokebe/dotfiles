@@ -4,6 +4,12 @@ return {
     version = '*',
     config = function()
       require('mini.trailspace').setup()
+      vim.api.nvim_create_autocmd('Filetype', {
+        pattern = require('config.filetype_excludes'),
+        callback = function(event)
+          vim.b[event.buf].minitrailspace_disable = true
+        end,
+      })
     end,
   },
   {
