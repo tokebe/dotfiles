@@ -21,19 +21,12 @@ return {
       vim.keymap.set('n', '<Leader>gs', ':TSJToggle<CR>', { desc = 'Split/join block using Treesitter' })
     end,
   },
-  { -- Used mainly to add quote text objects
-    'chrisgrieser/nvim-various-textobjs',
-    lazy = false,
-    opts = {
-      useDefaultKeymaps = true,
-      disabledKeymaps = {
-        'ag',
-        'ig',
-        'iS',
-        'aS',
-        'gc',
-      },
-    },
+  { -- Adds sensible textobjs for selection/operation
+    'echasnovski/mini.ai',
+    version = '*',
+    config = function()
+      require('mini.ai').setup()
+    end,
   },
   { -- Intelligent increment/decrement, with cycles for bools/etc.
     'nat-418/boole.nvim',
@@ -76,7 +69,7 @@ return {
       })
     end,
   },
-  { -- Smart handling of surrounding brackets
+  {                                               -- Smart handling of surrounding brackets
     'kylechui/nvim-surround',
     dependencies = { 'ggandor/lightspeed.nvim' }, -- ensure it loads after
     version = '*',
