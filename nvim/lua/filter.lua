@@ -20,9 +20,9 @@ local function setFilter()
     border = {
       style = 'rounded',
       text = {
-        top = NuiText(' File Search Grep Filter ', 'Normal'),
+        top = NuiText(' File Search Glob Filter ', 'Normal'),
         top_align = 'center',
-        bottom = NuiText(' Enter a valid grep filter ', 'Normal'),
+        bottom = NuiText(' Enter a valid glob filter ', 'Normal'),
         bottom_align = 'left',
       },
     },
@@ -44,7 +44,15 @@ local function setFilter()
   popup:map('n', 'q', onClose, { desc = 'Close persistent filter popup' })
   popup:map('n', '<ESC>', onClose, { desc = 'Close persistent filter popup' })
   popup:map('n', 't', function()
-    popup.border:set_text('top', NuiText(' File Search Exclusions [%s] ', 'Normal'), 'center')
+    vim.g.PersistentFilterEnabled = not vim.g.PersistentFilterEnabled
+    popup.border:set_text(
+      'top',
+      NuiText(
+        string.format(' File Search Glob Filter [%s] ', vim.g.PersistentFilterEnabled and 'enabled' or 'disabled'),
+        'Normal'
+      ),
+      'center'
+    )
   end)
 
   popup:mount()
@@ -53,34 +61,31 @@ local function setFilter()
 
   local existing = vim.g.PersistentFilter or vim.g.PersistentFilterDefault or ''
 
-  vim.api.nvim_buf_set_lines(popup.bufnr, 0, 1, false, {existing})
+  vim.api.nvim_buf_set_lines(popup.bufnr, 0, 1, false, { existing })
 end
 
--- local function formatFilter(format)
---   local args = ''
---   for _, v in ipairs(vim.split(vim.g.PersistentFilter, '\n', { plain = true })) do
---     if format == 'fd' then
---       args = args .. string.format(" --exclude '%s'", v)
---     elseif format == 'rg' then
---       args = args .. string.format(" --glob '!{%s}'", v)
---     else
---       args = args .. string.format('\n%s', v)
---     end
---   end
---   return args
---   -- TODO format for a given type
--- end
-
 local function getFilter()
-  return vim.g.PersistentFilter or vim.g.PersistentFilterDefault
+  local filter = vim.g.PersistentFilter or vim.g.PersistentFilterDefault
+  if vim.g.PersistentFilterEnabled then
+    return filter
+  else
+    return ''
+  end
+end
+
+local function toggleFilter()
+  vim.g.PersistentFilterEnabled = not vim.g.PersistentFilterEnabled
+  vim.notify('Persistent filter ' .. (vim.g.PersistentFilterEnabled and 'enabled' or 'disabled'))
 end
 
 return {
   setup = function(opts)
     vim.g.PersistentFilterDefault = opts.default_filter
     vim.g.PersistentFilter = vim.g.PersistentFilter or vim.g.PersistentFiltersDefault
+    vim.g.PersistentFilterEnabled = true -- enabled by default
 
     vim.keymap.set('n', '<Leader>of', setFilter, { desc = 'Set persistent glob filter' })
+    vim.keymap.set('n', '<Leader>oF', toggleFilter, { desc = 'Toggle persistent glob filter' })
   end,
   getFilter = getFilter,
 }
