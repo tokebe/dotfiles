@@ -57,8 +57,15 @@ return {
     config = function()
       local lsp_lines = require('lsp_lines')
       lsp_lines.setup({})
-      vim.diagnostic.config({ virtual_text = true })
-      vim.diagnostic.config({ virtual_lines = false })
+
+      -- Disable by default
+      vim.api.nvim_create_autocmd('BufEnter', {
+        callback = function()
+          vim.diagnostic.config({ virtual_text = true })
+          vim.diagnostic.config({ virtual_lines = false })
+        end,
+      })
+
       vim.keymap.set('n', '<Leader>td', function()
         lsp_lines.toggle()
         -- Remove this if lsp_lines updates to fix toggling (would cause a desync in toggling)
