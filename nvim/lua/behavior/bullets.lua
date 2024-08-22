@@ -1,6 +1,7 @@
 return {
   { -- Insert new bullets automatically
     'dkarter/bullets.vim',
+    version = '^1.x.x',
     config = function()
       local g = vim.g
       g.bullets_enabled_file_types = {

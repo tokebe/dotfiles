@@ -1,5 +1,5 @@
 return {
-  {
+  { -- Autopairing
     'windwp/nvim-autopairs',
     config = function()
       local Rule = require('nvim-autopairs.rule')
@@ -46,7 +46,7 @@ return {
       end
     end,
   },
-  {
+  {  -- close functions and such that are closed with 'end'
     'RRethy/nvim-treesitter-endwise',
     config = function()
       require('nvim-treesitter.configs').setup({
