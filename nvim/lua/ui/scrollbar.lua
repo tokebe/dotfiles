@@ -1,23 +1,38 @@
 return {
-  {
-    'lewis6991/satellite.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'lewis6991/gitsigns.nvim' },
-    config = function()
-      require('satellite').setup({
-        current_only = true,
-        excluded_filetypes = require('config.filetype_excludes'),
-      })
-    end,
-  },
   -- {
-  --   'petertriho/nvim-scrollbar',
+  --   'lewis6991/satellite.nvim',
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter', 'lewis6991/gitsigns.nvim' },
   --   config = function()
-  --     require('scrollbar').setup({
-  --       show_in_active_only = true,
+  --     require('satellite').setup({
+  --       current_only = true,
   --       excluded_filetypes = require('config.filetype_excludes'),
   --     })
   --   end,
   -- },
+  {
+    'petertriho/nvim-scrollbar',
+    dependencies = {
+      'kevinhwang91/nvim-hlslens',
+      'lewis6991/gitsigns.nvim',
+    },
+    config = function()
+      require('scrollbar').setup({
+        show_in_active_only = true,
+        excluded_filetypes = require('config.filetype_excludes'),
+        hide_if_all_visible = true,
+        handlers = {
+          cursor = true,
+          diagnostic = true,
+          gitsigns = false, -- Requires gitsigns
+          handle = true,
+          search = true,    -- Requires hlslens
+        },
+      })
+      require('scrollbar.handlers.diagnostic').setup()
+      require('scrollbar.handlers.gitsigns').setup()
+      require('scrollbar.handlers.search').setup()
+    end,
+  },
   -- Not very friendly with wrap on
   -- {
   --   'Isrothy/neominimap.nvim',
