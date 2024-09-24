@@ -11,6 +11,7 @@ return {
       'sainnhe/sonokai',
       'ntk148v/habamax.nvim',
       'nyngwang/nvimgelion',
+      'xero/evangelion.nvim',
       -- Persistent colorscheme
       'raddari/last-color.nvim',
       -- Toggleable background transparency
