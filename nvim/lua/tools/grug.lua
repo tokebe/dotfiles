@@ -48,7 +48,7 @@ return {
             flags = '',
           },
         })
-      end, { desc = 'Search AST within files' })
+      end, { desc = 'Search AST within current file' })
     end,
   },
 }
