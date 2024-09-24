@@ -1,4 +1,3 @@
-local util = require('util')
 return {
   -- {
   --   'rmagatti/auto-session',
@@ -60,11 +59,12 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'stevearc/overseer.nvim',
-      'tiagovla/scope.nvim',
+      {'tiagovla/scope.nvim', commit = 'f8a6783'},
     },
     config = function()
       local config = require('session_manager.config')
       local overseer = require('overseer')
+      require('scope').setup()
       require('session_manager').setup({
         autoload_mode = config.AutoloadMode.CurrentDir,
         autosave_ignore_dirs = { '~' },
@@ -73,7 +73,6 @@ return {
         autosave_only_in_session = true,
       })
 
-      local util = require('util')
 
       local config_group = vim.api.nvim_create_augroup('MyConfigGroup', {}) -- A global group for all your config autocommands
 
