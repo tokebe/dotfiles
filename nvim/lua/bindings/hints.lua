@@ -17,7 +17,7 @@ return {
         { '<Leader>f', group = 'Find...' },
         { '<Leader>s', group = 'Select...' },
         { '<Leader>g', group = 'Global...' },
-        { '<Leader>m', group = 'Manage...' },
+        { '<Leader>m', group = 'Manage / Multicursor...' },
         { '<Leader>j', group = 'Jump...' },
         -- { '<Leader>v', group = 'View...' },
         { '<Leader>e', group = 'Explore / Explain...' },
