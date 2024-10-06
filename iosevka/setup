@@ -17,7 +17,7 @@ fontgen() {
 
     ./iosevka_setup_env/bin/pip3 install -r iosevka-generate/requirements.txt
     ./iosevka_setup_env/bin/python3 iosevka-generate/iosevka-generate
-    mv ~/.local/share/fonts/Tokebe* ./cached
+    # mv ~/.local/share/fonts/Tokebe* ./cached
 }
 
 linkfonts() {
