@@ -17,7 +17,7 @@ return {
         preview_window = true,
       })
       vim.keymap.set({ 'n' }, 'K', hover.hover, { remap = true, desc = 'Show combined hover info' })
-      vim.keymap.set({ 'n' }, '<M-k>', function()
+      vim.keymap.set({ 'n' }, '<M-K>', function()
         local hover_win = vim.b.hover_preview
         if hover_win and vim.api.nvim_win_is_valid(hover_win) then
           vim.api.nvim_set_current_win(hover_win)
