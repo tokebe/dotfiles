@@ -11,10 +11,10 @@ if wezterm.config_builder then
 end
 
 -- Appearance
-local colorscheme = 'rose-pine'
+local colorscheme = 'rose-pine-moon'
 local colorscheme_table = wezterm.color.get_builtin_schemes()[colorscheme]
 config.color_scheme = colorscheme
-config.window_background_opacity = 0.85
+config.window_background_opacity = 0.9
 config.macos_window_background_blur = 100
 config.font = wezterm.font('Tokebe Nerd Font')
 config.font_size = require('fontsize')
