@@ -118,18 +118,18 @@ return {
           },
         })
       end, { desc = 'Find file' })
-      vim.keymap.set('n', '<Tab>', function()
-        require('fzf-lua').buffers({
-          winopts = {
-            width = 0.5,
-            height = 0.5,
-            preview = {
-              layout = 'vertical',
-              vertical = 'up',
-            },
-          },
-        })
-      end, { desc = 'Switch buffers' })
+      -- vim.keymap.set('n', '<Tab>', function()
+      --   require('fzf-lua').buffers({
+      --     winopts = {
+      --       width = 0.5,
+      --       height = 0.5,
+      --       preview = {
+      --         layout = 'vertical',
+      --         vertical = 'up',
+      --       },
+      --     },
+      --   })
+      -- end, { desc = 'Switch buffers' })
       vim.keymap.set('n', '<Leader>fh', require('fzf-lua').help_tags, { desc = 'Find help' })
       vim.keymap.set(
         'n',
