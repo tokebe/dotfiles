@@ -5,8 +5,10 @@ return {
   'tpope/vim-rhubarb',
   {
     'linrongbin16/gitlinker.nvim',
+    lazy = false,
     config = function()
-      require('gitlinker').setup({
+      local gitlinker = require('gitlinker')
+      gitlinker.setup({
         mappings = {
           ['<Leader>gl'] = {
             action = require('gitlinker.actions').system,
@@ -61,6 +63,11 @@ return {
         preview_config = {
           border = 'solid',
         },
+        current_line_blame = true,
+        current_line_blame_formatter = '<author> • <author_time:%R> • <summary>',
+        current_line_blame_opts = {
+          delay = 1000,
+        },
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
 
@@ -102,26 +109,27 @@ return {
 
           -- Text object
           vim.keymap.set({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+
+          vim.keymap.set(
+            'n',
+            '<Leader>tb',
+            '<CMD>Gitsigns toggle_current_line_blame<CR>',
+            { desc = 'Toggle hover blame' }
+          )
+          vim.keymap.set('n', 'gb', '<CMD>Gitsigns blame_line<CR>', { desc = 'View line blame' })
         end,
       })
     end,
   },
   {
-    'f-person/git-blame.nvim',
+    'FabijanZulj/blame.nvim', -- TODO: setup
     config = function()
-      require('gitblame').setup({
-        enabled = 1,
-        message_template = '<author> • <date> • <summary>',
-        date_format = '%r',
-        message_when_not_committed = ' Not Yet Committed',
-        display_virtual_text = 1,
-        ignored_filetypes = require('config.filetype_excludes'),
-        delay = 1000,
+      require('blame').setup({
+        virtual_style = 'float',
+        blame_opts = { '--color-by-age' },
+        format_fn = require('blame.formats.default_formats').date_message,
       })
-
-      vim.keymap.set('n', 'gb', ':GitBlameToggle<CR>', { desc = 'Toggle blame' })
-      vim.keymap.set('n', '<Leader>gc', ':GitBlameOpenCommitURL<CR>', { desc = 'Open commit on GitHub' })
-      vim.keymap.set('n', '<Leader>gC', ':GitBlameCopySHA<CR>', { desc = 'Copy commit SHA' })
+      vim.keymap.set('n', 'gB', '<CMD>BlameToggle<CR>', { desc = 'Toggle blame mode' })
     end,
   },
 }
