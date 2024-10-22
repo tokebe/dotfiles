@@ -5,12 +5,11 @@ return {
     config = function()
       local builtin = require('statuscol.builtin')
 
-      vim.opt.fillchars = {
+      vim.opt.fillchars:append({
         foldopen = '',
         foldclose = '',
         foldsep = ' ',
-        eob = ' ',
-      }
+      })
       vim.api.nvim_create_autocmd({ 'FileType' }, {
         callback = function()
           local filetype_excludes = require('config.filetype_excludes')
