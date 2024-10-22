@@ -1,25 +1,32 @@
 local util = require('util')
 return {
   -- Tools
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
+  {
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim',
+      'ibhagwan/fzf-lua',
+    },
+    config = function()
+      local neogit = require('neogit')
+      neogit.setup({
+        graph_style = 'unicode',
+        disable_insert_on_commit = true,
+        integrations = { fzf_lua = true }
+      })
+      vim.keymap.set('n', '<Leader>gg', '<CMD>Neogit cwd=%:p:h<CR>', { desc = 'Open neogit (current file repo)' })
+      vim.keymap.set('n', '<Leader>gG', '<CMD>Neogit<CR>', { desc = 'Open neogit (cwd repo)' })
+    end,
+  },
   {
     'linrongbin16/gitlinker.nvim',
-    lazy = false,
     config = function()
-      local gitlinker = require('gitlinker')
-      gitlinker.setup({
-        mappings = {
-          ['<Leader>gl'] = {
-            action = require('gitlinker.actions').system,
-            desc = 'Open on GitHub',
-          },
-          ['<Leader>gL'] = {
-            action = require('gitlinker.actions').clipboard,
-            desc = 'Copy GitHub link to clipboard',
-          },
-        },
-      })
+      require('gitlinker').setup()
+      vim.keymap.set('n', '<Leader>gl', '<CMD>GitLink!<CR>', { desc = 'Open on remote' })
+      vim.keymap.set('n', '<Leader>gL', '<CMD>GitLink<CR>', { desc = 'Copy remote permalink' })
+      vim.keymap.set('n', '<Leader>gb', '<CMD>GitLink! blame<CR>', { desc = 'Open blame on remote' })
+      vim.keymap.set('n', '<Leader>gB', '<CMD>GitLink blame<CR>', { desc = 'Copy remote permalink for blame' })
     end,
   },
   {
@@ -122,12 +129,55 @@ return {
     end,
   },
   {
-    'FabijanZulj/blame.nvim', -- TODO: setup
+    'FabijanZulj/blame.nvim',
     config = function()
       require('blame').setup({
         virtual_style = 'float',
-        blame_opts = { '--color-by-age' },
-        format_fn = require('blame.formats.default_formats').date_message,
+        blame_opts = { '--color-by-age', '-CCC' },
+        format_fn = function(line_porcelain, config, idx)
+          local hash = string.sub(line_porcelain.hash, 0, 7)
+          local is_commited = hash ~= '0000000'
+          if is_commited then
+            local summary
+            if #line_porcelain.summary > config.max_summary_width then
+              summary = string.sub(line_porcelain.summary, 0, config.max_summary_width - 3) .. '...'
+            else
+              summary = line_porcelain.summary
+            end
+            return {
+              idx = idx,
+              values = {
+                {
+                  textValue = hash,
+                  hl = 'Comment',
+                },
+                {
+                  textValue = line_porcelain.author,
+                  hl = hash,
+                },
+                {
+                  textValue = os.date(config.date_format, line_porcelain.committer_time),
+                },
+                {
+                  textValue = summary,
+                  hl = hash,
+                },
+              },
+              format = '%s %s %s %s',
+            }
+          end
+
+          return {
+            idx = idx,
+            values = {
+              {
+                textValue = 'Not Committed Yet',
+                hl = 'Comment',
+              },
+            },
+            format = '%s',
+          }
+        end,
       })
       vim.keymap.set('n', 'gB', '<CMD>BlameToggle<CR>', { desc = 'Toggle blame mode' })
     end,
