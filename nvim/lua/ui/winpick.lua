@@ -4,12 +4,12 @@ return {
     config = function()
       local winpick = require('winpick')
       winpick.setup()
-      vim.keymap.set('n', '<Leader>fw', function()
+      vim.keymap.set('n', '<Leader>sw', function()
         local winid = winpick.select()
         if winid then
           vim.api.nvim_set_current_win(winid)
         end
-      end)
+      end, { desc = 'Select a window' })
     end,
   },
 }
