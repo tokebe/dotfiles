@@ -26,7 +26,11 @@ return {
           -- highlight_inactive_windows = true,
         },
       })
-      require('rose-pine').setup()
+      require('rose-pine').setup({
+        highlight_groups = {
+          WinSeparator = { fg = '#1f1d2e', bg = 'base' },
+        },
+      })
       require('tokyonight').setup({
         style = 'storm',
       })
