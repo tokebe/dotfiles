@@ -21,10 +21,6 @@ set.splitright = true                -- open vertical splits to the right of the
 set.splitkeep = 'screen'
 set.laststatus = 3                   -- always show status line
 set.colorcolumn = '88'               -- default max line length hint
--- set.fillchars:append({
---   eob = ' ',
---   diff = '╱',
--- })
 set.termguicolors = true -- terminal gui colors
 
 -- [[ Search Config ]]
