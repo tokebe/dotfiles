@@ -120,7 +120,7 @@ return {
         },
         {
           ft = 'qf',
-        }
+        },
       },
       right = {
         {
@@ -141,22 +141,22 @@ return {
         {
           ft = 'dapui_scopes',
           title = 'Scopes',
-          size = { width = 88 },
+          size = { width = 80, height = 0.40 },
         },
         {
           ft = 'dapui_breakpoints',
           title = 'Breakpoints',
-          size = { width = 50 },
-        },
-        {
-          ft = 'dapui_stacks',
-          title = 'Stacks',
-          size = { width = 50 },
+          size = { width = 50, height = 0.1 },
         },
         {
           ft = 'dapui_watches',
           title = 'Watches',
-          size = { width = 50 },
+          size = { width = 50, height = 0.15 },
+        },
+        {
+          ft = 'dapui_stacks',
+          title = 'Stacks',
+          size = { width = 50, height = 0.35 },
         },
       },
       left = {},
@@ -187,5 +187,5 @@ return {
     'OXY2DEV/helpview.nvim',
     lazy = false,
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
-  }
+  },
 }
