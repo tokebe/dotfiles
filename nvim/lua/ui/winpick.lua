@@ -3,7 +3,9 @@ return {
     'gbrlsnchs/winpick.nvim',
     config = function()
       local winpick = require('winpick')
-      winpick.setup()
+      winpick.setup({
+        border = "solid"
+      })
       vim.keymap.set('n', '<Leader>sw', function()
         local winid = winpick.select()
         if winid then
