@@ -29,7 +29,7 @@ return {
           command = 'node',
           args = {
             require('mason-registry').get_package('js-debug-adapter'):get_install_path()
-              .. '/js-debug/src/dapDebugServer.js',
+            .. '/js-debug/src/dapDebugServer.js',
             '${port}',
           },
         },
@@ -76,6 +76,7 @@ return {
       )
       vim.fn.sign_define('DapBreakpointRejected', { text = ' ', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
       vim.fn.sign_define('DapLogPoint', { text = '󰚢 ', texthl = 'DapLogPoint', numhl = 'DapLogPoint' })
+
       dapui.setup({
         controls = {
           element = 'repl',
@@ -92,7 +93,16 @@ return {
             terminate = '',
           },
         },
-        element_mappings = {},
+        element_mappings = {
+          stacks = {
+            open = '<CR>',
+            toggle = '<TAB>',
+          },
+          breakpoints = {
+            open = '<CR>',
+            toggle = '<TAB>',
+          },
+        },
         expand_lines = true,
         floating = {
           border = 'none',
@@ -111,19 +121,19 @@ return {
             elements = {
               {
                 id = 'scopes',
-                size = 0.25,
+                size = 0.40,
               },
               {
                 id = 'breakpoints',
-                size = 0.25,
-              },
-              {
-                id = 'stacks',
-                size = 0.25,
+                size = 0.10,
               },
               {
                 id = 'watches',
-                size = 0.25,
+                size = 0.15,
+              },
+              {
+                id = 'stacks',
+                size = 0.35,
               },
             },
             position = 'right',
@@ -154,7 +164,7 @@ return {
         },
         render = {
           indent = 1,
-          max_value_lines = 100,
+          max_value_lines = 1,
         },
       })
       vim.fn.sign_define('DapStopped', { text = ' ', texthl = 'DapStopped', numhl = 'DapStopped' })
@@ -260,10 +270,10 @@ return {
 
       local wk = require('which-key')
       vim.keymap.set('n', '<Leader>D', function()
-        wk.show({ loop = true, keys = '<Leader>_d' })
+        wk.show({ loop = true, keys = '<Leader>_' })
       end, { desc = 'Debugging...' })
 
-      vim.keymap.set('n', '<Leader>_dd', function()
+      vim.keymap.set('n', '<Leader>_d', function()
         if vim.fn.filereadable('.vscode/launch.json') then
           require('dap.ext.vscode').json_decode = require('overseer.json').decode
           require('dap.ext.vscode').load_launchjs(nil, {
@@ -279,18 +289,19 @@ return {
             relative = 'editor',
           },
         })
+        wk.show({ loop = true, keys = '<Leader>_' })
       end, { desc = 'Start a debugging session' })
-      vim.keymap.set('n', '<Leader>_dp', dap.pause, { desc = 'Pause' })
-      vim.keymap.set('n', '<Leader>_dc', dap.continue, { desc = 'Continue' })
-      vim.keymap.set('n', '<Leader>_dC', dap.run_to_cursor, { desc = 'Continue to cursor' })
-      vim.keymap.set('n', '<Leader>_ds', dap.terminate, { desc = 'Stop' })
-      vim.keymap.set('n', '<Leader>_dr', dap.restart, { desc = 'Restart' })
-      vim.keymap.set('n', '<Leader>_du', dapui.toggle, { desc = 'Toggle Debug UI' })
-      vim.keymap.set('n', '<Leader>_df', dap.list_breakpoints, { desc = 'Find breakpoints' })
-      vim.keymap.set('n', '<Leader>_dJ', dap.step_over, { desc = 'Step over' })
-      vim.keymap.set('n', '<Leader>_dL', dap.step_into, { desc = 'Step into' })
-      vim.keymap.set('n', '<Leader>_dH', dap.step_out, { desc = 'Step out' })
-      vim.keymap.set('n', '<Leader>_dt', '<CMD>OverseerRun<CR>', { desc = 'Run task...' })
+      vim.keymap.set('n', '<Leader>_p', dap.pause, { desc = 'Pause' })
+      vim.keymap.set('n', '<Leader>_c', dap.continue, { desc = 'Continue' })
+      vim.keymap.set('n', '<Leader>_C', dap.run_to_cursor, { desc = 'Continue to cursor' })
+      vim.keymap.set('n', '<Leader>_s', dap.terminate, { desc = 'Stop' })
+      vim.keymap.set('n', '<Leader>_r', dap.restart, { desc = 'Restart' })
+      vim.keymap.set('n', '<Leader>_u', dapui.toggle, { desc = 'Toggle Debug UI' })
+      vim.keymap.set('n', '<Leader>_f', dap.list_breakpoints, { desc = 'Find breakpoints' })
+      vim.keymap.set('n', '<Leader>_J', dap.step_over, { desc = 'Step over' })
+      vim.keymap.set('n', '<Leader>_L', dap.step_into, { desc = 'Step into' })
+      vim.keymap.set('n', '<Leader>_H', dap.step_out, { desc = 'Step out' })
+      vim.keymap.set('n', '<Leader>_t', '<CMD>OverseerRun<CR>', { desc = 'Run task...' })
 
       vim.keymap.set('n', '<Leader>tr', '<CMD>OverseerRun<CR>', { desc = 'Run task...' })
       vim.keymap.set('n', '<Leader>tv', '<CMD>OverseerToggle<CR>', { desc = 'Toggle task view' })
