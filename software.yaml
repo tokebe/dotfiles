@@ -74,6 +74,7 @@
 - brew:
     # Data tools
     - jless  # TUI JSON viewer | https://github.com/PaulJuliusMartinez/jless
+    - jfx # TUI JSON/YAML viewer | https://github.com/antonmedv/fx
     - jq  # CLI JSON transformer | https://github.com/jqlang/jq
     - jqp  # TUI for JQ | https://github.com/noahgorstein/jqp
     - tidy-viewer  # CLI csv pretty printer | https://github.com/alexhallam/tv

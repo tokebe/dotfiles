@@ -181,3 +181,6 @@ esac
 # Navi integration
 eval "$(navi widget zsh)"
 
+# fx configuration https://github.com/antonmedv/fx
+export FX_SHOW_SIZE=true
+
