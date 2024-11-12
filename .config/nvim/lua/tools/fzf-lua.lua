@@ -109,7 +109,7 @@ return {
       end)
       vim.keymap.set('n', '<Leader><Tab>', function()
         require('fzf-lua').files({
-          cmd = "rg --files --color=never --no-ignore --hidden --glob '" .. require('filter').getFilter() .. "'",
+          cmd = "rg --files --color=never --no-ignore --hidden --follow --glob '" .. require('filter').getFilter() .. "'",
           winopts = {
             preview = {
               layout = 'vertical',
