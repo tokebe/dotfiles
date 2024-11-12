@@ -12,7 +12,7 @@
       create: true
       relink: true
       force: true
-- clean: ["~"]
+- clean: ['~']
 - create: [~/Applications, ~/Downloads, ~/Projects]
 - include: software.yaml
 - shell:
@@ -20,28 +20,40 @@
         wezterm/fontsize.lua
       description: Ensure wezterm fontsize config file
 - link:
-    ~/.config/wezterm: wezterm
-    # neovim
-    ~/.config/nvim: nvim
     # zsh
-    ~/.zshrc: zsh/.zshrc
-    ~/.zshenv: zsh/.zshenv
-    ~/.zprofile: zsh/.zprofile
-    ~/.p10k.zsh: zsh/.p10k.zsh
-    ~/.zfunc: zsh/.zfunc
+    ~/.zshrc:
+      path: zsh/.zshrc
+      relink: true
+    ~/.zshenv:
+      path: zsh/.zshenv
+      relink: true
+    ~/.zprofile:
+      path: zsh/.zprofile
+      relink: true
+    ~/.p10k.zsh:
+      path: zsh/.p10k.zsh
+      relink: true
+    ~/.zfunc:
+      path: zsh/.zfunc
+      relink: true
     # iosevka font gen
-    ~/.config/iosevka/config.ini: iosevka/config.ini
+    ~/.config/iosevka/config.ini:
+      path: iosevka/config.ini
+      relink: true
     # tmux
-    ~/.tmux/plugins/tpm: tmux/tpm
-    ~/.config/tmux/tmux.conf: tmux/tmux.conf
-    # lf
-    ~/.config/lf: lf
-    # neofetch
-    ~/.config/neofetch/config: neofetch/neofetch-themes/normal/config.conf
+    ~/.tmux/plugins/tpm:
+      path: tmux/tpm
+      relink: true
+    ~/.config/tmux/tmux.conf:
+      path: tmux/tmux.conf
+      relink: true
+    # General
     ~/.config/:
-        glob: true
-        path: misc/.?*
+      glob: true
+      path: .config/*
+      relink: true
     ~/:
-        glob: true
-        path: misc-home/.?*
+      glob: true
+      path: home/*
+      relink: true
 - include: themes.yaml
