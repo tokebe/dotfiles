@@ -46,6 +46,7 @@ return {
         TypeParameter = ' ',
       },
     })
+    vim.g.navic_silence = true -- Suppress errors attaching to lsp
   end,
   keys = {
     {
