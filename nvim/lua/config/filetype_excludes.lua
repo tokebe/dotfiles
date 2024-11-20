@@ -13,6 +13,7 @@ return {
   'lspinfo',
   'WhichKey',
   'dashboard',
+  'snacks_dashboard',
   'dashboardpreview',
   '',
   'noice',
@@ -20,6 +21,8 @@ return {
   'spectre_panel',
   'Navbuddy',
   'fzf',
+  'fzflua',
+  'fzflua_backdrop',
   'dapui_repl',
   'dapui_console',
   'dapui_scopes',
@@ -27,5 +30,5 @@ return {
   'dapui_stacks',
   'dapui_watches',
   'OverseerList',
-  'grug-far'
+  'grug-far',
 }
