@@ -1,15 +1,13 @@
 return {
   {
-    'echasnovski/mini.trailspace',
-    version = '*',
+    'johnfrankmorgan/whitespace.nvim',
     config = function()
-      require('mini.trailspace').setup()
-      vim.api.nvim_create_autocmd('Filetype', {
-        pattern = require('config.filetype_excludes'),
-        callback = function(event)
-          vim.b[event.buf].minitrailspace_disable = true
-        end,
+      require('whitespace-nvim').setup({
+        ignored_filetypes = require('config.filetype_excludes'),
       })
+      vim.keymap.set('n', '<Leader>gw', function()
+        require('whitespace-nvim').trim()
+      end)
     end,
   },
   {
