@@ -59,7 +59,7 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'stevearc/overseer.nvim',
-      {'tiagovla/scope.nvim', commit = 'f8a6783'},
+      { 'tiagovla/scope.nvim', commit = 'f8a6783' },
     },
     config = function()
       local config = require('session_manager.config')
@@ -72,7 +72,6 @@ return {
         autosave_ignore_not_normal = true,
         autosave_only_in_session = true,
       })
-
 
       local config_group = vim.api.nvim_create_augroup('MyConfigGroup', {}) -- A global group for all your config autocommands
 
@@ -132,7 +131,6 @@ return {
     dependencies = {
       'nvim-tree/nvim-web-devicons',
       'gnikdroy/projections.nvim',
-      'mrjones2014/legendary.nvim',
       'ibhagwan/fzf-lua',
     },
     event = 'VimEnter',
