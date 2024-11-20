@@ -7,6 +7,7 @@ return {
           win_options = {
             winhighlight = 'NormalFloat:Normal,FloatBorder:Normal,FloatTitle:Normal,CursorLine:Normal',
           },
+          border = 'single',
           override = function(conf)
             conf.col = -1
             conf.row = 0
