@@ -180,7 +180,7 @@ return {
           },
         })
       end, { desc = 'Select colorscheme' })
-      vim.keymap.set('n', 'ga', function()
+      vim.keymap.set('n', '<Leader>ga', function()
         require('fzf-lua').lsp_code_actions({
           -- previewer = 'codeaction_native',
           winopts = {
