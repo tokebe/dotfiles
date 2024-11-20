@@ -18,28 +18,76 @@ return {
       vim.keymap.set('n', '<Leader>sy', '<CMD>YankBank<CR>', { noremap = true, desc = 'Select & paste from clipboard' })
     end,
   },
-  { -- Delete buffers but preserve window layout
-    'ojroques/nvim-bufdel',
+  -- { -- Delete buffers but preserve window layout
+  --   'ojroques/nvim-bufdel',
+  --   config = function()
+  --     require('bufdel').setup({
+  --       quit = false,
+  --     })
+  --     vim.keymap.set('n', '<Leader>wq', ':BufDel<CR>', {
+  --       desc = 'Close buffer',
+  --     })
+  --     vim.keymap.set('n', '<Leader>wQ', ':BufDel!<CR>', {
+  --       desc = 'Close buffer (force)',
+  --     })
+  --     vim.keymap.set('n', '<Leader>wa', ':BufDelAll<CR>', {
+  --       desc = 'Close all buffers',
+  --     })
+  --     vim.keymap.set('n', '<Leader>wA', ':BufDelAll!<CR>', {
+  --       desc = 'Close all buffers (force)',
+  --     })
+  --     vim.keymap.set('n', '<Leader>wo', ':BufDelOthers<CR>', {
+  --       desc = 'Close all other buffers',
+  --     })
+  --     vim.keymap.set('n', '<Leader>wO', ':BufDelOthers!<CR>', {
+  --       desc = 'Close all other buffers (force)',
+  --     })
+  --   end,
+  -- },
+  {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
     config = function()
-      require('bufdel').setup({
-        quit = false,
+      local snacks = require('snacks')
+      snacks.setup({
+        notifier = { enabled = false },
+        statuscolumn = { enabled = false },
+        words = { enabled = false },
       })
-      vim.keymap.set('n', '<Leader>wq', ':BufDel<CR>', {
+
+      -- file rename with lsp
+      vim.keymap.set('n', '<Leader>rf', snacks.rename.rename_file)
+
+      -- bufdel
+      vim.keymap.set('n', '<Leader>wq', function()
+        snacks.bufdelete()
+      end, {
         desc = 'Close buffer',
       })
-      vim.keymap.set('n', '<Leader>wQ', ':BufDel!<CR>', {
+      vim.keymap.set('n', '<Leader>wQ', function()
+        snacks.bufdelete({ force = true })
+      end, {
         desc = 'Close buffer (force)',
       })
-      vim.keymap.set('n', '<Leader>wa', ':BufDelAll<CR>', {
+      vim.keymap.set('n', '<Leader>wa', function()
+        snacks.bufdelete.all()
+      end, {
         desc = 'Close all buffers',
       })
-      vim.keymap.set('n', '<Leader>wA', ':BufDelAll!<CR>', {
+      vim.keymap.set('n', '<Leader>wA', function()
+        snacks.bufdelete.all({ force = true })
+      end, {
         desc = 'Close all buffers (force)',
       })
-      vim.keymap.set('n', '<Leader>wo', ':BufDelOthers<CR>', {
+      vim.keymap.set('n', '<Leader>wo', function()
+        snacks.bufdelete.other()
+      end, {
         desc = 'Close all other buffers',
       })
-      vim.keymap.set('n', '<Leader>wO', ':BufDelOthers!<CR>', {
+      vim.keymap.set('n', '<Leader>wO', function()
+        snacks.bufdelete.other({ force = true })
+      end, {
         desc = 'Close all other buffers (force)',
       })
     end,
