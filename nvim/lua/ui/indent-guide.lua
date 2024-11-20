@@ -32,6 +32,8 @@ return {
           enable = true,
           chars = {
             right_arrow = '─',
+            left_top = '┌',
+            left_bottom = '└',
           },
           use_treesitter = true,
         },
