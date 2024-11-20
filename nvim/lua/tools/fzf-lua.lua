@@ -160,8 +160,10 @@ return {
       vim.keymap.set('n', '<Leader>sl', function()
         require('fzf-lua').filetypes({
           winopts = {
-            height = 0.4,
-            width = 0.4,
+            row = 0.9,
+            col = 0.9,
+            height = 0.3,
+            width = 0.3,
           },
         })
       end, { desc = 'Select language' })
@@ -212,6 +214,16 @@ return {
           -- end),
         })
       end, { desc = 'view code actions' })
+      vim.keymap.set('n', '<Leader><Leader>', function()
+        require('fzf-lua').keymaps({
+          previewer = 'none',
+          winopts = {
+              height = 0.3,
+              width = 0.9,
+              row = 0.9,
+          }
+        })
+      end, { desc = 'Search keymaps' })
     end,
   },
 }
