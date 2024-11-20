@@ -18,24 +18,24 @@ return {
       require('hlargs').setup()
     end,
   },
-  {
-    'zbirenbaum/neodim',
-    event = 'LspAttach',
-    config = function()
-      require('neodim').setup({
-        alpha = 0.75,
-        blend_color = '#000000',
-        update_in_insert = {
-          enable = false,
-        },
-        hide = {
-          virtual_text = true,
-          signs = true,
-          underline = true,
-        },
-      })
-    end,
-  },
+  -- { -- Causes way too many errors when major file changes occur
+  --   'zbirenbaum/neodim',
+  --   event = 'LspAttach',
+  --   config = function()
+  --     require('neodim').setup({
+  --       alpha = 0.75,
+  --       blend_color = '#000000',
+  --       update_in_insert = {
+  --         enable = false,
+  --       },
+  --       hide = {
+  --         virtual_text = true,
+  --         signs = true,
+  --         underline = true,
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     'folke/todo-comments.nvim',
     dependencies = {
