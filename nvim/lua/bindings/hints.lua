@@ -16,7 +16,7 @@ return {
         { '<Leader>_', group = 'Hydras' },
         { '<Leader>f', group = 'Find...' },
         { '<Leader>s', group = 'Select...' },
-        { '<Leader>g', group = 'Global...' },
+        { '<Leader>g', group = 'Global / Git...' },
         { '<Leader>m', group = 'Manage / Multicursor...' },
         { '<Leader>j', group = 'Jump...' },
         -- { '<Leader>v', group = 'View...' },
@@ -35,45 +35,6 @@ return {
       })
       -- Set up misc keybinds
       require('config.misc-keybinds')
-    end,
-  },
-  {
-    'mrjones2014/legendary.nvim',
-    priority = 10000,
-    lazy = false,
-    dependencies = {
-      'folke/which-key.nvim',
-    },
-    config = function()
-      require('legendary').setup({
-        extensions = {
-          diffview = true,
-          which_key = {
-            auto_register = true,
-          },
-        },
-        select_prompt = '> ',
-        col_separator_char = '',
-        keymaps = {
-          { -- Summon Command palette
-            '<Leader><Leader>',
-            function()
-              local legendary, filters = require('legendary'), require('legendary.filters')
-              legendary.find({
-                filters = {
-                  filters.OR(
-                    filters.AND(filters.keymaps(), filters.current_mode()),
-                    filters.commands(),
-                    filters.OR(),
-                    filters.funcs()
-                  ),
-                },
-              })
-            end,
-            description = 'Open command palette',
-          },
-        },
-      })
     end,
   },
 }
