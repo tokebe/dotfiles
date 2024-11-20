@@ -12,7 +12,7 @@ vim.keymap.set('v', '<Leader>gf', function()
       ['end'] = vim.api.nvim_buf_get_mark(0, '>'),
     },
   })
-end, { desc = 'Format file' })
+end, { desc = 'Format selection' })
 
 -- Manage Lazy plugins
 vim.keymap.set('n', '<Leader>op', ':Lazy<CR>', {

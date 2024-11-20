@@ -38,8 +38,8 @@ return {
     'Bekaboo/dropbar.nvim',
     config = function ()
       require('dropbar').setup({
-        general = {
-          update_interval = 1
+        bar = {
+          update_debounce = 1
         }
       })
     end
