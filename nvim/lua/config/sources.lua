@@ -1,14 +1,15 @@
 return {
-  lsp = { -- Language Server Protocol
-    'lua_ls', -- Lua
+  lsp = {       -- Language Server Protocol
+    'lua_ls',   -- Lua
     -- 'tsserver', -- Typescript/Javascript
-    'pyright', -- Python
-    'taplo', -- TOML
-    'bashls', -- Bash
+    'pyright',  -- Python
+    'ruff_lsp', --Python
+    'taplo',    -- TOML
+    'bashls',   -- Bash
     'spectral', -- JSON/YAML
     'marksman', -- Markdown
   },
-  dap = { -- Debug Adapter Protocol
+  dap = {       -- Debug Adapter Protocol
     'js',
     -- 'js-debug-adapter', -- VSCode js debug adapter
     -- 'debugpy',
@@ -25,7 +26,7 @@ return {
     -- linters
     'luacheck',
     'eslint_d',
-    'flake8',
+    'ruff',
     'shellharden',
     'shellcheck',
   },
