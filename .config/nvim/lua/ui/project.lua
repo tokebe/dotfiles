@@ -1,59 +1,4 @@
 return {
-  -- {
-  --   'rmagatti/auto-session',
-  --   config = function()
-  --     require('auto-session').setup({
-  --       log_level = 'error',
-  --       auto_session_supress_dirs = { '~' },
-  --       auto_session_use_git_branch = false,
-  --       restore_upcoming_session = true,
-  --       pre_save_cmds = {
-  --         'ScopeSaveState',
-  --         'NeoTreeClose',
-  --         function()
-  --           require('spectre').close()
-  --         end,
-  --       },
-  --       post_restore_cmds = { 'ScopeLoadState' },
-  --       session_lens = {
-  --         path_display = { 'truncate' },
-  --         theme = 'vertical',
-  --         previewer = false,
-  --       },
-  --     })
-  --
-  --     vim.keymap.set('n', '<Leader>fp', ':Autosession search<CR>', { desc = 'Find Project' })
-  --     vim.keymap.set('n', '<Leader>dp', ':Autosession delete<CR>', { desc = 'Delete Project' })
-  --   end,
-  -- },
-  -- {
-  --   'gennaro-tedesco/nvim-possession',
-  --   dependencies = {
-  --     'ibhagwan/fzf-lua',
-  --   },
-  --   config = function()
-  --     require('nvim-possession').setup({
-  --       autoload = true,
-  --       autosave = true,
-  --       autoswitch = {
-  --         enable = true,
-  --         -- exclude_ft = require('config.filetype_excludes'),
-  --       },
-  --       save_hook = function()
-  --         vim.cmd('ScopeSaveState')
-  --       end,
-  --       post_hook = function()
-  --         vim.cmd('ScopeLoadState')
-  --       end,
-  --     })
-  --     vim.keymap.set('n', '<Leader>pp', function()
-  --       require('nvim-possession').list()
-  --     end, { desc = 'Find Project' })
-  --     vim.keymap.set('n', '<Leader>pn', function()
-  --       require('nvim-possession').new()
-  --     end, { desc = 'New Project' })
-  --   end,
-  -- },
   {
     'Shatur/neovim-session-manager',
     dependencies = {
@@ -63,7 +8,6 @@ return {
     },
     config = function()
       local config = require('session_manager.config')
-      local overseer = require('overseer')
       require('scope').setup()
       require('session_manager').setup({
         autoload_mode = config.AutoloadMode.CurrentDir,
@@ -228,8 +172,8 @@ return {
           },
           project = {
             enable = true,
-            limit = 2,
-            icon = '  ',
+            limit = 2, -- Should be 3 but apparently it can't count
+            icon = '  ',
             label = 'Recent Projects',
             action = function(path)
               vim.cmd('cd ' .. path)
@@ -238,6 +182,8 @@ return {
           },
           mru = {
             limit = 3,
+            icon = '󱋡  ',
+            label = 'Recent Files'
           },
           footer = {
             '',
