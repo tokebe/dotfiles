@@ -12,9 +12,10 @@ return {
         prefills = {
           flags = '--ignore-case --no-ignore',
         },
+        transient = true
       })
 
-      vim.keymap.set('n', '<Leader>ff', function()
+      vim.keymap.set({ 'n', 'v' }, '<Leader>ff', function()
         grug.grug_far({
           prefills = {
             filesFilter = filter.getFilter(),
@@ -22,7 +23,7 @@ return {
         })
       end, { desc = 'Search within files' })
 
-      vim.keymap.set('n', '<Leader>fF', function()
+      vim.keymap.set({ 'n', 'v' }, '<Leader>fF', function()
         grug.grug_far({
           prefills = {
             filesFilter = vim.fn.expand('%'),
@@ -30,7 +31,7 @@ return {
         })
       end, { desc = 'Search within current file' })
 
-      vim.keymap.set('n', '<Leader>fa', function()
+      vim.keymap.set({ 'n', 'v' }, '<Leader>fa', function()
         grug.grug_far({
           engine = 'astgrep',
           prefills = {
@@ -40,7 +41,7 @@ return {
         })
       end, { desc = 'Search AST within files' })
 
-      vim.keymap.set('n', '<Leader>fA', function()
+      vim.keymap.set({ 'n', 'v' }, '<Leader>fA', function()
         grug.grug_far({
           engine = 'astgrep',
           prefills = {
