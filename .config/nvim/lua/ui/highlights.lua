@@ -1,13 +1,16 @@
 return {
   {
-    'johnfrankmorgan/whitespace.nvim',
+    -- Auto-delete whitespace on write (would highlight, but autosave auto-cleans it)
+    'kaplanz/retrail.nvim',
     config = function()
-      require('whitespace-nvim').setup({
-        ignored_filetypes = require('config.filetype_excludes'),
+      require('retrail').setup({
+        hlgroup = 'DiffDelete',
+        filetype = {
+          exclude = require('config.filetype_excludes'),
+        },
+        trim = { auto = true },
       })
-      vim.keymap.set('n', '<Leader>gw', function()
-        require('whitespace-nvim').trim()
-      end)
+      vim.keymap.set('n', '<Leader>oW', '<CMD>RetrailToggle<CR>', { desc = 'Trim whitespace' })
     end,
   },
   {
