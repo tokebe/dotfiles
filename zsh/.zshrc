@@ -33,6 +33,11 @@ zstyle ':z4h:direnv'         enable 'no'
 # Show "loading" and "unloading" notifications from direnv.
 zstyle ':z4h:direnv:success' notify 'yes'
 
+zstyle ':z4h:fzf-dir-history' fzf-bindings tab:repeat
+zstyle ':z4h:cd-down'         fzf-bindings tab:repeat
+
+z4h bindkey z4h-fzf-dir-history Alt+Down
+
 # Enable ('yes') or disable ('no') automatic teleportation of z4h over
 # SSH when connecting to these hosts.
 zstyle ':z4h:ssh:example-hostname1'   enable 'yes'
@@ -80,7 +85,7 @@ z4h source ~/.env.zsh
 # z4h load   ohmyzsh/ohmyzsh/plugins/emoji-clock  # load a plugin
 # z4h load ohmyzsh/ohmyzsh/plugins/colored-man-pages
 z4h load se-jaeger/zsh-activate-py-environment
-z4h load ohmyzsh/ohmyzsh/plugins/autojump
+# z4h load ohmyzsh/ohmyzsh/plugins/autojump
 
 
 z4h load akash329d/zsh-alias-finder
@@ -184,3 +189,5 @@ eval "$(navi widget zsh)"
 # fx configuration https://github.com/antonmedv/fx
 export FX_SHOW_SIZE=true
 
+# jump
+eval "$(jump shell)"
