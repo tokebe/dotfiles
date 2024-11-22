@@ -2,6 +2,7 @@ return {
   'TelescopePrompt',
   'TelescopeResults',
   'Trouble',
+  'trouble',
   'help',
   'DressingSelect',
   'DressingInput',
