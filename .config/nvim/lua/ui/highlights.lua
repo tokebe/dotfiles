@@ -8,7 +8,7 @@ return {
         filetype = {
           exclude = require('config.filetype_excludes'),
         },
-        trim = { auto = true },
+        trim = { auto = false },
       })
       vim.keymap.set('n', '<Leader>oW', '<CMD>RetrailToggle<CR>', { desc = 'Trim whitespace' })
     end,
