@@ -74,7 +74,7 @@
 - brew:
     # Data tools
     - jless  # TUI JSON viewer | https://github.com/PaulJuliusMartinez/jless
-    - jfx # TUI JSON/YAML viewer | https://github.com/antonmedv/fx
+    - jfx  # TUI JSON/YAML viewer | https://github.com/antonmedv/fx
     - jq  # CLI JSON transformer | https://github.com/jqlang/jq
     - jqp  # TUI for JQ | https://github.com/noahgorstein/jqp
     - tidy-viewer  # CLI csv pretty printer | https://github.com/alexhallam/tv
@@ -101,8 +101,7 @@
     - pyenv  # Python version management | https://github.com/pyenv/pyenv
     - pyenv-virtualenv  # Pyenv venv support | https://github.com/pyenv/pyenv-virtualenv
     # Utilities
-    # TODO: replace autojump
-    - autojump  # Quick cd'ing | https://github.com/wting/autojump
+    - jump  # Smart cd'ing | https://github.com/gsamokovarov/jump
     - bat  # Better cat/less | https://github.com/sharkdp/bat
     - btop  # Better top | https://github.com/aristocratos/btop
     - ccat  # Colorful cat | https://github.com/owenthereal/ccat
