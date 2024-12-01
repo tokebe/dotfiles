@@ -39,7 +39,7 @@ Running TODO list:
 - [x] REST client with better workflow than current
 - [x] Reorganize all the plugins
 - [x] Quick switch to normal mode from terminal mode
-- [ ] Fix rename symbol jumping up in document when writing
+- [x] Fix rename symbol jumping up in document when writing
 - [ ] Fix ctrl-hjkl when in insert mode
 - [x] Redo tmux setup to be simpler + nvim-compatible
 - [ ] Jupyter/similar (probably something along the lines of magma, etc.)
@@ -55,30 +55,29 @@ Running TODO list:
     - [x] Figure out how to show all tasks regardless of current file
   - [x] vscode task support? (See vs-tasks.nvim for this and launch support)
   - [x] javascript/other profiling
-  - [ ] fix statuscol -- stopped info not showing in own col
+  - [x] fix statuscol -- stopped info not showing in own col
   - [x] make debugging run in a hydra for ease-of-use
   - [ ] toggle key for swapping term/repl
   - [ ] maybe launch in tmux pane and then attach to (this would be incredibly complicated)?
   - [x] kill process on debug stop
 - [ ] Fix IncRename: needs to ensure diagnostic float is hidden/paused
 - [x] Test file managers to replace ranger, then integrate with neovim
-- [ ] Acquire more colorschemes
+- [x] Acquire more colorschemes
 - [x] Auto-backup lockfile
-- [ ] Re-make hover.lua but just using a custom nui setup
-- [ ] Fix fzf switcher being unable to distinguish between multiple unnamed buffers
-- [ ] Add keybinds for toggling diff on two split files
-- [ ] Fix `x` sometimes deleting, sometimes cutting
+- [x] Add keybinds for toggling diff on two split files
+- [x] Fix `x` sometimes deleting, sometimes cutting
 - [x] Fix Fzf perf when in large directory -- async or timeout?
 - [ ] Fix overseer output not showing errors
 - [x] Improved debug experience -- sourcemaps, scopes indentation?
-- [ ] Incorporate nvim-treesitter-textobjects
+- [x] Incorporate nvim-treesitter-textobjects
 - [ ] Automatic .yamllint and other configs to their respective linters/formatters/etc
-- [ ] Fix same-buffer goto definition behavior when hitting enter
+- [x] Fix same-buffer goto definition behavior when hitting enter
 - [ ] restart LSP after language changed
-- [ ] fix closing nested goto previews
+- [x] fix closing nested goto previews
 - [ ] show dashboard when all buffers closed
-- [ ] better uses of fzf for find-, select-, and manage- prefixes
+- [x] better uses of fzf for find-, select-, and manage- prefixes
 - [ ] better quick fix management
+- [ ] Fix visual-paste yanking replaced text
 
 And also the random notes for smaller things:
 
