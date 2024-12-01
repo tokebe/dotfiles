@@ -23,7 +23,7 @@ return {
       vim.o.foldenable = true
       require('ufo').setup({
         provider_selector = function(bufnr, filetype, buftype)
-          return { 'treesitter', 'indent' }
+          return {  'lsp', 'indent' }
         end,
       })
       vim.api.nvim_create_autocmd('FileType', {
