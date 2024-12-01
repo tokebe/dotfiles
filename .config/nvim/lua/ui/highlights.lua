@@ -10,7 +10,7 @@ return {
         },
         trim = { auto = false },
       })
-      vim.keymap.set('n', '<Leader>oW', '<CMD>RetrailToggle<CR>', { desc = 'Trim whitespace' })
+      vim.keymap.set('n', '<Leader>gw', '<CMD>RetrailTrimWhitespace<CR>', { desc = 'Trim whitespace' })
     end,
   },
   {
