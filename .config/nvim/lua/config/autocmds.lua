@@ -2,9 +2,9 @@ vim.api.nvim_create_autocmd('ModeChanged', {
   pattern = '*',
   callback = function()
     if
-        ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-        and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-        and not require('luasnip').session.jump_active
+      ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+      and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
+      and not require('luasnip').session.jump_active
     then
       require('luasnip').unlink_current()
     end
@@ -20,3 +20,11 @@ vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI', 'BufEnter', 'FocusGai
   desc = 'Check for file changes periodically',
 })
 
+-- remember folds
+vim.cmd([[
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave *.* silent! mkview
+  autocmd BufWinEnter *.* silent! loadview
+augroup END
+]])
