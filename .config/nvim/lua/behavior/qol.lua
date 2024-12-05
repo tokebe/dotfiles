@@ -59,6 +59,11 @@ return {
       -- file rename with lsp
       vim.keymap.set('n', '<Leader>rf', snacks.rename.rename_file)
 
+      -- profiling
+      snacks.toggle.profiler():map('<Leader>pt')
+      snacks.toggle.profiler_highlights():map('<Leader>ph')
+      vim.keymap.set('n', '<Leader>po', snacks.profiler.scratch, { desc = 'Profiler scratch buffer' })
+
       -- bufdel
       vim.keymap.set('n', '<Leader>wq', function()
         snacks.bufdelete()
