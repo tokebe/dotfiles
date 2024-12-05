@@ -19,12 +19,3 @@ vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI', 'BufEnter', 'FocusGai
   end,
   desc = 'Check for file changes periodically',
 })
-
--- remember folds
-vim.cmd([[
-augroup remember_folds
-  autocmd!
-  autocmd BufWinLeave *.* silent! mkview
-  autocmd BufWinEnter *.* silent! loadview
-augroup END
-]])
