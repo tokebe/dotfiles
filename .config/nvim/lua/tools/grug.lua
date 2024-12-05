@@ -10,9 +10,9 @@ return {
           close = { n = 'q' },
         },
         prefills = {
-          flags = '--ignore-case --no-ignore',
+          flags = '--ignore-case --no-ignore --hidden',
         },
-        transient = true
+        transient = true,
       })
 
       vim.keymap.set({ 'n', 'v' }, '<Leader>ff', function()
