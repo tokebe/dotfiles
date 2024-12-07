@@ -26,18 +26,18 @@ return {
                 sign = {
                   name = { 'todo' },
                   namespace = { 'diagnostic/signs' },
-                  maxwidth = 2,
+                  maxwidth = 1,
                   colwidth = 2,
                   auto = false,
                 },
                 click = 'v:lua.ScSa',
               },
-              {
-                sign = { name = { 'Marks' } },
-                maxwidth = 2,
-                colwidth = 2,
-                auto = true,
-              },
+              -- {
+              --   sign = { name = { 'Marks' } },
+              --   maxwidth = 2,
+              --   colwidth = 1,
+              --   auto = true,
+              -- },
               {
                 sign = { name = { '.*' }, namespace = { '.*' }, text = { '.*' } },
                 maxwidth = 1,
@@ -45,7 +45,7 @@ return {
                 auto = true,
               },
               {
-                sign = { name = { 'Breakpoint', 'Dap' }, maxwidth = 2, colwidth = 2, auto = true },
+                sign = { name = { 'Breakpoint', 'Dap' }, maxwidth = 1, colwidth = 1, auto = true },
                 click = 'v:lua.ScSa',
               },
               { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
