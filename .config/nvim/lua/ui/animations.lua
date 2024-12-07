@@ -1,29 +1,5 @@
 return {
-  -- {
-  --   -- Animate cursor jumping larger distances
-  --   'edluffy/specs.nvim',
-  --   event = 'BufEnter',
-  --   config = function()
-  --     require('specs').setup({
-  --       show_jumps = true,
-  --       min_jump = 5,
-  --       popup = {
-  --         delay_ms = 0, -- delay before popup displays
-  --         inc_ms = 10, -- time increments used for fade/resize effects
-  --         blend = 10, -- starting blend, between 0-100 (fully transparent), see :h winblend
-  --         width = 10,
-  --         winhl = 'Search',
-  --         fader = require('specs').pulse_fader,
-  --         resizer = require('specs').shrink_resizer,
-  --       },
-  --       ignore_filetypes = {},
-  --       ignore_buftypes = {
-  --         nofile = true,
-  --       },
-  --     })
-  --   end,
-  -- },
-  { -- Smoothly move cursor
+  { -- Smoothly move cursorline when jumping
     'gen740/SmoothCursor.nvim',
     event = 'BufEnter',
     config = function()
@@ -34,6 +10,32 @@ return {
       })
     end,
   },
+  { -- Neovide-like cursor smear using block symbols
+    'sphamba/smear-cursor.nvim',
+    opts = {
+      -- cursor_color = "#ffffff",
+      cursor_color = '#eb6f92',
+      legacy_computing_symbols_support = true,
+      hide_target_hack = false,
+      trailing_stiffness = 0.25,
+    },
+  },
+  -- { -- Currently has problems with movement cancelling
+  --   'declancm/cinnamon.nvim',
+  --   version = '*',
+  --   opts = {
+  --     keymaps = {
+  --       basic = true,
+  --       extra = true,
+  --     },
+  --     options = {
+  --       mode = 'window',
+  --       max_delta = {
+  --         time = 200,
+  --       },
+  --     },
+  --   },
+  -- },
   { -- misc animations
     'echasnovski/mini.animate',
     config = function()
