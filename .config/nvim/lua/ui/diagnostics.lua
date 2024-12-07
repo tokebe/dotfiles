@@ -8,7 +8,8 @@ vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSi
 vim.fn.sign_define('DiagnosticSignHint', { text = '󱉵 ', texthl = 'DiagnosticSignHint' })
 
 -- Window border style
-vim.diagnostic.config({ float = { border = 'solid' } })
+-- Don't update in insert
+vim.diagnostic.config({ float = { border = 'solid' }, update_in_insert = false })
 
 local function filter_diagnostics(diagnostics)
   local most_severe = {}
@@ -61,15 +62,15 @@ return {
       -- Disable by default
       vim.api.nvim_create_autocmd('BufEnter', {
         callback = function()
-          vim.diagnostic.config({ virtual_text = true })
-          vim.diagnostic.config({ virtual_lines = false })
+          vim.diagnostic.config({ virtual_text = true, update_in_insert = false })
+          vim.diagnostic.config({ virtual_lines = false, update_in_insert = false })
         end,
       })
 
       vim.keymap.set('n', '<Leader>td', function()
         lsp_lines.toggle()
         -- Remove this if lsp_lines updates to fix toggling (would cause a desync in toggling)
-        vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
+        vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text, update_in_insert = false })
       end, { remap = true, desc = 'Toggle diagnostic detail' })
     end,
   },
