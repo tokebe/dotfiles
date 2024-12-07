@@ -3,7 +3,6 @@ return {
   { -- quick selection by syntax node
     'sustech-data/wildfire.nvim',
     lazy = false,
-    event = 'UIEnter',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('wildfire').setup({
@@ -27,6 +26,11 @@ return {
     config = function()
       require('mini.ai').setup()
     end,
+  },
+  {
+    'chrisgrieser/nvim-various-textobjs',
+    event = 'VeryLazy',
+    opts = { keymaps = { useDefaults = true } },
   },
   { -- Intelligent increment/decrement, with cycles for bools/etc.
     'nat-418/boole.nvim',
@@ -143,7 +147,12 @@ return {
       vim.keymap.set('v', '<Leader>ms', mc.splitCursors, { desc = 'Split selection by regex and add cursors' })
 
       -- match new cursors within visual selections by regex
-      vim.keymap.set({ 'n', 'v' }, '<Leader>mm', mc.matchCursors, { desc = 'Add cursors at regex instances in selection' })
+      vim.keymap.set(
+        { 'n', 'v' },
+        '<Leader>mm',
+        mc.matchCursors,
+        { desc = 'Add cursors at regex instances in selection' }
+      )
 
       -- rotate visual selection contents
       -- vim.keymap.set('v', '<leader>mr', function()
