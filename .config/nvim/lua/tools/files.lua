@@ -13,7 +13,7 @@ return {
 
       require('neo-tree').setup({
         open_files_do_not_replace_types = { 'terminal', 'Trouble', 'toggleterm', 'qf', 'edgy' },
-        add_blank_line_at_top = true,
+        add_blank_line_at_top = false,
         popup_border_style = 'NC',
         sources = {
           'filesystem',
@@ -23,6 +23,12 @@ return {
         },
         source_selector = {
           winbar = true,
+          sources = {
+            { source = 'filesystem' },
+            { source = 'buffers' },
+            { source = 'git_status' },
+            { source = 'document_symbols' },
+          },
         },
         window = {
           position = 'right',
@@ -68,18 +74,28 @@ return {
     keys = {
       {
         '<Leader>ee',
-        ':Neotree toggle<CR>',
+        '<CMD>Neotree toggle<CR>',
         desc = 'Toggle tree explorer ',
       },
       {
         '<Leader>ef',
-        ':Neotree focus<CR>',
+        '<CMD>Neotree focus<CR>',
         desc = 'Focus tree explorer',
       },
       {
         '<Leader>ej',
-        ':Neotree reveal<CR>',
+        '<CMD>Neotree reveal<CR>',
         desc = 'Jump to current buffer in tree explorer',
+      },
+      {
+        '<Leader>eb',
+        '<CMD>Neotree buffers<CR>',
+        desc = 'View buffers explorer sidebar',
+      },
+      {
+        '<Leader>es',
+        '<CMD>Neotree document_symbols<CR>',
+        desc = 'View symbols explorer sidebar',
       },
     },
   },
