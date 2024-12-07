@@ -13,7 +13,7 @@ return {
       neogit.setup({
         graph_style = 'unicode',
         disable_insert_on_commit = true,
-        integrations = { fzf_lua = true }
+        integrations = { fzf_lua = true },
       })
       vim.keymap.set('n', '<Leader>gg', '<CMD>Neogit cwd=%:p:h<CR>', { desc = 'Open neogit (current file repo)' })
       vim.keymap.set('n', '<Leader>gG', '<CMD>Neogit<CR>', { desc = 'Open neogit (cwd repo)' })
@@ -61,9 +61,9 @@ return {
     config = function()
       require('gitsigns').setup({
         signs = {
-          add = { text = '│' },
-          change = { text = '│' },
-          delete = { text = '│' },
+          add = { text = '┃' },
+          change = { text = '┃' },
+          delete = { text = '┃' },
           topdelete = { text = '‾' },
           changedelete = { text = '~' },
         },
@@ -74,6 +74,7 @@ return {
         current_line_blame_formatter = '<author> • <author_time:%R> • <summary>',
         current_line_blame_opts = {
           delay = 1000,
+          virt_text_priority = 9999,
         },
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
