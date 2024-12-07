@@ -72,6 +72,7 @@ return {
         --   },
         -- },
       })
+      vim.keymap.set('n', '<Leader>oH', '<CMD>NoiceHistory<CR>', { desc = 'Open output history' })
     end,
   },
   {
@@ -126,7 +127,7 @@ return {
         {
           title = 'Neo-Tree',
           ft = 'neo-tree',
-          size = { width = 50 },
+          size = { width = 36 },
         },
         -- {
         --   title = 'Grug',
@@ -169,7 +170,8 @@ return {
     },
     config = function()
       require('nvim_context_vt').setup({
-        prefix = '󱦵',
+        -- prefix = '󱦵',
+        prefix = '󱞿 ',
         min_rows = 7,
         disable_ft = require('config.filetype_excludes'),
       })
