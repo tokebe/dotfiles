@@ -57,7 +57,7 @@ return {
       })
 
       -- file rename with lsp
-      vim.keymap.set('n', '<Leader>rf', snacks.rename.rename_file)
+      vim.keymap.set('n', '<Leader>rf', snacks.rename.rename_file, { desc = 'Rename file using LSP' })
 
       -- profiling
       snacks.toggle.profiler():map('<Leader>pt')
