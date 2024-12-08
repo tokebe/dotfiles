@@ -1,0 +1,197 @@
+/* 
+__     __
+\ \   / /_ _ _ __ ___
+ \ \ / / _` | '__/ __|
+  \ V / (_| | |  \__ \
+   \_/ \__,_|_|  |___/
+*/
+:root {
+  --in-transition: font-size 200ms, padding 200ms, margin 200ms, max-width 200ms,
+    opacity 200ms 150ms;
+  --out-transition: font-size 200ms 400ms, padding 200ms 400ms,
+    margin 200ms 400ms, max-width 200ms 400ms, opacity 100ms;
+}
+
+/*
+ _   _             _
+| \ | | __ ___   _| |__   __ _ _ __
+|  \| |/ _` \ \ / / '_ \ / _` | '__|
+| |\  | (_| |\ V /| |_) | (_| | |
+|_| \_|\__,_| \_/ |_.__/ \__,_|_|
+*/
+/* Hide unimportant buttons/indicators in urlbar when not hovered */
+#urlbar-container:not(:hover) :where(#star-button-box,
+  #userContext-label,
+  .urlbar-page-action,
+  #tracking-protection-icon-container,
+
+) {
+  opacity: 0;
+  transition: var(--out-transition);
+}
+
+#urlbar-container:hover :where(#star-button-box,
+  #userContext-label,
+  .urlbar-page-action,
+  #tracking-protection-icon-container,
+
+) {
+  transition: var(--in-transition);
+}
+
+/* Greyscale extension icons */
+.webextension-browser-action>*>.toolbarbutton-icon {
+  filter: grayscale(1) invert(1) contrast(0.75);
+}
+
+/* Add extra space between titlebar buttons and navbar */
+hbox.titlebar-buttonbox-container {
+  margin-right: 3em;
+}
+
+/*
+ ____              _                         _
+| __ )  ___   ___ | | ___ __ ___   __ _ _ __| | _____
+|  _ \ / _ \ / _ \| |/ / '_ ` _ \ / _` | '__| |/ / __|
+| |_) | (_) | (_) |   <| | | | | | (_| | |  |   <\__ \
+|____/ \___/ \___/|_|\_\_| |_| |_|\__,_|_|  |_|\_\___/
+*/
+
+/*
+ _____     _
+|_   _|_ _| |__  ___
+  | |/ _` | '_ \/ __|
+  | | (_| | |_) \__ \
+  |_|\__,_|_.__/|___/
+*/
+
+/*
+ __  __ _
+|  \/  (_)___  ___
+| |\/| | / __|/ __|
+| |  | | \__ \ (__ _
+|_|  |_|_|___/\___(_)
+*/
+
+/* Firefox logo for hamburger menu */
+#PanelUI-menu-button {
+  list-style-image: url("./ffox.png") !important;
+  filter: none !important;
+}
+
+/* Replace private browsing indicator with different hamburger icon */
+#main-window[privatebrowsingmode] #PanelUI-menu-button {
+  list-style-image: url("./ffox-private.png") !important;
+  filter: none !important;
+}
+
+#private-browsing-indicator-with-label {
+  display: none !important;
+}
+
+#PanelUI-menu-button>.toolbarbutton-badge-stack>.toolbarbutton-icon {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+#PanelUI-menu-button>.toolbarbutton-badge-stack {
+  padding: 6px !important;
+  border-radius: 2em !important;
+}
+
+/* Increase bookmark dropdown spacing */
+#PlacesToolbar menu.bookmark-item,
+#PlacesToolbar menuitem.bookmark-item {
+  padding-block: 10px !important;
+}
+
+/* Rose-pine theme */
+
+#fullscr-toggler {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+:root {
+  --uc-bg-color: #232136;
+  --uc-show-new-tab-button: none;
+  --uc-show-tab-separators: none;
+  --uc-tab-separators-color: none;
+  --uc-tab-separators-width: none;
+  --uc-tab-fg-color: #e0def4;
+  --autocomplete-popup-background: var(--mff-bg) !important;
+  --default-arrowpanel-background: var(--mff-bg) !important;
+  --default-arrowpanel-color: #fefefa !important;
+  --lwt-toolbarbutton-icon-fill: var(--mff-icon-color) !important;
+  --panel-disabled-color: #f9f9fa80;
+  --toolbar-bgcolor: var(--mff-bg) !important;
+  --urlbar-separator-color: transparent !important;
+  --mff-bg: #2a273f;
+  --mff-icon-color: #e0def4;
+  --mff-nav-toolbar-padding: 8px;
+  --mff-sidebar-bg: var(--mff-bg);
+  --mff-sidebar-color: #f1ca93;
+  --mff-tab-border-radius: 0px;
+  --mff-tab-color: #ea6f91;
+  --mff-tab-font-family: "FiraCode Nerd Font";
+  --mff-tab-font-size: 11pt;
+  --mff-tab-font-weight: 400;
+  --mff-tab-height: 32px;
+  --mff-tab-pinned-bg: #e0def4;
+  --mff-tab-selected-bg: #403c58;
+  --mff-tab-soundplaying-bg: #9c89b8;
+  --mff-urlbar-color: #98c1d9;
+  --mff-urlbar-focused-color: #403c58;
+  --mff-urlbar-font-family: "Fira Code";
+  --mff-urlbar-font-size: 11pt;
+  --mff-urlbar-font-weight: 700;
+  --mff-urlbar-results-color: #f1ca93;
+  --mff-urlbar-results-font-family: "Fira Code";
+  --mff-urlbar-results-font-size: 11pt;
+  --mff-urlbar-results-font-weight: 700;
+  --mff-urlbar-results-url-color: #98c1d9;
+  --arrowpanel-background: #2a273f !important;
+}
+
+#urlbar-background,
+.titlebar-buttonbox-container,
+#nav-bar,
+.tabbrowser-tab:not([selected]) .tab-background {
+  background: var(--uc-bg-color) !important;
+}
+
+.tabbrowser-tab[first-visible-tab][last-visible-tab] {
+  background-color: var(--uc-bar-bg-color) !important;
+}
+
+.tab-text.tab-label {
+  color: var(--uc-tab-fg-color) !important;
+}
+
+#titlebar,
+#navigator-toolbox,
+.browser-toolbar,
+#tabbrowser-tabpanels,
+#zen-tabbox-wrapper,
+#zen-appcontent-navbar-container,
+#zen-sidebar-web-panel,
+#zen-sidebar-splitter,
+#browser {
+  background: var(--uc-bg-color) !important;
+}
+
+#zen-sidebar-web-panel {
+  border: none !important;
+}
+
+.urlbar-icon>image {
+  fill: var(--mff-icon-color) !important;
+  color: var(--mff-icon-color) !important;
+}
+
+.toolbarbutton-text {
+  color: var(--mff-icon-color) !important;
+}
+
+.urlbar-icon {
+  color: var(--mff-icon-color) !important;
+}
