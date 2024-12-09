@@ -36,10 +36,6 @@
     ~/.zfunc:
       path: zsh/.zfunc
       relink: true
-    # iosevka font gen
-    ~/.config/iosevka/config.ini:
-      path: iosevka/config.ini
-      relink: true
     # tmux
     ~/.tmux/plugins/tpm:
       path: tmux/tpm
