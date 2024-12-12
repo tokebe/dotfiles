@@ -144,6 +144,8 @@ alias cat=ccat
 alias lk='() { walk "$@" --icons; }'
 alias lkd='() { cd "$(walk "$@" --icons)" }'
 alias pn=pnpm
+alias tm='gtrash put'
+alias tr='gtrash restore'
 if command -v neovide >/dev/null 2>&1; then
     alias nvd='neovide --frame buttonless --multigrid'
 fi
