@@ -18,32 +18,6 @@ return {
       vim.keymap.set('n', '<Leader>sy', '<CMD>YankBank<CR>', { noremap = true, desc = 'Select & paste from clipboard' })
     end,
   },
-  -- { -- Delete buffers but preserve window layout
-  --   'ojroques/nvim-bufdel',
-  --   config = function()
-  --     require('bufdel').setup({
-  --       quit = false,
-  --     })
-  --     vim.keymap.set('n', '<Leader>wq', ':BufDel<CR>', {
-  --       desc = 'Close buffer',
-  --     })
-  --     vim.keymap.set('n', '<Leader>wQ', ':BufDel!<CR>', {
-  --       desc = 'Close buffer (force)',
-  --     })
-  --     vim.keymap.set('n', '<Leader>wa', ':BufDelAll<CR>', {
-  --       desc = 'Close all buffers',
-  --     })
-  --     vim.keymap.set('n', '<Leader>wA', ':BufDelAll!<CR>', {
-  --       desc = 'Close all buffers (force)',
-  --     })
-  --     vim.keymap.set('n', '<Leader>wo', ':BufDelOthers<CR>', {
-  --       desc = 'Close all other buffers',
-  --     })
-  --     vim.keymap.set('n', '<Leader>wO', ':BufDelOthers!<CR>', {
-  --       desc = 'Close all other buffers (force)',
-  --     })
-  --   end,
-  -- },
   {
     'folke/snacks.nvim',
     priority = 1000,
@@ -51,9 +25,9 @@ return {
     config = function()
       local snacks = require('snacks')
       snacks.setup({
-        notifier = { enabled = false },
-        statuscolumn = { enabled = false },
-        words = { enabled = false },
+        quickfile = { enabled = true },
+        bigfile = { enabled = true },
+        scroll = { enabled = true, animate = { duration = { total = 200 } } },
       })
 
       -- file rename with lsp
