@@ -89,8 +89,8 @@
     - onefetch # Git repo info | https://github.com/o2sh/onefetch
     # File management
     - dua-cli # TUI disk usage analyzer | https://github.com/Byron/dua-cli
+    - gtrash # Integrated TUI trash manager | https://github.com/umlx5h/gtrash
     - lf # Lightweight TUI file manager | https://github.com/gokcehan/lf
-    - rm-improved # Safe rm | https://github.com/nivekuil/rip
     - walk # inline TUI file manager | https://github.com/antonmedv/walk
     # Git
     - jesseduffield/lazygit/lazygit # TUI git manager | https://github.com/jesseduffield/lazygit
