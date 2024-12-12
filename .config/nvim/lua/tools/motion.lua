@@ -16,4 +16,20 @@ return {
       vim.keymap.set({ 'n', 'x', 'o' }, 'ga', 'V<cmd>lua require("leap.treesitter").select()<cr>')
     end,
   },
+  {
+    'aaronik/treewalker.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+    opts = {
+      highlight = true,
+    },
+    cmd = 'Treewalker',
+    keys = {
+      { '<M-J>', ':Treewalker Down<CR>', mode = 'n', noremap = true },
+      { '<M-K>', ':Treewalker Up<CR>', mode = 'n', noremap = true },
+      { '<M-H>', ':Treewalker Left<CR>', mode = 'n', noremap = true },
+      { '<M-L>', ':Treewalker Right<CR>', mode = 'n', noremap = true },
+    },
+  },
 }
