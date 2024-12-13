@@ -27,7 +27,8 @@ return {
       snacks.setup({
         quickfile = { enabled = true },
         bigfile = { enabled = true },
-        scroll = { enabled = true, animate = { duration = { total = 200 } } },
+        -- Disabled because it causes weird interactions with cmp that move the cursor
+        -- scroll = { enabled = true, animate = { duration = { total = 200 } } },
       })
 
       -- file rename with lsp
