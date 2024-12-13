@@ -125,7 +125,7 @@
   "scope.nvim": { "branch": "main", "commit": "f8a6783a31b33269afb882b55b8ecbd281ff4b2c" },
   "search-replace.nvim": { "branch": "main", "commit": "d92290a02d97f4e9b8cd60d28b56b403432158d5" },
   "smear-cursor.nvim": { "branch": "main", "commit": "f0f1e41bbfefd6904fe399ba07328f5073bcd42c" },
-  "snacks.nvim": { "branch": "main", "commit": "cb68df337e2098a966c02e33bdb764a9f73b6010" },
+  "snacks.nvim": { "branch": "main", "commit": "4ef74f09ff62d06f2e9ac88fac9919b6b3210507" },
   "sonokai": { "branch": "master", "commit": "fd42b20963c34dfc1744ac31f6a6efe78f4edad2" },
   "statuscol.nvim": { "branch": "main", "commit": "8822f76e105549620ef9c0d96e7b95aedf14c490" },
   "suda.vim": { "branch": "master", "commit": "9adda7d195222d4e2854efb2a88005a120296c47" },
