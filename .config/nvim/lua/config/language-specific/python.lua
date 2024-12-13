@@ -1,10 +1,11 @@
 -- Better Poetry compatibility
-require('lspconfig').pyright.setup({
+require('lspconfig').basedpyright.setup({
   settings = {
     python = {
       analysis = {
-        -- typeCheckingMode = "basic",
-        -- autoSearchPaths = true,
+        autoSearchPaths = true,
+        diagnosticMode = 'openFilesOnly',
+        typeCheckingMode = 'standard',
         useLibraryCodeForTypes = true,
       },
     },
