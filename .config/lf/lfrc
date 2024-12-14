@@ -5,6 +5,7 @@
 # set cleaner ~/.config/lf/lf_kitty_clean
 set previewer ctpv
 set cleaner ctpvclear
+set sixel
 &ctpv -s $id
 &ctpvquit $id
 
