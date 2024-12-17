@@ -169,6 +169,8 @@
 - if:
     cond: '[[ "$MODE" == "desktop" ]]'
     met:
+      - omnipkg:
+          - onedrive # Because I haven't gotten away from OneDrive |  https://github.com/abraunegg/onedrive
       - flatpak: # For linux desktop
           - com.discordapp.Discord # Discord | https://discord.com/
           - dev.vencord.Vesktop # Modified Discord client | https://github.com/Vencord/Vesktop
