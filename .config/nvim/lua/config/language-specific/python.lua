@@ -20,7 +20,7 @@ require('lspconfig').basedpyright.setup({
     if venv:joinpath('bin'):is_dir() then
       config.settings.python.pythonPath = tostring(venv:joinpath('bin', 'python'))
     else
-      config.setting.python.pythonPath = tostring(venv:joinpath('Scripts', 'python.exe'))
+      config.settings.python.pythonPath = tostring(venv:joinpath('Scripts', 'python.exe'))
     end
   end,
 })
