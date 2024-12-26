@@ -71,7 +71,7 @@ return {
       local actions = require('fzf-lua.actions')
       require('fzf-lua').setup({
         winopts = {
-          win_border = 'single',
+          border = 'single',
         },
         files = {
           previewer = 'bat',
