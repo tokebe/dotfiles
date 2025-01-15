@@ -33,6 +33,7 @@ Running TODO list:
 - [ ] Fix strange bar appearing near bottom of screen -> It's not treesitter-context
 - [ ] Disable diagnostics on insert
 - [ ] Live file running for quicker iteration
+- [ ] Fix visual highlight being set to wrong highlight
 
 ## Iosevka
 
