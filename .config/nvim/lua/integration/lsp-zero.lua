@@ -1,5 +1,7 @@
 local util = require('util')
 return {
+  -- TODO: remove lsp-zero
+  -- TODO: switch to blink.cmp
   'VonHeikemen/lsp-zero.nvim', -- Automatic LSP setup
   branch = 'v2.x',
   dependencies = {
@@ -15,6 +17,7 @@ return {
     { 'dmitmel/cmp-cmdline-history', dependencies = { 'hrsh7th/nvim-cmp' } },
     { 'tamago324/cmp-zsh', dependencies = { 'hrsh7th/nvim-cmp' } },
     { 'onsails/lspkind.nvim', dependencies = { 'hrsh7th/nvim-cmp' } }, -- icons
+    { 'xzbdmw/colorful-menu.nvim' }, -- rich color
     -- Snippets (using cmp)
     {
       'L3MON4D3/LuaSnip',
