@@ -109,6 +109,14 @@ return {
       vim.keymap.set('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
       vim.keymap.set('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
       vim.keymap.set('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+      vim.keymap.set('n', '<Esc>', '<Cmd>noh<CR>')
     end,
+  },
+  {
+    'wurli/visimatch.nvim',
+    opts = {
+      hl_group = 'CursorLine',
+      strict_spacing = true,
+    },
   },
 }

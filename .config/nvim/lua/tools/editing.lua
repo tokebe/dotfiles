@@ -169,4 +169,5 @@ return {
       vim.cmd.hi('link', 'MultiCursorDisabledVisual', 'Visual')
     end,
   },
+  -- TODO: add neogen https://github.com/danymat/neogen
 }
