@@ -30,6 +30,10 @@ return {
       { '<M-K>', ':Treewalker Up<CR>', mode = 'n', noremap = true },
       { '<M-H>', ':Treewalker Left<CR>', mode = 'n', noremap = true },
       { '<M-L>', ':Treewalker Right<CR>', mode = 'n', noremap = true },
+      { '<Leader>mj', ':Treewalker SwapDown<CR>', mode = 'n', noremap = true },
+      { '<M-K>mk', ':Treewalker SwapUp<CR>', mode = 'n', noremap = true },
+      { '<M-H>mh', ':Treewalker SwapLeft<CR>', mode = 'n', noremap = true },
+      { '<M-L>ml', ':Treewalker SwapRight<CR>', mode = 'n', noremap = true },
     },
   },
 }
