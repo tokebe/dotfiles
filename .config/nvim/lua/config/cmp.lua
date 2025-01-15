@@ -1,28 +1,23 @@
 return {
-  config = function(lsp)
+  config = function()
     local luasnip = require('luasnip')
     local cmp = require('cmp')
 
     require('luasnip.loaders.from_vscode').lazy_load()
 
-    local has_words_before = function()
-      unpack = unpack or table.unpack
-      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-    end
-
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
-    cmp.setup(lsp.defaults.cmp_config({
+    cmp.setup({
       window = {
         completion = { border = 'solid' },
         documentation = { border = 'solid' },
       },
-      enabled = function()
-        return vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt' or require('cmp_dap').is_dap_buffer()
-      end,
+      -- enabled = function()
+      --   return vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt' or require('cmp_dap').is_dap_buffer()
+      -- end,
       sources = { -- completion sources
         { name = 'nvim_lsp' }, -- language server
+        { name = 'lazydev', group_index = 0 },
         -- { name = 'nvim_lsp_signature_help' },
         { name = 'luasnip', keyword_length = 2 }, -- snippets
         { name = 'fuzzy_path', options = { fd_timeout_msec = 250 } }, -- filepath
@@ -30,20 +25,10 @@ return {
         { name = 'buffer', keyword_length = 3 }, -- current file
       },
       view = {
-        entries = { selection_order = 'near_cursor' },
+        entries = { name = 'custom', selection_order = 'near_cursor', follow_cursor = false },
       },
-      -- formatting = {
-      --   -- Icons
-      --   format = require('lspkind').cmp_format({
-      --     mode = 'symbol_text',
-      --     maxwidth = 50,
-      --     ellipsis_char = '...',
-      --     before = function(_, vim_item)
-      --       return vim_item -- see lspkind #30
-      --     end,
-      --   }),
-      -- },
       formatting = {
+        expandable_indicator = true,
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
           local kind = require('lspkind').cmp_format({
@@ -59,7 +44,7 @@ return {
           end
           local strings = vim.split(kind.kind, '%s', { trimempty = true })
           vim_item.kind = ' ' .. (strings[1] or '') .. ' '
-          vim_item.menu = ''
+          vim_item.menu = entry.source.name
 
           return vim_item
         end,
@@ -101,7 +86,7 @@ return {
           end
         end, { 'i', 's' }),
       },
-    }))
+    })
 
     -- Autopair after function/selection
     cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())

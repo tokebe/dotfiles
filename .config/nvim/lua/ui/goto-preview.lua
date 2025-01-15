@@ -78,6 +78,16 @@ return {
         add_keymap()
       end)
 
+      vim.keymap.set('n', 'gD', function()
+        local popup_id = detour.DetourCurrentWindow()
+        if not popup_id then
+          return
+        end
+        features.ShowPathInTitle(popup_id)
+        vim.lsp.buf.declaration({ reuse_win = false })
+        add_keymap()
+      end)
+
       vim.keymap.set('n', 'gT', function()
         local popup_id = detour.DetourCurrentWindow()
         if not popup_id then
