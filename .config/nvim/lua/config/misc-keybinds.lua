@@ -94,9 +94,6 @@ end, {
   desc = 'Go to last char',
 })
 
--- Make Esc hide search highlight in normal mode
-vim.keymap.set('n', '<Esc>', ':noh<CR>', { noremap = true, silent = true })
-
 -- Redo
 vim.keymap.set('n', 'U', '<C-r>')
 
