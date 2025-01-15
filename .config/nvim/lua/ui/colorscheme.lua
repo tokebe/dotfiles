@@ -32,7 +32,7 @@ return {
           WinSeparator = { fg = '#1f1d2e', bg = 'base' },
           CurSearch = { fg = 'base', bg = 'leaf', inherit = false },
           Search = { fg = 'text', bg = 'leaf', blend = 20, inherit = false },
-          -- Visual = { bg = rose_pine_palette.iris, blend = 15 },
+          Visual = { bg = 'iris', blend = 30 },
         },
       })
       require('tokyonight').setup({

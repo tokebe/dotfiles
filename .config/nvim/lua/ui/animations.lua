@@ -1,15 +1,4 @@
 return {
-  { -- Smoothly move cursorline when jumping
-    'gen740/SmoothCursor.nvim',
-    event = 'BufEnter',
-    config = function()
-      require('smoothcursor').setup({
-        autostart = true,
-        cursor = '',
-        linehl = 'CursorLine',
-      })
-    end,
-  },
   { -- Neovide-like cursor smear using block symbols
     'sphamba/smear-cursor.nvim',
     opts = {
