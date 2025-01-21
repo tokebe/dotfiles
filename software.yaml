@@ -77,7 +77,6 @@
     - fx  # TUI JSON/YAML viewer | https://github.com/antonmedv/fx
     - jq  # CLI JSON transformer | https://github.com/jqlang/jq
     - jqp  # TUI for JQ | https://github.com/noahgorstein/jqp
-    - tidy-viewer  # CLI csv pretty printer | https://github.com/alexhallam/tv
     # Dependencies
     - openssl  # Pyenv compatibility with linuxbrew
     - tcl-tk  # Python tkinter support
@@ -101,7 +100,6 @@
     - pyenv  # Python version management | https://github.com/pyenv/pyenv
     - pyenv-virtualenv  # Pyenv venv support | https://github.com/pyenv/pyenv-virtualenv
     # Utilities
-    - jump  # Smart cd'ing | https://github.com/gsamokovarov/jump
     - bat  # Better cat/less | https://github.com/sharkdp/bat
     - btop  # Better top | https://github.com/aristocratos/btop
     - ccat  # Colorful cat | https://github.com/owenthereal/ccat
@@ -109,6 +107,7 @@
     - ctpv  # File previewer | https://github.com/NikitaIvanovV/ctpv
     - fzf  # TUI Fuzzy finder | https://github.com/junegunn/fzf
     - glow  # Terminal Markdown Renderer | https://github.com/charmbracelet/glow
+    - jump  # Smart cd'ing | https://github.com/gsamokovarov/jump
     - lazydocker  # TUI Docker management | https://github.com/jesseduffield/lazydocker
     - lsd # Deluxe ls |  # https://github.com/lsd-rs/lsd
     - nap  # TUI snippet manager | https://github.com/maaslalani/nap
