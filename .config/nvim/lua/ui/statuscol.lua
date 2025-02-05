@@ -22,16 +22,16 @@ return {
             relculright = true,
             ft_ignore = require('config.filetype_excludes'),
             segments = {
-              {
-                sign = {
-                  name = { 'todo' },
-                  namespace = { 'diagnostic/signs' },
-                  maxwidth = 1,
-                  colwidth = 2,
-                  auto = false,
-                },
-                click = 'v:lua.ScSa',
-              },
+              -- {
+              --   sign = {
+              --     name = { 'todo' },
+              --     namespace = { 'diagnostic/signs' },
+              --     maxwidth = 1,
+              --     colwidth = 2,
+              --     auto = false,
+              --   },
+              --   click = 'v:lua.ScSa',
+              -- },
               -- {
               --   sign = { name = { 'Marks' } },
               --   maxwidth = 2,
@@ -39,15 +39,20 @@ return {
               --   auto = true,
               -- },
               {
-                sign = { name = { '.*' }, namespace = { '.*' }, text = { '.*' } },
-                maxwidth = 1,
-                colwidth = 1,
+                sign = {
+                  name = { '.*' },
+                  namespace = { '.*' },
+                  text = { '.*' },
+                  maxwidth = 3,
+                  colwidth = 1,
+                },
                 auto = true,
-              },
-              {
-                sign = { name = { 'Breakpoint', 'Dap' }, maxwidth = 1, colwidth = 1, auto = true },
                 click = 'v:lua.ScSa',
               },
+              -- {
+              --   sign = { name = { 'Breakpoint', 'Dap' }, maxwidth = 1, colwidth = 1, auto = true },
+              --   click = 'v:lua.ScSa',
+              -- },
               { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
               {
                 sign = {
@@ -58,7 +63,7 @@ return {
                 },
                 click = 'v:lua.ScSa',
               },
-              { text = { builtin.foldfunc, ' ' }, click = 'v:lua.ScFa' },
+              { text = { builtin.foldfunc, ' ' }, click = 'v:lua.ScFa', maxwidth = 1, colwidth = 1 },
             },
           })
         end,
