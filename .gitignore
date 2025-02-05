@@ -1,4 +1,4 @@
-nvim/lua/.luarc.json
-nvim/lockfiles/*
+.config/nvim/lua/.luarc.json
+.config/nvim/lockfiles/*
 neofetch/config/*
-wezterm/fontsize.lua
+.config/wezterm/fontsize.lua
