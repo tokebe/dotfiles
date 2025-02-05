@@ -178,14 +178,6 @@ return {
     end,
   },
   {
-    'mawkler/modicator.nvim',
-    config = function()
-      require('modicator').setup({
-        show_warnings = false,
-      })
-    end,
-  },
-  {
     'OXY2DEV/helpview.nvim',
     lazy = false,
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
