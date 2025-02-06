@@ -183,7 +183,7 @@ return {
           mru = {
             limit = 3,
             icon = '󱋡  ',
-            label = 'Recent Files'
+            label = 'Recent Files',
           },
           footer = {
             '',
@@ -194,7 +194,7 @@ return {
       vim.keymap.set('n', '<Leader>qd', function()
         vim.cmd('cd ~')
         vim.cmd('only')
-        vim.cmd('BufDelAll')
+        vim.cmd('windo bd')
         vim.cmd('Dashboard')
       end, {
         desc = 'Quit to dashboard',
