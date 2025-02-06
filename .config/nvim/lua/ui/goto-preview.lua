@@ -1,5 +1,3 @@
-local util = require('util')
-
 local remove_keymap = function()
   local internal = require('detour.internal')
   if next(internal.list_popups()) == nil then

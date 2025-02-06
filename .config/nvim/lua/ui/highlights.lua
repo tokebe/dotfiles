@@ -112,7 +112,28 @@ return {
       vim.keymap.set('n', '<Esc>', '<Cmd>noh<CR>')
     end,
   },
-  {
+  { -- underdot occurances of symbol
+    'RRethy/vim-illuminate',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function()
+      require('illuminate').configure({
+        filetypes_denylist = require('config.filetype_excludes'),
+        under_cursor = false,
+      })
+      vim.api.nvim_set_hl(0, 'IlluminatedWordText', { underdotted = true })
+      vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { underdotted = true })
+      vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { underdotted = true })
+    end,
+  },
+  { -- highlight occurances of word
+    'echasnovski/mini.cursorword',
+    config = function()
+      require('mini.cursorword').setup()
+    end,
+  },
+  { -- highlight occurances of visual selection
     'wurli/visimatch.nvim',
     opts = {
       hl_group = 'CursorLine',
@@ -133,5 +154,17 @@ return {
         end,
       })
     end,
+  },
+  { -- Unobtrusive max-length highlight
+    'Bekaboo/deadcolumn.nvim',
+    event = 'BufEnter',
+    opts = {
+      warning = {
+        hlgroup = {
+          'Warning',
+          'background',
+        },
+      },
+    },
   },
 }

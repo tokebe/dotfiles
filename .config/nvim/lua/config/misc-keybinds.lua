@@ -1,5 +1,3 @@
-local util = require('util')
-
 -- Format file
 vim.keymap.set('n', '<Leader>gf', function()
   vim.lsp.buf.format({ async = true })

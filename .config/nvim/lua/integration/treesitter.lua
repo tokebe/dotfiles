@@ -11,6 +11,7 @@ return {
       require('nvim-treesitter.configs').setup({
         ensure_installed = require('config.sources').treesitter,
         auto_install = true,
+        indent = { enabled = true },
         highlight = {
           enable = true,
           language_tree = true,

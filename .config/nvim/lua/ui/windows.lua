@@ -1,4 +1,3 @@
-local util = require('util')
 return {
   {
     'anuvyklack/windows.nvim',
@@ -33,6 +32,43 @@ return {
       })
       vim.keymap.set('n', '<Leader>wv', ':WindowsMaximizeVertically<CR>', {
         desc = 'Maximize window vertically',
+      })
+    end,
+  },
+  {
+    'gbrlsnchs/winpick.nvim',
+    config = function()
+      local winpick = require('winpick')
+      winpick.setup({
+        border = 'solid',
+      })
+      vim.keymap.set('n', '<Leader>sw', function()
+        local winid = winpick.select()
+        if winid then
+          vim.api.nvim_set_current_win(winid)
+        end
+      end, { desc = 'Select a window' })
+    end,
+  },
+  {
+    'nvim-zh/colorful-winsep.nvim',
+    event = { 'WinLeave' },
+    config = function()
+      require('colorful-winsep').setup({
+        symbols = { '─', '│', '┌', '┐', '└', '┘' },
+        -- no_exec_files = require('config.filetype_excludes'),
+        no_exec_files = {
+          'telescopePrompt',
+          'TelescopeResults',
+          'DressingSelect',
+          'mason',
+          'null-ls-info',
+          'lazy',
+          'lspinfo',
+          'WhichKey',
+          'dashboard',
+          'dashboardpreview',
+        },
       })
     end,
   },
