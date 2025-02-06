@@ -178,14 +178,4 @@ return {
       })
     end,
   },
-  {
-    'm4xshen/hardtime.nvim',
-    opts = {
-      max_count = 10,
-      disable_mouse = false,
-      disabled_keys = {},
-      disabled_filetypes = require('config.filetype_excludes'),
-      restriction_mode = 'hint',
-    },
-  },
 }
