@@ -197,9 +197,9 @@ return {
       })
     end,
   },
-  {
-    'wurli/contextindent.nvim',
-    opts = { pattern = '*' },
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-  },
+  -- {
+  --   'wurli/contextindent.nvim',
+  --   opts = { pattern = '*' },
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  -- },
 }

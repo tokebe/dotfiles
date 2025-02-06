@@ -43,34 +43,11 @@ return {
             ['cmp.entry.get_documentation'] = true,
           },
         },
-        -- routes = {
-        --   {
-        --     view = 'popup',
-        --     filter = { cmdline = true, min_height = 3 },
-        --   },
-        --   {
-        --     view = 'split',
-        --     filter = { error = true, min_height = 3 },
-        --   },
-        -- },
-        -- messages = {
-        --   view_search = false,
-        -- },
-        -- views = {
-        --   mini = {
-        --     timeout = 3000,
-        --   },
-        --   popupmenu = {
-        --     border = {
-        --       style = 'none',
-        --     },
-        --   },
-        --   popup = {
-        --     border = {
-        --       style = 'none',
-        --     },
-        --   },
-        -- },
+        views = {
+          mini = {
+            timeout = 4000,
+          },
+        },
       })
       vim.keymap.set('n', '<Leader>oH', '<CMD>NoiceHistory<CR>', { desc = 'Open output history' })
     end,
@@ -181,5 +158,34 @@ return {
     'OXY2DEV/helpview.nvim',
     lazy = false,
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  },
+  {
+    'stevearc/dressing.nvim',
+    config = function()
+      require('dressing').setup({
+        input = {
+          win_options = {
+            winhighlight = 'NormalFloat:Normal,FloatBorder:Normal,FloatTitle:Normal,CursorLine:Normal',
+          },
+          border = 'single',
+          override = function(conf)
+            conf.col = -1
+            conf.row = 0
+            return conf
+          end,
+          -- border = 'none',
+        },
+      })
+    end,
+  },
+  {
+    'm4xshen/hardtime.nvim',
+    opts = {
+      max_count = 10,
+      disable_mouse = false,
+      disabled_keys = {},
+      disabled_filetypes = require('config.filetype_excludes'),
+      restriction_mode = 'hint',
+    },
   },
 }

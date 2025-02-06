@@ -1,4 +1,3 @@
-local util = require('util')
 return {
   {
     'anuvyklack/fold-preview.nvim',
@@ -23,7 +22,7 @@ return {
       vim.o.foldenable = true
       require('ufo').setup({
         provider_selector = function(bufnr, filetype, buftype)
-          return {  'lsp', 'indent' }
+          return { 'lsp', 'indent' }
         end,
       })
       vim.api.nvim_create_autocmd('FileType', {
@@ -41,5 +40,8 @@ return {
         desc = 'Close all folds',
       })
     end,
+  },
+  { -- Reduces fold updates so insert mode isn't as bogged down
+    'Konfekt/FastFold',
   },
 }
