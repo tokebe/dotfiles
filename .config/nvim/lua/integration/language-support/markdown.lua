@@ -5,8 +5,7 @@ return {
     opts = {},
   },
   {
-    'MeanderingProgrammer/markdown.nvim',
-    name = 'render-markdown',
+    'MeanderingProgrammer/render-markdown.nvim',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons',
@@ -14,28 +13,36 @@ return {
     events = {
       'FileType',
     },
-    config = function()
-      require('render-markdown').setup({
-        file_types = {
-          'markdown',
-          'quarto',
-          'rmd',
+    opts = {
+      file_types = {
+        'markdown',
+        'quarto',
+        'rmd',
+      },
+      render_modes = { 'n', 'c', 'i' },
+      heading = {
+        width = 'block',
+        min_width = 88,
+        below = '▔',
+        above = '▁',
+        icons = {
+          '█ ',
+          '██ ',
+          '███ ',
+          '████ ',
+          '█████ ',
+          '██████ ',
         },
-        render_modes = { 'n', 'c' },
-        heading = {
-          width = 'block',
-          min_width = 88,
-          border = true,
-        },
-        code = {
-          position = 'right',
-          language_pad = 1,
-          width = 'block',
-          min_width = 88,
-          border = 'thick',
-        },
-      })
-    end,
+        border = true,
+      },
+      code = {
+        position = 'right',
+        language_pad = 1,
+        width = 'block',
+        min_width = 88,
+        border = 'thick',
+      },
+    },
   },
   -- {
   --   'OXY2DEV/markview.nvim',
