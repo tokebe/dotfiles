@@ -37,4 +37,3 @@ Running TODO list:
 
 ## Iosevka
 
-- [ ] Figure out build options for compatibility with Kitty terminal
