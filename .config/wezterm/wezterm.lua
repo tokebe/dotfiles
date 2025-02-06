@@ -19,7 +19,7 @@ config.macos_window_background_blur = 100
 config.font = wezterm.font('Tokebe Nerd Font')
 config.font_size = require('fontsize')
 config.harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' }
-config.line_height = 1.0
+config.line_height = 1.1
 config.window_decorations = 'RESIZE'
 config.enable_scroll_bar = false
 config.window_padding = {
