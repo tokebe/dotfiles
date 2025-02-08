@@ -138,7 +138,7 @@ return {
         else
           -- default <esc> handler
         end
-      end, { desc = 'Exit multi-cursor' })
+      end, { desc = 'Exit multi-cursor', noremap = true })
 
       -- align cursor columns
       vim.keymap.set('n', '<leader>ma', mc.alignCursors, { desc = 'Align cursor columns' })
