@@ -109,7 +109,7 @@ return {
       vim.keymap.set('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
       vim.keymap.set('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
       vim.keymap.set('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-      vim.keymap.set('n', '<Esc>', '<Cmd>noh<CR>')
+      vim.keymap.set('n', '<Esc>', '<Cmd>nohl<CR>', kopts)
     end,
   },
   { -- underdot occurances of symbol
