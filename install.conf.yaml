@@ -7,6 +7,7 @@
     - dotbot-plugins/dotbot-pip
     - dotbot-plugins/dotbot-flatpak
     - dotbot-plugins/dotbot-gh-extensions
+    - dotbot-plugins/dotbot-rust
 - defaults:
     link:
       create: true
