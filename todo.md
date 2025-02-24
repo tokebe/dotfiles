@@ -37,3 +37,6 @@ Running TODO list:
 
 ## Iosevka
 
+## Other
+
+- [ ] migrate from pip/pipx/pyenv to uv/direnv
