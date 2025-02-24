@@ -149,6 +149,7 @@ alias tr='gtrash restore'
 if command -v neovide >/dev/null 2>&1; then
     alias nvd='neovide --frame buttonless --multigrid'
 fi
+alias st=systemctl-tui
 # if [ -f ~/applications/nvim ]; then
 #     alias nvim=~/applications/nvim
 # fi
