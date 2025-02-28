@@ -55,6 +55,20 @@ return {
         end,
       },
       mapping = {
+        ['<Down>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end),
+        ['<Up>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end),
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -85,6 +99,13 @@ return {
             fallback()
           end
         end, { 'i', 's' }),
+        ['<C-k>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.close()
+          else
+            fallback()
+          end
+        end),
       },
     })
 

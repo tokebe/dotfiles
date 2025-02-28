@@ -185,6 +185,33 @@ return {
       { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
+    init = function()
+      -- from https://github.com/alexghergh/nvim-tmux-navigation/blob/4898c98702954439233fdaf764c39636681e2861/lua/nvim-tmux-navigation/tmux_util.lua#L10-L13
+      local function tmux_command(command)
+        local tmux_socket = vim.fn.split(vim.env.TMUX, ',')[1]
+        return vim.fn.system('tmux -S ' .. tmux_socket .. ' ' .. command)
+      end
+      -- solution based on https://github.com/christoomey/vim-tmux-navigator/issues/295#issuecomment-1123455337
+      local function set_is_vim()
+        tmux_command('set-option -p @is_vim yes')
+      end
+      local function unset_is_vim()
+        tmux_command('set-option -p -u @is_vim')
+      end
+      vim.api.nvim_create_augroup('tmux_navigator_is_vim', {})
+      vim.api.nvim_create_autocmd({ 'VimEnter', 'VimResume' }, {
+        group = 'tmux_navigator_is_vim',
+        pattern = { '*' },
+        desc = 'Set is_vim when entering neovim for tmux',
+        callback = set_is_vim,
+      })
+      vim.api.nvim_create_autocmd({ 'VimLeave', 'VimSuspend' }, {
+        group = 'tmux_navigator_is_vim',
+        pattern = { '*' },
+        desc = 'Unset is_vim when entering neovim for tmux',
+        callback = unset_is_vim,
+      })
+    end,
   },
   {
     'chrisgrieser/nvim-early-retirement',
