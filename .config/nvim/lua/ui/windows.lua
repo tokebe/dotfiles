@@ -52,6 +52,7 @@ return {
   },
   {
     'nvim-zh/colorful-winsep.nvim',
+    branch = 'alpha', -- main spontaneously started causing overlap problems
     event = { 'WinLeave' },
     config = function()
       require('colorful-winsep').setup({

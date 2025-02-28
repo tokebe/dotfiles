@@ -14,7 +14,7 @@ set.number = true -- Make line numbers default
 set.numberwidth = 1
 set.wrap = true -- Softwrap lines
 set.breakindent = true -- Wrapped lines preserve indent
--- set.signcolumn = 'yes' -- Keep signcolumn on by default
+set.signcolumn = 'yes' -- Keep signcolumn on by default
 set.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
 set.splitbelow = true -- open horizontal splits below current window
 set.splitright = true -- open vertical splits to the right of the current window
@@ -38,7 +38,7 @@ set.whichwrap:append({ h = true, l = true })
 set.diffopt = 'filler,context:3,closeoff,followwrap,linematch:60'
 
 -- [[ Simple keybinds ]]
-vim.keymap.set('n', 'q:', '<nop>')
+vim.keymap.set('n', 'q:', '<nop>', { noremap = true })
 
 -- [[ General Behaviors ]]
 set.mouse = 'a' -- Enable mouse mode

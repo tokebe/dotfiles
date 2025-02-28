@@ -1,4 +1,3 @@
-local util = require('util')
 return {
   { -- quick selection by syntax node
     'sustech-data/wildfire.nvim',
@@ -132,10 +131,9 @@ return {
       vim.keymap.set('n', '<esc>', function()
         if not mc.cursorsEnabled() then
           mc.enableCursors()
-        elseif mc.hasCursors() then
+        else
           mc.firstCursor()
           mc.clearCursors()
-        else
           -- default <esc> handler
         end
       end, { desc = 'Exit multi-cursor', noremap = true })
