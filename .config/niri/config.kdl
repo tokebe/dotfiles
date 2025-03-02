@@ -211,7 +211,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T { spawn "alacritty"; }
+    Mod+Shift+T { spawn "alacritty"; }
     Mod+Space { spawn "fuzzel"; }
     // Super+Alt+L { spawn "swaylock"; }
 
@@ -371,6 +371,7 @@ binds {
     Mod+R { switch-preset-column-width; }
     Mod+F { maximize-column; }
     Mod+G { expand-column-to-available-width; }
+    Mod+T { toggle-column-tabbed-display; }
     Mod+Shift+F { fullscreen-window; }
     Mod+A { switch-focus-between-floating-and-tiling; }
     Mod+S { toggle-window-floating; }
