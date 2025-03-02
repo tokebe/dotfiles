@@ -13,6 +13,7 @@ set.cursorline = true -- highlight current line
 set.number = true -- Make line numbers default
 set.numberwidth = 1
 set.wrap = true -- Softwrap lines
+set.linebreak = true -- Wrap avoiding breaking words
 set.breakindent = true -- Wrapped lines preserve indent
 set.signcolumn = 'yes' -- Keep signcolumn on by default
 set.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
