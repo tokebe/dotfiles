@@ -12,6 +12,7 @@ return {
       'ntk148v/habamax.nvim',
       'nyngwang/nvimgelion',
       'xero/evangelion.nvim',
+      'wheat-thin-wiens/rei.nvim',
       -- Persistent colorscheme
       'raddari/last-color.nvim',
       -- Toggleable background transparency
