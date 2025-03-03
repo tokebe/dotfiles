@@ -142,9 +142,9 @@ return {
       end, { desc = 'Find text in buffer' })
       vim.keymap.set('n', '<Leader>sr', require('fzf-lua').registers, { desc = 'Select from registers' })
       -- vim.keymap.set('n', '<Leader>fi', require('fzf-lua').lsp_implementations, { desc = 'Find implementations' })
-      vim.keymap.set('n', '<Leader>fu', function()
-        require('fzf-lua').changes()
-      end, { desc = 'Find in undo history' })
+      -- vim.keymap.set('n', '<Leader>fu', function()
+      --   require('fzf-lua').changes()
+      -- end, { desc = 'Find in undo history' })
       -- Select keymaps
       vim.keymap.set('n', '<Leader>ss', function()
         require('fzf-lua').spell_suggest({

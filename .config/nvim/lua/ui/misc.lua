@@ -106,6 +106,16 @@ return {
           ft = 'neo-tree',
           size = { width = 36 },
         },
+        {
+          title = 'Undo Tree',
+          ft = 'undotree',
+          size = { width = .4 },
+        },
+        {
+          title = 'Diff',
+          ft = 'diff',
+          size = { width = .4 },
+        },
         -- {
         --   title = 'Grug',
         --   ft = 'grug-far',

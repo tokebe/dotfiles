@@ -32,4 +32,5 @@ return {
   'dapui_watches',
   'OverseerList',
   'grug-far',
+  'undotree',
 }
