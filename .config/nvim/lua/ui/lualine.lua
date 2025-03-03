@@ -5,7 +5,6 @@ return {
     dependencies = {
       'tiagovla/scope.nvim',
       'stevearc/overseer.nvim',
-      'ecthelionvi/NeoComposer.nvim',
     },
     config = function()
       local function show_macro_recording()
@@ -53,13 +52,13 @@ return {
             {
               'diff',
               colored = true,
-              symbols = { added = ' ', modified = ' ', removed = ' ' },
+              symbols = { added = ' ', modified = '󰪥 ', removed = '󰍷 ' },
             },
             { 'diagnostics', symbols = { error = ' ', warn = ' ', info = ' ', hint = '󱉵 ' } },
           },
           lualine_c = {
             -- show_macro_recording,
-            require('NeoComposer.ui').status_recording,
+            -- require('NeoComposer.ui').status_recording,
             { require('noice').api.status.search.get, cond = require('noice').api.status.search.has },
           },
           lualine_x = { 'overseer' },
