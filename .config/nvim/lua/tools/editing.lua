@@ -168,4 +168,15 @@ return {
     end,
   },
   -- TODO: add neogen https://github.com/danymat/neogen
+  {
+
+    'mbbill/undotree',
+    config = function()
+      vim.g.undotree_WindowLayout = 3
+      vim.g.undotree_SetFocusWhenToggle = 1
+    end,
+    keys = {
+      { '<Leader>fu', ':UndoTreeShow<CR>', desc = 'Undo Tree' },
+    },
+  },
 }

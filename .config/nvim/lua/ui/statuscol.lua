@@ -45,8 +45,8 @@ return {
                   text = { '.*' },
                   maxwidth = 3,
                   colwidth = 1,
+                  auto = false,
                 },
-                auto = true,
                 click = 'v:lua.ScSa',
               },
               -- {
