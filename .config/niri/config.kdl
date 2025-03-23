@@ -56,6 +56,14 @@ output "DP-1" {
     position x=5360 y=180
 }
 
+cursor {
+    xcursor-theme "Bibata-Modern-Classic"
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
 // Settings that influence how windows are positioned and sized.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
@@ -120,7 +128,7 @@ layout {
         // left 16
         // right 16
         // top 32
-        // bottom 32
+        // bottom 20
     }
 
     insert-hint {
@@ -366,7 +374,7 @@ binds {
 
     Mod+Comma  { consume-or-expel-window-left; }
     Mod+Period { consume-or-expel-window-right; }
-    Mod+W { toggle-column-tabbed-display; }
+    // Mod+W { toggle-column-tabbed-display; }
 
     Mod+R { switch-preset-column-width; }
     Mod+F { maximize-column; }
