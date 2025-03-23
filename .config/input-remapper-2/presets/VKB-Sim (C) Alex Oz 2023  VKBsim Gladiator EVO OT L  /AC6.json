@@ -1,0 +1,292 @@
+[
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 288,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "event(EV_ABS, ABS_Z, 255).hold().event(EV_ABS, ABS_Z, 0)",
+        "name": "Left primary trigger stage 1",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 1,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_type": 3,
+        "output_code": 1,
+        "mapping_type": "analog"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 290,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "BTN_X",
+        "name": "Left Missile",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 0,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_type": 3,
+        "output_code": 0,
+        "mapping_type": "analog"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 301,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "BTN_SELECT",
+        "name": "Thumb A4 Left",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 299,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "BTN_START",
+        "name": "Thumb A4 Right",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 293,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "event(EV_ABS, ABS_HAT0Y, -1).hold().event(EV_ABS, ABS_HAT0Y, 0)",
+        "name": "Thumb A3 Up",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 295,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "event(EV_ABS, ABS_HAT0Y, 1).hold().event(EV_ABS, ABS_HAT0Y, 0)",
+        "name": "Thumb A3 Down",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 296,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "event(EV_ABS, ABS_HAT0X, -1).hold().event(EV_ABS, ABS_HAT0X, 0)",
+        "name": "Thumb A3 Left",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 294,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "event(EV_ABS, ABS_HAT0X, 1).hold().event(EV_ABS, ABS_HAT0X, 0)",
+        "name": "Thumb A3 Right",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 297,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "BTN_THUMBL",
+        "name": "Thumb A3 In",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 291,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "BTN_THUMBL",
+        "name": "Outer Button",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 709,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "BTN_TL",
+        "name": "Rapid Trigger In",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 708,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "BTN_THUMBL",
+        "name": "Rapid Trigger Out",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 292,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "BTN_X",
+        "name": "Pinkie",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 707,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "BTN_TL",
+        "name": "Thumb Hat In",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 4,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40",
+                "analog_threshold": 1
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "event(EV_ABS, ABS_HAT0Y, -1).hold().event(EV_ABS, ABS_HAT0Y, 0)",
+        "name": "Analog Thumb Up",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 4,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40",
+                "analog_threshold": -1
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "event(EV_ABS, ABS_HAT0Y, 1).hold().event(EV_ABS, ABS_HAT0Y, 0)",
+        "name": "Analog Thumb Down",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 3,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40",
+                "analog_threshold": -1
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "event(EV_ABS, ABS_HAT0X, -1).hold().event(EV_ABS, ABS_HAT0X, 0)",
+        "name": "Analog Thumb Left",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 3,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40",
+                "analog_threshold": 1
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "event(EV_ABS, ABS_HAT0X, 1).hold().event(EV_ABS, ABS_HAT0X, 0)",
+        "name": "Analog Thumb Right",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 1,
+                "code": 717,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40"
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "BTN_THUMBL",
+        "name": "Analog Thumb In",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 5,
+                "origin_hash": "c5829be2f9ce55f6303d0451a68f3e40",
+                "analog_threshold": 1
+            }
+        ],
+        "target_uinput": "gamepad",
+        "output_symbol": "BTN_B",
+        "mapping_type": "key_macro"
+    }
+]
