@@ -170,7 +170,8 @@
     cond: '[[ "$MODE" == "desktop" ]]'
     met:
       - omnipkg:
-          - onedrive # Because I haven't gotten away from OneDrive |  https://github.com/abraunegg/onedrive
+          - onedrive # Because I haven't gotten away from OneDrive | https://github.com/abraunegg/onedrive
+          - gammastep # In case I'm using Niri | https://gitlab.com/chinstrap/gammastep
       - flatpak: # For linux desktop
           - com.discordapp.Discord # Discord | https://discord.com/
           - dev.vencord.Vesktop # Modified Discord client | https://github.com/Vencord/Vesktop
