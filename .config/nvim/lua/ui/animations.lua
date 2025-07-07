@@ -1,11 +1,14 @@
 return {
   { -- Neovide-like cursor smear using block symbols
     'sphamba/smear-cursor.nvim',
+    -- version = '0',
+    lazy = false,
     opts = {
       -- cursor_color = "#ffffff",
       cursor_color = '#eb6f92',
-      legacy_computing_symbols_support = true,
-      hide_target_hack = false,
+      legacy_computing_symbols_support = false,
+      hide_target_hack = true,
+      smear_bettween_buffers = false,
       trailing_stiffness = 0.25,
     },
   },
