@@ -22,7 +22,7 @@ return {
     dependencies = {
       'MunifTanjim/nui.nvim',
     },
-    version = '4.3.1',
+    version = '4',
     config = function()
       require('noice').setup({
         cmdline = {
@@ -109,12 +109,12 @@ return {
         {
           title = 'Undo Tree',
           ft = 'undotree',
-          size = { width = .4 },
+          size = { width = 0.4 },
         },
         {
           title = 'Diff',
           ft = 'diff',
-          size = { width = .4 },
+          size = { width = 0.4 },
         },
         -- {
         --   title = 'Grug',

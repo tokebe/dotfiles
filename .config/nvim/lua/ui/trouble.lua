@@ -1,12 +1,9 @@
 return {
   'folke/trouble.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  config = function()
-    local trouble = require('trouble')
-    trouble.setup({
-      focus = true,
-    })
-  end,
+  opts = {
+    focus = true,
+  },
   event = 'LspAttach',
   keys = {
     {
