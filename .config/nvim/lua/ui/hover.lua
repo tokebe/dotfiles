@@ -1,12 +1,14 @@
 return {
   {
     'lewis6991/hover.nvim',
+    commit = '140c4d0',
     config = function()
       local hover = require('hover')
       hover.setup({
         init = function()
           -- hover.register(multiDiagnostic)
           require('hover.providers.lsp')
+          require('hover.providers.dap')
           require('hover.providers.diagnostic')
           require('hover.providers.dictionary')
         end,
