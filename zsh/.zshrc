@@ -171,10 +171,6 @@ export NVM_DIR="$HOME/.nvm"
 export GOPATH=$HOME/gocode
 export PATH="$HOME/gocode/bin:$PATH"
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
@@ -191,6 +187,7 @@ eval "$(navi widget zsh)"
 
 # fx configuration https://github.com/antonmedv/fx
 export FX_SHOW_SIZE=true
+export FX_LINE_NUMBERS=true
 
 # jump
 eval "$(jump shell)"
