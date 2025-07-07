@@ -30,8 +30,7 @@ Running TODO list:
 - [ ] Prevent unnamed buffer on all buffers closed -- show file finder instead
 - [ ] better quick fix management
 - [ ] Fix visual-paste yanking replaced text
-- [ ] Fix strange bar appearing near bottom of screen -> It's not treesitter-context
-- [ ] Disable diagnostics on insert
+- [ ] Disable diagnostics on insert?
 - [ ] Live file running for quicker iteration
 - [x] Fix visual highlight being set to wrong highlight
 
