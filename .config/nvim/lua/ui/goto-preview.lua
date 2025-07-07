@@ -72,19 +72,13 @@ return {
           return
         end
         features.ShowPathInTitle(popup_id)
-        vim.lsp.buf.definition({ reuse_win = false })
+        vim.api.nvim_input('<C-]>')
+        -- TODO: some handler for multiple
+        -- vim.lsp.buf.definition({ reuse_win = false })
         add_keymap()
-      end)
+      end, { desc = 'Preview Definition' })
 
-      vim.keymap.set('n', 'gD', function()
-        local popup_id = detour.DetourCurrentWindow()
-        if not popup_id then
-          return
-        end
-        features.ShowPathInTitle(popup_id)
-        vim.lsp.buf.declaration({ reuse_win = false })
-        add_keymap()
-      end)
+      vim.keymap.set('n', 'gD', '<CMD>Trouble lsp_definition<CR>', { desc = 'List definitions' })
 
       vim.keymap.set('n', 'gT', function()
         local popup_id = detour.DetourCurrentWindow()
@@ -107,4 +101,10 @@ return {
       end)
     end,
   },
+  -- {
+  --   'DNLHC/glance.nvim',
+  --   keys = {
+  --     { 'gd', '<CMD>Glance definitions<CR>' },
+  --   },
+  -- },
 }
