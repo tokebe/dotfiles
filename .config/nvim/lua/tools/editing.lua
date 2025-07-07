@@ -72,16 +72,22 @@ return {
       })
     end,
   },
-  { -- Smart handling of surrounding brackets
+  {                                         -- Smart handling of surrounding brackets
     'kylechui/nvim-surround',
-    dependencies = { 'ggandor/lightspeed.nvim' }, -- ensure it loads after
+    dependencies = { 'ggandor/leap.nvim' }, -- ensure it loads after
     version = '*',
     config = function()
       require('nvim-surround').setup({
         keymaps = {
-          visual = 'gs',
+          normal = 'gs',
+          normal_cur = 'gss',
+          normal_line = 'gS',
+          normal_cur_line = 'ySS',
+          visual = 'S',
+          visual_line = 'gS',
           delete = 'dgs',
           change = 'cgs',
+          change_line = 'cgS',
         },
       })
     end,
