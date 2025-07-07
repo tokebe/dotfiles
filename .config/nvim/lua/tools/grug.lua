@@ -2,6 +2,7 @@ local filter = require('filter')
 return {
   {
     'MagicDuck/grug-far.nvim',
+    version = '1',
     config = function()
       local grug = require('grug-far')
       grug.setup({
@@ -16,7 +17,7 @@ return {
       })
 
       vim.keymap.set({ 'n', 'v' }, '<Leader>ff', function()
-        grug.grug_far({
+        grug.open({
           prefills = {
             filesFilter = filter.getFilter(),
           },
@@ -24,7 +25,7 @@ return {
       end, { desc = 'Search within files' })
 
       vim.keymap.set({ 'n', 'v' }, '<Leader>fF', function()
-        grug.grug_far({
+        grug.open({
           prefills = {
             filesFilter = vim.fn.expand('%'),
           },
@@ -32,7 +33,7 @@ return {
       end, { desc = 'Search within current file' })
 
       vim.keymap.set({ 'n', 'v' }, '<Leader>fa', function()
-        grug.grug_far({
+        grug.open({
           engine = 'astgrep',
           prefills = {
             filesFilter = filter.getFilter(),
@@ -42,7 +43,7 @@ return {
       end, { desc = 'Search AST within files' })
 
       vim.keymap.set({ 'n', 'v' }, '<Leader>fA', function()
-        grug.grug_far({
+        grug.open({
           engine = 'astgrep',
           prefills = {
             filesFilter = vim.fn.expand('%'),
