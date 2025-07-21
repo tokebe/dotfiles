@@ -27,6 +27,15 @@ return {
       end, { remap = true, desc = 'Enter hover info' })
     end,
   },
+  {
+    'wurli/urlpreview.nvim',
+    opts = {
+      auto_preview = false, -- safer not to do auto
+      keymap = '<Leader>uu',
+      max_window_width = 100,
+      window_border = 'solid',
+    },
+  },
   -- {
   --   'Fildo7525/pretty_hover',
   --   events = 'LspAttach',
