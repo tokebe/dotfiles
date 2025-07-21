@@ -11,7 +11,7 @@ return {
           close = { n = 'q' },
         },
         prefills = {
-          flags = '--ignore-case --no-ignore --hidden',
+          flags = '--smart-case --no-ignore --hidden',
         },
         transient = true,
       })
