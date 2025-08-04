@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+setup () {
+    local cwd=$PWD
+    cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" || exit
+
+    git clone https://github.com/tokebe/ignis-tokebe ~/Projects/ignis-tokebe
+    cd ~/Projects/ignis || exit
+    uv sync
+
+    cd "$cwd" || exit
+}
+setup

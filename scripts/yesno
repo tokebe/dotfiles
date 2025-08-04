@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 yesno() {
     while true; do
-        # echo "$1 (y/n) "
-        read -p "$1 (y/n) " yn
+        read -r -p "$1 (y/n) " yn
         case $yn in
             [Yy]* ) return 0 ;;
             [Nn]* ) return 1 ;;
