@@ -3,9 +3,13 @@
     cond: '[[ "$MODE" == "desktop" ]]'
     met:
       - omnipkg:
-          - niri # My favorite WM | https://github.com/YaLTeR/niri
-          - wlsunset # Color temperature filter | https://sr.ht/~kennylevinsen/wlsunset/
-          - mate-polkit # PolicyKit auth agent for GUI sudo | https://github.com/mate-desktop/mate-polkit
+          - niri  # My favorite WM | https://github.com/YaLTeR/niri
+          - wlsunset  # Color temperature filter | https://sr.ht/~kennylevinsen/wlsunset/
+          - mate-polkit  # PolicyKit auth agent for GUI sudo | https://github.com/mate-desktop/mate-polkit
+          - lz4  # Fast compression algorithm used by SWWW | https://github.com/lz4/lz4
+          - [lz4-devel, liblz4]  # Fast compression algorithm used by SWWW | https://github.com/lz4/lz4
+          - wlclipboard  # Make clipboard work with command-line stuff | https://github.com/bugaevc/wl-clipboard
+          - [wayland-protocols-devel, wayland-protocols]  # protocols dev package for building swww
       - cargo:
           - swww:
               - git: https://github.com/LGFae/swww

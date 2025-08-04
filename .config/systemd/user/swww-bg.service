@@ -4,5 +4,5 @@ After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=swww-daemon --namespace bg
+ExecStart=%h/.cargo/bin/swww-daemon --namespace bg
 Restart=on-failure
