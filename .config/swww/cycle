@@ -20,7 +20,8 @@ while true; do
 
     # Update the wallpaper using the swww img command
     # Any = circle centered at any point
-    swww img "$selectedWallpaper" --transition-type any --transition-fps 100 --transition-duration 2
+    ~/.cargo/bin/swww img "$selectedWallpaper" --namespace bg --transition-type any --transition-fps 100 --transition-duration 2
+    ~/.cargo/bin/swww img "$(dirname "$selectedWallpaper")/blurred/$(basename "$selectedWallpaper")" --namespace overview --transition-type any --transition-fps 100 --transition-duration 2
 
     # Remove the selected wallpaper from the array
     wallpapers=("${wallpapers[@]}")

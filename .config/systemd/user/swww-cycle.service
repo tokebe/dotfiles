@@ -4,5 +4,5 @@ After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=/home/alter/.config/swww/cycle
+ExecStart=%h/.config/swww/cycle
 Restart=on-failure
