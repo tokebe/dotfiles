@@ -1,0 +1,14 @@
+---
+- plugins:
+    - dotbot-plugins/dotbot-omnipkg
+    - dotbot-plugins/dotbot-if
+    - dotbot-plugins/dotbot-brew
+    - dotbot-plugins/dotbot-pip
+    - dotbot-plugins/dotbot-flatpak
+    - dotbot-plugins/dotbot-gh-extensions
+    - dotbot-plugins/dotbot-rust
+- defaults:
+    link:
+      create: true
+      relink: true
+      force: true

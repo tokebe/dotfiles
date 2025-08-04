@@ -3,19 +3,19 @@
     cond: command -v brew &> /dev/null
     unmet:
       - shell:
-          - command: >
+          - description: Install brew package manager # https://brew.sh/
+            command: >
               /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            description: Install brew package manager # https://brew.sh/
             quiet: true
             stdout: true
             stderr: true
             stdin: true
       - shell:
-          - command: >
+          - description: Add brew to path
+            command: >
               (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"')
               >> ~/.bashrc && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
               && source ~/.bashrc
-            description: Add brew to path
             quiet: true
             stdout: true
             stderr: true
@@ -67,8 +67,8 @@
           cond: command -v fd &> /dev/null
           met:
             - shell:
-                - command: ln -sf $(which fdfind) ~/.local/bin/fd
-                  description: Fix fd access
+                - description: Fix fd access
+                  command: ln -sf $(which fdfind) ~/.local/bin/fd
                   quiet: true
 - tap: [noahgorstein/tap]
 - brew:
@@ -97,8 +97,6 @@
     # Package/language management
     - eget # Github prebuilt binary installer | https://github.com/zyedidia/eget
     - pnpm # Performant NPM | https://github.com/pnpm/pnpm
-    - pyenv # Python version management | https://github.com/pyenv/pyenv
-    - pyenv-virtualenv # Pyenv venv support | https://github.com/pyenv/pyenv-virtualenv
     # Utilities
     - bat # Better cat/less | https://github.com/sharkdp/bat
     - btop # Better top | https://github.com/aristocratos/btop
@@ -119,27 +117,28 @@
     - tmux # Terminal multiplexer | https://github.com/tmux/tmux
     - xh # Friendlier cURL | https://github.com/ducaale/xh
 - shell:
-    - command: ./zsh/setup
-      description: Install ZSH for Humans # A really solid CLI environment/prompt
+    - description: Install ZSH for Humans # A really solid CLI environment/prompt
+      command: ./zsh/setup
       quiet: true
       stdout: true
       stderr: true
       stdin: true
-    - command: >
+    - description: Install nvm # Node Version Manager
+      command: >
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
         | bash
-      description: Install nvm # Node Version Manager
       quiet: true
-    - command: source ~/.bashrc && nvm install --lts
-      description: Install latest LTS node & npm
-    - command: ./setup-scripts/git
-      description: Setup github known host
+    - description: Install latest LTS node & npm
+      command: source ~/.bashrc && nvm install --lts
+      quiet: true
+    - description: Setup github known host
+      command: ./scripts/setup/git
       quiet: true
       stdout: true
       stderr: true
       stdin: true
-    - command: gh auth login
-      description: Login to github
+    - description: Login to github
+      command: gh auth login
       quiet: true
       stdout: true
       stderr: true
@@ -147,50 +146,21 @@
 - ghe: [mintarchit/gh-contribs, sheepla/gh-userfetch]
 - pip:
     file: python-packages.txt
-- pipx:
-    file: pipx-packages.txt
+- shell:
+    - description: Install tools with uv
+      command: ./scripts/setup/uv
+      stdout: false
+      stderr: true
+      quiet: true
 - cargo: [systemctl-tui]
 - shell:
-    - command: npm install neovim -g
-      description: Neovim node support
+    - description: Neovim node support
+      command: npm install neovim -g
       stdout: false
       stderr: true
-    - command: pyenv install 3.11 -s && pyenv virtualenv 3.11 py3nvim && \ pyenv
-        activate py3nvim && \ python3 -m pip install pynvim neovim
-      description: Setup neovim-specific venv
+      quite: true
+    - description: Prepare Neovim
+      command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
       quiet: true
       stdout: false
       stderr: true
-    - command: zsh -c 'nvim --headless "+Lazy! sync" +qa'
-      description: Prepare Neovim
-      quiet: true
-      stdout: false
-      stderr: true
-- if:
-    cond: '[[ "$MODE" == "desktop" ]]'
-    met:
-      - omnipkg:
-          - onedrive # Because I haven't gotten away from OneDrive | https://github.com/abraunegg/onedrive
-          - gammastep # In case I'm using Niri | https://gitlab.com/chinstrap/gammastep
-      - flatpak: # For linux desktop
-          - com.discordapp.Discord # Discord | https://discord.com/
-          - dev.vencord.Vesktop # Modified Discord client | https://github.com/Vencord/Vesktop
-          - com.github.finefindus.eyedropper # Color picker | https://github.com/FineFindus/eyedropper
-          - com.github.tchx84.Flatseal # Flatpak permissions | https://github.com/tchx84/Flatseal
-          - com.github.neithern.g4music # Pretty music GUI | https://gitlab.gnome.org/neithern/g4music
-          - org.kde.krita # Art! | https://krita.org/en/
-          - md.obsidian.Obsidian # Notetaking done good | https://obsidian.md/
-          - com.visualstudio.code # One day nvim will be good for debugging | https://code.visualstudio.com/
-          - org.wezfurlong.wezterm # Better terminal emulator | https://wezfurlong.org/wezterm/index.html
-          - io.github.zen_browser.zen # Custom Firefox layer | https://zen-browser.app/
-      - if:
-          cond: '[[ "$DESKTOP_SESSION" != "kde" ]]'
-          met:
-            - flatpak:
-                - com.usebottles.bottles # Wine GUI | https://usebottles.com/
-                - de.haeckerfelix.Fragments # Torrent client | https://apps.gnome.org/Fragments/
-                - com.mattjakeman.ExtensionManager # Gnome extension manager | https://github.com/mjakeman/extension-manager
-                - io.github.realmazharhussain.GdmSettings # Manage Gnome greeter | https://github.com/gdm-settings/gdm-settings
-                - io.gitlab.adhami3310.Impression # Media writer | https://apps.gnome.org/Impression/
-                - re.sonny.Junction # App chooser for file opening | https://github.com/sonnyp/Junction
-                - app.drey.Warp # Like portal, but GUI | https://apps.gnome.org/Warp/

@@ -1,25 +1,12 @@
 ---
-- plugins:
-    - dotbot-plugins/dotbot-include
-    - dotbot-plugins/dotbot-omnipkg
-    - dotbot-plugins/dotbot-if
-    - dotbot-plugins/dotbot-brew
-    - dotbot-plugins/dotbot-pip
-    - dotbot-plugins/dotbot-flatpak
-    - dotbot-plugins/dotbot-gh-extensions
-    - dotbot-plugins/dotbot-rust
-- defaults:
-    link:
-      create: true
-      relink: true
-      force: true
-- clean: ['~']
+- clean: ["~"]
 - create: [~/Applications, ~/Downloads, ~/Projects]
-- include: software.yaml
 - shell:
-    - command: test -f "wezterm/fontsize.lua" || cp wezterm/fontsize-default.lua
-        wezterm/fontsize.lua
-      description: Ensure wezterm fontsize config file
+    - description: Ensure wezterm fontsize config file
+      command:
+        test -f ".config/wezterm/fontsize.lua" || cp .config/wezterm/fontsize-default.lua
+        .config/wezterm/fontsize.lua
+      quiet: true
 - link:
     # zsh
     ~/.zshrc:
@@ -53,4 +40,3 @@
       glob: true
       path: home/*
       relink: true
-- include: themes.yaml
