@@ -1,5 +1,6 @@
 libtmux
 dataclasses
-pipx
 pylatexenc
+uv
+pynvim
 
