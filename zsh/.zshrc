@@ -55,7 +55,9 @@ zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh'
 # up-to-date. Cloned files can be used after `z4h init`. This is just an
 # example. If you don't plan to use Oh My Zsh, delete this line.
 z4h install ohmyzsh/ohmyzsh || return
-z4h install se-jaeger/zsh-activate-py-environment || return
+# z4h install se-jaeger/zsh-activate-py-environment || return
+z4h install hsaunders1904/pyautoenv || return
+z4h install matthiasha/zsh-uv-env || return
 z4h install akash329d/zsh-alias-finder || return
 z4h install RobSis/zsh-completion-generator || return
 z4h install Tarrasch/zsh-bd || return
@@ -84,8 +86,8 @@ z4h source ~/.env.zsh
 # z4h source ohmyzsh/ohmyzsh/lib/diagnostics.zsh  # source an individual file
 # z4h load   ohmyzsh/ohmyzsh/plugins/emoji-clock  # load a plugin
 # z4h load ohmyzsh/ohmyzsh/plugins/colored-man-pages
-z4h load se-jaeger/zsh-activate-py-environment
 # z4h load ohmyzsh/ohmyzsh/plugins/autojump
+z4h load hsaunders1904/pyautoenv
 
 
 z4h load akash329d/zsh-alias-finder
