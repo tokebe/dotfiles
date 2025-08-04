@@ -19,9 +19,6 @@
 [submodule "neofetch/neofetch-themes"]
 	path = neofetch/neofetch-themes
 	url = https://github.com/Chick2D/neofetch-themes
-[submodule "dotbot-plugins/dotbot-include"]
-	path = dotbot-plugins/dotbot-include
-	url = https://gitlab.com/gnfzdz/dotbot-include.git
 [submodule "dotbot-plugins/dotbot-flatpak"]
 	path = dotbot-plugins/dotbot-flatpak
 	url = https://github.com/DrDynamic/dotbot-flatpak.git
@@ -40,3 +37,6 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
+[submodule "dotbot-plugins/dotbot-include"]
+	path = dotbot-plugins/dotbot-include
+	url = https://gitlab.com/gnfzdz/dotbot-include.git
