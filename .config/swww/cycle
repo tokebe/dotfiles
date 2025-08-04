@@ -6,6 +6,8 @@ wallpapersDir="$HOME/OneDrive/wallpaper/desktop-alter"
 # Get a list of all image files in the wallpapers directory
 wallpapers=("$wallpapersDir"/*)
 
+sleep 1s
+
 # Start an infinite loop
 while true; do
     # Check if the wallpapers array is empty
