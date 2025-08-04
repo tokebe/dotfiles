@@ -1,6 +1,7 @@
 return {
   {
     'shellRaining/hlchunk.nvim',
+    version='v1.3.0',
     event = { 'UIEnter' },
     config = function()
       require('hlchunk').setup({
@@ -11,12 +12,12 @@ return {
             left_top = '┌',
             left_bottom = '└',
           },
-          use_treesitter = true,
+          use_treesitter = false,
         },
         indent = {
           enable = true,
           chars = { '│', '┊' },
-          use_treesitter = true,
+          use_treesitter = false,
         },
         line_num = {
           enable = false,
