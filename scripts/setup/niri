@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+setup () {
+    local cwd=$PWD
+    cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" || exit
+
+    systemctl --user add-wants niri.service swww-bg.service
+    systemctl --user add-wants niri.service swww-overview.service
+    systemctl --user add-wants niri.service swww-cycle.service
+    systemctl --user add-wants niri.service ignis.service
+    systemctl --user add-wants niri.service mate-polkit.service
+
+    cd "$cwd" || exit
+}
+setup
