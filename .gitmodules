@@ -1,6 +1,3 @@
-[submodule "dotbot"]
-	path = dotbot
-	url = https://github.com/anishathalye/dotbot
 [submodule "iosevka/iosevka-generate"]
 	path = iosevka/iosevka-generate
 	url = https://github.com/tokebe/iosevka-generate.git
