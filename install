@@ -2,7 +2,14 @@
 
 set -e
 
-CONFIG="install.conf.yaml"
+CONFIGS=(
+    "dotbot-configs/management.yaml"
+    "dotbot-configs/software.yaml"
+    "dotbot-configs/desktop.yaml"
+    "dotbot-configs/niri.yaml"
+    "dotbot-configs/themes.yaml"
+)
+DEFAULTS="defaults.yaml"
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"
@@ -12,7 +19,15 @@ cd "$BASEDIR"
 git submodule sync --quiet --recursive
 git submodule update --init --recursive
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
-    -d "$BASEDIR" \
-    -c "$CONFIG" \
-    "${@}"
+for CONFIG in "${CONFIGS[@]}"; do
+    echo "Executing config $CONFIG..."
+    TEMPFILE=$(mktemp)
+    cat "$DEFAULTS" > "$TEMPFILE"
+    tail -n +2 "$CONFIG" >> "$TEMPFILE"
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
+        -d "$BASEDIR" \
+        -c "$TEMPFILE" \
+        "${@}" || continue
+done
+
+echo "Finished executing configs."

@@ -1,0 +1,19 @@
+---
+- if:
+    cond: '[[ "$MODE" == "desktop" ]]'
+    met:
+      - omnipkg:
+          - niri # My favorite WM | https://github.com/YaLTeR/niri
+          - wlsunset # Color temperature filter | https://sr.ht/~kennylevinsen/wlsunset/
+          - mate-polkit # PolicyKit auth agent for GUI sudo | https://github.com/mate-desktop/mate-polkit
+      - cargo:
+          - swww:
+              - git: https://github.com/LGFae/swww
+          - swww-daemon:
+              - git: https://github.com/LGFae/swww
+      - shell:
+          - description: Set up ignis
+            command: npm install neovim -g
+            stdout: false
+            stderr: true
+            quiet: true
