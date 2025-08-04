@@ -2,3 +2,4 @@
 .config/nvim/lockfiles/*
 neofetch/config/*
 .config/wezterm/fontsize.lua
+.config/btop/btop.log
