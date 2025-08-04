@@ -3,3 +3,4 @@
 neofetch/config/*
 .config/wezterm/fontsize.lua
 .config/btop/btop.log
+.config/systemd/user/default.target.wants
