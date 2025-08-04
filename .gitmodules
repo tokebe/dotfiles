@@ -1,6 +1,6 @@
 [submodule "dotbot"]
 	path = dotbot
-	url = https://github.com/tokebe/dotbot
+	url = https://github.com/anishathalye/dotbot
 [submodule "iosevka/iosevka-generate"]
 	path = iosevka/iosevka-generate
 	url = https://github.com/tokebe/iosevka-generate.git
@@ -37,3 +37,6 @@
 [submodule "dotbot-plugins/dotbot-rust"]
 	path = dotbot-plugins/dotbot-rust
 	url = https://github.com/alexcormier/dotbot-rust
+[submodule "dotbot-plugins/dotbot-git"]
+	path = dotbot-plugins/dotbot-git
+	url = https://github.com/DrDynamic/dotbot-git.git
