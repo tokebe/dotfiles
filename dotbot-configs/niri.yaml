@@ -17,3 +17,9 @@
             stdout: false
             stderr: true
             quiet: true
+      - shell:
+          - description: Set up Niri services
+            command: ./scripts/setup/niri
+            stdout: false
+            stderr: true
+            quiet: true
