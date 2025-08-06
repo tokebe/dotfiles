@@ -10,15 +10,15 @@ return {
     'williamboman/mason-lspconfig.nvim', -- Automatic installation/configuration of LSPs
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' },
-    { 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'rcarriga/cmp-dap', dependencies = { 'hrsh7th/nvim-cmp', 'mfussenegger/nvim-dap' } },
+    { 'hrsh7th/cmp-nvim-lsp',        dependencies = { 'hrsh7th/nvim-cmp' } },
+    { 'rcarriga/cmp-dap',            dependencies = { 'hrsh7th/nvim-cmp', 'mfussenegger/nvim-dap' } },
     -- { 'hrsh7th/cmp-nvim-lsp-signature-help' },
-    { 'hrsh7th/cmp-buffer', dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'hrsh7th/cmp-cmdline', dependencies = { 'hrsh7th/nvim-cmp' } },
+    { 'hrsh7th/cmp-buffer',          dependencies = { 'hrsh7th/nvim-cmp' } },
+    { 'hrsh7th/cmp-cmdline',         dependencies = { 'hrsh7th/nvim-cmp' } },
     { 'dmitmel/cmp-cmdline-history', dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'tamago324/cmp-zsh', dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'onsails/lspkind.nvim', dependencies = { 'hrsh7th/nvim-cmp' } }, -- icons
-    { 'xzbdmw/colorful-menu.nvim' }, -- rich color
+    { 'tamago324/cmp-zsh',           dependencies = { 'hrsh7th/nvim-cmp' } },
+    { 'onsails/lspkind.nvim',        dependencies = { 'hrsh7th/nvim-cmp' } }, -- icons
+    { 'xzbdmw/colorful-menu.nvim' },                                   -- rich color
     -- Snippets (using cmp)
     {
       'L3MON4D3/LuaSnip',
@@ -27,11 +27,11 @@ return {
     },
     -- Snippets (using cmp)
     -- Winbar breadcrumbs
-    { 'SmiteshP/nvim-navic', dependencies = { 'neovim/nvim-lspconfig' } },
+    { 'SmiteshP/nvim-navic',                        dependencies = { 'neovim/nvim-lspconfig' } },
     -- Toggleable diagnostics
     { 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim' },
     -- LSP autokill for performance
-    { 'hinell/lsp-timeout.nvim', dependencies = { 'neovim/nvim-lspconfig' } },
+    { 'Zeioth/garbage-day.nvim',                    dependencies = { 'neovim/nvim-lspconfig' } },
   },
   config = function() -- LSP loading status
     local lspconfig = require('lspconfig')
@@ -39,7 +39,7 @@ return {
 
     -- Ensure autocomplete capabilities
     lspconfig_defaults.capabilities =
-      vim.tbl_deep_extend('force', lspconfig_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
+        vim.tbl_deep_extend('force', lspconfig_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     -- Set up keybinds and other special handling
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -89,6 +89,12 @@ return {
       require('toggle_lsp_diagnostics').toggle_virtual_text()
     end, {
       desc = 'Toggle LSP diagnostic text',
+    })
+
+    require('garbage-day').setup({
+      grace_period = 60 * 20, -- in s
+      wakeup_delay = 10,      -- in ms
+      notifications = true,
     })
   end,
 }

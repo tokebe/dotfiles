@@ -19,7 +19,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/tokebe/dotfiles/main/quick
 Clone the repo:
 
 ```bash
-git clone https://github.com/tokebe/dotfiles.git
+git clone https://github.com/tokebe/dotfiles
 ```
 
 Install:
