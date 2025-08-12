@@ -6,3 +6,6 @@
       stdout: true
       stderr: true
       stdin: true
+- link:
+  ~/.local/share/icons/default:
+    path: ~/.local/share/icons/Bibata-Modern-Classic
