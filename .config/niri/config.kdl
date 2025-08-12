@@ -1,3 +1,8 @@
+debug {
+    wait-for-frame-completion-in-pipewire
+}
+
+
 environment {
     DISPLAY ":0"
 }
@@ -191,7 +196,7 @@ window-rule {
 // prefer-no-csd
 
 window-rule {
-    geometry-corner-radius 10
+    geometry-corner-radius 5
     clip-to-geometry true
 }
 
@@ -200,8 +205,19 @@ window-rule {
     match is-floating=true
     shadow {
         on
+        offset x=25 y=100
+        softness 20
     }
 }
+
+// lower opacity on unfocused windows
+window-rule {
+    match is-active=false is-focused=false is-window-cast-target=false
+    // match is-focused=false
+    // match is-window-cast-target=false
+    opacity 0.95
+}
+
 
 // Highlight screen-shared windows
 window-rule {
@@ -224,6 +240,8 @@ layer-rule {
 
     shadow {
         on
+        offset x=25 y=100
+        softness 20
     }
 }
 
@@ -469,6 +487,6 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 
     // Dynamic casting target
-    Mod+X { set-dynamic-cast-window; }
-    Mod+Shift+X { set-dynamic-cast-monitor; }
+    Mod+Alt+S { set-dynamic-cast-window; }
+    Mod+Alt+Shift+S { set-dynamic-cast-monitor; }
 }
