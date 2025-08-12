@@ -144,7 +144,7 @@ alias ls='lsd -AX --group-dirs=first'
 alias notes="( cd ~ && nvim ~/notes )"
 alias cat=ccat
 alias lk='() { walk "$@" --icons; }'
-alias lkd='() { cd "$(walk "$@" --icons)" }'
+alias lkd='() { cd "$(walk "$@" --icons --preview)" }'
 alias pn=pnpm
 alias tm='gtrash put'
 alias tr='gtrash restore'
@@ -190,6 +190,9 @@ eval "$(navi widget zsh)"
 # fx configuration https://github.com/antonmedv/fx
 export FX_SHOW_SIZE=true
 export FX_LINE_NUMBERS=true
+
+# walk config
+export WALK_REMOVE_CMD='gtrash put'
 
 # jump
 eval "$(jump shell)"
