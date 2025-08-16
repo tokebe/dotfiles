@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+WALLPAPER_DIR="$HOME/OneDrive/wallpaper/desktop-alter"
+PREP_DIR="$HOME/.local/share/wallpaper"
+
+
+manage_wallpapers() {
+  WORKSPACE=$(mktemp -d 2>/dev/null || mktemp -d -t 'workspace')
+  echo "Working in $WORKSPACE"
+  mkdir "$WORKSPACE/split"
+  mkdir "$WORKSPACE/blur"
+  rm -rf "${PREP_DIR:?}/*"
+  mkdir -p "$PREP_DIR"
+  mkdir -p "$PREP_DIR/blur"
+
+  find "$WALLPAPER_DIR" -maxdepth 1 -type f -print0 | xargs -0 -L1 -- basename > "$PREP_DIR"/wallpapers.txt
+
+  readarray -t images < "$PREP_DIR"/wallpapers.txt
+
+  echo "Blurring images..."
+  for image in "${images[@]}"; do
+    (
+      target_dir="$WORKSPACE/blur/$image"
+      echo "$image -> $target_dir"
+      # Blur images
+      MAGICK_OCL_DEVICE=GPU magick "$WALLPAPER_DIR/$image" \
+        -blur 0x8 \
+        -paint 16 \
+        -blur 0x64 \
+        -dither FloytSteinberg -colors 16 \
+        -blur 0x8 \
+        -gamma 0.8,0.8,0.8 \
+        "$target_dir"
+    ) & # Do in parallel
+  done
+  echo "Running above transformations in parallel..."
+  wait
+  echo "Finished blurring images."
+
+  echo "Splitting images..."
+  for image in "${images[@]}"; do
+    if [[ ! "$image" =~ ^.*\.split\..*$ ]]; then
+      # Just copy it over
+      cp "$WALLPAPER_DIR/$image" "$PREP_DIR"
+      cp "$WORKSPACE/blur/$image" "$PREP_DIR/blur"
+      echo "Copied $image (and blur) without splits."
+    else
+      # Split into display files, then move over with regular names.
+      rwpspread \
+        -i "$WALLPAPER_DIR/$image" \
+        -m "DP-1:23.8" "DP-2:34" \
+        -o "$WORKSPACE/split" \
+        --bezel 151 \
+        >/dev/null
+      for split in "$WORKSPACE"/split/*.png; do
+        new_name=$(basename "$split" | sed -E "s/rwps_(.*)_.*/\1_$image/")
+        mv "$split" "$PREP_DIR/$new_name"
+        echo "Split $image to $new_name"
+      done
+
+      # Then do the same for the blurred files
+      rwpspread \
+        -i "$WORKSPACE/blur/$image" \
+        -m "DP-1:23.8" "DP-2:34" \
+        -o "$WORKSPACE/split" \
+        --bezel 202 \
+        >/dev/null
+      for split in "$WORKSPACE"/split/*.png; do
+        new_name=$(basename "$split" | sed -E "s/rwps_(.*)_.*/\1_$image/")
+        mv "$split" "$PREP_DIR/blur/$new_name"
+        echo "Split blurred $image to blur/$new_name"
+      done
+    fi
+  done
+  echo "Finished splitting images."
+
+  rm -rf "$WORKSPACE" && echo "Cleared workspace $WORKSPACE"
+}
+
+manage_wallpapers
+# while inotifywait -e modify,move,create,delete "$WALLPAPER_DIR"; do
+#   manage_wallpapers
+# done
