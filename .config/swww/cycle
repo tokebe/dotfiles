@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Set the path to the wallpapers directory
-wallpapersDir="$HOME/OneDrive/wallpaper/desktop-alter"
+WALLPAPER_DIR="$HOME/.local/share/wallpaper"
 
 # Get a list of all image files in the wallpapers directory
-wallpapers=("$wallpapersDir"/*)
+readarray -t wallpapers < "$WALLPAPER_DIR/wallpapers.txt"
 
 sleep 1s
 
@@ -13,7 +13,7 @@ while true; do
     # Check if the wallpapers array is empty
     if [ ${#wallpapers[@]} -eq 0 ]; then
         # If the array is empty, refill it with the image files
-        wallpapers=("$wallpapersDir"/*)
+        readarray -t wallpapers < "$WALLPAPER_DIR/wallpapers.txt"
     fi
 
     # Select a random wallpaper from the array
@@ -22,8 +22,19 @@ while true; do
 
     # Update the wallpaper using the swww img command
     # Any = circle centered at any point
-    ~/.cargo/bin/swww img "$selectedWallpaper" --namespace bg --transition-type any --transition-fps 100 --transition-duration 2
-    ~/.cargo/bin/swww img "$(dirname "$selectedWallpaper")/blurred/$(basename "$selectedWallpaper")" --namespace overview --transition-type any --transition-fps 100 --transition-duration 2
+    if [[ "$selectedWallpaper" =~ ^.*\.split\..*$ ]]; then
+        # Split image logic
+        for image_path in "$WALLPAPER_DIR"/*_"$selectedWallpaper"; do
+            image=$(basename "$image_path")
+            output="${image%%_*}"
+            ~/.cargo/bin/swww img "$WALLPAPER_DIR/$image" --namespace bg -o "$output" --transition-type any --transition-fps 100 --transition-duration 2
+            ~/.cargo/bin/swww img "$WALLPAPER_DIR/blur/$image" --namespace overview -o "$output" --transition-type any --transition-fps 100 --transition-duration 2
+        done
+    else
+        # Non-split logic
+        ~/.cargo/bin/swww img "$WALLPAPER_DIR/$selectedWallpaper" --namespace bg --transition-type any --transition-fps 100 --transition-duration 2
+        ~/.cargo/bin/swww img "$WALLPAPER_DIR/blur/$selectedWallpaper" --namespace overview --transition-type any --transition-fps 100 --transition-duration 2
+    fi
 
     # Remove the selected wallpaper from the array
     wallpapers=("${wallpapers[@]}")
