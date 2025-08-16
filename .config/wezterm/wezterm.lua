@@ -10,6 +10,17 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+-- Behavior
+-- config.enable_wayland = true
+-- config.animation_fps = 100
+-- config.max_fps = 100
+
+-- Fix weirdness in Niri
+-- local gpus = wezterm.gui.enumerate_gpus()
+-- config.webgpu_preferred_adapter = gpus[1]
+-- config.webgpu_power_preference = "HighPerformance"
+config.front_end = 'WebGpu'
+
 -- Appearance
 local colorscheme = 'rose-pine-moon'
 local colorscheme_table = wezterm.color.get_builtin_schemes()[colorscheme]
