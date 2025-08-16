@@ -41,6 +41,7 @@
         # System apps
         - unzip # .zip support
         - zsh # Z Shell | https://www.zsh.org/
+        - inotify-tools # inotify utilities | https://github.com/inotify-tools/inotify-tools
         # System dependencies
         - chafa # Terminal graphics support | https://github.com/hpjansson/chafa
         - { brew: coreutils } # Ensure coreutils on MacOS
