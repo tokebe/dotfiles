@@ -153,7 +153,10 @@
       stdout: false
       stderr: true
       quiet: true
-- cargo: [systemctl-tui]
+- cargo:
+    - systemctl-tui
+    - xwayland-satellite:
+        - git: https://github.com/Supreeeme/xwayland-satellite
 - shell:
     - description: Neovim node support
       command: npm install neovim -g
