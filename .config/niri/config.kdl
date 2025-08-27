@@ -1,10 +1,11 @@
 debug {
-    wait-for-frame-completion-in-pipewire
+    // wait-for-frame-completion-in-pipewire
 }
 
 
 environment {
     DISPLAY ":0"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
 input {
@@ -216,7 +217,7 @@ window-rule {
     match is-active=false is-focused=false is-window-cast-target=false
     // match is-focused=false
     // match is-window-cast-target=false
-    opacity 0.95
+    // opacity 0.95
 }
 
 
