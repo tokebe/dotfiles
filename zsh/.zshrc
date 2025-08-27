@@ -196,3 +196,6 @@ export WALK_REMOVE_CMD='gtrash put'
 
 # jump
 eval "$(jump shell)"
+
+# Fix Cargo pkgconfig on Fedora for some libraries
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
