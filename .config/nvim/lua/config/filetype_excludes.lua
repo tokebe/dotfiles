@@ -33,4 +33,8 @@ return {
   'OverseerList',
   'grug-far',
   'undotree',
+  'blink-cmp-menu',
+  'blink-cmp-documentation',
+  'cmp_menu',
+  'cmp_docs'
 }
