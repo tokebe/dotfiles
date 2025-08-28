@@ -109,10 +109,10 @@ return {
       vim.keymap.set({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_opposite)
 
       -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-      vim.keymap.set({ 'n', 'x', 'o' }, 'f', ts_repeat_move.builtin_f)
-      vim.keymap.set({ 'n', 'x', 'o' }, 'F', ts_repeat_move.builtin_F)
-      vim.keymap.set({ 'n', 'x', 'o' }, 't', ts_repeat_move.builtin_t)
-      vim.keymap.set({ 'n', 'x', 'o' }, 'T', ts_repeat_move.builtin_T)
+      vim.keymap.set({ 'n', 'x', 'o' }, 'f', ts_repeat_move.builtin_f_expr)
+      vim.keymap.set({ 'n', 'x', 'o' }, 'F', ts_repeat_move.builtin_F_expr)
+      vim.keymap.set({ 'n', 'x', 'o' }, 't', ts_repeat_move.builtin_t_expr)
+      vim.keymap.set({ 'n', 'x', 'o' }, 'T', ts_repeat_move.builtin_T_expr)
     end,
   },
   {
@@ -122,8 +122,14 @@ return {
     },
     config = function()
       require('treesitter-context').setup({
+        enable = true,
         max_lines = 3,
-        multiwindow = true,
+        multiwindow = false,
+      })
+      vim.keymap.set('n', '<Leader>tC', '<CMD>TSContext toggle<CR>', { desc = 'Toggle top context' })
+      vim.api.nvim_create_autocmd('UIEnter', {
+        command = 'TSContext enable',
+        desc = 'Ensure re-opened buffer has context enabled.',
       })
     end,
   },

@@ -12,11 +12,6 @@ return {
       desc = 'Toggle Trouble view',
     },
     {
-      '<Leader>fd',
-      ':Trouble diagnostics<CR>',
-      desc = 'Find diagnostics',
-    },
-    {
       '<Leader>fq',
       ':Trouble quickfix<CR>',
       desc = 'Find quickfix',
@@ -27,14 +22,9 @@ return {
       desc = 'Find todos',
     },
     {
-      '<Leader>fT',
-      ':Trouble lsp_type_definitions<CR>',
-      desc = 'Find type defintions',
-    },
-    {
-      '<Leader>fi',
-      ':Trouble lsp_implementations<CR>',
-      desc = 'Find implementations',
+      'gr',
+      ':Trouble lsp_references<CR>',
+      desc = 'Goto references',
     },
     {
       '<Leader>fc',
@@ -42,9 +32,9 @@ return {
       desc = 'Find incoming calls',
     },
     {
-      'gr',
-      ':Trouble lsp_references<CR>',
-      desc = 'Goto references',
+      '<Leader>fC',
+      ':Trouble lsp_outgoing_calls<CR>',
+      desc = 'Find outgoing calls',
     },
   },
 }
