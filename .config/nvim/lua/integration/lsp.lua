@@ -3,22 +3,8 @@ return {
   dependencies = {
     'williamboman/mason.nvim',
     -- Autocompletion
-    { 'hrsh7th/nvim-cmp' },
-    { 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'rcarriga/cmp-dap', dependencies = { 'hrsh7th/nvim-cmp', 'mfussenegger/nvim-dap' } },
-    -- { 'hrsh7th/cmp-nvim-lsp-signature-help' },
-    { 'hrsh7th/cmp-buffer', dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'hrsh7th/cmp-cmdline', dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'dmitmel/cmp-cmdline-history', dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'tamago324/cmp-zsh', dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'onsails/lspkind.nvim', dependencies = { 'hrsh7th/nvim-cmp' } }, -- icons
     { 'xzbdmw/colorful-menu.nvim' }, -- rich color
     -- Snippets (using cmp)
-    {
-      'L3MON4D3/LuaSnip',
-      dependencies = { 'hrsh7th/nvim-cmp', 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets' },
-      build = 'make install_jsregexp',
-    },
     -- Snippets (using cmp)
     -- Winbar breadcrumbs
     { 'SmiteshP/nvim-navic', dependencies = { 'neovim/nvim-lspconfig' } },
@@ -31,8 +17,8 @@ return {
     local lspconfig_defaults = require('lspconfig').util.default_config
 
     -- Ensure autocomplete capabilities
-    lspconfig_defaults.capabilities =
-      vim.tbl_deep_extend('force', lspconfig_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
+    -- lspconfig_defaults.capabilities =
+    --   vim.tbl_deep_extend('force', lspconfig_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     -- Set up keybinds and other special handling
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -64,8 +50,8 @@ return {
     require('config.language-specific.python')
     require('config.language-specific.lua')
 
-    -- Set up completion using lsp-zero, etc.
-    require('config.cmp').config()
+    -- Load vscode snippets
+    require('luasnip.loaders.from_vscode').lazy_load()
 
     -- Set up diagnostic toggle
     require('toggle_lsp_diagnostics').init()
