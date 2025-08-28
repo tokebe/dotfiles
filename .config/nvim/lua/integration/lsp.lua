@@ -1,24 +1,18 @@
 return {
   'neovim/nvim-lspconfig', -- Language server config support
   dependencies = {
-    {
-      'williamboman/mason.nvim',
-      build = function()
-        pcall(vim.cmd, 'MasonUpdate')
-      end,
-    },
-    'williamboman/mason-lspconfig.nvim', -- Automatic installation/configuration of LSPs
+    'williamboman/mason.nvim',
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' },
-    { 'hrsh7th/cmp-nvim-lsp',        dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'rcarriga/cmp-dap',            dependencies = { 'hrsh7th/nvim-cmp', 'mfussenegger/nvim-dap' } },
+    { 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
+    { 'rcarriga/cmp-dap', dependencies = { 'hrsh7th/nvim-cmp', 'mfussenegger/nvim-dap' } },
     -- { 'hrsh7th/cmp-nvim-lsp-signature-help' },
-    { 'hrsh7th/cmp-buffer',          dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'hrsh7th/cmp-cmdline',         dependencies = { 'hrsh7th/nvim-cmp' } },
+    { 'hrsh7th/cmp-buffer', dependencies = { 'hrsh7th/nvim-cmp' } },
+    { 'hrsh7th/cmp-cmdline', dependencies = { 'hrsh7th/nvim-cmp' } },
     { 'dmitmel/cmp-cmdline-history', dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'tamago324/cmp-zsh',           dependencies = { 'hrsh7th/nvim-cmp' } },
-    { 'onsails/lspkind.nvim',        dependencies = { 'hrsh7th/nvim-cmp' } }, -- icons
-    { 'xzbdmw/colorful-menu.nvim' },                                   -- rich color
+    { 'tamago324/cmp-zsh', dependencies = { 'hrsh7th/nvim-cmp' } },
+    { 'onsails/lspkind.nvim', dependencies = { 'hrsh7th/nvim-cmp' } }, -- icons
+    { 'xzbdmw/colorful-menu.nvim' }, -- rich color
     -- Snippets (using cmp)
     {
       'L3MON4D3/LuaSnip',
@@ -27,19 +21,18 @@ return {
     },
     -- Snippets (using cmp)
     -- Winbar breadcrumbs
-    { 'SmiteshP/nvim-navic',                        dependencies = { 'neovim/nvim-lspconfig' } },
+    { 'SmiteshP/nvim-navic', dependencies = { 'neovim/nvim-lspconfig' } },
     -- Toggleable diagnostics
     { 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim' },
     -- LSP autokill for performance
-    { 'Zeioth/garbage-day.nvim',                    dependencies = { 'neovim/nvim-lspconfig' } },
+    { 'Zeioth/garbage-day.nvim', dependencies = { 'neovim/nvim-lspconfig' } },
   },
   config = function() -- LSP loading status
-    local lspconfig = require('lspconfig')
     local lspconfig_defaults = require('lspconfig').util.default_config
 
     -- Ensure autocomplete capabilities
     lspconfig_defaults.capabilities =
-        vim.tbl_deep_extend('force', lspconfig_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
+      vim.tbl_deep_extend('force', lspconfig_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     -- Set up keybinds and other special handling
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -59,15 +52,6 @@ return {
 
     -- Integrate with mason
     require('mason').setup({})
-    require('mason-lspconfig').setup({
-      ensure_installed = require('config.sources').lsp,
-      automatic_installation = true,
-      handlers = {
-        function(server_name)
-          lspconfig[server_name].setup({})
-        end,
-      },
-    })
     vim.keymap.set('n', '<Leader>om', ':Mason<CR>', {
       desc = 'Manage LSPs with Mason',
     })
@@ -93,7 +77,7 @@ return {
 
     require('garbage-day').setup({
       grace_period = 60 * 20, -- in s
-      wakeup_delay = 10,      -- in ms
+      wakeup_delay = 10, -- in ms
       notifications = true,
     })
   end,

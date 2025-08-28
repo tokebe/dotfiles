@@ -1,5 +1,5 @@
 -- Better Poetry compatibility
-require('lspconfig').basedpyright.setup({
+vim.lsp.config('basedpyright', {
   settings = {
     python = {
       analysis = {

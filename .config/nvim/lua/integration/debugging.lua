@@ -15,7 +15,11 @@ return {
   },
   {
     'jay-babu/mason-nvim-dap.nvim',
-    dependencies = { 'williamboman/mason-lspconfig.nvim', 'mfussenegger/nvim-dap', 'VonHeikemen/lsp-zero.nvim' },
+    dependencies = {
+      'williamboman/mason-lspconfig.nvim',
+      'mfussenegger/nvim-dap',
+      -- 'VonHeikemen/lsp-zero.nvim',
+    },
     config = function()
       require('mason-nvim-dap').setup({
         automatic_installation = true,
