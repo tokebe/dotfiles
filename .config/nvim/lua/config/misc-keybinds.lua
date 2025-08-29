@@ -81,10 +81,10 @@ end, {
 })
 
 -- Jumplist/Changelist
-vim.keymap.set('n', '<C-h>', '<C-o>', { desc = 'Go back in jumplist' })
-vim.keymap.set('n', '<C-l>', '<C-i>', { desc = 'Go forward in jumplist' })
-vim.keymap.set('n', '<C-k>', 'g;', { desc = 'Go to last change' })
-vim.keymap.set('n', '<C-j>', 'g,', { desc = 'Go to next change' })
+vim.keymap.set('n', 'gh', '<C-o>', { desc = 'Go back in jumplist' })
+vim.keymap.set('n', 'gl', '<C-i>', { desc = 'Go forward in jumplist' })
+vim.keymap.set('n', '<Leader>k', 'g;', { desc = 'Go to last change' })
+vim.keymap.set('n', '<Leader>j', 'g,', { desc = 'Go to next change' })
 
 -- Redo
 vim.keymap.set('n', 'U', '<C-r>')
