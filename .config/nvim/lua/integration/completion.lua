@@ -105,8 +105,19 @@ return {
         signature = { enabled = false },
         fuzzy = { implementation = 'prefer_rust_with_warning' },
         cmdline = {
-          -- keymap = { preset = 'inherit' },
-          completion = { menu = { auto_show = true } },
+          keymap = {
+            preset = 'cmdline',
+            ['<C-k>'] = { 'show', 'fallback' },
+            ['<Esc>'] = {
+              function(cmp)
+                if cmp.is_menu_visible() then
+                  return cmp.cancel()
+                end
+              end,
+              'fallback',
+            },
+          },
+          completion = {},
         },
       })
     end,
