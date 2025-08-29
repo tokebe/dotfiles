@@ -50,20 +50,8 @@ vim.keymap.set('n', '<Leader>qQ', ':qa!<CR>', {
 })
 
 -- Movement
--- vim.keymap.set({ 'n', 'v', 'o' }, 'j', function()
---   if vim.v.count then
---     vim.api.nvim_feedkeys('j', 'm', false)
---   else
---     vim.api.nvim_feedkeys('gj', 'm', false)
---   end
--- end, { expr = true, noremap = true })
--- vim.keymap.set({ 'n', 'v', 'o' }, 'k', function()
---   if vim.v.count then
---     vim.api.nvim_feedkeys('k', 'm', false)
---   else
---     vim.api.nvim_feedkeys('gk', 'm', false)
---   end
--- end, { expr = true, noremap = true })
+vim.keymap.set('i', '<C-l>', '<C-o>e<C-o>l')
+vim.keymap.set('i', '<C-h>', '<C-o>b')
 
 -- vim.keymap.set({ 'n', 'v', 'o' }, 'gm', '%', {
 --   desc = 'Go to match',
@@ -91,6 +79,12 @@ vim.keymap.set({ 'n', 'v', 'o' }, 'L', function()
 end, {
   desc = 'Go to last char',
 })
+
+-- Jumplist/Changelist
+vim.keymap.set('n', '<C-h>', '<C-o>', { desc = 'Go back in jumplist' })
+vim.keymap.set('n', '<C-l>', '<C-i>', { desc = 'Go forward in jumplist' })
+vim.keymap.set('n', '<C-k>', 'g;', { desc = 'Go to last change' })
+vim.keymap.set('n', '<C-j>', 'g,', { desc = 'Go to next change' })
 
 -- Redo
 vim.keymap.set('n', 'U', '<C-r>')
