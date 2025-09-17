@@ -14,6 +14,7 @@ end
 -- config.enable_wayland = true
 -- config.animation_fps = 100
 -- config.max_fps = 100
+config.window_close_confirmation = 'NeverPrompt'
 
 -- Fix weirdness in Niri
 -- local gpus = wezterm.gui.enumerate_gpus()
