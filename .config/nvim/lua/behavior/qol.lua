@@ -218,8 +218,8 @@ return {
     event = 'VeryLazy',
     config = function()
       require('early-retirement').setup({
-        ignoredFileTypes = require('config.filetype_excludes'),
-        minimumBufferNum = 10,
+        ignoredFiletypes = require('config.filetype_excludes'),
+        minimumBufferNum = 6,
         notificationOnAutoClose = true,
       })
     end,
@@ -229,4 +229,10 @@ return {
   --   opts = { pattern = '*' },
   --   dependencies = { 'nvim-treesitter/nvim-treesitter' },
   -- },
+  {
+    'Faria22/ftmemo.nvim',
+    config = function()
+      require('ftmemo').setup()
+    end,
+  },
 }
