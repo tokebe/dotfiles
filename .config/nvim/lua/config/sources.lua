@@ -1,18 +1,18 @@
 return {
-  lsp = {           -- Language Server Protocol
-    'lua_ls',       -- Lua
+  lsp = { -- Language Server Protocol
+    'lua_ls', -- Lua
     -- 'tsserver', -- Typescript/Javascript
     'basedpyright', -- Python
-    'ruff',         --Python
-    'taplo',        -- TOML
-    'bashls',       -- Bash
-    'spectral',     -- JSON/YAML
-    'marksman',     -- Markdown
+    'ruff', --Python
+    'taplo', -- TOML
+    'bashls', -- Bash
+    'spectral', -- JSON/YAML
+    'marksman', -- Markdown
   },
-  dap = {           -- Debug Adapter Protocol
+  dap = { -- Debug Adapter Protocol
     'js',
     -- 'js-debug-adapter', -- VSCode js debug adapter
-    -- 'debugpy',
+    'debugpy',
     -- 'bash-debug-adapter',
   },
   formatter = {
