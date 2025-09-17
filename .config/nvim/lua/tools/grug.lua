@@ -27,7 +27,7 @@ return {
       vim.keymap.set({ 'n', 'v' }, '<Leader>fF', function()
         grug.open({
           prefills = {
-            filesFilter = vim.fn.expand('%'),
+            filesFilter = vim.fn.expand('%:.'),
           },
         })
       end, { desc = 'Search within current file' })
@@ -46,7 +46,7 @@ return {
         grug.open({
           engine = 'astgrep',
           prefills = {
-            filesFilter = vim.fn.expand('%'),
+            filesFilter = vim.fn.expand('%:.'),
             flags = '',
           },
         })
