@@ -8,24 +8,19 @@ end
 
 local add_keymap = function()
   local utils = require('detour.util')
-  local internal = require('detour.internal')
   vim.keymap.set('n', 'q', function()
     pcall(vim.api.nvim_win_close, utils.find_top_popup(), true)
     remove_keymap()
   end)
   vim.keymap.set('n', 'Q', function()
-    for _, popup in ipairs(internal.list_popups()) do
-      pcall(vim.api.nvim_win_close, popup, true)
-    end
+    local _ = require('detour.features').CloseCurrentStack()
   end)
   vim.keymap.set('n', '<CR>', function()
     local popup_id = utils.find_top_popup()
     local buf = vim.api.nvim_win_get_buf(popup_id)
     local file = vim.api.nvim_buf_get_name(buf)
     local r, c = unpack(vim.api.nvim_win_get_cursor(popup_id))
-    for _, popup in ipairs(internal.list_popups()) do
-      pcall(vim.api.nvim_win_close, popup, true)
-    end
+    local _ = require('detour.features').CloseCurrentStack()
     vim.cmd('e! ' .. file)
     vim.api.nvim_win_set_cursor(0, { r, c })
     remove_keymap()
@@ -78,8 +73,18 @@ return {
       vim.keymap.set('n', 'gd', pick_and_detour(fzf.lsp_definitions), { desc = 'Preview definition(s)' })
       vim.keymap.set('n', 'gt', pick_and_detour(fzf.lsp_typedefs), { desc = 'Preview type definitions(s)' })
       vim.keymap.set('n', 'gT', pick_and_detour(fzf.lsp_declarations), { desc = 'Preview declaration(s)' })
-      vim.keymap.set('n', 'fd', pick_and_detour(fzf.lsp_document_diagnostics), { desc = 'Find document diagnostics' })
-      vim.keymap.set('n', 'fD', pick_and_detour(fzf.lsp_workspace_diagnostics), { desc = 'Find workspace diagnostics' })
+      vim.keymap.set(
+        'n',
+        'fd',
+        pick_and_detour(fzf.lsp_document_diagnostics, 0.95),
+        { desc = 'Find document diagnostics' }
+      )
+      vim.keymap.set(
+        'n',
+        'fD',
+        pick_and_detour(fzf.lsp_workspace_diagnostics, 0.95),
+        { desc = 'Find workspace diagnostics' }
+      )
       vim.keymap.set('n', '<Leader>fi', pick_and_detour(fzf.lsp_implementations), { desc = 'Find implementations' })
     end,
   },
