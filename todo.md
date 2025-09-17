@@ -25,17 +25,18 @@ Running TODO list:
   - [ ] maybe launch in tmux pane and then attach to (this would be incredibly complicated)?
   - [x] kill process on debug stop
 - [ ] Fix overseer output not showing errors
-- [ ] Automatic .yamllint and other configs to their respective linters/formatters/etc
-- [ ] restart LSP after language changed
+- [x] Automatic .yamllint and other configs to their respective linters/formatters/etc
+- [x] restart LSP after language changed
 - [ ] Prevent unnamed buffer on all buffers closed -- show file finder instead
 - [ ] better quick fix management
 - [ ] Fix visual-paste yanking replaced text
 - [ ] Disable diagnostics on insert?
 - [ ] Live file running for quicker iteration
 - [x] Fix visual highlight being set to wrong highlight
+- [x] Better jumplist handling (portal's cool but bindings are so-so)
 
 ## Iosevka
 
 ## Other
 
-- [ ] migrate from pip/pipx/pyenv to uv/direnv
+- [x] migrate from pip/pipx/pyenv to uv/direnv
