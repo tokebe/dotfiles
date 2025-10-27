@@ -81,6 +81,11 @@ return {
           size = { height = 0.3 },
         },
         {
+          ft = 'dap-view',
+          title = false,
+          size = { height = 0.35 },
+        },
+        {
           ft = 'help',
           size = { height = 0.3 },
           -- only show help buffers

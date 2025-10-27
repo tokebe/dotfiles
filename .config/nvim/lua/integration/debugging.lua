@@ -1,4 +1,4 @@
-local util = require('util')
+-- TODO: redo controls from scratch
 return {
   {
     'mfussenegger/nvim-dap',
@@ -18,7 +18,6 @@ return {
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
       'mfussenegger/nvim-dap',
-      -- 'VonHeikemen/lsp-zero.nvim',
     },
     config = function()
       require('mason-nvim-dap').setup({
@@ -33,8 +32,7 @@ return {
           command = 'node',
           args = {
             -- require('mason-registry').get_package('js-debug-adapter'):get_install_path()
-            vim.fn.expand("$MASON/bin/js-debug-adapter")
-            .. '/js-debug/src/dapDebugServer.js',
+            vim.fn.expand('$MASON/bin/js-debug-adapter') .. '/js-debug/src/dapDebugServer.js',
             '${port}',
           },
         },
@@ -43,24 +41,26 @@ return {
     end,
   },
   {
-    'rcarriga/nvim-dap-ui',
+    'igorlfs/nvim-dap-view',
     dependencies = {
       'mfussenegger/nvim-dap',
       'nvim-treesitter/nvim-treesitter',
       'nvim-neotest/nvim-nio',
     },
     config = function()
-      local dap, dapui = require('dap'), require('dapui')
-      -- Open DAP UI when DAP is initialized
-      dap.listeners.after.event_initialized['dapui_config'] = function()
-        dapui.open()
-      end
-      -- dap.listeners.before.event_terminated['dapui_config'] = function()
-      --   dapui.close()
-      -- end
-      -- dap.listeners.before.event_exited['dapui_config'] = function()
-      --   dapui.close()
-      -- end
+      local dapview = require('dap-view')
+      dapview.setup({
+        auto_toggle = true,
+        winbar = {
+          default_section = 'scopes',
+          controls = {
+            enabled = true,
+          },
+        },
+        windows = {
+          height = 0.35,
+        },
+      })
 
       -- Create highlights for the types of breakpoints
       vim.api.nvim_create_autocmd('ColorScheme', {
@@ -82,96 +82,6 @@ return {
       vim.fn.sign_define('DapBreakpointRejected', { text = ' ', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
       vim.fn.sign_define('DapLogPoint', { text = '󰚢 ', texthl = 'DapLogPoint', numhl = 'DapLogPoint' })
 
-      dapui.setup({
-        controls = {
-          element = 'repl',
-          enabled = true,
-          icons = {
-            disconnect = '',
-            pause = '',
-            play = '',
-            run_last = '',
-            step_back = '',
-            step_into = '',
-            step_out = '',
-            step_over = '',
-            terminate = '',
-          },
-        },
-        element_mappings = {
-          stacks = {
-            open = '<CR>',
-            toggle = '<TAB>',
-          },
-          breakpoints = {
-            open = '<CR>',
-            toggle = '<TAB>',
-          },
-        },
-        expand_lines = true,
-        floating = {
-          border = 'none',
-          mappings = {
-            close = { 'q', '<Esc>' },
-          },
-        },
-        force_buffers = true,
-        icons = {
-          collapsed = '',
-          current_frame = '',
-          expanded = '',
-        },
-        layouts = {
-          {
-            elements = {
-              {
-                id = 'scopes',
-                size = 0.40,
-              },
-              {
-                id = 'breakpoints',
-                size = 0.10,
-              },
-              {
-                id = 'watches',
-                size = 0.15,
-              },
-              {
-                id = 'stacks',
-                size = 0.35,
-              },
-            },
-            position = 'right',
-            size = 40,
-          },
-          {
-            elements = {
-              {
-                id = 'repl',
-                size = 0.5,
-              },
-              {
-                id = 'console',
-                size = 0.5,
-              },
-            },
-            position = 'bottom',
-            size = 10,
-          },
-        },
-        mappings = {
-          edit = 'e',
-          expand = { '<CR>', '<2-LeftMouse>' },
-          open = 'o',
-          remove = 'd',
-          repl = 'r',
-          toggle = 't',
-        },
-        render = {
-          indent = 1,
-          max_value_lines = 1,
-        },
-      })
       vim.fn.sign_define('DapStopped', { text = ' ', texthl = 'DapStopped', numhl = 'DapStopped' })
     end,
   },
@@ -180,12 +90,10 @@ return {
     dependencies = {
       'mfussenegger/nvim-dap',
       'akinsho/toggleterm.nvim',
-      'rcarriga/nvim-dap-ui',
       'nvimtools/hydra.nvim',
     },
     init = function() -- Had to change 'config' -> 'init' to even be called?
       local dap = require('dap')
-      local dapui = require('dapui')
       local overseer = require('overseer')
       overseer.setup({
         strategy = {
@@ -205,7 +113,7 @@ return {
       })
       overseer.patch_dap(true)
 
-      local Hydra = require('hydra')
+      -- local Hydra = require('hydra')
 
       -- TODO: re-implement using nvim-libmodal?
 
@@ -279,12 +187,13 @@ return {
       end, { desc = 'Debugging...' })
 
       vim.keymap.set('n', '<Leader>_d', function()
+        -- Overseer compat
         if vim.fn.filereadable('.vscode/launch.json') then
           require('dap.ext.vscode').json_decode = require('overseer.json').decode
-          require('dap.ext.vscode').load_launchjs(nil, {
-            ['pwa-node'] = { 'javascript', 'typescript' },
-          })
         end
+        -- TODO: this fails to make DAP load its configs
+        -- But just a normal :DapContinue works?
+        -- so maybe figure out how to configure that, idk
         require('fzf-lua').dap_configurations({
           winopts = {
             height = 0.3,
@@ -301,7 +210,7 @@ return {
       vim.keymap.set('n', '<Leader>_C', dap.run_to_cursor, { desc = 'Continue to cursor' })
       vim.keymap.set('n', '<Leader>_s', dap.terminate, { desc = 'Stop' })
       vim.keymap.set('n', '<Leader>_r', dap.restart, { desc = 'Restart' })
-      vim.keymap.set('n', '<Leader>_u', dapui.toggle, { desc = 'Toggle Debug UI' })
+      vim.keymap.set('n', '<Leader>_u', require('dap-view').toggle, { desc = 'Toggle Debug UI' })
       vim.keymap.set('n', '<Leader>_f', dap.list_breakpoints, { desc = 'Find breakpoints' })
       vim.keymap.set('n', '<Leader>_J', dap.step_over, { desc = 'Step over' })
       vim.keymap.set('n', '<Leader>_L', dap.step_into, { desc = 'Step into' })
@@ -356,7 +265,6 @@ return {
       -- vim.keymap.set('n', '<Leader>DC', require('dap').run_to_cursor, { desc = 'Continue to cursor' })
       -- vim.keymap.set('n', '<Leader>Ds', require('dap').terminate, { desc = 'Stop' })
       -- vim.keymap.set('n', '<Leader>Dr', require('dap').restart, { desc = 'Restart' })
-      -- vim.keymap.set('n', '<Leader>Dt', require('dapui').toggle, { desc = 'Toggle Debug UI' })
       -- vim.keymap.set('n', '<Leader>bb', require('dap').toggle_breakpoint, { desc = 'Toggle breakpoint' })
       -- vim.keymap.set('n', '<Leader>bc', function()
       --   vim.ui.input({ prompt = 'Breakpoint condition: ' }, function(input)
