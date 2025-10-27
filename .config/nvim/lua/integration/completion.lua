@@ -50,7 +50,7 @@ return {
           },
           menu = {
             min_width = 20,
-            border = 'solid',
+            -- border = 'solid',
             draw = {
               -- We don't need label_description now because label and label_description are already
               -- combined together in label by colorful-menu.nvim.
@@ -126,7 +126,7 @@ return {
               end,
             },
           },
-          completion = {},
+          completion = { ghost_text = { enabled = false } },
         },
       })
     end,
