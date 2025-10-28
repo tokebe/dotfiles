@@ -74,7 +74,7 @@ return {
         current_line_blame_formatter = '<author> • <author_time:%R> • <summary>',
         current_line_blame_opts = {
           delay = 1000,
-          virt_text_priority = 9999,
+          virt_text_priority = 9998,
         },
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns

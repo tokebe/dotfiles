@@ -8,10 +8,44 @@ return {
     -- Snippets (using cmp)
     -- Winbar breadcrumbs
     { 'SmiteshP/nvim-navic', dependencies = { 'neovim/nvim-lspconfig' } },
-    -- Toggleable diagnostics
-    { 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim' },
     -- LSP autokill for performance
     { 'Zeioth/garbage-day.nvim', dependencies = { 'neovim/nvim-lspconfig' } },
+    -- Inlay hints
+    { 'MysticalDevil/inlay-hints.nvim', event = 'LspAttach' },
+    {
+      'AbysmalBiscuit/insert-inlay-hints.nvim',
+      keys = {
+        {
+          '<leader>ic',
+          function()
+            require('insert-inlay-hints').closest()
+          end,
+          desc = 'Insert closest inline hint.',
+        },
+        {
+          '<leader>il',
+          function()
+            require('insert-inlay-hints').line()
+          end,
+          desc = 'Insert inline hints on current line.',
+        },
+        {
+          '<leader>i',
+          function()
+            require('insert-inlay-hints').visual()
+          end,
+          desc = 'Insert inlay hints in visual selection.',
+          mode = { 'v' },
+        },
+        {
+          '<leader>ia',
+          function()
+            return require('insert-inlay-hints').all()
+          end,
+          desc = 'Insert all inlay hints in current buffer.',
+        },
+      },
+    },
   },
   config = function() -- LSP loading status
     local lspconfig_defaults = require('lspconfig').util.default_config
@@ -36,13 +70,19 @@ return {
       end,
     })
 
+    -- Inlay hints
+    require('inlay-hints').setup()
+    require('insert-inlay-hints').setup({
+      disabled_filetypes = require('config.filetype_excludes'),
+    })
+
     -- Integrate with mason
     require('mason').setup({})
     vim.keymap.set('n', '<Leader>om', ':Mason<CR>', {
       desc = 'Manage LSPs with Mason',
     })
 
-    --   -- Remove borders on hover/signatureHelp
+    -- Remove borders on hover/signatureHelp
     vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'solid' })
     vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'solid' })
 
@@ -52,14 +92,6 @@ return {
 
     -- Load vscode snippets
     require('luasnip.loaders.from_vscode').lazy_load()
-
-    -- Set up diagnostic toggle
-    require('toggle_lsp_diagnostics').init()
-    vim.keymap.set('n', '<Leader>od', function()
-      require('toggle_lsp_diagnostics').toggle_virtual_text()
-    end, {
-      desc = 'Toggle LSP diagnostic text',
-    })
 
     require('garbage-day').setup({
       grace_period = 60 * 20, -- in s
