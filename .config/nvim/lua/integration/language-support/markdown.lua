@@ -51,5 +51,14 @@ return {
   --     'nvim-treesitter/nvim-treesitter',
   --     'nvim-tree/nvim-web-devicons',
   --   },
+  --   config = function()
+  --     require('markview').setup({
+  --       preview = {
+  --         modes = { 'i', 'n', 'no', 'c' },
+  --         hybrid_modes = { 'i' },
+  --         linewise_hybrid_mode = true,
+  --       },
+  --     })
+  --   end,
   -- },
 }
