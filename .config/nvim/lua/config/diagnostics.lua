@@ -1,11 +1,23 @@
 local ns = vim.api.nvim_create_namespace('severe-diagnostics')
 local original_handler = vim.diagnostic.handlers.signs
 
+---Format diagnostics the way I like
+---@param diagnostic vim.Diagnostic
+local diagnostic_format = function(diagnostic)
+  return string.format('%s (%s)', diagnostic.message, diagnostic.source)
+end
+
+local virt_args = {
+  format = diagnostic_format,
+}
+
 -- Diagnostic signs
 -- Window border style
 -- Don't update in insert
 -- Sort signs by severity
 vim.diagnostic.config({
+  virtual_text = virt_args,
+  virtual_lines = false,
   float = { border = 'solid' },
   update_in_insert = false,
   severity_sort = true,
@@ -71,3 +83,26 @@ vim.diagnostic.handlers.signs = {
     original_handler.hide(ns, bufnr)
   end,
 }
+
+vim.keymap.set('n', '<Leader>td', function()
+  local current_config = vim.diagnostic.config()
+  if current_config == nil then
+    return
+  end
+
+  if not current_config.virtual_text then
+    vim.diagnostic.config({
+      virtual_text = virt_args,
+      virtual_lines = false,
+    })
+  else
+    vim.diagnostic.config({
+      virtual_text = false,
+      virtual_lines = virt_args,
+    })
+  end
+end)
+
+vim.keymap.set('n', '<Leader>od', function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { silent = true, noremap = true, desc = 'Toggle LSP diagnostics' })

@@ -7,8 +7,11 @@ return {
     },
     config = function()
       require('leap').setup({})
-      require('leap').set_default_mappings()
       require('leap.user').set_repeat_keys('<enter>', '<backspace>')
+
+      vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
+      vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
+
       vim.keymap.set({ 'n', 'x', 'o' }, 'gA', function()
         require('leap.treesitter').select()
       end)
@@ -35,14 +38,14 @@ return {
     },
     cmd = 'Treewalker',
     keys = {
-      { '<M-J>',      ':Treewalker Down<CR>',      mode = 'n', noremap = true },
-      { '<M-K>',      ':Treewalker Up<CR>',        mode = 'n', noremap = true },
-      { '<M-H>',      ':Treewalker Left<CR>',      mode = 'n', noremap = true },
-      { '<M-L>',      ':Treewalker Right<CR>',     mode = 'n', noremap = true },
-      { '<Leader>mj', ':Treewalker SwapDown<CR>',  mode = 'n', noremap = true },
-      { '<M-K>mk',    ':Treewalker SwapUp<CR>',    mode = 'n', noremap = true },
-      { '<M-H>mh',    ':Treewalker SwapLeft<CR>',  mode = 'n', noremap = true },
-      { '<M-L>ml',    ':Treewalker SwapRight<CR>', mode = 'n', noremap = true },
+      { '<M-J>', ':Treewalker Down<CR>', mode = 'n', noremap = true },
+      { '<M-K>', ':Treewalker Up<CR>', mode = 'n', noremap = true },
+      { '<M-H>', ':Treewalker Left<CR>', mode = 'n', noremap = true },
+      { '<M-L>', ':Treewalker Right<CR>', mode = 'n', noremap = true },
+      { '<Leader>mj', ':Treewalker SwapDown<CR>', mode = 'n', noremap = true },
+      { '<M-K>mk', ':Treewalker SwapUp<CR>', mode = 'n', noremap = true },
+      { '<M-H>mh', ':Treewalker SwapLeft<CR>', mode = 'n', noremap = true },
+      { '<M-L>ml', ':Treewalker SwapRight<CR>', mode = 'n', noremap = true },
     },
   },
 }
