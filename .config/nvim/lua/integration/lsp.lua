@@ -11,7 +11,17 @@ return {
     -- LSP autokill for performance
     { 'Zeioth/garbage-day.nvim', dependencies = { 'neovim/nvim-lspconfig' } },
     -- Inlay hints
-    { 'MysticalDevil/inlay-hints.nvim', event = 'LspAttach' },
+    {
+      'MysticalDevil/inlay-hints.nvim',
+      event = 'LspAttach',
+      keys = {
+        {
+          '<leader>it',
+          '<CMD>InlayHintsToggle<CR>',
+          desc = 'Toggle inlay hints.'
+        },
+      },
+    },
     {
       'AbysmalBiscuit/insert-inlay-hints.nvim',
       keys = {
@@ -20,14 +30,14 @@ return {
           function()
             require('insert-inlay-hints').closest()
           end,
-          desc = 'Insert closest inline hint.',
+          desc = 'Insert closest inlay hint.',
         },
         {
           '<leader>il',
           function()
             require('insert-inlay-hints').line()
           end,
-          desc = 'Insert inline hints on current line.',
+          desc = 'Insert inlay hints on current line.',
         },
         {
           '<leader>i',
