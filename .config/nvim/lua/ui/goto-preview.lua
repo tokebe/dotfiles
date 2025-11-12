@@ -50,6 +50,7 @@ local picker_defaults = function(popup_id, height)
   }
 end
 
+-- TODO: don't detour if exiting fzf
 local pick_and_detour = function(fzf_func, height)
   return function()
     local detour = require('detour')
@@ -73,18 +74,18 @@ return {
       vim.keymap.set('n', 'gd', pick_and_detour(fzf.lsp_definitions), { desc = 'Preview definition(s)' })
       vim.keymap.set('n', 'gt', pick_and_detour(fzf.lsp_typedefs), { desc = 'Preview type definitions(s)' })
       vim.keymap.set('n', 'gT', pick_and_detour(fzf.lsp_declarations), { desc = 'Preview declaration(s)' })
-      vim.keymap.set(
-        'n',
-        'fd',
-        pick_and_detour(fzf.lsp_document_diagnostics, 0.95),
-        { desc = 'Find document diagnostics' }
-      )
-      vim.keymap.set(
-        'n',
-        'fD',
-        pick_and_detour(fzf.lsp_workspace_diagnostics, 0.95),
-        { desc = 'Find workspace diagnostics' }
-      )
+      -- vim.keymap.set(
+      --   'n',
+      --   'fd',
+      --   pick_and_detour(fzf.lsp_document_diagnostics, 0.95),
+      --   { desc = 'Find document diagnostics' }
+      -- )
+      -- vim.keymap.set(
+      --   'n',
+      --   'fD',
+      --   pick_and_detour(fzf.lsp_workspace_diagnostics, 0.95),
+      --   { desc = 'Find workspace diagnostics' }
+      -- )
       vim.keymap.set('n', '<Leader>fi', pick_and_detour(fzf.lsp_implementations), { desc = 'Find implementations' })
     end,
   },
