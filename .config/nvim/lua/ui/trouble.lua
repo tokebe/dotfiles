@@ -36,5 +36,15 @@ return {
       ':Trouble lsp_outgoing_calls<CR>',
       desc = 'Find outgoing calls',
     },
+    {
+      '<Leader>fd',
+      ':Trouble diagnostics filter.buf=0<CR>',
+      desc = 'Find diagnostics',
+    },
+    {
+      '<Leader>fD',
+      ':Trouble diagnostics<CR>',
+      desc = 'Find diagnostics',
+    },
   },
 }
