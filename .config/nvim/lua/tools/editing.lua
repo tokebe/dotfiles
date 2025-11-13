@@ -72,7 +72,7 @@ return {
       })
     end,
   },
-  {                                         -- Smart handling of surrounding brackets
+  { -- Smart handling of surrounding brackets
     'kylechui/nvim-surround',
     dependencies = { 'ggandor/leap.nvim' }, -- ensure it loads after
     version = '*',
@@ -141,6 +141,7 @@ return {
           mc.firstCursor()
           mc.clearCursors()
           -- default <esc> handler
+          vim.cmd('nohl')
         end
       end, { desc = 'Exit multi-cursor', noremap = true })
 
