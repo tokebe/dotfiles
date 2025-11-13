@@ -38,4 +38,6 @@ return {
   'cmp_menu',
   'cmp_docs',
   'triforce-profile',
+  'NvMenu',
+  'VoltWindow'
 }
