@@ -193,4 +193,24 @@ return {
       })
     end,
   },
+  {
+    'nvzone/menu',
+    dependencies = { 'nvzone/volt' },
+    keys = {
+      {
+        '<C-t>',
+        function()
+          require('menu').open('default')
+        end,
+        mode = 'n',
+        desc = 'Open context menu',
+      },
+      {
+        '<RightMouse>',
+        function()
+          require('menu').open('default')
+        end,
+      },
+    },
+  },
 }
