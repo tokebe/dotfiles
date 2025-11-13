@@ -36,5 +36,6 @@ return {
   'blink-cmp-menu',
   'blink-cmp-documentation',
   'cmp_menu',
-  'cmp_docs'
+  'cmp_docs',
+  'triforce-profile',
 }
