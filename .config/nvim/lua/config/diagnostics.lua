@@ -101,7 +101,7 @@ vim.keymap.set('n', '<Leader>td', function()
       virtual_lines = virt_args,
     })
   end
-end)
+end, { silent = true, noremap = true, desc = 'Toggle detailed diagnostics' })
 
 vim.keymap.set('n', '<Leader>od', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())

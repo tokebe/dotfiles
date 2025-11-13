@@ -18,35 +18,44 @@ vim.keymap.set('n', '<Leader>op', ':Lazy<CR>', {
 })
 
 -- Buffer/tab management
-vim.keymap.set('n', '<lt>', ':bprev<CR>', {
+vim.keymap.set('n', '<lt>', '<CMD>bprev<CR>', {
   desc = 'Next buffer',
+  silent = true,
 })
-vim.keymap.set('n', '>', ':bnext<CR>', {
+vim.keymap.set('n', '>', '<CMD>bnext<CR>', {
   desc = 'Previous buffer',
+  silent = true,
 })
-vim.keymap.set('n', '<A-lt>', ':tabprev<CR>', {
+vim.keymap.set('n', '<A-lt>', '<CMD>tabprev<CR>', {
   desc = 'Previous Tabpage',
+  silent = true,
 })
-vim.keymap.set('n', '<A->>', ':tabnext<CR>', {
+vim.keymap.set('n', '<A->>', '<CMD>tabnext<CR>', {
   desc = 'Next Tabpage',
+  silent = true,
 })
-vim.keymap.set('n', '<S-Tab>', ':tabnext<CR>', { desc = 'Cycle Tabpages' })
-vim.keymap.set('n', '<Leader>wn', ':enew<CR>', {
+vim.keymap.set('n', '<S-Tab>', '<CMD>tabnext<CR>', { desc = 'Cycle Tabpages', silent = true })
+vim.keymap.set('n', '<Leader>wn', '<CMD>enew<CR>', {
   desc = 'New buffer',
+  silent = true,
 })
-vim.keymap.set('n', '<Leader>wt', ':tabnew<CR>', {
+vim.keymap.set('n', '<Leader>wt', '<CMD>tabnew<CR>', {
   desc = 'New tabpage',
+  silent = true,
 })
-vim.keymap.set('n', '<Leader>wc', ':tabclose<CR>', {
+vim.keymap.set('n', '<Leader>wc', '<CMD>tabclose<CR>', {
   desc = 'Close tabpage',
+  silent = true,
 })
 
 -- Session
-vim.keymap.set('n', '<Leader>qq', ':qa<CR>', {
+vim.keymap.set('n', '<Leader>qq', '<CMD>qa<CR>', {
   desc = 'Close NVIM',
+  silent = true,
 })
-vim.keymap.set('n', '<Leader>qQ', ':qa!<CR>', {
+vim.keymap.set('n', '<Leader>qQ', '<CMD>qa!<CR>', {
   desc = 'Force close NVIM',
+  silent = true,
 })
 
 -- Movement
