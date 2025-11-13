@@ -29,6 +29,37 @@ return {
         bigfile = { enabled = true },
         -- Disabled because it causes weird interactions with cmp that move the cursor
         -- scroll = { enabled = true, animate = { duration = { total = 200 } } },
+        indent = {
+          filter = function(buf)
+            local excludes = require('config.filetype_excludes')
+            local is_excluded = false
+            for i, v in ipairs(excludes) do
+              if v == vim.bo[buf].buftype then
+                is_excluded = true
+              end
+            end
+            return is_excluded ~= false
+              and vim.g.snacks_indent ~= false
+              and vim.b[buf].snacks_indent ~= false
+              and vim.bo[buf].buftype == ''
+          end,
+          indent = {
+            enabled = true,
+          },
+          animate = {
+            duration = {
+              total = 300,
+            },
+          },
+          chunk = {
+            enabled = true,
+            only_current = true,
+            char = {
+              arrow = '─',
+            },
+            hl = 'SnacksIndentScope',
+          },
+        },
       })
 
       -- file rename with lsp
