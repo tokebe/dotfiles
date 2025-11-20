@@ -8,8 +8,8 @@ return {
     -- Snippets (using cmp)
     -- Winbar breadcrumbs
     { 'SmiteshP/nvim-navic', dependencies = { 'neovim/nvim-lspconfig' } },
-    -- LSP autokill for performance
-    { 'Zeioth/garbage-day.nvim', dependencies = { 'neovim/nvim-lspconfig' } },
+    -- LSP autokill for performance (disabled because it's too slow to start back up)
+    -- { 'Zeioth/garbage-day.nvim', dependencies = { 'neovim/nvim-lspconfig' } },
     -- Inlay hints
     {
       'MysticalDevil/inlay-hints.nvim',
@@ -103,10 +103,5 @@ return {
     -- Load vscode snippets
     require('luasnip.loaders.from_vscode').lazy_load()
 
-    require('garbage-day').setup({
-      grace_period = 60 * 20, -- in s
-      wakeup_delay = 10, -- in ms
-      notifications = true,
-    })
   end,
 }
