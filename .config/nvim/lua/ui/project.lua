@@ -206,6 +206,7 @@ return {
     config = function()
       require('overseer').setup({
         strategy = 'toggleterm',
+        dap = true
       })
     end,
   },

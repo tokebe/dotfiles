@@ -111,7 +111,7 @@ return {
           },
         },
       })
-      overseer.patch_dap(true)
+      -- overseer.patch_dap(true)
 
       -- local Hydra = require('hydra')
 
