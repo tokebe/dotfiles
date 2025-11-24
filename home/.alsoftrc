@@ -1,0 +1,3 @@
+hrtf = true
+stereo-mode = headphones
+default-hrtf = default-44100

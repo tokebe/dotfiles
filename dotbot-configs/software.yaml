@@ -52,6 +52,7 @@
         - xclip # Ensure nvim clipboard works in wayland
         - clutter-gtk # Ensure gnome addon TopHat works
         - gamemode # Game mode utility
+        - socat # Bidirectional socket relay
         # Utilities
         - [fd, fd-find] # Faster/friendlier find | https://github.com/sharkdp/fd
         - ffmpegthumbnailer # Video/Audio thumbnailer | https://github.com/dirkvdb/ffmpegthumbnailer

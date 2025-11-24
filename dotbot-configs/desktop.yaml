@@ -6,6 +6,7 @@
           - onedrive # Because I haven't gotten away from OneDrive | https://github.com/abraunegg/onedrive
           - gamemode # Game mode utility
           - input-remapper # Remap inputs from peripherals | https://github.com/sezanzeb/input-remapper
+          - openal-soft # Headphone virtual surround support
       - flatpak: # For linux desktop
           - com.discordapp.Discord # Discord | https://discord.com/
           - dev.vencord.Vesktop # Modified Discord client | https://github.com/Vencord/Vesktop

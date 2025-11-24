@@ -1,11 +1,11 @@
 debug {
-    // wait-for-frame-completion-in-pipewire
+    // Allows notification actions and window activation from Noctalia.
+    honor-xdg-activation-with-invalid-serial
 }
 
 
 environment {
-    DISPLAY ":0"
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    // ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
 input {
@@ -40,6 +40,10 @@ input {
         // scroll-method "no-scroll"
     }
 
+    trackball {
+
+    }
+
 
     // warp-mouse-to-focus
     // focus-follows-mouse
@@ -53,7 +57,7 @@ switch-events {
 // by running `niri msg outputs` while inside a niri instance.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 output "DP-2" {
-    mode "3440x1440@99.999"
+    mode "3440x1440@99.998"
     position x=0 y=0
     focus-at-startup // awaiting next release
     backdrop-color "#191724"
@@ -69,6 +73,7 @@ output "DP-1" {
 
 cursor {
     xcursor-theme "Bibata-Modern-Classic"
+    // xcursor-size 32
 }
 
 hotkey-overlay {
@@ -145,7 +150,7 @@ layout {
         // left 16
         // right 16
         // top 32
-        bottom 20
+        // bottom 20
     }
 
     insert-hint {
@@ -165,9 +170,11 @@ layout {
 }
 
 overview {
-    zoom 0.35
+    zoom 0.6
     workspace-shadow {
         // off
+        offset x=0 y=50
+        softness 30
     }
 
 }
@@ -180,7 +187,19 @@ screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
 // See the binds section below for more spawn examples.
 // spawn-at-startup "alacritty" "-e" "fish"
 // spawn-at-startup "/home/alter/.config/swww/cycle"
-spawn-at-startup "/home/alter/Applications/OneDriveGUI-1.1.1-x86_64_20f7d9edec10af69eda8553f8a7257a5.AppImage"
+spawn-at-startup "/home/alter/Applications/onedrivegui.appimage"
+spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
+// spawn-at-startup "dms" "run"
+spawn-at-startup "bash" "-c" "qs -c ~/.config/quickshell/noctalia-shell"
+// spawn-at-startup "ignis" "init"
+spawn-at-startup "vicinae" "server"
+spawn-sh-at-startup "python ~/.config/niri/nfsm/src/nfsm.py"
+spawn-at-startup "~/.config/niri/niri-manager.py"
+// spawn-sh-at-startup "niri msg action open-overview"
+
+// config-notification {
+//     disable-failed
+// }
 
 // Window rules let you adjust behavior for individual windows.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
@@ -195,11 +214,18 @@ window-rule {
     default-column-width {}
 }
 
-// prefer-no-csd
+prefer-no-csd
 
 window-rule {
-    geometry-corner-radius 5
+    geometry-corner-radius 10
     clip-to-geometry true
+    // maybe causes problems
+    draw-border-with-background false
+    shadow {
+        on
+        softness 20
+        // offset x=10 y=10
+    }
 }
 
 // Floating windows have shadow
@@ -212,6 +238,14 @@ window-rule {
     }
 }
 
+// Picture in picture
+window-rule {
+    match title="^Picture-in-Picture$"
+    open-floating true
+    default-column-width { fixed 720; }
+    default-window-height { fixed 480; }
+}
+
 // lower opacity on unfocused windows
 window-rule {
     match is-active=false is-focused=false is-window-cast-target=false
@@ -220,6 +254,13 @@ window-rule {
     // opacity 0.95
 }
 
+// default position for onedrivegui
+window-rule {
+    match app-id="OneDriveGUI"
+    open-floating true
+    default-column-width { fixed 500; }
+    default-window-height { fixed 800; }
+}
 
 // Highlight screen-shared windows
 window-rule {
@@ -239,6 +280,7 @@ window-rule {
 
 layer-rule {
     match namespace="^launcher$"
+    match namespace="^vicinae$"
 
     shadow {
         on
@@ -247,8 +289,13 @@ layer-rule {
     }
 }
 
+// layer-rule {
+//     match namespace="^swww-daemonoverview$"
+//     place-within-backdrop true
+// }
+
 layer-rule {
-    match namespace="^swww-daemonoverview$"
+    match namespace="^noctalia-overview*"
     place-within-backdrop true
 }
 
@@ -282,8 +329,13 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Shift+T repeat=false { spawn "alacritty"; }
     Mod+E repeat=false { spawn "nautilus"; }
-    Mod+Space repeat=false { spawn "fuzzel"; }
-    Super+Alt+L repeat=false { spawn "swaylock"; }
+    // Mod+Space repeat=false { spawn "fuzzel"; }
+    // Mod+Space repeat=false { spawn-sh "qs -c ~/.config/quickshell/noctalia-shell/ ipc call launcher toggle"; }
+    Mod+Space repeat=false { spawn "vicinae" "toggle"; }
+
+    // Super+Alt+L repeat=false { spawn "swaylock"; }
+    // Super+Alt+L repeat=false { spawn "dms" "ipc" "call" "lock" "lock"; }
+    Super+Alt+L repeat=false { spawn-sh "qs -c ~/.config/quickshell/noctalia-shell/ ipc call lockScreen lock";}
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -443,15 +495,18 @@ binds {
     // Mod+W { toggle-column-tabbed-display; }
 
     Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-column-width-back; }
     Mod+F { maximize-column; }
     Mod+Alt+F { toggle-windowed-fullscreen; }
     Mod+G { expand-column-to-available-width; }
     Mod+T { toggle-column-tabbed-display; }
-    Mod+Shift+F { fullscreen-window; }
+    // Mod+Shift+F { fullscreen-window; }
+    Mod+Shift+F { spawn "~/.config/niri/nfsm-cli"; }
     Mod+A { switch-focus-between-floating-and-tiling; }
     Mod+S { toggle-window-floating; }
 
     Mod+Alt+R { switch-preset-window-height; }
+    Mod+Alt+Shift+R { switch-preset-window-height-back; }
     Mod+Alt+Ctrl+R { reset-window-height; }
     Mod+C { center-column; }
 
