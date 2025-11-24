@@ -17,6 +17,11 @@
           - cava  # Audio visualizer | https://github.com/karlstav/cava
           - xdg-desktop-portal  # Desktop integration portal | https://github.com/flatpak/xdg-desktop-portal
           - evolution-data-server  # GNOME Data backend
+          - [xcb-util-cursor, xcb-cursor]
+          - [xcb-util-cursor-devel, xcb-cursor-dev]
+      - cargo:
+          - xwayland-satellite:
+              - git: https://github.com/Supreeeme/xwayland-satellite
       - flatpak:
           - com.dec05eba.gpu_screen_recorder  # Screen recorder | https://flathub.org/en/apps/com.dec05eba.gpu_screen_recorder
       - shell:

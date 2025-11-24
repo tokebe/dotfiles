@@ -3,29 +3,31 @@
     cond: '[[ "$MODE" == "desktop" ]]'
     met:
       - omnipkg:
-          - onedrive # Because I haven't gotten away from OneDrive | https://github.com/abraunegg/onedrive
-          - gamemode # Game mode utility
-          - input-remapper # Remap inputs from peripherals | https://github.com/sezanzeb/input-remapper
-          - openal-soft # Headphone virtual surround support
-      - flatpak: # For linux desktop
-          - com.discordapp.Discord # Discord | https://discord.com/
-          - dev.vencord.Vesktop # Modified Discord client | https://github.com/Vencord/Vesktop
-          - com.github.finefindus.eyedropper # Color picker | https://github.com/FineFindus/eyedropper
-          - com.github.tchx84.Flatseal # Flatpak permissions | https://github.com/tchx84/Flatseal
-          - com.github.neithern.g4music # Pretty music GUI | https://gitlab.gnome.org/neithern/g4music
-          - org.kde.krita # Art! | https://krita.org/en/
-          - md.obsidian.Obsidian # Notetaking done good | https://obsidian.md/
-          - com.visualstudio.code # One day nvim will be good for debugging | https://code.visualstudio.com/
-          - org.wezfurlong.wezterm # Better terminal emulator | https://wezfurlong.org/wezterm/index.html
-          - io.github.zen_browser.zen # Custom Firefox layer | https://zen-browser.app/
+          - onedrive  # Because I haven't gotten away from OneDrive | https://github.com/abraunegg/onedrive
+          - gamemode  # Game mode utility
+          - input-remapper  # Remap inputs from peripherals | https://github.com/sezanzeb/input-remapper
+          - openal-soft  # Headphone virtual surround support
+      - flatpak:  # For linux desktop
+          - com.discordapp.Discord  # Discord | https://discord.com/
+          - dev.vencord.Vesktop  # Modified Discord client | https://github.com/Vencord/Vesktop
+          - com.github.finefindus.eyedropper  # Color picker | https://github.com/FineFindus/eyedropper
+          - com.github.tchx84.Flatseal  # Flatpak permissions | https://github.com/tchx84/Flatseal
+          - com.github.neithern.g4music  # Pretty music GUI | https://gitlab.gnome.org/neithern/g4music
+          - org.kde.krita  # Art! | https://krita.org/en/
+          - md.obsidian.Obsidian  # Notetaking done good | https://obsidian.md/
+          - com.visualstudio.code  # One day nvim will be good for debugging | https://code.visualstudio.com/
+          - org.wezfurlong.wezterm  # Better terminal emulator | https://wezfurlong.org/wezterm/index.html
+          - io.github.zen_browser.zen  # Custom Firefox layer | https://zen-browser.app/
+      - cargo:
+          - systemctl-tui
       - if:
           cond: '[[ "$DESKTOP_SESSION" != "kde" ]]'
           met:
             - flatpak:
-                - com.usebottles.bottles # Wine GUI | https://usebottles.com/
-                - de.haeckerfelix.Fragments # Torrent client | https://apps.gnome.org/Fragments/
-                - com.mattjakeman.ExtensionManager # Gnome extension manager | https://github.com/mjakeman/extension-manager
-                - io.github.realmazharhussain.GdmSettings # Manage Gnome greeter | https://github.com/gdm-settings/gdm-settings
-                - io.gitlab.adhami3310.Impression # Media writer | https://apps.gnome.org/Impression/
-                - re.sonny.Junction # App chooser for file opening | https://github.com/sonnyp/Junction
-                - app.drey.Warp # Like portal, but GUI | https://apps.gnome.org/Warp/
+                - com.usebottles.bottles  # Wine GUI | https://usebottles.com/
+                - de.haeckerfelix.Fragments  # Torrent client | https://apps.gnome.org/Fragments/
+                - com.mattjakeman.ExtensionManager  # Gnome extension manager | https://github.com/mjakeman/extension-manager
+                - io.github.realmazharhussain.GdmSettings  # Manage Gnome greeter | https://github.com/gdm-settings/gdm-settings
+                - io.gitlab.adhami3310.Impression  # Media writer | https://apps.gnome.org/Impression/
+                - re.sonny.Junction  # App chooser for file opening | https://github.com/sonnyp/Junction
+                - app.drey.Warp  # Like portal, but GUI | https://apps.gnome.org/Warp/

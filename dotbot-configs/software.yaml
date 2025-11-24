@@ -27,8 +27,9 @@
     - update
     - upgrade
     - install:
-        # Languages
+        # Languages / build support
         - cargo # Rust package manager | https://www.rust-lang.org/
+        - clang # C frontend for LLVM
         - cmake # Why is this not on be default
         - [go, golang] # Go | https://go.dev/
         - luarocks # Lua package manager | https://luarocks.org/
@@ -154,10 +155,6 @@
       stdout: false
       stderr: true
       quiet: true
-- cargo:
-    - systemctl-tui
-    - xwayland-satellite:
-        - git: https://github.com/Supreeeme/xwayland-satellite
 - shell:
     - description: Neovim node support
       command: npm install neovim -g
