@@ -20,34 +20,49 @@ __     __
 |_| \_|\__,_| \_/ |_.__/ \__,_|_|
 */
 /* Hide unimportant buttons/indicators in urlbar when not hovered */
-#urlbar-container:not(:hover) :where(#star-button-box,
-  #userContext-label,
-  .urlbar-page-action,
-  #tracking-protection-icon-container,
+#urlbar-container:not(:hover)
+  :where(
+    #star-button-box,
+    #userContext-label,
+    .urlbar-page-action,
+    #tracking-protection-icon-container,
 
-) {
+  ) {
   opacity: 0;
   transition: var(--out-transition);
 }
 
-#urlbar-container:hover :where(#star-button-box,
-  #userContext-label,
-  .urlbar-page-action,
-  #tracking-protection-icon-container,
+#urlbar-container:hover
+  :where(
+    #star-button-box,
+    #userContext-label,
+    .urlbar-page-action,
+    #tracking-protection-icon-container,
 
-) {
+  ) {
   transition: var(--in-transition);
 }
 
 /* Greyscale extension icons */
-.webextension-browser-action>*>.toolbarbutton-icon {
+.webextension-browser-action > * > .toolbarbutton-icon {
   filter: grayscale(1) invert(1) contrast(0.75);
 }
 
-/* Add extra space between titlebar buttons and navbar */
-hbox.titlebar-buttonbox-container {
-  margin-right: 3em;
+/* Hide the window controls */
+.titlebar-buttonbox-container { 
+  display: none !important;
 }
+
+/* Shift URL bar a bit */
+/* #nav-bar-customization-target {
+  margin-left: 1em;
+} */
+
+/* Add extra space between titlebar buttons and navbar */
+/* hbox.titlebar-buttonbox-container {
+  margin-right: 3em;
+} */
+
 
 /*
  ____              _                         _
@@ -64,6 +79,16 @@ hbox.titlebar-buttonbox-container {
   | | (_| | |_) \__ \
   |_|\__,_|_.__/|___/
 */
+
+/* Hide Workspace Indicator */
+.zen-current-workspace-indicator {
+display: none !important;
+}
+
+#zen-tabs-wrapper {
+  padding-top: 8px;
+}
+
 
 /*
  __  __ _
@@ -89,15 +114,15 @@ hbox.titlebar-buttonbox-container {
   display: none !important;
 }
 
-#PanelUI-menu-button>.toolbarbutton-badge-stack>.toolbarbutton-icon {
+#PanelUI-menu-button > .toolbarbutton-badge-stack > .toolbarbutton-icon {
   width: 20px !important;
   height: 20px !important;
 }
 
-#PanelUI-menu-button>.toolbarbutton-badge-stack {
+/* #PanelUI-menu-button > .toolbarbutton-badge-stack {
   padding: 6px !important;
   border-radius: 2em !important;
-}
+} */
 
 /* Increase bookmark dropdown spacing */
 #PlacesToolbar menu.bookmark-item,
@@ -107,10 +132,7 @@ hbox.titlebar-buttonbox-container {
 
 /* Rose-pine theme */
 
-#fullscr-toggler {
-  background-color: rgba(0, 0, 0, 0) !important;
-}
-
+/* #fullscr-toggler { background-color: rgba(0, 0, 0, 0) !important; }
 :root {
   --uc-bg-color: #232136;
   --uc-show-new-tab-button: none;
@@ -129,22 +151,22 @@ hbox.titlebar-buttonbox-container {
   --mff-icon-color: #e0def4;
   --mff-nav-toolbar-padding: 8px;
   --mff-sidebar-bg: var(--mff-bg);
-  --mff-sidebar-color: #f1ca93;
+  --mff-sidebar-color: #F1CA93;
   --mff-tab-border-radius: 0px;
-  --mff-tab-color: #ea6f91;
+  --mff-tab-color: #EA6F91;
   --mff-tab-font-family: "FiraCode Nerd Font";
   --mff-tab-font-size: 11pt;
   --mff-tab-font-weight: 400;
   --mff-tab-height: 32px;
   --mff-tab-pinned-bg: #e0def4;
-  --mff-tab-selected-bg: #403c58;
+  --mff-tab-selected-bg: #403C58;
   --mff-tab-soundplaying-bg: #9c89b8;
   --mff-urlbar-color: #98c1d9;
-  --mff-urlbar-focused-color: #403c58;
+  --mff-urlbar-focused-color: #403C58;
   --mff-urlbar-font-family: "Fira Code";
   --mff-urlbar-font-size: 11pt;
   --mff-urlbar-font-weight: 700;
-  --mff-urlbar-results-color: #f1ca93;
+  --mff-urlbar-results-color: #F1CA93;
   --mff-urlbar-results-font-family: "Fira Code";
   --mff-urlbar-results-font-size: 11pt;
   --mff-urlbar-results-font-weight: 700;
@@ -152,14 +174,11 @@ hbox.titlebar-buttonbox-container {
   --arrowpanel-background: #2a273f !important;
 }
 
-#urlbar-background,
-.titlebar-buttonbox-container,
-#nav-bar,
-.tabbrowser-tab:not([selected]) .tab-background {
+#urlbar-background, .titlebar-buttonbox-container, #nav-bar, .tabbrowser-tab:not([selected]) .tab-background{
   background: var(--uc-bg-color) !important;
 }
 
-.tabbrowser-tab[first-visible-tab][last-visible-tab] {
+.tabbrowser-tab[first-visible-tab][last-visible-tab]{
   background-color: var(--uc-bar-bg-color) !important;
 }
 
@@ -167,8 +186,8 @@ hbox.titlebar-buttonbox-container {
   color: var(--uc-tab-fg-color) !important;
 }
 
-#titlebar,
-#navigator-toolbox,
+#titlebar, 
+#navigator-toolbox, 
 .browser-toolbar,
 #tabbrowser-tabpanels,
 #zen-tabbox-wrapper,
@@ -183,15 +202,16 @@ hbox.titlebar-buttonbox-container {
   border: none !important;
 }
 
-.urlbar-icon>image {
+.urlbar-icon > image {
   fill: var(--mff-icon-color) !important;
   color: var(--mff-icon-color) !important;
 }
 
 .toolbarbutton-text {
-  color: var(--mff-icon-color) !important;
+  color: var(--mff-icon-color)  !important;
 }
-
 .urlbar-icon {
-  color: var(--mff-icon-color) !important;
+  color: var(--mff-icon-color)  !important;
+
 }
+ */
