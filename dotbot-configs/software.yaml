@@ -146,7 +146,7 @@
       stdout: true
       stderr: true
       stdin: true
-- ghe: [mintarchit/gh-contribs, sheepla/gh-userfetch]
+- ghe: [mintarchit/gh-contribs, sheepla/gh-userfetch, dlvhdr/gh-dash]
 - pip:
     file: python-packages.txt
 - shell:
