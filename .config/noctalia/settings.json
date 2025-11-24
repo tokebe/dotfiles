@@ -2,13 +2,15 @@
     "appLauncher": {
         "customLaunchPrefix": "",
         "customLaunchPrefixEnabled": false,
+        "enableClipPreview": true,
         "enableClipboardHistory": true,
         "pinnedExecs": [
         ],
         "position": "bottom_center",
         "sortByMostUsed": true,
         "terminalCommand": "xterm -e",
-        "useApp2Unit": false
+        "useApp2Unit": false,
+        "viewMode": "list"
     },
     "audio": {
         "cavaFrameRate": 30,
@@ -37,22 +39,23 @@
         "widgets": {
             "center": [
                 {
-                    "characterCount": 2,
                     "colorizeIcons": false,
                     "hideUnoccupied": false,
                     "id": "TaskbarGrouped",
                     "labelMode": "none",
-                    "showNumbersOnlyWhenOccupied": true,
-                    "showWorkspaceNumbers": true
+                    "showLabelsOnlyWhenOccupied": true
                 }
             ],
             "left": [
                 {
-                    "hideTextInVerticalBar": false,
                     "icon": "niri",
                     "id": "CustomButton",
                     "leftClickExec": "vicinae toggle",
                     "leftClickUpdateText": false,
+                    "maxTextLength": {
+                        "horizontal": 10,
+                        "vertical": 10
+                    },
                     "middleClickExec": "",
                     "middleClickUpdateText": false,
                     "parseJson": false,
@@ -61,17 +64,27 @@
                     "textCollapse": "",
                     "textCommand": "",
                     "textIntervalMs": 3000,
-                    "textStream": false
+                    "textStream": false,
+                    "wheelDownExec": "",
+                    "wheelDownUpdateText": false,
+                    "wheelExec": "",
+                    "wheelMode": "unified",
+                    "wheelUpExec": "",
+                    "wheelUpUpdateText": false,
+                    "wheelUpdateText": false
                 },
                 {
                     "id": "WallpaperSelector"
                 },
                 {
-                    "hideTextInVerticalBar": false,
                     "icon": "refresh",
                     "id": "CustomButton",
                     "leftClickExec": "qs -c ~/.config/quickshell/nocatlia-shell/ ipc call wallpaper toggleAutomation",
                     "leftClickUpdateText": true,
+                    "maxTextLength": {
+                        "horizontal": 10,
+                        "vertical": 10
+                    },
                     "middleClickExec": "",
                     "middleClickUpdateText": false,
                     "parseJson": false,
@@ -80,7 +93,14 @@
                     "textCollapse": "",
                     "textCommand": "",
                     "textIntervalMs": 3000,
-                    "textStream": false
+                    "textStream": false,
+                    "wheelDownExec": "",
+                    "wheelDownUpdateText": false,
+                    "wheelExec": "",
+                    "wheelMode": "unified",
+                    "wheelUpExec": "",
+                    "wheelUpUpdateText": false,
+                    "wheelUpdateText": false
                 },
                 {
                     "diskPath": "/",
@@ -111,6 +131,7 @@
                     "scrollingMode": "hover",
                     "showAlbumArt": true,
                     "showArtistFirst": true,
+                    "showProgressRing": true,
                     "showVisualizer": false,
                     "useFixedWidth": false,
                     "visualizerType": "linear"
@@ -251,13 +272,14 @@
             "app.zen_browser.zen",
             "org.gnome.Nautilus"
         ],
+        "radiusRatio": 0.1,
         "size": 1
     },
     "general": {
         "allowPanelsOnScreenWithoutBar": true,
         "animationDisabled": false,
         "animationSpeed": 2,
-        "avatarImage": "/var/lib/AccountsService/icons/alter",
+        "avatarImage": "~/.face",
         "compactLockScreen": false,
         "dimmerOpacity": 0,
         "enableShadows": true,
@@ -270,7 +292,8 @@
         "shadowDirection": "bottom",
         "shadowOffsetX": 0,
         "shadowOffsetY": 3,
-        "showScreenCorners": true
+        "showHibernateOnLockScreen": false,
+        "showScreenCorners": false
     },
     "hooks": {
         "darkModeChange": "",
@@ -390,6 +413,7 @@
     },
     "templates": {
         "alacritty": false,
+        "cava": false,
         "code": false,
         "discord": false,
         "enableUserTemplates": false,
@@ -402,6 +426,7 @@
         "pywalfox": false,
         "qt": true,
         "spicetify": false,
+        "telegram": false,
         "vicinae": false,
         "walker": false,
         "wezterm": false
@@ -418,7 +443,7 @@
     },
     "wallpaper": {
         "defaultWallpaper": "/home/alter/.dotfiles/.config/quickshell/noctalia-shell/Assets/Wallpaper/noctalia.png",
-        "directory": "/home/alter/OneDrive/wallpaper/desktop-alter",
+        "directory": "/home/alter-mobile/OneDrive/wallpaper/laptop",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "fillColor": "#000000",
