@@ -5,7 +5,7 @@
     - description: Ensure wezterm fontsize config file
       command:
         test -f ".config/wezterm/fontsize.lua" || cp .config/wezterm/fontsize-default.lua
-        .config/wezterm/fontsize.lua
+        .config/wezterm/fontsize.lua || true
       quiet: true
 - link:
     # zsh

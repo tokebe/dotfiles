@@ -17,8 +17,8 @@ setup () {
 
     # Install quickshell on Fedora
     if [[ $OS == *Fedora* ]]; then
-        sudo dnf copr enable errornointernet/quickshell
-        sudo dnf install quickshell
+        sudo dnf -y copr enable errornointernet/quickshell
+        sudo dnf -y install --refresh quickshell
     fi
 
     cd "$cwd" || exit

@@ -1,6 +1,6 @@
 ---
 - if:
-    cond: '[[ "$MODE" == "desktop" ]]'
+    cond: '[ ! -z "$XDG_CURRENT_DESKTOP" -a "$XDG_CURRENT_DESKTOP" != " " ]'
     met:
       - omnipkg:
           - onedrive  # Because I haven't gotten away from OneDrive | https://github.com/abraunegg/onedrive
@@ -31,3 +31,11 @@
                 - io.gitlab.adhami3310.Impression  # Media writer | https://apps.gnome.org/Impression/
                 - re.sonny.Junction  # App chooser for file opening | https://github.com/sonnyp/Junction
                 - app.drey.Warp  # Like portal, but GUI | https://apps.gnome.org/Warp/
+
+      - shell:
+          - description: Install Vicinae
+            command: curl -fsSL https://vicinae.com/install.sh | bash
+            quiet: true
+            stdout: true
+            stderr: true
+            stdin: true

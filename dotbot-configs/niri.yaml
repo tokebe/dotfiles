@@ -1,6 +1,6 @@
 ---
 - if:
-    cond: '[[ "$MODE" == "desktop" ]]'
+    cond: '[ ! -z "$XDG_CURRENT_DESKTOP" -a "$XDG_CURRENT_DESKTOP" != " " ]'
     met:
       - omnipkg:
           - niri  # My favorite WM | https://github.com/YaLTeR/niri
