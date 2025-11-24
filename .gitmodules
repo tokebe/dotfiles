@@ -40,3 +40,6 @@
 [submodule "dotbot-plugins/dotbot-include"]
 	path = dotbot-plugins/dotbot-include
 	url = https://gitlab.com/gnfzdz/dotbot-include.git
+[submodule ".config/niri/nfsm"]
+	path = .config/niri/nfsm
+	url = https://github.com/gvolpe/nfsm.git

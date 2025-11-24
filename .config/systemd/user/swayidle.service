@@ -1,0 +1,8 @@
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/swayidle -w lock 'qs -c $HOME/.config/quickshell/noctalia-shell/ ipc call lockScreen lock' timeout 901 'niri msg action power-off-monitors' timeout 900 'loginctl lock-session' timeout 1800 'qs -c $HOME/.config/quickshell/noctalia-shell/ ipc call sessionMenu lockAndSuspend'
+Restart=on-failure

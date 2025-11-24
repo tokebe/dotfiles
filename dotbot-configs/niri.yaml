@@ -6,23 +6,21 @@
           - niri  # My favorite WM | https://github.com/YaLTeR/niri
           - wlsunset  # Color temperature filter | https://sr.ht/~kennylevinsen/wlsunset/
           - mate-polkit  # PolicyKit auth agent for GUI sudo | https://github.com/mate-desktop/mate-polkit
-          - lz4  # Fast compression algorithm used by SWWW | https://github.com/lz4/lz4
-          - [lz4-devel, liblz4]  # Fast compression algorithm used by SWWW | https://github.com/lz4/lz4
+          # - lz4  # Fast compression algorithm used by SWWW | https://github.com/lz4/lz4
+          # - [lz4-devel, liblz4]  # Fast compression algorithm used by SWWW | https://github.com/lz4/lz4
           - wlclipboard  # Make clipboard work with command-line stuff | https://github.com/bugaevc/wl-clipboard
           - [wayland-protocols-devel, wayland-protocols]  # protocols dev package for building swww
-      - cargo:
-          - swww:
-              - git: https://github.com/LGFae/swww
-          - swww-daemon:
-              - git: https://github.com/LGFae/swww
+          - swayidle  # Idle management daemon | https://github.com/swaywm/swayidle
+          - brightnessctl  # Brightness controller | https://github.com/Hummer12007/brightnessctl
+          - cliphist  # Clipboard history | https://github.com/sentriz/cliphist
+          - matugen-git  # Colors from wallpaper | https://github.com/InioX/matugen
+          - cava  # Audio visualizer | https://github.com/karlstav/cava
+          - xdg-desktop-portal  # Desktop integration portal | https://github.com/flatpak/xdg-desktop-portal
+          - evolution-data-server  # GNOME Data backend
+      - flatpak:
+          - com.dec05eba.gpu_screen_recorder  # Screen recorder | https://flathub.org/en/apps/com.dec05eba.gpu_screen_recorder
       - shell:
-          - description: Set up ignis
-            command: npm install neovim -g
-            stdout: false
-            stderr: true
-            quiet: true
-      - shell:
-          - description: Set up Niri services
+          - description: Set up Niri dependencies
             command: ./scripts/setup/niri
             stdout: false
             stderr: true
