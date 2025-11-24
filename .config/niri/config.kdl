@@ -71,6 +71,13 @@ output "DP-1" {
     backdrop-color "#191724"
 }
 
+output "eDP-1" {
+    mode "1920x1080@60"
+    position x=0 y=0
+    scale 1.0
+    backdrop-color "#191724"
+}
+
 cursor {
     xcursor-theme "Bibata-Modern-Classic"
     // xcursor-size 32
