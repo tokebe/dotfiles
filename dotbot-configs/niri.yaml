@@ -19,6 +19,8 @@
           - evolution-data-server  # GNOME Data backend
           - [xcb-util-cursor, xcb-cursor]
           - [xcb-util-cursor-devel, xcb-cursor-dev]
+          - qt6ct # Used by Noctalia
+          - [adw-gtk3-theme, adw-gtk3, adw-gtk-theme] # Used by Noctalia
       - cargo:
           - xwayland-satellite:
               - git: https://github.com/Supreeeme/xwayland-satellite

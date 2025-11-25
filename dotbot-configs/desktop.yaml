@@ -18,8 +18,7 @@
           - com.visualstudio.code  # One day nvim will be good for debugging | https://code.visualstudio.com/
           - org.wezfurlong.wezterm  # Better terminal emulator | https://wezfurlong.org/wezterm/index.html
           - io.github.zen_browser.zen  # Custom Firefox layer | https://zen-browser.app/
-      - cargo:
-          - systemctl-tui
+      - cargo: [systemctl-tui]
       - if:
           cond: '[[ "$DESKTOP_SESSION" != "kde" ]]'
           met:
@@ -31,7 +30,34 @@
                 - io.gitlab.adhami3310.Impression  # Media writer | https://apps.gnome.org/Impression/
                 - re.sonny.Junction  # App chooser for file opening | https://github.com/sonnyp/Junction
                 - app.drey.Warp  # Like portal, but GUI | https://apps.gnome.org/Warp/
-
+            - omnipkg:
+                # Nautilus extension dependencies
+                - python3-nautilus
+                - python3-charset-normalizer
+                - at
+                - python3-polib
+                - python3-gobject
+                - procps-ng
+                - js-jquery
+            - shell:
+                - description: Install Nautilus scripts
+                  command: bash -c "$(curl -fsSL https://cfgnunes.github.io/nautilus-scripts/install.sh)"
+                  quiet: true
+                  stdout: true
+                  stderr: true
+                  stdin: true
+                - description: Install Nautilus new file extension
+                  command: curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh | bash
+                  quiet: true
+                  stdout: true
+                  stderr: true
+                  stdin: true
+                - description: Install Nautilus regex search extension
+                  command: curl -L -o ~/.local/share/nautilus-python/extensions/nautilus-regex-select.py https://raw.githubusercontent.com/SimBoi/nautilus-regex-select/main/nautilus-regex-select.py
+                  quiet: true
+                  stderr: true
+            - pip:
+                file: python-desktop.txt
       - shell:
           - description: Install Vicinae
             command: curl -fsSL https://vicinae.com/install.sh | bash
