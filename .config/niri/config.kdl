@@ -241,7 +241,7 @@ window-rule {
     match is-floating=true
     shadow {
         on
-        offset x=25 y=100
+        offset x=20 y=60
         softness 20
     }
 }
@@ -252,6 +252,20 @@ window-rule {
     open-floating true
     default-column-width { fixed 720; }
     default-window-height { fixed 480; }
+}
+
+// Apps that should open floating
+window-rule {
+    match app-id="org.gnome.Decibels"
+    open-floating true
+}
+
+// Make decibels tiny :)
+window-rule {
+    match app-id="org.gnome.Decibels"
+    default-column-width { fixed 360; }
+    default-window-height { fixed 260; }
+
 }
 
 // lower opacity on unfocused windows
