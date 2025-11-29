@@ -47,8 +47,8 @@ def handle_overview(_event: dict[str, Any]) -> None:
     )
 
 
-def handle_onedrivegui(event: dict[str, Any]) -> None:
-    # Do some math on expected size and current output to move to corner
+def send_window_to_corner(event: dict[str, Any]) -> None:
+    # Do some math on size and current output to move to corner
     window_size = event["window"]["layout"]["window_size"]
     window_id = event["window"]["id"]
     workspace_id = event["window"]["workspace_id"]
@@ -95,11 +95,10 @@ def update_workspaces(event: dict[str, Any]) -> None:
 def handle_event(event: dict[str, Any]) -> None:
     if "OverviewOpenedOrClosed" in event:
         handle_overview(event["OverviewOpenedOrClosed"])
-    elif (
-        "WindowOpenedOrChanged" in event
-        and event["WindowOpenedOrChanged"]["window"]["app_id"] == "OneDriveGUI"
-    ):
-        handle_onedrivegui(event["WindowOpenedOrChanged"])
+    elif "WindowOpenedOrChanged" in event and event["WindowOpenedOrChanged"]["window"][
+        "app_id"
+    ] in ("OneDriveGUI", "Mullvad VPN"):
+        send_window_to_corner(event["WindowOpenedOrChanged"])
     elif "WorkspacesChanged" in event:
         update_workspaces(event["WorkspacesChanged"])
 
