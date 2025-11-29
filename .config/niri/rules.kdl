@@ -1,0 +1,107 @@
+// ------ LAYER RULES -----
+
+// Set a shadow for vicnae
+layer-rule {
+    match namespace="^launcher$"
+    match namespace="^vicinae$"
+
+    shadow {
+        on
+        offset x=25 y=100
+        softness 20
+    }
+}
+
+// layer-rule {
+//     match namespace="^swww-daemonoverview$"
+//     place-within-backdrop true
+// }
+
+layer-rule {
+    match namespace="^noctalia-overview*"
+    place-within-backdrop true
+}
+
+// ------ WINDOW RULES -----
+
+// Window defaults
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+    // maybe causes problems
+    draw-border-with-background false
+    shadow {
+        on
+        softness 20
+        // offset x=10 y=10
+    }
+}
+
+// lower opacity on unfocused windows (disabled because it's not helpful)
+window-rule {
+    match is-active=false is-focused=false is-window-cast-target=false
+    // match is-focused=false
+    // match is-window-cast-target=false
+    // opacity 0.95
+}
+
+// Floating windows have shadow
+window-rule {
+    match is-floating=true
+    shadow {
+        on
+        offset x=20 y=60
+        softness 20
+    }
+}
+
+// Highlight screen-shared windows
+window-rule {
+    match is-window-cast-target=true
+
+    focus-ring {
+        active-color "#eb6f92"
+        inactive-color "#ea9a97"
+    }
+
+    tab-indicator {
+        active-color "#eb6f92"
+        inactive-color "#ea9a97"
+    }
+}
+
+// Picture in picture
+window-rule {
+    match title="^Picture-in-Picture$"
+    open-floating true
+    default-column-width { fixed 720; }
+    default-window-height { fixed 480; }
+}
+
+// Fix for wezterm window size misbehaving
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+
+// Apps that should open floating
+window-rule {
+    match app-id="org.gnome.Decibels"
+    match app-id="OneDriveGUI"
+    open-floating true
+}
+
+// Make decibels tiny :)
+window-rule {
+    match app-id="org.gnome.Decibels"
+    default-column-width { fixed 360; }
+    default-window-height { fixed 260; }
+}
+
+// default size for onedrivegui
+window-rule {
+    match app-id="OneDriveGUI"
+    default-column-width { fixed 500; }
+    default-window-height { fixed 800; }
+}
+
