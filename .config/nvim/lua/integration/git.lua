@@ -33,11 +33,24 @@ return {
     'sindrets/diffview.nvim',
     config = function()
       local actions = require('diffview.actions')
+
       require('diffview').setup({
+        enhanced_diff_hl = true,
         file_panel = {
           win_config = {
             position = 'right',
           },
+        },
+        merge_tool = {
+          layout = 'diff3_mixed',
+        },
+        hooks = {
+          view_enter = function()
+            vim.cmd('WindowsDisableAutowidth')
+          end,
+          view_leave = function()
+            vim.cmd('WindowsEnableAutowidth')
+          end,
         },
         keymaps = {
           view = {
