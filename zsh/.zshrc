@@ -141,6 +141,7 @@ alias rangerd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdi
 alias gitui=lazygit
 alias lg=lazygit
 alias ls='lsd -AX --group-dirs=first'
+alias lso="lsd -AXtrl --color=always | sed -re 's/^([^ ]* ){3}//'" # Find old files
 alias notes="( cd ~ && nvim ~/notes )"
 alias cat=ccat
 alias lk='() { walk "$@" --icons; }'
@@ -199,3 +200,10 @@ eval "$(jump shell)"
 
 # Fix Cargo pkgconfig on Fedora for some libraries
 export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/jcallaghan/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
