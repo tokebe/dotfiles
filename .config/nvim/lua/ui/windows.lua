@@ -16,6 +16,9 @@ return {
         animation = {
           duration = 150,
         },
+        ignore = {
+          filetype = require('config.filetype_excludes'),
+        },
       })
 
       vim.keymap.set('n', '<Leader>ww', ':WindowsMaximize<CR>', {
