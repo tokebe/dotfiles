@@ -36,9 +36,13 @@ return {
   --     },
   --   },
   --   config = function()
-  --     require('buffer-sticks').setup({
+  --     local sticks = require('buffer-sticks')
+  --     sticks.setup({
   --       filter = {
   --         filetypes = require('config.filetype_excludes'),
+  --       },
+  --       offset = {
+  --         x = 1,
   --       },
   --       preview = {
   --         float = {
@@ -46,6 +50,7 @@ return {
   --         },
   --       },
   --     })
+  --     sticks.show()
   --   end,
   -- },
 }
