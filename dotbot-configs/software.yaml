@@ -3,7 +3,7 @@
     cond: command -v brew &> /dev/null
     unmet:
       - shell:
-          - description: Install brew package manager # https://brew.sh/
+          - description: Install brew package manager  # https://brew.sh/
             command: >
               /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             quiet: true
@@ -28,41 +28,42 @@
     - upgrade
     - install:
         # Languages / build support
-        - cargo # Rust package manager | https://www.rust-lang.org/
-        - clang # C frontend for LLVM
-        - cmake # Why is this not on be default
-        - [go, golang] # Go | https://go.dev/
-        - luarocks # Lua package manager | https://luarocks.org/
-        - python3 # Python 3.x | https://www.python.org/
-        - [python3-dev, python3-devel] # Ensure dev support
-        - python3-fontforge # Fontforge support
-        - python-is-python3 # Python -> python3. 2 is old.
-        - python3-pip # Ensure pip3
-        - python3-venv # Virtualenv support
+        - cargo  # Rust package manager | https://www.rust-lang.org/
+        - clang  # C frontend for LLVM
+        - cmake  # Why is this not on be default
+        - [go, golang]  # Go | https://go.dev/
+        - luarocks  # Lua package manager | https://luarocks.org/
+        - python3  # Python 3.x | https://www.python.org/
+        - [python3-dev, python3-devel]  # Ensure dev support
+        - python3-fontforge  # Fontforge support
+        - python-is-python3  # Python -> python3. 2 is old.
+        - python3-pip  # Ensure pip3
+        - python3-venv  # Virtualenv support
         # System apps
-        - unzip # .zip support
-        - zsh # Z Shell | https://www.zsh.org/
-        - inotify-tools # inotify utilities | https://github.com/inotify-tools/inotify-tools
+        - unzip  # .zip support
+        - zsh  # Z Shell | https://www.zsh.org/
+        - inotify-tools  # inotify utilities | https://github.com/inotify-tools/inotify-tools
         # System dependencies
-        - chafa # Terminal graphics support | https://github.com/hpjansson/chafa
-        - { brew: coreutils } # Ensure coreutils on MacOS
-        - gstreamer1-plugin-openh264 # Ensure video support on linux
-        - [font-noto, google-noto-sans-*] # Ensure full font support on linux
-        - mozilla-openh264 # Ensure video support in firefox on linux
-        - ttfautohint # More font building support | https://freetype.org/ttfautohint/
-        - xclip # Ensure nvim clipboard works in wayland
-        - clutter-gtk # Ensure gnome addon TopHat works
-        - gamemode # Game mode utility
-        - socat # Bidirectional socket relay
+        - chafa  # Terminal graphics support | https://github.com/hpjansson/chafa
+        - {brew: coreutils}  # Ensure coreutils on MacOS
+        - gstreamer1-plugin-openh264  # Ensure video support on linux
+        - [font-noto, google-noto-sans-*]  # Ensure full font support on linux
+        - mozilla-openh264  # Ensure video support in firefox on linux
+        - ttfautohint  # More font building support | https://freetype.org/ttfautohint/
+        - xclip  # Ensure nvim clipboard works in wayland
+        - clutter-gtk  # Ensure gnome addon TopHat works
+        - gamemode  # Game mode utility
+        - socat  # Bidirectional socket relay
+        - rocm-smi  # GPU interface library? Used by btop
         # Utilities
-        - [fd, fd-find] # Faster/friendlier find | https://github.com/sharkdp/fd
-        - ffmpegthumbnailer # Video/Audio thumbnailer | https://github.com/dirkvdb/ffmpegthumbnailer
-        - figlet # Big text | http://www.figlet.org/
-        - fontforge # Font builder | https://github.com/fontforge/fontforge
-        - git-delta # Pager/file comparison | https://github.com/dandavison/delta
-        - lolcat # Colorful text | https://github.com/busyloop/lolcat
-        - yank # Terminal output -> Clipboard | https://github.com/mptre/yank
-        - input-remapper # Remap inputs from peripherals | https://github.com/sezanzeb/input-remapper
+        - [fd, fd-find]  # Faster/friendlier find | https://github.com/sharkdp/fd
+        - ffmpegthumbnailer  # Video/Audio thumbnailer | https://github.com/dirkvdb/ffmpegthumbnailer
+        - figlet  # Big text | http://www.figlet.org/
+        - fontforge  # Font builder | https://github.com/fontforge/fontforge
+        - git-delta  # Pager/file comparison | https://github.com/dandavison/delta
+        - lolcat  # Colorful text | https://github.com/busyloop/lolcat
+        - yank  # Terminal output -> Clipboard | https://github.com/mptre/yank
+        - input-remapper  # Remap inputs from peripherals | https://github.com/sezanzeb/input-remapper
 - if:
     cond: command -v fdfind &> /dev/null
     met:
@@ -76,57 +77,57 @@
 - tap: [noahgorstein/tap]
 - brew:
     # Data tools
-    - jless # TUI JSON viewer | https://github.com/PaulJuliusMartinez/jless
-    - fx # TUI JSON/YAML viewer | https://github.com/antonmedv/fx
-    - jq # CLI JSON transformer | https://github.com/jqlang/jq
-    - jqp # TUI for JQ | https://github.com/noahgorstein/jqp
+    - jless  # TUI JSON viewer | https://github.com/PaulJuliusMartinez/jless
+    - fx  # TUI JSON/YAML viewer | https://github.com/antonmedv/fx
+    - jq  # CLI JSON transformer | https://github.com/jqlang/jq
+    - jqp  # TUI for JQ | https://github.com/noahgorstein/jqp
     # Dependencies
-    - openssl # Pyenv compatibility with linuxbrew
-    - tcl-tk # Python tkinter support
+    - openssl  # Pyenv compatibility with linuxbrew
+    - tcl-tk  # Python tkinter support
     # Editors
-    - nvim # Modal editor | https://github.com/neovim/neovim
+    - nvim  # Modal editor | https://github.com/neovim/neovim
     # Fetches
-    - cpufetch # CPU information | https://github.com/Dr-Noob/cpufetch
-    - hyfetch # Neofetch with Pride | https://github.com/hykilpikonna/hyfetch
-    - onefetch # Git repo info | https://github.com/o2sh/onefetch
+    - cpufetch  # CPU information | https://github.com/Dr-Noob/cpufetch
+    - hyfetch  # Neofetch with Pride | https://github.com/hykilpikonna/hyfetch
+    - onefetch  # Git repo info | https://github.com/o2sh/onefetch
     # File management
-    - dua-cli # TUI disk usage analyzer | https://github.com/Byron/dua-cli
-    - umlx5h/tap/gtrash # Integrated TUI trash manager | https://github.com/umlx5h/gtrash
-    - lf # Lightweight TUI file manager | https://github.com/gokcehan/lf
-    - walk # inline TUI file manager | https://github.com/antonmedv/walk
+    - dua-cli  # TUI disk usage analyzer | https://github.com/Byron/dua-cli
+    - umlx5h/tap/gtrash  # Integrated TUI trash manager | https://github.com/umlx5h/gtrash
+    - lf  # Lightweight TUI file manager | https://github.com/gokcehan/lf
+    - walk  # inline TUI file manager | https://github.com/antonmedv/walk
     # Git
-    - jesseduffield/lazygit/lazygit # TUI git manager | https://github.com/jesseduffield/lazygit
-    - gh # GitHub CLI | https://cli.github.com/
+    - jesseduffield/lazygit/lazygit  # TUI git manager | https://github.com/jesseduffield/lazygit
+    - gh  # GitHub CLI | https://cli.github.com/
     # Package/language management
-    - eget # Github prebuilt binary installer | https://github.com/zyedidia/eget
-    - pnpm # Performant NPM | https://github.com/pnpm/pnpm
+    - eget  # Github prebuilt binary installer | https://github.com/zyedidia/eget
+    - pnpm  # Performant NPM | https://github.com/pnpm/pnpm
     # Utilities
-    - bat # Better cat/less | https://github.com/sharkdp/bat
-    - btop # Better top | https://github.com/aristocratos/btop
-    - ccat # Colorful cat | https://github.com/owenthereal/ccat
-    - cloc # LOC counter | https://github.com/AlDanial/cloc
-    - ctpv # File previewer | https://github.com/NikitaIvanovV/ctpv
-    - fzf # TUI Fuzzy finder | https://github.com/junegunn/fzf
-    - glow # Terminal Markdown Renderer | https://github.com/charmbracelet/glow
-    - jump # Smart cd'ing | https://github.com/gsamokovarov/jump
-    - lazydocker # TUI Docker management | https://github.com/jesseduffield/lazydocker
+    - bat  # Better cat/less | https://github.com/sharkdp/bat
+    - btop  # Better top | https://github.com/aristocratos/btop
+    - ccat  # Colorful cat | https://github.com/owenthereal/ccat
+    - cloc  # LOC counter | https://github.com/AlDanial/cloc
+    - ctpv  # File previewer | https://github.com/NikitaIvanovV/ctpv
+    - fzf  # TUI Fuzzy finder | https://github.com/junegunn/fzf
+    - glow  # Terminal Markdown Renderer | https://github.com/charmbracelet/glow
+    - jump  # Smart cd'ing | https://github.com/gsamokovarov/jump
+    - lazydocker  # TUI Docker management | https://github.com/jesseduffield/lazydocker
     - lsd # Deluxe ls |  # https://github.com/lsd-rs/lsd
-    - nap # TUI snippet manager | https://github.com/maaslalani/nap
-    - navi # FZF Cheatsheet | https://github.com/denisidoro/navi
-    - portal # Internet file transfer | https://github.com/SpatiumPortae/portal
-    - ripgrep # Recursive grep | https://github.com/BurntSushi/ripgrep
-    - ast-grep # Structural grep & replace | https://github.com/ast-grep/ast-grep
-    - tldr # Manpage; TLDR | https://github.com/tldr-pages/tldr
-    - tmux # Terminal multiplexer | https://github.com/tmux/tmux
-    - xh # Friendlier cURL | https://github.com/ducaale/xh
+    - nap  # TUI snippet manager | https://github.com/maaslalani/nap
+    - navi  # FZF Cheatsheet | https://github.com/denisidoro/navi
+    - portal  # Internet file transfer | https://github.com/SpatiumPortae/portal
+    - ripgrep  # Recursive grep | https://github.com/BurntSushi/ripgrep
+    - ast-grep  # Structural grep & replace | https://github.com/ast-grep/ast-grep
+    - tldr  # Manpage; TLDR | https://github.com/tldr-pages/tldr
+    - tmux  # Terminal multiplexer | https://github.com/tmux/tmux
+    - xh  # Friendlier cURL | https://github.com/ducaale/xh
 - shell:
-    - description: Install ZSH for Humans # A really solid CLI environment/prompt
+    - description: Install ZSH for Humans  # A really solid CLI environment/prompt
       command: ./zsh/setup
       quiet: true
       stdout: true
       stderr: true
       stdin: true
-    - description: Install nvm # Node Version Manager
+    - description: Install nvm  # Node Version Manager
       command: >
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
         | bash
