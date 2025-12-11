@@ -149,6 +149,7 @@ alias lkd='() { cd "$(walk "$@" --icons --preview)" }'
 alias pn=pnpm
 alias tm='gtrash put'
 alias tr='gtrash restore'
+alias f='spf'
 if command -v neovide >/dev/null 2>&1; then
     alias nvd='neovide --frame buttonless --multigrid'
 fi
