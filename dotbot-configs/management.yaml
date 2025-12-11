@@ -24,6 +24,9 @@
     ~/.zfunc:
       path: zsh/.zfunc
       relink: true
+    ~/.batman:
+      path: zsh/.batman
+      relink: true
     # tmux
     ~/.tmux/plugins/tpm:
       path: tmux/tpm
