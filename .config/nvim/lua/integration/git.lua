@@ -196,4 +196,10 @@ return {
       vim.keymap.set('n', 'gB', '<CMD>BlameToggle<CR>', { desc = 'Toggle blame mode' })
     end,
   },
+  {  -- Show status of issues linked in comments
+    'noamsto/resolved.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    event = 'VeryLazy',
+    opts = {},
+  },
 }
