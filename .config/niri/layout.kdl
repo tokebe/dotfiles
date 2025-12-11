@@ -1,11 +1,11 @@
-output "DP-2" {
+output "DP-1" {
     mode "3440x1440@99.998"
     position x=0 y=0
     focus-at-startup
     backdrop-color "#191724"
 }
 
-output "DP-1" {
+output "DP-2" {
     mode "1920x1080@60"
     // position x=3440 y=180
     position x=760 y=-1080
