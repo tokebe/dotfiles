@@ -160,6 +160,8 @@ alias st=systemctl-tui
 # Add flags to existing aliases.
 # alias ls="${aliases[ls]:-ls} -A"
 
+# Use bat for manpager
+export MANPAGER=$HOME/.batman
 
 # Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
 setopt glob_dots     # no special treatment for file names with a leading dot

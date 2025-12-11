@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# mandoc passes a file name, other tools write to stdout
+# using `cat "$@"` we take care of both reading from file and stdin
+exec cat "$@" | sed -e 's/.\x08//g' -e 's/\t/    /g' | bat --language man --style plain
