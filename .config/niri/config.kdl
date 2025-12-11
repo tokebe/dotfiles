@@ -27,7 +27,7 @@ hotkey-overlay {
 }
 
 overview {
-    zoom 0.6
+    zoom 0.5
     workspace-shadow {
         // off
         offset x=0 y=50
@@ -42,6 +42,10 @@ recent-windows {
         urgent-color "#f6c177ff"
         padding 15
         corner-radius 10
+    }
+
+    previews {
+        max-height 300
     }
 
     binds {
