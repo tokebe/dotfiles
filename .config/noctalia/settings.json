@@ -7,6 +7,7 @@
         "pinnedExecs": [
         ],
         "position": "bottom_center",
+        "showCategories": true,
         "sortByMostUsed": true,
         "terminalCommand": "xterm -e",
         "useApp2Unit": false,
@@ -29,8 +30,8 @@
         "density": "default",
         "exclusive": true,
         "floating": false,
-        "marginHorizontal": 0.25,
-        "marginVertical": 0.25,
+        "marginHorizontal": 0.6900000000000001,
+        "marginVertical": 0.5,
         "monitors": [
         ],
         "outerCorners": true,
@@ -48,6 +49,7 @@
             ],
             "left": [
                 {
+                    "hideMode": "alwaysExpanded",
                     "icon": "niri",
                     "id": "CustomButton",
                     "leftClickExec": "vicinae toggle",
@@ -56,27 +58,29 @@
                         "horizontal": 10,
                         "vertical": 10
                     },
-                    "middleClickExec": "",
+                    "middleClickExec": "notify-send -i info --app-name 'Window List' \"$(niri msg --json windows | jq '.[].app_id' | sed -s 's/\"//g')\"",
                     "middleClickUpdateText": false,
                     "parseJson": false,
                     "rightClickExec": "niri msg action toggle-overview",
                     "rightClickUpdateText": false,
+                    "showIcon": true,
                     "textCollapse": "",
                     "textCommand": "",
                     "textIntervalMs": 3000,
                     "textStream": false,
-                    "wheelDownExec": "",
+                    "wheelDownExec": "niri msg action focus-column-or-monitor-right",
                     "wheelDownUpdateText": false,
                     "wheelExec": "",
-                    "wheelMode": "unified",
-                    "wheelUpExec": "",
-                    "wheelUpUpdateText": false,
+                    "wheelMode": "separate",
+                    "wheelUpExec": "niri msg action focus-column-or-monitor-left",
+                    "wheelUpUpdateText": true,
                     "wheelUpdateText": false
                 },
                 {
                     "id": "WallpaperSelector"
                 },
                 {
+                    "hideMode": "alwaysExpanded",
                     "icon": "refresh",
                     "id": "CustomButton",
                     "leftClickExec": "qs -c ~/.config/quickshell/nocatlia-shell/ ipc call wallpaper toggleAutomation",
@@ -90,6 +94,7 @@
                     "parseJson": false,
                     "rightClickExec": "",
                     "rightClickUpdateText": false,
+                    "showIcon": true,
                     "textCollapse": "",
                     "textCommand": "",
                     "textIntervalMs": 3000,
@@ -112,6 +117,9 @@
                     "showMemoryUsage": true,
                     "showNetworkStats": false,
                     "usePrimaryColor": false
+                },
+                {
+                    "id": "plugin:catwalk"
                 },
                 {
                     "colorName": "secondary",
@@ -179,7 +187,9 @@
                 },
                 {
                     "colorizeDistroLogo": false,
+                    "colorizeSystemIcon": "none",
                     "customIconPath": "",
+                    "enableColorization": false,
                     "icon": "gender-transgender",
                     "id": "ControlCenter",
                     "useDistroLogo": false
@@ -196,8 +206,25 @@
         "enableDdcSupport": false,
         "enforceMinimum": true
     },
-    "changelog": {
-        "lastSeenVersion": ""
+    "calendar": {
+        "cards": [
+            {
+                "enabled": true,
+                "id": "calendar-header-card"
+            },
+            {
+                "enabled": true,
+                "id": "calendar-month-card"
+            },
+            {
+                "enabled": true,
+                "id": "timer-card"
+            },
+            {
+                "enabled": true,
+                "id": "weather-card"
+            }
+        ]
     },
     "colorSchemes": {
         "darkMode": true,
@@ -205,7 +232,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "matugenSchemeType": "scheme-fruit-salad",
-        "predefinedScheme": "Rosepine",
+        "predefinedScheme": "Rose Pine",
         "schedulingMode": "off",
         "useWallpaperColors": false
     },
@@ -243,6 +270,9 @@
                 },
                 {
                     "id": "ScreenRecorder"
+                },
+                {
+                    "id": "WallpaperSelector"
                 }
             ],
             "right": [
@@ -254,6 +284,9 @@
                 },
                 {
                     "id": "NightLight"
+                },
+                {
+                    "id": "PowerProfile"
                 }
             ]
         }
@@ -261,29 +294,40 @@
     "dock": {
         "backgroundOpacity": 1,
         "colorizeIcons": false,
+        "deadOpacity": 0.65,
         "displayMode": "always_visible",
         "enabled": false,
         "floatingRatio": 1,
+        "inactiveIndicators": true,
         "monitors": [
         ],
         "onlySameOutput": true,
         "pinnedApps": [
+            "org.gnome.Nautilus",
+            "org.gnome.Software",
+            "io.github.kolunmi.Bazaar",
+            "Alacritty",
+            "com.github.neithern.g4music",
+            "BeeRef",
+            "org.kde.krita",
+            "md.obsidian.Obsidian",
             "vesktop",
-            "app.zen_browser.zen",
-            "org.gnome.Nautilus"
+            "app.zen_browser.zen"
         ],
-        "radiusRatio": 0.1,
+        "pinnedStatic": true,
         "size": 1
     },
     "general": {
         "allowPanelsOnScreenWithoutBar": true,
         "animationDisabled": false,
         "animationSpeed": 2,
-        "avatarImage": "~/.face",
+        "avatarImage": "/var/lib/AccountsService/icons/alter",
+        "boxRadiusRatio": 1,
         "compactLockScreen": false,
         "dimmerOpacity": 0,
         "enableShadows": true,
         "forceBlackScreenCorners": true,
+        "iRadiusRatio": 1,
         "language": "",
         "lockOnSuspend": true,
         "radiusRatio": 0.75,
@@ -293,7 +337,8 @@
         "shadowOffsetX": 0,
         "shadowOffsetY": 3,
         "showHibernateOnLockScreen": false,
-        "showScreenCorners": false
+        "showScreenCorners": true,
+        "showSessionButtonsOnLockScreen": true
     },
     "hooks": {
         "darkModeChange": "",
@@ -336,12 +381,23 @@
         ],
         "normalUrgencyDuration": 5,
         "overlayLayer": true,
-        "respectExpireTimeout": false
+        "respectExpireTimeout": true,
+        "sounds": {
+            "criticalSoundFile": "",
+            "enabled": false,
+            "excludedApps": "discord,firefox,chrome,chromium,edge",
+            "lowSoundFile": "",
+            "normalSoundFile": "",
+            "separateSounds": false,
+            "volume": 0.5
+        }
     },
     "osd": {
-        "autoHideMs": 1000,
+        "autoHideMs": 600,
         "backgroundOpacity": 1,
-        "enabled": false,
+        "enabled": true,
+        "enabledTypes": [
+        ],
         "location": "bottom",
         "monitors": [
         ],
@@ -396,26 +452,31 @@
         ],
         "showHeader": false
     },
-    "settingsVersion": 23,
-    "setupCompleted": true,
+    "settingsVersion": 26,
     "systemMonitor": {
         "cpuCriticalThreshold": 90,
+        "cpuPollingInterval": 3000,
         "cpuWarningThreshold": 80,
-        "criticalColor": "",
+        "criticalColor": "#eb6f92",
         "diskCriticalThreshold": 90,
+        "diskPollingInterval": 3000,
         "diskWarningThreshold": 80,
         "memCriticalThreshold": 90,
+        "memPollingInterval": 3000,
         "memWarningThreshold": 80,
+        "networkPollingInterval": 3000,
         "tempCriticalThreshold": 90,
+        "tempPollingInterval": 3000,
         "tempWarningThreshold": 80,
         "useCustomColors": false,
-        "warningColor": ""
+        "warningColor": "#31748f"
     },
     "templates": {
         "alacritty": false,
-        "cava": false,
+        "cava": true,
         "code": false,
         "discord": false,
+        "emacs": false,
         "enableUserTemplates": false,
         "foot": false,
         "fuzzel": false,
@@ -423,6 +484,7 @@
         "gtk": true,
         "kcolorscheme": true,
         "kitty": false,
+        "niri": false,
         "pywalfox": false,
         "qt": true,
         "spicetify": false,
@@ -442,24 +504,13 @@
         "tooltipsEnabled": true
     },
     "wallpaper": {
-        "defaultWallpaper": "/home/alter/.dotfiles/.config/quickshell/noctalia-shell/Assets/Wallpaper/noctalia.png",
-        "directory": "/home/alter-mobile/OneDrive/wallpaper/laptop",
+        "directory": "/home/alter/OneDrive/wallpaper/desktop-alter",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "fillColor": "#000000",
         "fillMode": "crop",
         "hideWallpaperFilenames": false,
-        "monitors": [
-            {
-                "directory": "/home/alter/OneDrive/wallpaper/desktop-alter",
-                "name": "DP-1",
-                "wallpaper": "/home/alter/OneDrive/wallpaper/desktop-alter/wallpaperflare.com_wallpaper.jpg"
-            },
-            {
-                "directory": "/home/alter/OneDrive/wallpaper/desktop-alter",
-                "name": "DP-2",
-                "wallpaper": "/home/alter/OneDrive/wallpaper/desktop-alter/wallpaperflare.com_wallpaper.jpg"
-            }
+        "monitorDirectories": [
         ],
         "overviewEnabled": true,
         "panelPosition": "follow_bar",
