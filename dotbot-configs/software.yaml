@@ -120,6 +120,7 @@
     - tldr  # Manpage; TLDR | https://github.com/tldr-pages/tldr
     - tmux  # Terminal multiplexer | https://github.com/tmux/tmux
     - xh  # Friendlier cURL | https://github.com/ducaale/xh
+    - gum  # Shell script utility | https://github.com/charmbracelet/gum
 - shell:
     - description: Install ZSH for Humans  # A really solid CLI environment/prompt
       command: ./zsh/setup
