@@ -1,0 +1,6 @@
+{
+  "updateInterval": 300000,
+  "configuredTerminal": "alacritty -e",
+  "configuredIcon": "world-download",
+  "hideOnZero": true
+}
