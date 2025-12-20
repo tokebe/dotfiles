@@ -2,5 +2,10 @@
   "updateInterval": 300000,
   "configuredTerminal": "alacritty -e",
   "configuredIcon": "world-download",
-  "hideOnZero": true
+  "hideOnZero": true,
+  "updateIntervalMinutes": 30,
+  "updateTerminalCommand": "alacritty -T \"Noctalia Update Script\" -e ",
+  "currentIconName": "world-download",
+  "customCmdGetNumUpdates": "a=\"$(dnf check-upgrade --refresh -q | grep -c '^[a-z0-9]')\"; b=\"$(brew upgrade -n | sed -nE 's/.*([0-9]+) outdated packages:/\\1/p')\"; echo \"$((a+b))\"",
+  "customCmdDoSystemUpdate": "bash -c 'gum confirm \"Update dnf packages?\" && sudo dnf upgrade -y --refresh; gum confirm \"Update brew packages?\" && brew upgrade && echo \"Update Complete!\" && sleep 2'"
 }

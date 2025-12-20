@@ -90,6 +90,7 @@ window-rule {
     match app-id="OneDriveGUI"
     match app-id="org.gnome.NautilusPreviewer"
     match app-id="org.quickshell"
+    match title="Noctalia Update Script"
     open-floating true
 }
 
@@ -111,5 +112,12 @@ window-rule {
     match app-id="OneDriveGUI"
     default-column-width { fixed 500; }
     default-window-height { fixed 800; }
+}
+
+// Update script small
+window-rule {
+    match title="Noctalia Update Script"
+    default-column-width { fixed 1000; }
+    default-window-height { fixed 1000; }
 }
 
