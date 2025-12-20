@@ -95,9 +95,12 @@ def update_workspaces(event: dict[str, Any]) -> None:
 def handle_event(event: dict[str, Any]) -> None:
     if "OverviewOpenedOrClosed" in event:
         handle_overview(event["OverviewOpenedOrClosed"])
-    elif "WindowOpenedOrChanged" in event and event["WindowOpenedOrChanged"]["window"][
-        "app_id"
-    ] in ("OneDriveGUI", "Mullvad VPN"):
+    elif "WindowOpenedOrChanged" in event and (
+        event["WindowOpenedOrChanged"]["window"]["app_id"]
+        in ("OneDriveGUI", "Mullvad VPN")
+        or event["WindowOpenedOrChanged"]["window"]["title"]
+        in ("Noctalia Update Script")
+    ):
         send_window_to_corner(event["WindowOpenedOrChanged"])
     elif "WorkspacesChanged" in event:
         update_workspaces(event["WorkspacesChanged"])

@@ -336,7 +336,8 @@
             "org.kde.krita",
             "md.obsidian.Obsidian",
             "vesktop",
-            "app.zen_browser.zen"
+            "app.zen_browser.zen",
+            "steam"
         ],
         "pinnedStatic": true,
         "size": 1
