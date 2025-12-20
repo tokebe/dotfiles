@@ -54,7 +54,8 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Shift+T repeat=false { spawn "alacritty"; }
+    Mod+Shift+Alt+T repeat=false { spawn "alacritty"; }
+    Mod+Shift+T repeat=false { spawn "wezterm"; }
     Mod+E repeat=false { spawn "nautilus"; }
     // Mod+Space repeat=false { spawn "fuzzel"; }
     // Mod+Space repeat=false { spawn-sh "qs -c ~/.config/quickshell/noctalia-shell/ ipc call launcher toggle"; }
