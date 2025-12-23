@@ -118,6 +118,6 @@ window-rule {
 window-rule {
     match title="Noctalia Update Script"
     default-column-width { fixed 1000; }
-    default-window-height { fixed 1000; }
+    default-window-height { fixed 300; }
 }
 
