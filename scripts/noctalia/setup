@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+DIR="$HOME/.config/quickshell/noctalia-shell"
+REPO="noctalia-dev/noctalia-shell"
+
+LATEST_RELEASE_TAG=$(curl -sL -m 10 --connect-timeout 5 https://api.github.com/repos/"$REPO"/releases/latest | grep 'tag_name' | sed -E 's/.*"([^"]+)".*/\1/')
+
+git clone \
+  --depth 1 \
+  --branch="$LATEST_RELEASE_TAG" \
+  "https://github.com/noctalia-dev/noctalia-shell.git" \
+  "$DIR"

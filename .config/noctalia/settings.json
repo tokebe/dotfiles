@@ -4,6 +4,7 @@
         "customLaunchPrefixEnabled": false,
         "enableClipPreview": true,
         "enableClipboardHistory": true,
+        "iconMode": "tabler",
         "pinnedExecs": [
         ],
         "position": "bottom_center",
@@ -14,12 +15,11 @@
         "viewMode": "list"
     },
     "audio": {
-        "cavaFrameRate": 30,
+        "cavaFrameRate": 100,
         "externalMixer": "pwvucontrol || pavucontrol",
         "mprisBlacklist": [
         ],
         "preferredPlayer": "",
-        "visualizerQuality": "high",
         "visualizerType": "mirrored",
         "volumeOverdrive": false,
         "volumeStep": 5
@@ -281,20 +281,17 @@
                 },
                 {
                     "id": "ScreenRecorder"
-                },
-                {
-                    "id": "WallpaperSelector"
                 }
             ],
             "right": [
                 {
-                    "id": "Notifications"
-                },
-                {
-                    "id": "KeepAwake"
+                    "id": "DarkMode"
                 },
                 {
                     "id": "NightLight"
+                },
+                {
+                    "id": "KeepAwake"
                 },
                 {
                     "id": "PowerProfile"
@@ -303,12 +300,16 @@
         }
     },
     "desktopWidgets": {
-        "editMode": false,
         "enabled": false,
         "gridSnap": true,
         "monitorWidgets": [
             {
                 "name": "DP-1",
+                "widgets": [
+                ]
+            },
+            {
+                "name": "DP-2",
                 "widgets": [
                 ]
             }
@@ -368,6 +369,8 @@
     "hooks": {
         "darkModeChange": "",
         "enabled": false,
+        "performanceModeDisabled": "",
+        "performanceModeEnabled": "",
         "screenLock": "",
         "screenUnlock": "",
         "wallpaperChange": ""
@@ -424,6 +427,9 @@
         "backgroundOpacity": 1,
         "enabled": true,
         "enabledTypes": [
+            3,
+            2,
+            0
         ],
         "location": "bottom",
         "monitors": [
@@ -486,7 +492,7 @@
         ],
         "showHeader": false
     },
-    "settingsVersion": 31,
+    "settingsVersion": 32,
     "systemMonitor": {
         "cpuCriticalThreshold": 90,
         "cpuPollingInterval": 3000,
@@ -495,7 +501,7 @@
         "diskCriticalThreshold": 100,
         "diskPollingInterval": 3000,
         "diskWarningThreshold": 80,
-        "enableNvidiaGpu": false,
+        "enableDgpuMonitoring": false,
         "gpuCriticalThreshold": 85,
         "gpuPollingInterval": 3000,
         "gpuWarningThreshold": 80,
@@ -520,6 +526,8 @@
         "fuzzel": false,
         "ghostty": false,
         "gtk": true,
+        "helix": false,
+        "hyprland": false,
         "kcolorscheme": true,
         "kitty": false,
         "mango": false,
@@ -535,6 +543,8 @@
         "zed": false
     },
     "ui": {
+        "bluetoothDetailsViewMode": "grid",
+        "bluetoothHideUnnamedDevices": false,
         "fontDefault": "Roboto",
         "fontDefaultScale": 1,
         "fontFixed": "DejaVu Sans Mono",
@@ -542,7 +552,8 @@
         "panelBackgroundOpacity": 1,
         "panelsAttachedToBar": true,
         "settingsPanelMode": "window",
-        "tooltipsEnabled": true
+        "tooltipsEnabled": true,
+        "wifiDetailsViewMode": "grid"
     },
     "wallpaper": {
         "directory": "/home/alter/OneDrive/wallpaper/desktop-alter",
@@ -567,6 +578,7 @@
         "wallhavenOrder": "desc",
         "wallhavenPurity": "100",
         "wallhavenQuery": "",
+        "wallhavenRatios": "",
         "wallhavenResolutionHeight": "",
         "wallhavenResolutionMode": "atleast",
         "wallhavenResolutionWidth": "",

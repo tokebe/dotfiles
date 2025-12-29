@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+
+package_updates=$(dnf check-upgrade -q | grep -c '^[a-z0-9]')
+brew_updates=$(brew upgrade -n | sed -nE 's/.*([0-9]+) outdated packages:/\1/p')
+
+noctalia_repo="noctalia-dev/noctalia-shell"
+noctalia_dir="$HOME/.config/quickshell/noctalia-shell"
+noctalia_current_tag=$(cd "$noctalia_dir" && git describe --exact-match --tags)
+noctalia_latest_tag=$(curl -sL -m 15 --connect-timeout 5 https://api.github.com/repos/"$noctalia_repo"/releases/latest | grep 'tag_name' | sed -E 's/.*"([^"]+)".*/\1/' || echo "$noctalia_current_tag")
+noctalia_updates=0; [ "$noctalia_current_tag" != "$noctalia_latest_tag" ] && noctalia_updates=1
+
+did_updates=0
+if [ "$package_updates" -gt 0 ]; then
+  gum confirm 'Update dnf packages?' && sudo dnf upgrade -y && did_updates=1
+fi
+if [ "$brew_updates" -gt 0 ]; then
+  gum confirm 'Update brew packages?' && brew upgrade && did_updates=1
+
+fi
+if [ "$noctalia_updates" -gt 0 ]; then
+  gum confirm 'Update shell?' && "$HOME/.dotfiles/scripts/noctalia/update-noctalia" && did_updates=1
+
+fi
+if [ "$did_updates" -gt 0 ]; then
+  echo "Update complete!" && sleep 2
+fi
