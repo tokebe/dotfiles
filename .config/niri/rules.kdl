@@ -22,6 +22,16 @@ layer-rule {
     place-within-backdrop true
 }
 
+layer-rule {
+    match namespace="^quick-terminal-overlay"
+    geometry-corner-radius 10
+    shadow {
+        on
+        offset x=25 y=100
+        softness 20
+    }
+}
+
 // ------ WINDOW RULES -----
 
 // Window defaults
