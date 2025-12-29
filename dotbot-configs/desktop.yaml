@@ -16,7 +16,6 @@
           - org.kde.krita  # Art! | https://krita.org/en/
           - md.obsidian.Obsidian  # Notetaking done good | https://obsidian.md/
           - com.visualstudio.code  # One day nvim will be good for debugging | https://code.visualstudio.com/
-          - org.wezfurlong.wezterm  # Better terminal emulator | https://wezfurlong.org/wezterm/index.html
           - io.github.zen_browser.zen  # Custom Firefox layer | https://zen-browser.app/
       - cargo: [systemctl-tui]
       - if:
