@@ -165,6 +165,7 @@ return {
         -- prefix = '󱦵',
         prefix = '󱞿 ',
         min_rows = 7,
+        priority = 500,
         disable_ft = require('config.filetype_excludes'),
       })
     end,
