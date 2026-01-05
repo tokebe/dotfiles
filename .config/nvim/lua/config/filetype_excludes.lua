@@ -16,7 +16,7 @@ return {
   'dashboard',
   'snacks_dashboard',
   'dashboardpreview',
-  '',
+  -- '',
   'noice',
   'toggleterm',
   'spectre_panel',
