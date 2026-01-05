@@ -45,6 +45,7 @@ return {
           end,
           indent = {
             enabled = true,
+            priority = 510,
           },
           animate = {
             duration = {
@@ -53,6 +54,7 @@ return {
           },
           chunk = {
             enabled = true,
+            priority = 511,
             only_current = true,
             char = {
               arrow = '─',
