@@ -93,25 +93,25 @@ return {
           local gs = package.loaded.gitsigns
 
           -- Navigation
-          vim.keymap.set('n', ']c', function()
+          vim.keymap.set('n', ']h', function()
             if vim.wo.diff then
-              return ']c'
+              return ']h'
             end
             vim.schedule(function()
               gs.next_hunk()
             end)
             return '<Ignore>'
-          end, { expr = true })
+          end, { expr = true, desc = 'Next hunk' })
 
-          vim.keymap.set('n', '[c', function()
+          vim.keymap.set('n', '[h', function()
             if vim.wo.diff then
-              return '[c'
+              return '[h'
             end
             vim.schedule(function()
               gs.prev_hunk()
             end)
             return '<Ignore>'
-          end, { expr = true })
+          end, { expr = true, desc = 'Previous hunk' })
 
           -- Actions
           vim.keymap.set('n', '<leader>hs', gs.stage_hunk, { desc = 'Stage hunk' })
@@ -196,7 +196,7 @@ return {
       vim.keymap.set('n', 'gB', '<CMD>BlameToggle<CR>', { desc = 'Toggle blame mode' })
     end,
   },
-  {  -- Show status of issues linked in comments
+  { -- Show status of issues linked in comments
     'noamsto/resolved.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     event = 'VeryLazy',
