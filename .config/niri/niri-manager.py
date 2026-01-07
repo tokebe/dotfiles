@@ -92,14 +92,23 @@ def update_workspaces(event: dict[str, Any]) -> None:
         print("ERROR: failed to update outputs.")
 
 
+APP_IDS_SEND_TO_CORNER = [
+    "OneDriveGUI",
+    "Mullvad VPN",
+    "org.gnome.gitlab.cheywood.Buffer",
+]
+APP_TITLES_SEND_TO_CORNER = [
+    "Noctalia Update Script",
+]
+
+
 def handle_event(event: dict[str, Any]) -> None:
     if "OverviewOpenedOrClosed" in event:
         handle_overview(event["OverviewOpenedOrClosed"])
     elif "WindowOpenedOrChanged" in event and (
-        event["WindowOpenedOrChanged"]["window"]["app_id"]
-        in ("OneDriveGUI", "Mullvad VPN")
+        event["WindowOpenedOrChanged"]["window"]["app_id"] in APP_IDS_SEND_TO_CORNER
         or event["WindowOpenedOrChanged"]["window"]["title"]
-        in ("Noctalia Update Script")
+        in APP_TITLES_SEND_TO_CORNER
     ):
         send_window_to_corner(event["WindowOpenedOrChanged"])
     elif "WorkspacesChanged" in event:

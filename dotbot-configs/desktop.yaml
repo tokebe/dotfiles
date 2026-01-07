@@ -29,6 +29,7 @@
                 - io.gitlab.adhami3310.Impression  # Media writer | https://apps.gnome.org/Impression/
                 - re.sonny.Junction  # App chooser for file opening | https://github.com/sonnyp/Junction
                 - app.drey.Warp  # Like portal, but GUI | https://apps.gnome.org/Warp/
+                - org.gnome.gitlab.cheywood.Buffer  # Simple throwaway text space | https://gitlab.gnome.org/cheywood/buffer
             - omnipkg:
                 # Nautilus extension dependencies
                 - python3-nautilus
@@ -46,13 +47,15 @@
                   stderr: true
                   stdin: true
                 - description: Install Nautilus new file extension
-                  command: curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh | bash
+                  command: curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh
+                    | bash
                   quiet: true
                   stdout: true
                   stderr: true
                   stdin: true
                 - description: Install Nautilus regex search extension
-                  command: curl -L -o ~/.local/share/nautilus-python/extensions/nautilus-regex-select.py https://raw.githubusercontent.com/SimBoi/nautilus-regex-select/main/nautilus-regex-select.py
+                  command: curl -L -o ~/.local/share/nautilus-python/extensions/nautilus-regex-select.py
+                    https://raw.githubusercontent.com/SimBoi/nautilus-regex-select/main/nautilus-regex-select.py
                   quiet: true
                   stderr: true
             - pip:
