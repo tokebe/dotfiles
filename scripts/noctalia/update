@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-
 package_updates=$(dnf check-upgrade -q | grep -c '^[a-z0-9]')
 brew_updates=$(brew upgrade -n | sed -nE 's/.*([0-9]+) outdated packages:/\1/p')
+flatpak_updates=$(yes no | flatpak update | grep -e '^\s*[0-9+]\.' | tail -1 | sed -nE 's/^\s([0-9]+)\..+/\1/p')
 
 noctalia_repo="noctalia-dev/noctalia-shell"
 noctalia_dir="$HOME/.config/quickshell/noctalia-shell"
@@ -11,16 +11,19 @@ noctalia_latest_tag=$(curl -sL -m 15 --connect-timeout 5 https://api.github.com/
 noctalia_updates=0; [ "$noctalia_current_tag" != "$noctalia_latest_tag" ] && noctalia_updates=1
 
 did_updates=0
-if [ "$package_updates" -gt 0 ]; then
+if [ -n "$package_updates" ] && [ "$package_updates" -gt 0 ]; then
   gum confirm 'Update dnf packages?' && sudo dnf upgrade -y && did_updates=1
 fi
-if [ "$brew_updates" -gt 0 ]; then
+if [ -n "$brew_updates" ] && [ "$brew_updates" -gt 0 ]; then
   gum confirm 'Update brew packages?' && brew upgrade && did_updates=1
 
 fi
-if [ "$noctalia_updates" -gt 0 ]; then
+if [ -n "$noctalia_updates" ] && [ "$noctalia_updates" -gt 0 ]; then
   gum confirm 'Update shell?' && "$HOME/.dotfiles/scripts/noctalia/update-noctalia" && did_updates=1
 
+fi
+if [ -n "$flatpak_updates" ] && [ "$flatpak_updates" -gt 0 ]; then
+  gum confirm 'Update flatpaks?' && flatpak update -y && did_updates=1
 fi
 if [ "$did_updates" -gt 0 ]; then
   echo "Update complete!" && sleep 2
