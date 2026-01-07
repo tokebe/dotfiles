@@ -101,6 +101,7 @@ window-rule {
     match app-id="org.gnome.NautilusPreviewer"
     match app-id="org.quickshell"
     match title="Noctalia Update Script"
+    match app-id="org.gnome.gitlab.cheywood.Buffer"
     open-floating true
 }
 
