@@ -161,6 +161,10 @@ alias st=systemctl-tui
 # Add flags to existing aliases.
 # alias ls="${aliases[ls]:-ls} -A"
 
+# Ensure tmux uses utf8
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8
+
 # Use bat for manpager
 export MANPAGER=$HOME/.batman
 
