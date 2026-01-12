@@ -6,7 +6,7 @@ return {
     'ruff', --Python
     'taplo', -- TOML
     'bashls', -- Bash
-    'spectral', -- JSON/YAML
+    'yamlls', -- JSON/YAML
     'marksman', -- Markdown
   },
   dap = { -- Debug Adapter Protocol
