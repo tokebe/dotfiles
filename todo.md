@@ -30,6 +30,6 @@ Running TODO list:
 - [ ] Fix visual-paste yanking replaced text
 - [ ] Disable diagnostics on insert?
 - [ ] Live file running for quicker iteration
-- [ ] Fix auto-indent in python files when on line > ~300
+- [x] Fix auto-indent in python files when on line > ~300
 
 ## Other

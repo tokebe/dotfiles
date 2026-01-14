@@ -24,33 +24,17 @@ return {
       -- vim.keymap.set('n', '<Tab>', ':b#<CR>')
     end,
   },
-  -- { -- Very cool plugin, come back to it in a few months
-  --   'ahkohd/buffer-sticks.nvim',
-  --   event = 'VeryLazy',
-  --   keys = {
-  --     {
-  --       '<Tab>',
-  --       function()
-  --         BufferSticks.jump()
-  --       end,
+  -- {-- Promising plugin, come back to it in a month or two
+  --   'serhez/bento.nvim',
+  --   opts = {
+  --     main_keymap = '<Tab>',
+  --     ui = {
+  --       floating = {
+  --         -- position = 'bottom-left',
+  --         offset_x = -2,
+  --         minimal_menu = 'dashed'
+  --       },
   --     },
   --   },
-  --   config = function()
-  --     local sticks = require('buffer-sticks')
-  --     sticks.setup({
-  --       filter = {
-  --         filetypes = require('config.filetype_excludes'),
-  --       },
-  --       offset = {
-  --         x = 1,
-  --       },
-  --       preview = {
-  --         float = {
-  --           height = 0.3,
-  --         },
-  --       },
-  --     })
-  --     sticks.show()
-  --   end,
   -- },
 }
