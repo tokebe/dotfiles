@@ -46,14 +46,7 @@ return {
       end
     end,
   },
-  {  -- close functions and such that are closed with 'end'
+  { -- close functions and such that are closed with 'end'
     'RRethy/nvim-treesitter-endwise',
-    config = function()
-      require('nvim-treesitter.configs').setup({
-        endwise = {
-          enable = true,
-        },
-      })
-    end,
   },
 }
