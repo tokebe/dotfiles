@@ -54,7 +54,11 @@ return {
               colored = true,
               symbols = { added = '󰐙 ', modified = '󰪥 ', removed = '󰍷 ' },
             },
-            { 'diagnostics', symbols = { error = ' ', warn = ' ', info = ' ', hint = '󱉵 ' } },
+            {
+              'diagnostics',
+              symbols = { error = ' ', warn = ' ', info = ' ', hint = '󱉵 ' },
+              update_in_insert = false,
+            },
           },
           lualine_c = {
             -- show_macro_recording,
