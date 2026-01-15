@@ -39,5 +39,5 @@ return {
   'cmp_docs',
   'triforce-profile',
   'NvMenu',
-  'VoltWindow'
+  'VoltWindow',
 }
