@@ -3,7 +3,7 @@ return {
     'Shatur/neovim-session-manager',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      -- 'stevearc/overseer.nvim',
+      'stevearc/overseer.nvim',
       { 'tiagovla/scope.nvim', commit = 'f8a6783' },
     },
     config = function()
@@ -24,20 +24,13 @@ return {
         group = config_group,
         callback = function()
           vim.cmd('ScopeSaveState')
-          -- overseer.save_task_bundle(util.get_cwd_as_name(), nil, { on_conflict = 'overwrite' })
         end,
       })
 
       vim.api.nvim_create_autocmd({ 'User' }, {
         pattern = 'SessionLoadPost',
         group = config_group,
-        callback = function()
-          vim.cmd('ScopeLoadState')
-          -- for _, task in ipairs(overseer.list_tasks({})) do
-          --   task:dispose(true)
-          -- end
-          -- overseer.load_task_bundle(util.get_cwd_as_name(), { ignore_missing = true })
-        end,
+        callback = function() end,
       })
       vim.keymap.set('n', '<Leader>pp', function()
         vim.cmd('SessionManager load_session')
@@ -201,13 +194,29 @@ return {
       })
     end,
   },
-  -- {
-  --   'stevearc/overseer.nvim',
-  --   config = function()
-  --     require('overseer').setup({
-  --       strategy = 'toggleterm',
-  --       dap = true
-  --     })
-  --   end,
-  -- },
+  {
+    'stevearc/overseer.nvim',
+    dependencies = {
+      'mfussenegger/nvim-dap',
+    },
+    config = function()
+      require('overseer').setup({
+        strategy = {
+          'toggleterm',
+          open_on_start = false,
+          use_shell = true,
+          auto_scroll = true,
+        },
+        task_list = {
+          keymaps = {
+            ['<C-h>'] = false,
+            ['<C-l>'] = false,
+            ['<C-j>'] = false,
+            ['<C-k>'] = false,
+          },
+        },
+      })
+      require('dap.ext.vscode').json_decode = require('overseer.json').decode
+    end,
+  },
 }
