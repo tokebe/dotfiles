@@ -196,6 +196,7 @@ return {
   },
   {
     'stevearc/overseer.nvim',
+    version = '^2.1.0',
     dependencies = {
       'mfussenegger/nvim-dap',
     },
