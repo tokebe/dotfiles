@@ -1,18 +1,158 @@
--- TODO: redo controls from scratch
 return {
-  -- {
-  --   'mfussenegger/nvim-dap',
-  --   dependencies = { 'folke/which-key.nvim' },
-  --   event = { 'LspAttach' },
-  --   config = function()
-  --     local dap = require('dap')
-  --     dap.defaults.fallback.external_terminal = {
-  --       command = 'tmux',
-  --       args = { 'split-pane', '-l', '30%' },
-  --     }
-  --     -- dap.defaults.fallback.force_external_terminal = true
-  --   end,
-  -- },
+  {
+    'igorlfs/nvim-dap-view',
+    lazy = false,
+    dependencies = {
+      'mfussenegger/nvim-dap',
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-neotest/nvim-nio',
+      { 'jay-babu/mason-nvim-dap.nvim', dependencies = { 'williamboman/mason.nvim' } },
+      'mfussenegger/nvim-dap-python',
+      'stevearc/overseer.nvim',
+      'Weissle/persistent-breakpoints.nvim',
+    },
+    config = function()
+      -- FIX: ftmemo creates errors on opening repl, figure out how to suppress
+      local dap = require('dap')
+      local uv = vim.uv or vim.loop
+
+      -- Set external terminal to use tmux
+      dap.defaults.fallback.external_terminal = {
+        command = 'tmux',
+        args = { 'split-pane', '-l', '30%' },
+      }
+      require('dap').defaults.fallback.switchbuf = 'usevisible,usetab,newtab'
+
+      -- TODO: Set up keybinds for special commands
+      -- Persistent breakpoints. Have to use its commands for them to persist.
+      require('persistent-breakpoints').setup({
+        load_breakpoints_event = { 'BufReadPost' },
+      })
+
+      -- TODO: overseer causing some errors, need to fix config
+      -- Overseer handles vscode style launch tasks
+      local overseer = require('overseer')
+      overseer.setup({
+        strategy = {
+          'toggleterm',
+          open_on_start = false,
+          use_shell = true,
+          auto_scroll = true,
+        },
+        task_list = {
+          bindings = {
+            ['<C-h>'] = false,
+            ['<C-l>'] = false,
+            ['<C-j>'] = false,
+            ['<C-k>'] = false,
+          },
+        },
+      })
+      require('dap.ext.vscode').json_decode = require('overseer.json').decode
+
+      -- Should bridge *most* mason-installed adapters to nvim-dap
+      require('mason-nvim-dap').setup({
+        ensure_installed = require('config.sources').dap,
+        handlers = {},
+        automatic_installation = false,
+      })
+
+      -- VSCode introduced a stupid change where debug configs
+      -- need to use type: `debugpy` instead of `python`
+      -- So we need a custom debugpy adapter to point to our python adapter (sigh)
+      -- Additionally, we need to inject the .venv, and some other setup
+      -- Big thanks to https://codeberg.org/mfussenegger/nvim-dap-python
+      -- For most of the config pattern
+      dap.adapters.debugpy = {
+        type = 'executable',
+        command = vim.fn.stdpath('data') .. '/mason/packages/debugpy/venv/bin/python',
+        args = {
+          '-m',
+          'debugpy.adapter',
+        },
+        enrich_config = function(config, on_config)
+          -- Add the python venv to the config
+          local venv_path = os.getenv('VIRTUAL_ENV')
+          if venv_path then
+            config.pythonPath = venv_path .. '/bin/python'
+          end
+          for _, folder in ipairs({ 'venv', '.venv', 'env', '.env' }) do
+            local path = vim.fn.getcwd() .. '/' .. folder
+            local stat = uv.fs_stat(path)
+            if stat and stat.type == 'directory' then
+              config.pythonPath = path .. '/bin/python'
+            end
+          end
+
+          -- Force config to use externalTerminal
+          config.console = 'externalTerminal'
+          on_config(config)
+        end,
+      }
+
+      -- Provides a decent UI, might switch back to dap-ui for toggleable breakpoints
+      local dapview = require('dap-view')
+      dapview.setup({
+        auto_toggle = false,
+        winbar = {
+          default_section = 'sessions',
+          sections = { 'sessions', 'threads', 'watches', 'exceptions', 'breakpoints', 'scopes', 'repl', 'console' },
+          controls = {
+            enabled = true,
+          },
+        },
+        windows = {
+          size = 0.35,
+          terminal = {
+            size = 0.5,
+          },
+        },
+      })
+
+      -- Create highlights for the types of breakpoints
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        pattern = '*',
+        -- group = 'UserDefLoadOnce',
+        desc = 'Prevent coloscheme clearing self-defined DAP icon colors',
+        callback = function()
+          vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
+          vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939', bg = '#31353f' })
+          vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379', bg = '#31353f' })
+        end,
+      })
+
+      vim.fn.sign_define('DapBreakpoint', { text = ' ', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+      vim.fn.sign_define(
+        'DapBreakpointCondition',
+        { text = '󱄶 ', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' }
+      )
+      vim.fn.sign_define('DapBreakpointRejected', { text = ' ', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+      vim.fn.sign_define('DapLogPoint', { text = '󰚢 ', texthl = 'DapLogPoint', numhl = 'DapLogPoint' })
+
+      vim.fn.sign_define('DapStopped', { text = ' ', texthl = 'DapStopped', numhl = 'DapStopped' })
+    end,
+  },
+  {
+    'LiadOz/nvim-dap-repl-highlights', -- DAP highlighting support
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'mfussenegger/nvim-dap',
+    },
+    config = function()
+      require('nvim-dap-repl-highlights').setup()
+    end,
+  },
+  {
+    'theHamsta/nvim-dap-virtual-text',
+    dependencies = { 'mfussenegger/nvim-dap', 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('nvim-dap-virtual-text').setup({
+        all_references = true,
+        -- commented = true,
+      })
+    end,
+  },
+
   -- {
   --   'jay-babu/mason-nvim-dap.nvim',
   --   dependencies = {
@@ -286,28 +426,6 @@ return {
   --     -- vim.keymap.set('n', '<Leader>Do', require('dap').step_out, { desc = 'Step out' })
   --     -- vim.keymap.set('n', '<Leader>tr', '<CMD>OverseerRun<CR>', { desc = 'Run task...' })
   --     -- vim.keymap.set('n', '<Leader>tv', '<CMD>OverseerToggle<CR>', { desc = 'Toggle task view' })
-  --   end,
-  -- },
-  -- -- {
-  -- --   'theHamsta/nvim-dap-virtual-text',
-  -- --   dependencies = { 'mfussenegger/nvim-dap', 'nvim-treesitter/nvim-treesitter' },
-  -- --   event = { 'LspAttach' },
-  -- --   config = function()
-  -- --     require('nvim-dap-virtual-text').setup({
-  -- --       all_references = true,
-  -- --       -- commented = true,
-  -- --     })
-  -- --   end,
-  -- -- },
-  -- {
-  --   'LiadOz/nvim-dap-repl-highlights', -- DAP highlighting support
-  --   dependencies = {
-  --     'nvim-treesitter/nvim-treesitter',
-  --     'mfussenegger/nvim-dap',
-  --   },
-  --   event = { 'LspAttach' },
-  --   config = function()
-  --     require('nvim-dap-repl-highlights').setup()
   --   end,
   -- },
 }

@@ -3,7 +3,7 @@ return {
     'Shatur/neovim-session-manager',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'stevearc/overseer.nvim',
+      -- 'stevearc/overseer.nvim',
       { 'tiagovla/scope.nvim', commit = 'f8a6783' },
     },
     config = function()
@@ -201,13 +201,13 @@ return {
       })
     end,
   },
-  {
-    'stevearc/overseer.nvim',
-    config = function()
-      require('overseer').setup({
-        strategy = 'toggleterm',
-        dap = true
-      })
-    end,
-  },
+  -- {
+  --   'stevearc/overseer.nvim',
+  --   config = function()
+  --     require('overseer').setup({
+  --       strategy = 'toggleterm',
+  --       dap = true
+  --     })
+  --   end,
+  -- },
 }

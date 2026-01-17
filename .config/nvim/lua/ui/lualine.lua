@@ -4,7 +4,7 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = {
       'tiagovla/scope.nvim',
-      'stevearc/overseer.nvim',
+      -- 'stevearc/overseer.nvim',
     },
     config = function()
       local function show_macro_recording()
