@@ -35,4 +35,7 @@ return {
   'dropbar_menu',
   'dap-view',
   'dap-repl',
+  'neotest-summary',
+  'neotest-output',
+  'neotest-output-panel',
 }
