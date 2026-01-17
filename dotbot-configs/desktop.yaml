@@ -17,6 +17,7 @@
           - md.obsidian.Obsidian  # Notetaking done good | https://obsidian.md/
           - com.visualstudio.code  # One day nvim will be good for debugging | https://code.visualstudio.com/
           - io.github.zen_browser.zen  # Custom Firefox layer | https://zen-browser.app/
+          - it.mijorus.gearlever  # AppImage manager | https://github.com/mijorus/gearlever
       - cargo: [systemctl-tui]
       - if:
           cond: '[[ "$DESKTOP_SESSION" != "kde" ]]'

@@ -89,9 +89,10 @@ window-rule {
 }
 
 // Fix for wezterm window size misbehaving
+// Unnecessary in latest nightly builds
 window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
+    // default-column-width {}
 }
 
 // Apps that should open floating
