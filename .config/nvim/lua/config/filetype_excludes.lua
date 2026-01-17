@@ -4,8 +4,6 @@ return {
   'Trouble',
   'trouble',
   'help',
-  'DressingSelect',
-  'DressingInput',
   'NvimTree',
   'neo-tree',
   'mason',

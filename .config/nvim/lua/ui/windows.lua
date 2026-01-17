@@ -70,7 +70,6 @@ return {
         excluded_ft = {
           'telescopePrompt',
           'TelescopeResults',
-          'DressingSelect',
           'mason',
           'null-ls-info',
           'lazy',

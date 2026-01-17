@@ -121,11 +121,11 @@ return {
           ft = 'diff',
           size = { width = 0.4 },
         },
-        -- {
-        --   title = 'Grug',
-        --   ft = 'grug-far',
-        --   size = { width = 88 },
-        -- },
+        {
+          title = 'Grug',
+          ft = 'grug-far',
+          size = { width = 88 },
+        },
         {
           ft = 'OverseerList',
           title = 'Task List',
@@ -174,25 +174,6 @@ return {
     'OXY2DEV/helpview.nvim',
     lazy = false,
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
-  },
-  {
-    'stevearc/dressing.nvim',
-    config = function()
-      require('dressing').setup({
-        input = {
-          win_options = {
-            winhighlight = 'NormalFloat:Normal,FloatBorder:Normal,FloatTitle:Normal,CursorLine:Normal',
-          },
-          border = 'single',
-          override = function(conf)
-            conf.col = -1
-            conf.row = 0
-            return conf
-          end,
-          -- border = 'none',
-        },
-      })
-    end,
   },
   {
     'nvzone/menu',
