@@ -71,16 +71,6 @@ return {
         },
         'Trouble',
         {
-          ft = 'dap-repl',
-          title = 'REPL',
-          size = { height = 0.3 },
-        },
-        {
-          ft = 'dapui_console',
-          title = 'Console',
-          size = { height = 0.3 },
-        },
-        {
           ft = 'dap-view',
           title = false,
           size = { height = 0.35 },
@@ -132,24 +122,9 @@ return {
           size = { width = 50 },
         },
         {
-          ft = 'dapui_scopes',
-          title = 'Scopes',
-          size = { width = 80, height = 0.40 },
-        },
-        {
-          ft = 'dapui_breakpoints',
-          title = 'Breakpoints',
-          size = { width = 50, height = 0.1 },
-        },
-        {
-          ft = 'dapui_watches',
-          title = 'Watches',
-          size = { width = 50, height = 0.15 },
-        },
-        {
-          ft = 'dapui_stacks',
-          title = 'Stacks',
-          size = { width = 50, height = 0.35 },
+          title = 'Tests',
+          ft = 'neotest-summary',
+          size = { width = 36 },
         },
       },
       left = {},

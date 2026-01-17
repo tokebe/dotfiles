@@ -4,18 +4,18 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   -- group = 'UserDefLoadOnce',
   desc = 'Prevent coloscheme clearing self-defined DAP icon colors',
   callback = function()
-    vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef' })
-    vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939' })
-    vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379' })
+    vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#3e8fb0' })
+    vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#eb6f92' })
+    vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#f6c177' })
   end,
 })
 
-vim.fn.sign_define('DapBreakpoint', { text = ' ', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 vim.fn.sign_define('DapBreakpointCondition', { text = '󱄶 ', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 vim.fn.sign_define('DapBreakpointRejected', { text = ' ', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 vim.fn.sign_define('DapLogPoint', { text = '󰚢 ', texthl = 'DapLogPoint', numhl = 'DapLogPoint' })
 
-vim.fn.sign_define('DapStopped', { text = ' ', texthl = 'DapStopped', numhl = 'DapStopped' })
+vim.fn.sign_define('DapStopped', { text = ' ', texthl = 'DapStopped', numhl = 'DapStopped' })
 
 return {
   {
@@ -39,7 +39,14 @@ return {
         command = 'tmux',
         args = { 'split-pane', '-l', '30%' },
       }
-      require('dap').defaults.fallback.switchbuf = 'usevisible,usetab,newtab'
+
+      -- Fix some weirdness with dap focus switch
+      dap.defaults.fallback.switchbuf = 'usevisible,usetab,newtab'
+
+      -- Open dap-view whenever a debug session starts
+      dap.listeners.before.launch.dap_view = function()
+        require('dap-view').open()
+      end
 
       -- TODO: Set up keybinds for special commands
       -- Persistent breakpoints. Have to use its commands for them to persist.
@@ -87,6 +94,16 @@ return {
         end,
       }
 
+      -- Override default python launch config so it uses the above debugpy adapter
+      dap.configurations.python = {
+        {
+          type = 'debugpy',
+          request = 'launch',
+          name = 'Launch current file',
+          program = '${file}',
+        },
+      }
+
       -- Provides a decent UI, might switch back to dap-ui for toggleable breakpoints
       local dapview = require('dap-view')
       dapview.setup({
@@ -118,6 +135,9 @@ return {
       vim.keymap.set('n', '<Leader>bl', function()
         require('persistent-breakpoints.api').set_log_point()
       end, { desc = 'Set Logpoint' })
+      vim.keymap.set('n', '<Leader>bd', function()
+        require('persistent-breakpoints.api').clear_all_breakpoints()
+      end, { desc = 'Clear all breakpoints' })
     end,
   },
   {
@@ -135,8 +155,7 @@ return {
     dependencies = { 'mfussenegger/nvim-dap', 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('nvim-dap-virtual-text').setup({
-        all_references = true,
-        -- commented = true,
+        virt_lines = true,
       })
     end,
   },
