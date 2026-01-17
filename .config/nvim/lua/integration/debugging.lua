@@ -8,7 +8,7 @@ return {
       'nvim-neotest/nvim-nio',
       { 'jay-babu/mason-nvim-dap.nvim', dependencies = { 'williamboman/mason.nvim' } },
       'mfussenegger/nvim-dap-python',
-      'stevearc/overseer.nvim',
+      { 'stevearc/overseer.nvim', version = '^2.1.0' },
       'Weissle/persistent-breakpoints.nvim',
     },
     config = function()
@@ -28,27 +28,6 @@ return {
       require('persistent-breakpoints').setup({
         load_breakpoints_event = { 'BufReadPost' },
       })
-
-      -- TODO: overseer causing some errors, need to fix config
-      -- Overseer handles vscode style launch tasks
-      local overseer = require('overseer')
-      overseer.setup({
-        strategy = {
-          'toggleterm',
-          open_on_start = false,
-          use_shell = true,
-          auto_scroll = true,
-        },
-        task_list = {
-          bindings = {
-            ['<C-h>'] = false,
-            ['<C-l>'] = false,
-            ['<C-j>'] = false,
-            ['<C-k>'] = false,
-          },
-        },
-      })
-      require('dap.ext.vscode').json_decode = require('overseer.json').decode
 
       -- Should bridge *most* mason-installed adapters to nvim-dap
       require('mason-nvim-dap').setup({
