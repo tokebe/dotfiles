@@ -133,7 +133,7 @@ return {
 
           vim.keymap.set(
             'n',
-            '<Leader>tb',
+            '<Leader>Ob',
             '<CMD>Gitsigns toggle_current_line_blame<CR>',
             { desc = 'Toggle hover blame' }
           )

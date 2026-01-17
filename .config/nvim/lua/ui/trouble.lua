@@ -7,11 +7,6 @@ return {
   event = 'LspAttach',
   keys = {
     {
-      '<Leader>ta',
-      ':TroubleToggle<CR>',
-      desc = 'Toggle Trouble view',
-    },
-    {
       '<Leader>fq',
       ':Trouble quickfix<CR>',
       desc = 'Find quickfix',

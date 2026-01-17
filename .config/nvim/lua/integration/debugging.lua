@@ -48,7 +48,6 @@ return {
         require('dap-view').open()
       end
 
-      -- TODO: Set up keybinds for special commands
       -- Persistent breakpoints. Have to use its commands for them to persist.
       require('persistent-breakpoints').setup({
         load_breakpoints_event = { 'BufReadPost' },
@@ -94,6 +93,16 @@ return {
         end,
       }
 
+      -- Override default python launch config so it uses the above debugpy adapter
+      dap.configurations.python = {
+        {
+          type = 'debugpy',
+          request = 'launch',
+          name = 'Launch current file',
+          program = '${file}',
+        },
+      }
+
       -- Old node debug config, probably needs work
       -- dap.adapters['pwa-node'] = {
       --   type = 'server',
@@ -108,16 +117,6 @@ return {
       --     },
       --   },
       -- }
-
-      -- Override default python launch config so it uses the above debugpy adapter
-      dap.configurations.python = {
-        {
-          type = 'debugpy',
-          request = 'launch',
-          name = 'Launch current file',
-          program = '${file}',
-        },
-      }
 
       -- Provides a decent UI, might switch back to dap-ui for toggleable breakpoints
       local dapview = require('dap-view')
