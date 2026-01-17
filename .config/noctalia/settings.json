@@ -52,7 +52,7 @@
                     "enableScrollWheel": true,
                     "followFocusedScreen": false,
                     "groupedBorderOpacity": 1,
-                    "hideUnoccupied": false,
+                    "hideUnoccupied": true,
                     "iconScale": 0.8,
                     "id": "Workspace",
                     "labelMode": "none",
@@ -334,7 +334,7 @@
         "shortcuts": {
             "left": [
                 {
-                    "id": "WiFi"
+                    "id": "Network"
                 },
                 {
                     "id": "Bluetooth"
@@ -420,8 +420,8 @@
     "general": {
         "allowPanelsOnScreenWithoutBar": true,
         "animationDisabled": false,
-        "animationSpeed": 2,
-        "avatarImage": "/var/lib/AccountsService/icons/alter",
+        "animationSpeed": 1.5,
+        "avatarImage": "/home/alter/.face",
         "boxRadiusRatio": 1,
         "compactLockScreen": false,
         "dimmerOpacity": 0,
@@ -491,7 +491,7 @@
         "location": "bottom_right",
         "lowUrgencyDuration": 3,
         "monitors": [
-            "DP-2"
+            "DP-1"
         ],
         "normalUrgencyDuration": 5,
         "overlayLayer": true,
@@ -522,6 +522,7 @@
         ],
         "location": "bottom",
         "monitors": [
+            "DP-1"
         ],
         "overlayLayer": true
     },
