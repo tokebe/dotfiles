@@ -12,17 +12,17 @@ Running TODO list:
   - [ ] Now make it a robust plugin for others to use
 - [ ] Better control of edgy windows--hydra to resize or something? Send to buffer?
 - [ ] More snippets for different languages
-- [ ] Debugging
+- [x] Debugging
+  - [ ] A solid control scheme
   - [x] Breakpoints, inspection
-  - [ ] Persistent breakpoints (requires manual implementation, see https://github.com/mfussenegger/nvim-dap/issues/198)
+  - [ ] Persistent breakpoints (Just set up breakpoint keys using persistent-breakpoints commands)
   - [x] Possible vscode debug config support?
     - [x] Figure out how to show all tasks regardless of current file
   - [x] vscode task support? (See vs-tasks.nvim for this and launch support)
   - [x] javascript/other profiling
   - [x] fix statuscol -- stopped info not showing in own col
-  - [x] make debugging run in a hydra for ease-of-use
-  - [ ] toggle key for swapping term/repl
-  - [ ] maybe launch in tmux pane and then attach to (this would be incredibly complicated)?
+  - [x] toggle key for swapping term/repl
+  - [x] maybe launch in tmux pane and then attach to (this would be incredibly complicated)?
   - [x] kill process on debug stop
 - [ ] Fix overseer output not showing errors
 - [ ] Prevent unnamed buffer on all buffers closed -- show file finder instead
@@ -31,5 +31,6 @@ Running TODO list:
 - [ ] Disable diagnostics on insert?
 - [ ] Live file running for quicker iteration
 - [x] Fix auto-indent in python files when on line > ~300
+- [x] dressing.nvim -> snacks
 
 ## Other
