@@ -1,66 +1,4 @@
-local util = require('util')
 return {
-  -- {
-  --   'nvim-telescope/telescope.nvim',
-  --   branch = '0.1.x',
-  --   dependencies = {
-  --     { 'nvim-lua/plenary.nvim' },
-  --     { 'nvim-telescope/telescope-live-grep-args.nvim' }, -- ripgrep args
-  --     { 'LukasPietzschmann/telescope-tabs' },
-  --   },
-  --   config = function()
-  --     local telescope = require('telescope')
-  --     local actions = require('telescope.actions')
-  --     telescope.setup({
-  --       border = {},
-  --       pickers = {
-  --         colorscheme = {
-  --           enable_preview = true,
-  --         },
-  --         buffers = {
-  --           mappings = {
-  --             i = {
-  --               ['<Esc>'] = actions.close,
-  --               ['<tab>'] = 'select_default',
-  --             },
-  --           },
-  --         },
-  --       },
-  --       extensions = {
-  --         live_grep_args = {
-  --           auto_quoting = true,
-  --         },
-  --       },
-  --     })
-  --     telescope.load_extension('live_grep_args')
-  --     -- Set up dressing (ui enhancements)
-  --     require('dressing').setup({
-  --       input = {
-  --         border = 'none',
-  --       },
-  --       select = {
-  --         enabled = true,
-  --         backend = { 'fzf_lua', 'telescope', 'builtin', 'nui' },
-  --         fzf_lua = {
-  --           winopts = {
-  --             height = 0.5,
-  --             width = 0.5,
-  --           },
-  --         },
-  --       },
-  --     })
-  --   end,
-  -- },
-  -- {
-  --   'debugloop/telescope-undo.nvim',
-  --   dependencies = {
-  --     'nvim-lua/plenary.nvim',
-  --     'debugloop/telescope-undo.nvim',
-  --   },
-  --   config = function()
-  --     require('telescope').load_extension('undo')
-  --   end,
-  -- },
   {
     'ibhagwan/fzf-lua',
     dependencies = {
@@ -89,7 +27,7 @@ return {
         },
       })
       require('fzf-lua').register_ui_select(function(_, items)
-        local min_h, max_h = 0.15, 0.7
+        local min_h, max_h = 0.3, 0.7
         local h = #items / vim.o.lines
         if h < min_h then
           h = min_h
@@ -218,10 +156,10 @@ return {
         require('fzf-lua').keymaps({
           previewer = 'none',
           winopts = {
-              height = 0.3,
-              width = 0.9,
-              row = 0.9,
-          }
+            height = 0.3,
+            width = 0.9,
+            row = 0.9,
+          },
         })
       end, { desc = 'Search keymaps' })
     end,

@@ -94,6 +94,21 @@ return {
         end,
       }
 
+      -- Old node debug config, probably needs work
+      -- dap.adapters['pwa-node'] = {
+      --   type = 'server',
+      --   host = 'localhost',
+      --   port = '${port}',
+      --   executable = {
+      --     command = 'node',
+      --     args = {
+      --       -- require('mason-registry').get_package('js-debug-adapter'):get_install_path()
+      --       vim.fn.expand('$MASON/bin/js-debug-adapter') .. '/js-debug/src/dapDebugServer.js',
+      --       '${port}',
+      --     },
+      --   },
+      -- }
+
       -- Override default python launch config so it uses the above debugpy adapter
       dap.configurations.python = {
         {
@@ -160,78 +175,6 @@ return {
     end,
   },
 
-  -- {
-  --   'jay-babu/mason-nvim-dap.nvim',
-  --   dependencies = {
-  --     'williamboman/mason-lspconfig.nvim',
-  --     'mfussenegger/nvim-dap',
-  --   },
-  --   config = function()
-  --     require('mason-nvim-dap').setup({
-  --       automatic_installation = true,
-  --       ensure_installed = require('config.sources').dap,
-  --     })
-  --     local node_config = {
-  --       type = 'server',
-  --       host = 'localhost',
-  --       port = '${port}',
-  --       executable = {
-  --         command = 'node',
-  --         args = {
-  --           -- require('mason-registry').get_package('js-debug-adapter'):get_install_path()
-  --           vim.fn.expand('$MASON/bin/js-debug-adapter') .. '/js-debug/src/dapDebugServer.js',
-  --           '${port}',
-  --         },
-  --       },
-  --     }
-  --     require('dap').adapters['pwa-node'] = node_config
-  --   end,
-  -- },
-  -- {
-  --   'igorlfs/nvim-dap-view',
-  --   dependencies = {
-  --     'mfussenegger/nvim-dap',
-  --     'nvim-treesitter/nvim-treesitter',
-  --     'nvim-neotest/nvim-nio',
-  --   },
-  --   config = function()
-  --     local dapview = require('dap-view')
-  --     dapview.setup({
-  --       auto_toggle = true,
-  --       winbar = {
-  --         default_section = 'scopes',
-  --         controls = {
-  --           enabled = true,
-  --         },
-  --       },
-  --       windows = {
-  --         height = 0.35,
-  --       },
-  --     })
-  --
-  --     -- Create highlights for the types of breakpoints
-  --     vim.api.nvim_create_autocmd('ColorScheme', {
-  --       pattern = '*',
-  --       -- group = 'UserDefLoadOnce',
-  --       desc = 'Prevent coloscheme clearing self-defined DAP icon colors',
-  --       callback = function()
-  --         vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
-  --         vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939', bg = '#31353f' })
-  --         vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379', bg = '#31353f' })
-  --       end,
-  --     })
-  --
-  --     vim.fn.sign_define('DapBreakpoint', { text = ' ', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
-  --     vim.fn.sign_define(
-  --       'DapBreakpointCondition',
-  --       { text = '󱄶 ', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' }
-  --     )
-  --     vim.fn.sign_define('DapBreakpointRejected', { text = ' ', texthl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
-  --     vim.fn.sign_define('DapLogPoint', { text = '󰚢 ', texthl = 'DapLogPoint', numhl = 'DapLogPoint' })
-  --
-  --     vim.fn.sign_define('DapStopped', { text = ' ', texthl = 'DapStopped', numhl = 'DapStopped' })
-  --   end,
-  -- },
   -- {
   --   'stevearc/overseer.nvim',
   --   dependencies = {
