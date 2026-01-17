@@ -22,13 +22,12 @@ return {
     'igorlfs/nvim-dap-view',
     lazy = false,
     dependencies = {
-      'mfussenegger/nvim-dap',
       'nvim-treesitter/nvim-treesitter',
       'nvim-neotest/nvim-nio',
+      'mfussenegger/nvim-dap',
       { 'jay-babu/mason-nvim-dap.nvim', dependencies = { 'williamboman/mason.nvim' } },
-      'mfussenegger/nvim-dap-python',
-      { 'stevearc/overseer.nvim', version = '^2.1.0' },
       'Weissle/persistent-breakpoints.nvim',
+      { 'stevearc/overseer.nvim' },
     },
     config = function()
       -- FIX: ftmemo creates errors on opening repl, figure out how to suppress
