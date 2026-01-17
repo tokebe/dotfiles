@@ -55,13 +55,19 @@ return {
   },
   {
     'nvim-zh/colorful-winsep.nvim',
-    branch = 'alpha', -- main spontaneously started causing overlap problems
     event = { 'WinLeave' },
     config = function()
       require('colorful-winsep').setup({
-        symbols = { '─', '│', '┌', '┐', '└', '┘' },
         -- no_exec_files = require('config.filetype_excludes'),
-        no_exec_files = {
+        border = 'single',
+        animate = {
+          enabled = 'progressive',
+          progressive = {
+            vertical_delay = 10,
+            horizontal_delay = 1,
+          },
+        },
+        excluded_ft = {
           'telescopePrompt',
           'TelescopeResults',
           'DressingSelect',
@@ -72,6 +78,19 @@ return {
           'WhichKey',
           'dashboard',
           'dashboardpreview',
+        },
+        indicator_for_2wins = {
+          symbols = {
+            -- the meaning of left, down ,up, right is the position of separator
+            start_left = '🮥',
+            end_left = '🮥',
+            start_down = '🮧 ',
+            end_down = '🮧 ',
+            start_up = '🮦',
+            end_up = '🮦',
+            start_right = '🮤',
+            end_right = '🮤',
+          },
         },
       })
     end,
