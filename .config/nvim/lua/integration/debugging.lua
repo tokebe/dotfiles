@@ -109,6 +109,19 @@ return {
       vim.fn.sign_define('DapLogPoint', { text = '󰚢 ', texthl = 'DapLogPoint', numhl = 'DapLogPoint' })
 
       vim.fn.sign_define('DapStopped', { text = ' ', texthl = 'DapStopped', numhl = 'DapStopped' })
+
+      vim.keymap.set(
+        'n',
+        '<Leader>bb',
+        require('persistent-breakpoints.api').toggle_breakpoint,
+        { desc = 'Toggle breakpoint' }
+      )
+      vim.keymap.set('n', '<Leader>bc', function()
+        require('persistent-breakpoints.api').set_conditional_breakpoint()
+      end, { desc = 'Set conditional breakpoint' })
+      vim.keymap.set('n', '<Leader>bl', function()
+        require('persistent-breakpoints.api').set_log_point()
+      end, { desc = 'Set Logpoint' })
     end,
   },
   {
