@@ -19,7 +19,7 @@ return {
       vim.keymap.set({ 'n', 'v' }, '<Leader>ff', function()
         grug.open({
           prefills = {
-            filesFilter = filter.getFilter(),
+            filesFilter = '!' .. filter.getFilter(),
           },
         })
       end, { desc = 'Search within files' })
@@ -36,7 +36,7 @@ return {
         grug.open({
           engine = 'astgrep',
           prefills = {
-            filesFilter = filter.getFilter(),
+            filesFilter = '!' .. filter.getFilter(),
             flags = '',
           },
         })
