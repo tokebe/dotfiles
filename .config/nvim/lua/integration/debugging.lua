@@ -52,7 +52,7 @@ return {
       require('mason-nvim-dap').setup({
         ensure_installed = require('config.sources').dap,
         handlers = {},
-        automatic_installation = false,
+        automatic_installation = true,
       })
 
       -- VSCode introduced a stupid change where debug configs
