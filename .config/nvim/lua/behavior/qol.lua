@@ -20,7 +20,7 @@ return {
   },
   {
     'folke/snacks.nvim',
-    priority = 1000,
+    priority = 9999,
     lazy = false,
     config = function()
       local snacks = require('snacks')
@@ -182,6 +182,7 @@ return {
         mappings = {
           basic = true,
           option_toggle_prefix = [[<Leader>o]],
+
           windows = true,
           move_with_alt = true,
         },
