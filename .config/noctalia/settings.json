@@ -229,6 +229,7 @@
                 },
                 {
                     "hideWhenZero": false,
+                    "hideWhenZeroUnread": false,
                     "id": "NotificationHistory",
                     "showUnreadBadge": true
                 },
@@ -255,6 +256,15 @@
                 {
                     "displayMode": "onhover",
                     "id": "Network"
+                },
+                {
+                    "deviceNativePath": "",
+                    "displayMode": "onhover",
+                    "hideIfNotDetected": true,
+                    "id": "Battery",
+                    "showNoctaliaPerformance": false,
+                    "showPowerProfiles": true,
+                    "warningThreshold": 30
                 },
                 {
                     "colorizeDistroLogo": false,
@@ -487,6 +497,7 @@
         "backgroundOpacity": 1,
         "criticalUrgencyDuration": 10,
         "enableKeyboardLayoutToast": true,
+        "enableMediaToast": false,
         "enabled": true,
         "location": "bottom_right",
         "lowUrgencyDuration": 3,
@@ -573,7 +584,7 @@
         "showHeader": false,
         "showNumberLabels": true
     },
-    "settingsVersion": 40,
+    "settingsVersion": 41,
     "systemMonitor": {
         "cpuCriticalThreshold": 90,
         "cpuPollingInterval": 3000,
@@ -635,7 +646,7 @@
         "wifiDetailsViewMode": "grid"
     },
     "wallpaper": {
-        "directory": "/home/alter/OneDrive/wallpaper/desktop",
+        "directory": "/home/alter-mobile/Pictures/Wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "fillColor": "#000000",
