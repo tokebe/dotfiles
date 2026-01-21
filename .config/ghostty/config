@@ -65,6 +65,8 @@ gtk-quick-terminal-namespace = quick-terminal-overlay
 quick-terminal-position = center
 quick-terminal-size = 30%,60%
 
+# custom-shader = ./shaders/glow-rgbsplit-twitchy.glsl
+# custom-shader = ./shaders/bettercrt.glsl
 custom-shader = ./shaders/cursor_blaze.glsl
 
 keybind = global:cmd+backquote=toggle_quick_terminal
