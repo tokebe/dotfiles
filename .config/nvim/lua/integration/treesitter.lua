@@ -187,7 +187,7 @@ return {
         max_lines = 3,
         multiwindow = false,
       })
-      vim.keymap.set('n', '<Leader>tC', '<CMD>TSContext toggle<CR>', { desc = 'Toggle top context' })
+      vim.keymap.set('n', '<Leader>otx', '<CMD>TSContext toggle<CR>', { desc = 'Toggle top context' })
       vim.api.nvim_create_autocmd('UIEnter', {
         command = 'TSContext enable',
         desc = 'Ensure re-opened buffer has context enabled.',

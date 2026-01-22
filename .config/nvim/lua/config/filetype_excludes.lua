@@ -23,6 +23,7 @@ return {
   'fzflua',
   'fzflua_backdrop',
   'OverseerList',
+  'OverseerOutput',
   'grug-far',
   'undotree',
   'blink-cmp-menu',

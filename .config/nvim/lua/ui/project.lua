@@ -218,6 +218,8 @@ return {
         },
       })
       require('dap.ext.vscode').json_decode = require('overseer.json').decode
+      vim.keymap.set('n', '<Leader>tv', '<CMD>OverseerToggle<CR>', { desc = 'Task view' })
+      vim.keymap.set('n', '<Leader>st', '<CMD>OverseerRun<CR>', { desc = 'Select task to run' })
     end,
   },
 }

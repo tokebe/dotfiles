@@ -13,17 +13,17 @@ vim.keymap.set('v', '<Leader>gf', function()
 end, { desc = 'Format selection' })
 
 -- Manage Lazy plugins
-vim.keymap.set('n', '<Leader>op', ':Lazy<CR>', {
+vim.keymap.set('n', '<Leader>op', '<CMD>Lazy<CR>', {
   desc = 'Manage plugins with Lazy',
 })
 
 -- Buffer/tab management
 vim.keymap.set('n', '<lt>', '<CMD>bprev<CR>', {
-  desc = 'Next buffer',
+  desc = 'Previous buffer',
   silent = true,
 })
 vim.keymap.set('n', '>', '<CMD>bnext<CR>', {
-  desc = 'Previous buffer',
+  desc = 'Next buffer',
   silent = true,
 })
 vim.keymap.set('n', '<A-lt>', '<CMD>tabprev<CR>', {
@@ -98,7 +98,7 @@ vim.keymap.set('n', '<Leader>j', 'g,', { desc = 'Go to next change' })
 -- Redo
 vim.keymap.set('n', 'U', '<C-r>')
 
-vim.keymap.set('n', '<Leader>dd', function()
+vim.keymap.set('n', '<Leader>sd', function()
   if vim.opt.diff:get() then
     vim.cmd('windo diffoff')
   else

@@ -13,7 +13,7 @@ return {
     },
     keys = {
       {
-        '<Leader>Tt',
+        '<Leader>tt',
         function()
           require('neotest').summary.toggle()
         end,
@@ -21,7 +21,7 @@ return {
         desc = 'Toggle Tests panel',
       },
       {
-        '<Leader>Tr',
+        '<Leader>tr',
         function()
           require('neotest').run.run()
         end,
@@ -29,7 +29,7 @@ return {
         desc = 'Run nearest test',
       },
       {
-        '<Leader>TR',
+        '<Leader>tR',
         function()
           require('neotest').run.run(vim.fn.expand('%'))
         end,
@@ -37,7 +37,7 @@ return {
         desc = 'Run all tests in file',
       },
       {
-        '<Leader>Tl',
+        '<Leader>tl',
         function()
           require('neotest').run.run_last()
         end,
@@ -45,7 +45,7 @@ return {
         desc = 'Re-run last test',
       },
       {
-        '<Leader>TL',
+        '<Leader>tL',
         function()
           require('neotest').run.run_last({ strategy = 'dap' })
         end,
@@ -53,7 +53,7 @@ return {
         desc = 'Debug last test',
       },
       {
-        '<Leader>Td',
+        '<Leader>td',
         function()
           require('neotest').run.run({ strategy = 'dap' })
         end,
@@ -61,7 +61,7 @@ return {
         desc = 'Debug nearest test',
       },
       {
-        '<Leader>TD',
+        '<Leader>tD',
         function()
           require('neotest').run.run({ vim.fn.expand('%'), strategy = 'dap' })
         end,
@@ -69,7 +69,7 @@ return {
         desc = 'Debug all tests in file',
       },
       {
-        '<Leader>Ts',
+        '<Leader>ts',
         function()
           require('neotest').run.stop(vim.fn.expand('%'))
         end,
@@ -77,15 +77,7 @@ return {
         desc = 'Stop all active tests in file',
       },
       {
-        '<Leader>Tt',
-        function()
-          require('neotest').summary.toggle()
-        end,
-        mode = { 'n' },
-        desc = 'Toggle Tests panel',
-      },
-      {
-        '<Leader>To',
+        '<Leader>to',
         function()
           require('neotest').output_panel.toggle()
         end,
@@ -96,7 +88,7 @@ return {
     config = function()
       require('neotest').setup({
         adapters = {
-          require('neotest-python')({ dap = { justMyCode = true, console = 'externalTerminal' } }),
+          require('neotest-python')({ dap = { justMyCode = true, console = 'integratedTerminal' } }),
         },
         icons = {
           running_animated = { '', '', '', '', '', '' },

@@ -113,7 +113,7 @@ return {
         debounce_delay = 500,
       })
 
-      vim.keymap.set('n', '<Leader>oa', ':ASToggle<CR>', {
+      vim.keymap.set('n', '<Leader>ota', ':ASToggle<CR>', {
         desc = 'Toggle autosave',
       })
     end,
@@ -181,7 +181,7 @@ return {
         },
         mappings = {
           basic = true,
-          option_toggle_prefix = [[<Leader>o]],
+          option_toggle_prefix = [[<Leader>ot]],
 
           windows = true,
           move_with_alt = true,

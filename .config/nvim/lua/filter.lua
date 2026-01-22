@@ -85,7 +85,7 @@ return {
     vim.g.PersistentFilterEnabled = true -- enabled by default
 
     vim.keymap.set('n', '<Leader>of', setFilter, { desc = 'Set persistent glob filter' })
-    vim.keymap.set('n', '<Leader>oF', toggleFilter, { desc = 'Toggle persistent glob filter' })
+    vim.keymap.set('n', '<Leader>otf', toggleFilter, { desc = 'Toggle persistent glob filter' })
   end,
   getFilter = getFilter,
 }
