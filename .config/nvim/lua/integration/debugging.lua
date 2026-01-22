@@ -42,7 +42,7 @@ return {
       }
 
       -- Fix some weirdness with dap focus switch
-      dap.defaults.fallback.switchbuf = 'usevisible,usetab,newtab'
+      -- dap.defaults.fallback.switchbuf = 'usevisible,usetab,newtab'
 
       -- Open dap-view whenever a debug session starts
       dap.listeners.before.launch.dap_view = function()
@@ -87,7 +87,8 @@ return {
               config.pythonPath = path .. '/bin/python'
             end
           end
-
+          -- Don't wait for subprocesses
+          config.subProcess = false
           -- Force config to use integratedTerminal
           config.console = 'integratedTerminal'
           on_config(config)
