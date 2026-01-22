@@ -2,6 +2,7 @@ return {
   {
     'luukvbaal/statuscol.nvim',
     -- commit = 'd9ee308',
+    dependencies = { 'nvzone/menu' },
     config = function()
       local builtin = require('statuscol.builtin')
 
@@ -64,6 +65,18 @@ return {
                 click = 'v:lua.ScSa',
               },
               { text = { builtin.foldfunc, ' ' }, click = 'v:lua.ScFa', maxwidth = 1, colwidth = 1 },
+            },
+            clickhandlers = {
+              Lnum = function(args)
+                if args.button == 'l' then
+                  vim.cmd('PBToggleBreakpoint')
+                end
+              end,
+              gitsigns = function(args)
+                if args.button == 'l' then
+                  require('menu').open('gitsigns')
+                end
+              end,
             },
           })
         end,

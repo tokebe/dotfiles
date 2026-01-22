@@ -69,6 +69,11 @@ return {
             return vim.api.nvim_win_get_config(win).relative == ''
           end,
         },
+        {
+          ft = 'OverseerOutput',
+          title = 'Task Output',
+          size = { height = 0.2 },
+        },
         'Trouble',
         {
           ft = 'dap-view',
@@ -119,7 +124,7 @@ return {
         {
           ft = 'OverseerList',
           title = 'Task List',
-          size = { width = 50 },
+          size = { width = 36 },
         },
         {
           title = 'Tests',
@@ -153,30 +158,136 @@ return {
   {
     'nvzone/menu',
     dependencies = { 'nvzone/volt', 'nvzone/minty' },
-    keys = {
-      {
-        '<C-t>',
-        function()
-          require('menu').open('default')
-        end,
-        mode = 'n',
-        desc = 'Open context menu',
-      },
-      {
-        '<RightMouse>',
-        function()
-          require('menu.utils').delete_old_menus()
-          vim.cmd('aunmenu PopUp') -- prevent builtin right mouse PopUp
+    config = function()
+      -- Add some defaults
+      local default = require('menus.default')
+      table.insert(default, 5, {
+        name = '󰙨  Test Actions',
+        hl = 'Exblue',
+        items = {
+          {
+            rtxt = '<Leader>Tr',
+            cmd = function()
+              require('neotest').run.run()
+            end,
+            name = 'Run nearest test',
+          },
+          {
+            rtxt = '<Leader>TR',
+            cmd = function()
+              require('neotest').run.run(vim.fn.expand('%'))
+            end,
+            name = 'Run all tests in file',
+          },
+          { name = 'separator' },
+          {
+            rtxt = '<Leader>Tl',
+            cmd = function()
+              require('neotest').run.run_last()
+            end,
+            name = 'Re-run last test',
+          },
+          {
+            rtxt = '<Leader>TL',
+            cmd = function()
+              require('neotest').run.run_last({ strategy = 'dap' })
+            end,
+            name = 'Debug last test',
+          },
+          { name = 'separator' },
+          {
+            rtxt = '<Leader>Td',
+            cmd = function()
+              require('neotest').run.run({ strategy = 'dap' })
+            end,
+            name = 'Debug nearest test',
+          },
+          {
+            rtxt = '<Leader>TD',
+            cmd = function()
+              require('neotest').run.run({ vim.fn.expand('%'), strategy = 'dap' })
+            end,
+            name = 'Debug all tests in file',
+          },
+          { name = 'separator' },
+          {
+            rtxt = '<Leader>Ts',
+            cmd = function()
+              require('neotest').run.stop(vim.fn.expand('%'))
+            end,
+            name = 'Stop all active tests in file',
+          },
+          { name = 'separator' },
+          {
+            rtxt = '<Leader>Tt',
+            cmd = function()
+              require('neotest').summary.toggle()
+            end,
+            name = 'Toggle Tests panel',
+          },
+          {
+            rtxt = '<Leader>To',
+            cmd = function()
+              require('neotest').output_panel.toggle()
+            end,
+            name = 'Toggle test output panel',
+          },
+        },
+      })
 
-          vim.cmd.exec('"normal! \\<RightMouse>"')
+      table.insert(default, 6, {
+        name = '  Breakpoint Actions',
+        hl = 'Exblue',
+        items = {
+          {
+            name = 'Toggle breakpoint',
+            cmd = 'PBToggleBreakpoint',
+            rtxt = 'b',
+          },
+          {
+            name = 'Set conditional breakpoint',
+            cmd = 'PBSetConditionalBreakpoint',
+            rtxt = 'c',
+          },
+          {
+            name = 'Set logpoint',
+            cmd = 'PBSetLogpoint',
+            rtxt = 'l',
+          },
+          {
+            name = 'Clear Breakpoints',
+            cmd = 'PBClearAllBreakpoints',
+            rtxt = 'd',
+          },
+        },
+      })
 
-          -- clicked buf
-          local buf = vim.api.nvim_win_get_buf(vim.fn.getmousepos().winid)
-          local options = vim.bo[buf].ft == 'NvimTree' and 'nvimtree' or 'default'
+      local handle_menu = function(mouse)
+        require('menu.utils').delete_old_menus()
+        vim.cmd('aunmenu PopUp') -- prevent builtin right mouse PopUp
 
-          require('menu').open(options, { mouse = true })
-        end,
-      },
+        vim.cmd.exec('"normal! \\<RightMouse>"')
+
+        -- clicked buf
+        local buf = vim.api.nvim_win_get_buf(vim.fn.getmousepos().winid)
+        local options = vim.bo[buf].ft == 'NvimTree' and 'nvimtree' or 'default'
+
+        require('menu').open(options, { mouse = mouse })
+      end
+
+      vim.keymap.set('n', '<RightMouse>', function()
+        handle_menu(true)
+      end)
+      vim.keymap.set('n', '<C-t>', function()
+        handle_menu(false)
+      end, { desc = 'Open context menu' })
+    end,
+  },
+  {
+    'nvzone/showkeys',
+    cmd = 'ShowkeysToggle',
+    opts = {
+      maxkeys = 5,
     },
   },
 }

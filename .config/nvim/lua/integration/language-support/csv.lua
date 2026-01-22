@@ -8,7 +8,7 @@ return {
           display_mode = 'highlight',
         },
       })
-      vim.keymap.set('n', '<Leader>tc', function()
+      vim.keymap.set('n', '<Leader>otS', function()
         csv.toggle()
         vim.opt.wrap = not vim.opt.wrap
       end, { desc = 'Toggle csv view' })

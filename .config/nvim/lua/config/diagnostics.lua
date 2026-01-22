@@ -84,7 +84,7 @@ vim.diagnostic.handlers.signs = {
   end,
 }
 
-vim.keymap.set('n', '<Leader>td', function()
+vim.keymap.set('n', '<Leader>otD', function()
   local current_config = vim.diagnostic.config()
   if current_config == nil then
     return
@@ -103,6 +103,6 @@ vim.keymap.set('n', '<Leader>td', function()
   end
 end, { silent = true, noremap = true, desc = 'Toggle detailed diagnostics' })
 
-vim.keymap.set('n', '<Leader>od', function()
+vim.keymap.set('n', '<Leader>otd', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { silent = true, noremap = true, desc = 'Toggle LSP diagnostics' })

@@ -54,18 +54,8 @@ return {
       vim.cmd('colorscheme ' .. colorscheme)
       require('transparent').setup({})
 
-      vim.keymap.set('n', '<Leader>ot', ':TransparentToggle<CR>', {
+      vim.keymap.set('n', '<Leader>ott', ':TransparentToggle<CR>', {
         desc = 'Toggle transparent background',
-      })
-
-      vim.keymap.set('n', '<Leader>sd', function()
-        if vim.o.background == 'dark' then
-          vim.o.background = 'light'
-        else
-          vim.o.background = 'dark'
-        end
-      end, {
-        desc = 'Set dark or light mode',
       })
     end,
   },
