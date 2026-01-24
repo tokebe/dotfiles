@@ -41,7 +41,8 @@
         "marginVertical": 9,
         "monitors": [
             "DP-2",
-            "DP-1"
+            "DP-1",
+            "eDP-1"
         ],
         "outerCorners": true,
         "position": "bottom",
@@ -272,6 +273,22 @@
                     "id": "Network"
                 },
                 {
+                    "deviceNativePath": "",
+                    "displayMode": "alwaysShow",
+                    "hideIfIdle": false,
+                    "hideIfNotDetected": true,
+                    "id": "Battery",
+                    "showNoctaliaPerformance": false,
+                    "showPowerProfiles": true,
+                    "warningThreshold": 30
+                },
+                {
+                    "defaultSettings": {
+                        "chargeThreshold": 80
+                    },
+                    "id": "plugin:battery-threshold"
+                },
+                {
                     "colorizeDistroLogo": false,
                     "colorizeSystemIcon": "none",
                     "customIconPath": "",
@@ -496,7 +513,7 @@
     "nightLight": {
         "autoSchedule": true,
         "dayTemp": "6000",
-        "enabled": true,
+        "enabled": false,
         "forced": false,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
@@ -602,7 +619,7 @@
         "diskCriticalThreshold": 100,
         "diskPollingInterval": 3000,
         "diskWarningThreshold": 80,
-        "enableDgpuMonitoring": true,
+        "enableDgpuMonitoring": false,
         "externalMonitor": "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor",
         "gpuCriticalThreshold": 85,
         "gpuPollingInterval": 3000,
