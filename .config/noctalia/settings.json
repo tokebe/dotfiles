@@ -283,12 +283,6 @@
                     "warningThreshold": 30
                 },
                 {
-                    "defaultSettings": {
-                        "chargeThreshold": 80
-                    },
-                    "id": "plugin:battery-threshold"
-                },
-                {
                     "colorizeDistroLogo": false,
                     "colorizeSystemIcon": "none",
                     "customIconPath": "",
@@ -512,8 +506,8 @@
     },
     "nightLight": {
         "autoSchedule": true,
-        "dayTemp": "6000",
-        "enabled": false,
+        "dayTemp": "6500",
+        "enabled": true,
         "forced": false,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
