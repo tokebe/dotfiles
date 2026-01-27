@@ -14,7 +14,7 @@ return {
   'dashboard',
   'snacks_dashboard',
   'dashboardpreview',
-  -- '',
+  '',
   'noice',
   'toggleterm',
   'spectre_panel',
@@ -39,4 +39,6 @@ return {
   'neotest-summary',
   'neotest-output',
   'neotest-output-panel',
+  'persistentfilterdata',
+  'smear-cursor',
 }

@@ -18,7 +18,7 @@ local function setFilter()
     enter = true,
     focusable = true,
     border = {
-      style = 'rounded',
+      style = 'single',
       text = {
         top = NuiText(' File Search Glob Filter ', 'Normal'),
         top_align = 'center',
