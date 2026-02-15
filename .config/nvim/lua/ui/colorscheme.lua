@@ -14,6 +14,7 @@ return {
       'xero/evangelion.nvim',
       'wheat-thin-wiens/rei.nvim',
       'thedenisnikulin/vim-cyberpunk',
+      'kungfusheep/mfd.nvim',
       -- Persistent colorscheme
       'raddari/last-color.nvim',
       -- Toggleable background transparency

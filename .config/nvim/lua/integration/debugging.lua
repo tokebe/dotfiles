@@ -165,7 +165,7 @@ return {
       vim.keymap.set('n', '<Leader>dC', dap.run_to_cursor, { desc = 'Continue to cursor' })
       vim.keymap.set('n', '<Leader>ds', dap.terminate, { desc = 'Stop' })
       vim.keymap.set('n', '<Leader>dr', dap.restart, { desc = 'Restart' })
-      vim.keymap.set('n', '<Leader>df', '<CMD>FzfLua dap_breakpoints', { desc = 'Find breakpoints' })
+      vim.keymap.set('n', '<Leader>df', '<CMD>FzfLua dap_breakpoints<CR>', { desc = 'Find breakpoints' })
       vim.keymap.set('n', '<Leader>dj', dap.step_over, { desc = 'Step over' })
       vim.keymap.set('n', '<Leader>dl', dap.step_into, { desc = 'Step into' })
       vim.keymap.set('n', '<Leader>dh', dap.step_out, { desc = 'Step out' })
