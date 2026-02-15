@@ -42,7 +42,7 @@ def niri_cmd(*command: str) -> CompletedProcess[str]:
 def handle_overview(_event: dict[str, Any]) -> None:
     # return
     _ = subprocess.run(
-        ["qs -c $HOME/.config/quickshell/noctalia-shell/ ipc call dock toggle"],
+        ["qs ipc call dock toggle"],
         shell=True,
     )
 

@@ -2,6 +2,17 @@
 
 Things this repo needs, basically.
 
+## ZSH Revamp
+
+- NO CONFIG FRAMEWORK
+- [antidote](https://antidote.sh/) for plugin mangement
+- Fzf integration for file completion, command history
+- A bunch of plugins, basically
+- P10k with highly custom config for prompt
+- Break files up for easier organization (variables, aliases, plugins, config)
+- magic-enter to display a dashboard
+- tab-enter to fzf file to edit with nvim/open with selector (gum?)?
+
 ## NVIM
 
 Running TODO list:
