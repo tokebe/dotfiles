@@ -1,0 +1,10 @@
+# Bootstrap Antidote
+if [ ! -d "${ZDOTDIR:-$HOME}/.antidote" ]; then
+  >&2 printf '\033[33mshell\033[0m: fetching antidote...'
+  if command -v git >/dev/null 2>&1; then
+    git clone --depth=1 https://github.com/mattmc3/antidote.git "${ZDOTDIR:-$HOME}/.antidote"
+  else
+    >&2 printf '\033[33mshell\033[0m: please install git.'
+    return 1
+  fi
+fi

@@ -1,32 +1,12 @@
 ---
-- clean: ["~"]
+- clean: ['~']
 - create: [~/Applications, ~/Downloads, ~/Projects]
 - shell:
     - description: Ensure wezterm fontsize config file
-      command:
-        test -f ".config/wezterm/fontsize.lua" || cp .config/wezterm/fontsize-default.lua
+      command: test -f ".config/wezterm/fontsize.lua" || cp .config/wezterm/fontsize-default.lua
         .config/wezterm/fontsize.lua || true
       quiet: true
 - link:
-    # zsh
-    ~/.zshrc:
-      path: zsh/.zshrc
-      relink: true
-    ~/.zshenv:
-      path: zsh/.zshenv
-      relink: true
-    ~/.zprofile:
-      path: zsh/.zprofile
-      relink: true
-    ~/.p10k.zsh:
-      path: zsh/.p10k.zsh
-      relink: true
-    ~/.zfunc:
-      path: zsh/.zfunc
-      relink: true
-    ~/.batman:
-      path: zsh/.batman
-      relink: true
     # tmux
     ~/.tmux/plugins/tpm:
       path: tmux/tpm
@@ -43,3 +23,4 @@
       glob: true
       path: home/*
       relink: true
+      prefix: '.'
