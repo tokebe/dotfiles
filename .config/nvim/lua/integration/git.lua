@@ -2,24 +2,6 @@ local util = require('util')
 return {
   -- Tools
   {
-    'NeogitOrg/neogit',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'sindrets/diffview.nvim',
-      'ibhagwan/fzf-lua',
-    },
-    config = function()
-      local neogit = require('neogit')
-      neogit.setup({
-        graph_style = 'unicode',
-        disable_insert_on_commit = true,
-        integrations = { fzf_lua = true },
-      })
-      vim.keymap.set('n', '<Leader>gg', '<CMD>Neogit cwd=%:p:h<CR>', { desc = 'Open neogit (current file repo)' })
-      vim.keymap.set('n', '<Leader>gG', '<CMD>Neogit<CR>', { desc = 'Open neogit (cwd repo)' })
-    end,
-  },
-  {
     'linrongbin16/gitlinker.nvim',
     config = function()
       require('gitlinker').setup()

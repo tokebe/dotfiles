@@ -61,7 +61,7 @@ return {
         -- no_exec_files = require('config.filetype_excludes'),
         border = 'single',
         animate = {
-          enabled = 'progressive',
+          enabled = false,
           progressive = {
             vertical_delay = 10,
             horizontal_delay = 1,
