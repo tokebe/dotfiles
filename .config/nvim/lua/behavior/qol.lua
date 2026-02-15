@@ -263,10 +263,10 @@ return {
   --   opts = { pattern = '*' },
   --   dependencies = { 'nvim-treesitter/nvim-treesitter' },
   -- },
-  {
-    'Faria22/ftmemo.nvim',
-    config = function()
-      require('ftmemo').setup()
-    end,
-  },
+  -- {
+  --   'Faria22/ftmemo.nvim',
+  --   config = function()
+  --     require('ftmemo').setup()
+  --   end,
+  -- },
 }
