@@ -65,7 +65,7 @@ binds {
 
     // Super+Alt+L repeat=false { spawn "swaylock"; }
     // Super+Alt+L repeat=false { spawn "dms" "ipc" "call" "lock" "lock"; }
-    Super+Alt+L repeat=false hotkey-overlay-title="Lock screen" { spawn-sh "qs -c ~/.config/quickshell/noctalia-shell/ ipc call lockScreen lock";}
+    Super+Alt+L repeat=false hotkey-overlay-title="Lock screen" { spawn-sh "qs ipc call lockScreen lock";}
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -97,10 +97,10 @@ binds {
     XF86Display { toggle-overview; }
     // disabled because it seems to break wifi when used
     // XF86WLAN { spawn-sh "qs -c ~/.config/quickshell/noctalia-shell/ ipc call wifi togglePanel"; }
-    XF86NotificationCenter { spawn-sh "qs -c ~/.config/quickshell/noctalia-shell/ ipc call settings toggle"; }
+    XF86NotificationCenter { spawn-sh "qs ipc call settings toggle"; }
     // XF86PickupPhone { spawn-sh "qs -c ~/.config/quickshell/noctalia-shell/ ipc call bluetooth togglePanel"; }
     // XF86HangupPhone
-    XF86Favorites { spawn-sh "qs -c ~/.config/quickshell/noctalia-shell/ ipc call controlCenter toggle"; }
+    XF86Favorites { spawn-sh "qs ipc call controlCenter toggle"; }
 
     Mod+Return { toggle-overview; }
 

@@ -4,10 +4,10 @@ package_updates=$(dnf check-upgrade -q | grep -c '^[a-z0-9]')
 brew_updates=$(brew upgrade -n 2>/dev/null | sed -nE 's/.*([0-9]+) outdated packages:/\1/p')
 flatpak_updates=$(yes no | flatpak update | grep -e '^\s*[0-9+]\.' | tail -1 | sed -nE 's/^\s([0-9]+)\..+/\1/p')
 
-noctalia_repo="noctalia-dev/noctalia-shell"
-noctalia_dir="$HOME/.config/quickshell/noctalia-shell"
-noctalia_current_tag=$(cd "$noctalia_dir" && git describe --exact-match --tags)
-noctalia_latest_tag=$(curl -sL -m 15 --connect-timeout 5 https://api.github.com/repos/"$noctalia_repo"/releases/latest | grep 'tag_name' | sed -E 's/.*"([^"]+)".*/\1/' || echo "$noctalia_current_tag")
+# shellcheck source=./vars
+source "$(dirname "${BASH_SOURCE[0]}")/vars"
+noctalia_current_tag=$(cd "$shell_dir" && git describe --exact-match --tags)
+noctalia_latest_tag=$(curl -sL -m 15 --connect-timeout 5 https://api.github.com/repos/"$shell_repo"/releases/latest | grep 'tag_name' | sed -E 's/.*"([^"]+)".*/\1/' || echo "$noctalia_current_tag")
 noctalia_updates=0; [ "$noctalia_current_tag" != "$noctalia_latest_tag" ] && noctalia_updates=1
 
 did_updates=0
