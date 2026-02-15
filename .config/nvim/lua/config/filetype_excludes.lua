@@ -36,9 +36,11 @@ return {
   'dropbar_menu',
   'dap-view',
   'dap-repl',
+  'dap-view-term',
   'neotest-summary',
   'neotest-output',
   'neotest-output-panel',
   'persistentfilterdata',
   'smear-cursor',
+  'DiffviewFiles'
 }
