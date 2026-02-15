@@ -81,6 +81,7 @@
     - fx  # TUI JSON/YAML viewer | https://github.com/antonmedv/fx
     - jq  # CLI JSON transformer | https://github.com/jqlang/jq
     - jqp  # TUI for JQ | https://github.com/noahgorstein/jqp
+    - kiki-ki/tap/qo  # Query JSON/CSV/TSV with SQL | https://github.com/kiki-ki/go-qo
     # Dependencies
     - openssl  # Pyenv compatibility with linuxbrew
     - tcl-tk  # Python tkinter support
