@@ -6,12 +6,15 @@
         "clipboardWrapText": true,
         "customLaunchPrefix": "",
         "customLaunchPrefixEnabled": false,
+        "density": "default",
         "enableClipPreview": true,
         "enableClipboardHistory": true,
+        "enableSessionSearch": true,
         "enableSettingsSearch": true,
         "enableWindowsSearch": true,
         "iconMode": "tabler",
         "ignoreMouseInput": false,
+        "overviewLayer": false,
         "pinnedApps": [
         ],
         "position": "bottom_center",
@@ -122,41 +125,6 @@
                     "wheelUpdateText": false
                 },
                 {
-                    "iconColor": "none",
-                    "id": "WallpaperSelector"
-                },
-                {
-                    "colorizeSystemIcon": "none",
-                    "enableColorization": false,
-                    "hideMode": "alwaysExpanded",
-                    "icon": "refresh",
-                    "id": "CustomButton",
-                    "ipcIdentifier": "",
-                    "leftClickExec": "qs -c ~/.config/quickshell/nocatlia-shell/ ipc call wallpaper toggleAutomation",
-                    "leftClickUpdateText": true,
-                    "maxTextLength": {
-                        "horizontal": 10,
-                        "vertical": 10
-                    },
-                    "middleClickExec": "",
-                    "middleClickUpdateText": false,
-                    "parseJson": false,
-                    "rightClickExec": "",
-                    "rightClickUpdateText": false,
-                    "showIcon": true,
-                    "textCollapse": "",
-                    "textCommand": "",
-                    "textIntervalMs": 3000,
-                    "textStream": false,
-                    "wheelDownExec": "",
-                    "wheelDownUpdateText": false,
-                    "wheelExec": "",
-                    "wheelMode": "unified",
-                    "wheelUpExec": "",
-                    "wheelUpUpdateText": false,
-                    "wheelUpdateText": false
-                },
-                {
                     "compactMode": true,
                     "diskPath": "/",
                     "iconColor": "none",
@@ -233,7 +201,7 @@
                     "icon": "clipboard",
                     "id": "CustomButton",
                     "ipcIdentifier": "",
-                    "leftClickExec": "qs -c ~/.config/quickshell/noctalia-shell ipc call launcher clipboard",
+                    "leftClickExec": "qs ipc call launcher clipboard",
                     "leftClickUpdateText": false,
                     "maxTextLength": {
                         "horizontal": 10,
@@ -284,13 +252,6 @@
                     "useCustomFont": false
                 },
                 {
-                    "defaultSettings": {
-                        "hideInactive": false,
-                        "removeMargins": false
-                    },
-                    "id": "plugin:privacy-indicator"
-                },
-                {
                     "displayMode": "onhover",
                     "iconColor": "none",
                     "id": "Bluetooth",
@@ -304,7 +265,7 @@
                 },
                 {
                     "deviceNativePath": "",
-                    "displayMode": "alwaysShow",
+                    "displayMode": "onhover",
                     "hideIfIdle": false,
                     "hideIfNotDetected": true,
                     "id": "Battery",
@@ -390,12 +351,6 @@
         "shortcuts": {
             "left": [
                 {
-                    "id": "Network"
-                },
-                {
-                    "id": "Bluetooth"
-                },
-                {
                     "defaultSettings": {
                         "audioCodec": "opus",
                         "audioSource": "default_output",
@@ -410,6 +365,12 @@
                         "videoSource": "portal"
                     },
                     "id": "plugin:screen-recorder"
+                },
+                {
+                    "id": "PowerProfile"
+                },
+                {
+                    "id": "KeepAwake"
                 }
             ],
             "right": [
@@ -420,10 +381,17 @@
                     "id": "NightLight"
                 },
                 {
-                    "id": "KeepAwake"
+                    "id": "WallpaperSelector"
                 },
                 {
-                    "id": "PowerProfile"
+                    "enableOnStateLogic": true,
+                    "generalTooltipText": "Toggle Wallpaper Cycle",
+                    "icon": "photo-pause",
+                    "id": "CustomButton",
+                    "onClicked": "qs ipc call wallpaper toggleAutomation && qs ipc call state all | jq -e '.settings.wallpaper.automationEnabled' >/dev/null && qs ipc call toast send '{\"title\": \"Wallpaper cycling enabled.\"}' || qs ipc call toast send '{\"title\": \"Wallpaper cycling disabled.\"}'",
+                    "onMiddleClicked": "",
+                    "onRightClicked": "",
+                    "stateChecksJson": "[{\"command\":\"qs ipc call state all | jq -e '.settings.wallpaper.automationEnabled'\",\"icon\":\"slideshow\"}]"
                 }
             ]
         }
@@ -489,9 +457,34 @@
         "enableShadows": false,
         "forceBlackScreenCorners": true,
         "iRadiusRatio": 1,
+        "keybinds": {
+            "keyDown": [
+                "Down"
+            ],
+            "keyEnter": [
+                "Return"
+            ],
+            "keyEscape": [
+                "Esc"
+            ],
+            "keyLeft": [
+                "Left"
+            ],
+            "keyRight": [
+                "Right"
+            ],
+            "keyUp": [
+                "Up"
+            ]
+        },
         "language": "",
         "lockOnSuspend": true,
+        "lockScreenAnimations": false,
+        "lockScreenBlur": 0,
         "lockScreenCountdownDuration": 10000,
+        "lockScreenMonitors": [
+        ],
+        "lockScreenTint": 0,
         "radiusRatio": 0.75,
         "scaleRatio": 1,
         "screenRadiusRatio": 0.75,
@@ -606,48 +599,47 @@
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": ""
+                "keybind": "1"
             },
             {
                 "action": "suspend",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": ""
+                "keybind": "2"
             },
             {
                 "action": "logout",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": ""
+                "keybind": "5"
             },
             {
                 "action": "shutdown",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": ""
+                "keybind": "6"
             },
             {
                 "action": "reboot",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": ""
+                "keybind": "4"
             },
             {
                 "action": "hibernate",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": ""
+                "keybind": "3"
             }
         ],
-        "showHeader": false,
-        "showNumberLabels": true
+        "showHeader": false
     },
-    "settingsVersion": 49,
+    "settingsVersion": 53,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
@@ -718,16 +710,21 @@
         "directory": "/home/alter/OneDrive/wallpaper/desktop",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
+        "favorites": [
+        ],
         "fillColor": "#000000",
         "fillMode": "crop",
         "hideWallpaperFilenames": false,
         "monitorDirectories": [
         ],
+        "overviewBlur": 1,
         "overviewEnabled": true,
+        "overviewTint": 0.2,
         "panelPosition": "follow_bar",
         "randomIntervalSec": 600,
         "setWallpaperOnAllMonitors": true,
         "showHiddenFiles": false,
+        "skipStartupTransition": false,
         "solidColor": "#1a1a2e",
         "sortOrder": "name",
         "transitionDuration": 1500,

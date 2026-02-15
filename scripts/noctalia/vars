@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+export shell_dir="$HOME/.config/quickshell"
+export shell_repo="noctalia-dev/noctalia-shell"
