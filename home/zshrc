@@ -1,0 +1,40 @@
+# Load modules
+zmodload zsh/complist
+autoload -U compinit && compinit
+autoload -U colors && colors
+
+# Load Antidote (plugin manager)
+source "${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
+
+# Completion (cmp) Options
+zstyle ':completion:*' menu select # Tab opens cmp menu
+zstyle ':completion:*' squeeze-slashes false # Allow /*/ expansion
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' # Smart case sensitivity
+
+setopt auto_menu menu_complete # Use first match and show menu
+setopt auto_param_slash # Add slash to directory completions
+
+# General Options
+unsetopt prompt_sp # Don't autoclean blanklines
+
+## Globbing
+# setopt no_case_glob no_case_match # Case insensitive
+setopt extended_glob # Match # ~ ^
+setopt glob_dots # Include dotfiles without explicit `.`
+setopt interactive_comments # Allow comments in interactive shell
+
+## History
+setopt append_history # Allow parallel session history
+setopt inc_append_history # Append history incrementally
+# setopt share_history # Share history between sessions
+HISTSIZE=1000000 # larger history size
+SAVEHIST=1000000
+HISTFILE="$XDG_CACHE_HOME/zsh_history" # XDG-compliant history
+HISTCONTROL=ignoreboth # Ignore consecutive duplicates and space-starting commands
+
+# Integration
+source <(fzf --zsh) # fzf integration
+
+# Plugins
+antidote load
+
