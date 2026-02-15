@@ -18,7 +18,7 @@ return {
         {
           '<leader>it',
           '<CMD>InlayHintsToggle<CR>',
-          desc = 'Toggle inlay hints.'
+          desc = 'Toggle inlay hints.',
         },
       },
     },
@@ -97,11 +97,9 @@ return {
     vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'solid' })
 
     -- Load language-specific configuration
-    require('config.language-specific.python')
-    require('config.language-specific.lua')
+    require('config.language-specific')
 
     -- Load vscode snippets
     require('luasnip.loaders.from_vscode').lazy_load()
-
   end,
 }
