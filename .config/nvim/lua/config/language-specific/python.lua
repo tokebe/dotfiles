@@ -1,4 +1,3 @@
--- Better Poetry compatibility
 vim.lsp.config('basedpyright', {
   settings = {
     python = {
@@ -13,6 +12,7 @@ vim.lsp.config('basedpyright', {
   -- on_attach = function(client, buffer)
   --   client.server_capabilities.hoverProvider = false
   -- end,
+  -- Work in the local venv
   before_init = function(params, config)
     local Path = require('plenary.path')
     local venv = Path:new((config.root_dir:gsub('/', Path.path.sep)), '.venv')
