@@ -10,6 +10,7 @@ source "${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
 zstyle ':completion:*' menu select # Tab opens cmp menu
 zstyle ':completion:*' squeeze-slashes false # Allow /*/ expansion
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' # Smart case sensitivity
+zstyle ':completion:*:git-checkout:*' sort false # Don't sort `git checkout`
 
 setopt auto_menu menu_complete # Use first match and show menu
 setopt auto_param_slash # Add slash to directory completions
@@ -26,15 +27,145 @@ setopt interactive_comments # Allow comments in interactive shell
 ## History
 setopt append_history # Allow parallel session history
 setopt inc_append_history # Append history incrementally
+setopt share_history # Keep history between sessions
+setopt extended_history # Keep timestamps
 # setopt share_history # Share history between sessions
 HISTSIZE=1000000 # larger history size
 SAVEHIST=1000000
-HISTFILE="$XDG_CACHE_HOME/zsh_history" # XDG-compliant history
+HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/.zsh_history" # XDG-compliant history
 HISTCONTROL=ignoreboth # Ignore consecutive duplicates and space-starting commands
-
-# Integration
-source <(fzf --zsh) # fzf integration
 
 # Plugins
 antidote load
+
+## Plugin Config
+
+### fzf-tab
+zstyle ':completion:*' menu no # Hand control to fzf-tab
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # enable filename colorizing
+# zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ctpv $realpath' # use ctpv for previewing
+zstyle ':fzf-tab:*' fzf-flags \
+  --height="~50%" --prompt="󰥨 " \
+  --info="inline-right" --no-separator \
+  --preview-window="border-sharp" \
+  --scrollbar="▐"
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
+## zsh-users/zsh-history-substring-search
+export HISTORY_SUBSTRING_SEARCH_FUZZY=true
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+## ohmyzsh/alias-finder
+# export ZSH_ALIAS_FINDER_PREFIX='󱉵 Has Alias: '
+
+# Bindings
+
+## CTRL-left/right to skip words
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
+## Alt-left/right to skip words
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+
+## Home/End
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
+bindkey "^H" kill-word # Delete quick
+
+# Functions and Aliases
+
+# mkdir + cd
+function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
+compdef _directories md
+
+# For bat
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
+
+alias tree='tree -a -I .git'
+alias rangerd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+alias gitui=lazygit
+alias lg=lazygit
+alias ls='lsd -AX --group-dirs=first'
+alias lso="lsd -AXtrl --color=always | sed -re 's/^([^ ]* ){3}//'" # Find old files
+alias notes="( cd ~ && nvim ~/notes )"
+alias cat=ccat
+alias lk='() { walk "$@" --icons; }'
+alias lkd='() { cd "$(walk "$@" --icons --preview)" }'
+alias pn=pnpm
+alias tm='gtrash put'
+alias tr='gtrash restore'
+alias f='spf'
+if command -v neovide >/dev/null 2>&1; then
+    alias nvd='neovide --frame buttonless --multigrid'
+fi
+alias st=systemctl-tui
+
+# Integration
+## FZF Integration
+source <(fzf --zsh)
+fzf_inline_opts='--height="~50%" --prompt="󰥨 "
+--info="inline-right" --no-separator
+--preview-window="border-sharp"
+--scrollbar="▐"
+--preview="ctpv {}"'
+export FZF_ALT_C_OPTS="$fzf_inline_opts"
+export FZF_CTRL_T_OPTS="$fzf_inline_opts"
+export FZF_CTRL_R_OPTS='--height="~50%" --prompt=" "
+--info="inline-right" --no-separator
+--scrollbar="▐"'
+
+# Ensure tmux uses utf8
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8
+
+# Use bat for manpager
+export MANPAGER=$HOME/.batman
+
+# Get nvm working
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Make Go work
+export GOPATH=$HOME/gocode
+export PATH="$HOME/gocode/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="$HOME/.pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Navi integration
+eval "$(navi widget zsh)"
+
+# fx configuration https://github.com/antonmedv/fx
+export FX_SHOW_SIZE=true
+export FX_LINE_NUMBERS=true
+
+# walk config
+export WALK_REMOVE_CMD='gtrash put'
+
+# jump
+eval "$(jump shell)"
+
+# Fix Cargo pkgconfig on Fedora for some libraries
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/jcallaghan/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
