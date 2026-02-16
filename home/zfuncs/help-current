@@ -8,5 +8,5 @@ function help-current() {
     zle reset-prompt
     return
   fi
-  eval "$BUFFER --help" 2>&1 | bat --plain --language=help --paging=always
+  eval "${BUFFER##*|} --help" 2>&1 | bat --plain --language=help --paging=always
 }
