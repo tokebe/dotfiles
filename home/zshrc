@@ -67,6 +67,10 @@ export HISTORY_SUBSTRING_SEARCH_FUZZY=true
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+## magic-enter
+MAGIC_ENTER_GIT_COMMAND='$HOME/.zsh.dashboard git'
+MAGIC_ENTER_OTHER_COMMAND='$HOME/.zsh.dashboard'
+
 ## ohmyzsh/alias-finder
 # export ZSH_ALIAS_FINDER_PREFIX='󱉵 Has Alias: '
 
@@ -87,11 +91,19 @@ bindkey "^[[F" end-of-line
 bindkey "^H" kill-word # Delete quick
 
 if ! typeset -f magic-tab-cmd >/dev/null; then
-	function magic-tab-cmd {
-	  print -rlo -- $commands:t | fzf --height="~50%" --prompt="▎ " \
+    function magic-tab-cmd {
+      print -rlo -- $commands:t | fzf --height="~50%" --prompt="▎ " \
+      --info="inline-right" --no-separator --scrollbar="▐" --layout="reverse" \
+      --gutter="▎" \
+      --color="gutter:8"
+    }
+fi
+if ! typeset -f magic-space-tab-cmd >/dev/null; then
+	function magic-space-tab-cmd {
+	  fd -ut f  | fzf --height="~50%" --prompt="▎ " \
 	  --info="inline-right" --no-separator --scrollbar="▐" --layout="reverse" \
-	  --pointer="▎" --gutter="▎" \
-	  --color="gutter:8"
+	  --gutter="▎" \
+	  --color="gutter:8" --preview="ctpv {}"
 	}
 fi
 
@@ -99,15 +111,19 @@ function magic-tab {
   # Only run magic-double-tab commands when the command line is empty and
   # when on the first line (PS1)
   if ! (( $#BUFFER )) && [[ "$CONTEXT" == start ]]; then
-	  LBUFFER+=$(magic-tab-cmd)
-	  zle redisplay
+    LBUFFER+=$(magic-tab-cmd)
+    zle redisplay
+  elif [[ $BUFFER = " " ]] && [[ "$CONTEXT" == start ]]; then
+    file=$(magic-space-tab-cmd) && nvim $file
+    BUFFER=""
+    zle redisplay
+  else
+    zle fzf-tab-complete
   fi
 }
 zle -N magic-tab
 bindkey '\t' magic-tab
 
-# TODO space-tab to open file directly in nvim
-# TODO:enter to get a cute dashboard
 
 # Functions and Aliases
 
@@ -120,6 +136,9 @@ alias bathelp='bat --plain --language=help'
 help() {
     "$@" --help 2>&1 | bathelp
 }
+
+
+# TODO Ctrl-Shift+/ -> show help for command
 
 alias tree='tree -a -I .git'
 alias rangerd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
@@ -146,7 +165,7 @@ source <(fzf --zsh)
 fzf_inline_opts='--height="~50%" --prompt="▎󰥨 "
 --info="inline-right" --no-separator
 --preview-window="border-sharp"
---pointer="▎" --gutter="▎"
+--gutter="▎"
 --color="gutter:8"
 --scrollbar="▐"
 --preview="ctpv {}"'
@@ -154,6 +173,7 @@ export FZF_ALT_C_OPTS="$fzf_inline_opts"
 export FZF_CTRL_T_OPTS="$fzf_inline_opts"
 export FZF_CTRL_R_OPTS='--height="~50%" --prompt="▎ "
 --info="inline-right" --no-separator
+--gutter="▎" --color="gutter:8"
 --scrollbar="▐" --layout="reverse"'
 
 # Ensure tmux uses utf8
