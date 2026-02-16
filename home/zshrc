@@ -36,11 +36,16 @@ setopt append_history # Allow parallel session history
 setopt inc_append_history # Append history incrementally
 setopt share_history # Keep history between sessions
 setopt extended_history # Keep timestamps
+setopt hist_ignore_space # Ignore space-led commands
+setopt hist_ignore_dups # Ignore consecutive duplicates
 # setopt share_history # Share history between sessions
-HISTSIZE=1000000 # larger history size
-SAVEHIST=1000000
-HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/.zsh_history" # XDG-compliant history
-HISTCONTROL=ignoreboth # Ignore consecutive duplicates and space-starting commands
+export HISTSIZE=1000000 # larger history size
+export SAVEHIST=1000000
+export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/.zsh_history" # XDG-compliant history
+
+bottom_prompt() {
+  print ${(pl:$LINES::\n:):-}
+}
 
 # Plugins
 antidote load
@@ -61,18 +66,19 @@ zstyle ':fzf-tab:*' fzf-flags \
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-## zsh-users/zsh-history-substring-search
+### zsh-users/zsh-history-substring-search
 export HISTORY_SUBSTRING_SEARCH_FUZZY=true
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-## magic-enter
-MAGIC_ENTER_GIT_COMMAND='$HOME/.zsh.dashboard git'
-MAGIC_ENTER_OTHER_COMMAND='$HOME/.zsh.dashboard'
+### magic-enter
+MAGIC_ENTER_GIT_COMMAND=' $HOME/.zsh.dashboard git'
+MAGIC_ENTER_OTHER_COMMAND=' $HOME/.zsh.dashboard'
 
-## ohmyzsh/alias-finder
-# export ZSH_ALIAS_FINDER_PREFIX='󱉵 Has Alias: '
+### RobSis/zsh-completion-generator
+#### Supply list of programs missing completion
+zstyle ":plugin:zsh-completion-generator" programs cat
 
 # Bindings
 
@@ -90,6 +96,7 @@ bindkey "^[[F" end-of-line
 
 bindkey "^H" kill-word # Delete quick
 
+## Magic-tab
 if ! typeset -f magic-tab-cmd >/dev/null; then
     function magic-tab-cmd {
       print -rlo -- $commands:t | fzf --height="~50%" --prompt="▎ " \
@@ -112,40 +119,54 @@ function magic-tab {
   # when on the first line (PS1)
   if ! (( $#BUFFER )) && [[ "$CONTEXT" == start ]]; then
     LBUFFER+=$(magic-tab-cmd)
+    bottom_prompt
     zle redisplay
   elif [[ $BUFFER = " " ]] && [[ "$CONTEXT" == start ]]; then
     file=$(magic-space-tab-cmd) && nvim $file
     BUFFER=""
+    bottom_prompt
     zle redisplay
   else
     zle fzf-tab-complete
+    bottom_prompt
+    zle redisplay
   fi
 }
 zle -N magic-tab
 bindkey '\t' magic-tab
 
-
 # Functions and Aliases
 
-# mkdir + cd
+## mkdir + cd
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md
 
-# For bat
+## Use bat for help colorization
 alias bathelp='bat --plain --language=help'
 help() {
     "$@" --help 2>&1 | bathelp
 }
 
-
-# TODO Ctrl-Shift+/ -> show help for command
+## Ctrl-/ to call up temporary help on current input
+function help-current {
+  if ! (( $#BUFFER )); then
+    BUFFER="No command to help!"
+    zle reset-prompt
+    sleep 0.3
+    BUFFER=""
+    zle reset-prompt
+    return
+  fi
+  eval "$BUFFER --help" 2>&1 | bathelp --paging=always
+}
+zle -N help-current
+bindkey '^_' help-current
 
 alias tree='tree -a -I .git'
 alias rangerd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias gitui=lazygit
 alias lg=lazygit
 alias ls='lsd -AX --group-dirs=first'
-alias lso="lsd -AXtrl --color=always | sed -re 's/^([^ ]* ){3}//'" # Find old files
+alias lso="lsd -AXtSrl --color=always | sed -re 's/^([^ ]* ){3}//'" # Find old files
 alias notes="( cd ~ && nvim ~/notes )"
 alias cat=ccat
 alias lk='() { walk "$@" --icons; }'
@@ -153,7 +174,6 @@ alias lkd='() { cd "$(walk "$@" --icons --preview)" }'
 alias pn=pnpm
 alias tm='gtrash put'
 alias tr='gtrash restore'
-alias f='spf'
 if command -v neovide >/dev/null 2>&1; then
     alias nvd='neovide --frame buttonless --multigrid'
 fi
@@ -175,6 +195,29 @@ export FZF_CTRL_R_OPTS='--height="~50%" --prompt="▎ "
 --info="inline-right" --no-separator
 --gutter="▎" --color="gutter:8"
 --scrollbar="▐" --layout="reverse"'
+
+### Reset prompt position after fzf-integration
+function control-r {
+  zle fzf-history-widget
+  bottom_prompt
+  zle redisplay
+}
+zle -N control-r
+bindkey '^R' control-r
+function control-t {
+  zle fzf-file-widget
+  bottom_prompt
+  zle redisplay
+}
+zle -N control-t
+bindkey '^T' control-t
+function alt-c {
+  zle fzf-cd-widget
+  bottom_prompt
+  zle redisplay
+}
+zle -N alt-c
+bindkey '^[c' alt-c
 
 # Ensure tmux uses utf8
 export LC_ALL=en_IN.UTF-8
