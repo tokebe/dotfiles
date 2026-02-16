@@ -1,0 +1,12 @@
+# Ctrl-/ to call up temporary help on current input
+function help-current() {
+  if ! (( $#BUFFER )); then
+    BUFFER="No command to help!"
+    zle reset-prompt
+    sleep 0.3
+    BUFFER=""
+    zle reset-prompt
+    return
+  fi
+  eval "$BUFFER --help" 2>&1 | bat --plain --language=help --paging=always
+}

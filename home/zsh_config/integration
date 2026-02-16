@@ -1,0 +1,85 @@
+# This one can be messy because a lot of auto-ingetration gets slapped in here
+
+# FZF Integration
+source <(fzf --zsh)
+fzf_inline_opts='--height="~50%" --prompt="▎󰥨 "
+--info="inline-right" --no-separator
+--preview-window="border-sharp"
+--gutter="▎"
+--color="gutter:8"
+--scrollbar="▐"
+--preview="ctpv {}"'
+export FZF_ALT_C_OPTS="$fzf_inline_opts"
+export FZF_CTRL_T_OPTS="$fzf_inline_opts"
+export FZF_CTRL_R_OPTS='--height="~50%" --prompt="▎ "
+--info="inline-right" --no-separator
+--gutter="▎" --color="gutter:8"
+--scrollbar="▐" --layout="reverse"'
+
+## Reset prompt position after fzf-integration
+function control-r {
+  zle fzf-history-widget
+  bottom-prompt
+  zle redisplay
+}
+zle -N control-r
+bindkey '^R' control-r
+function control-t {
+  zle fzf-file-widget
+  bottom-prompt
+  zle redisplay
+}
+zle -N control-t
+bindkey '^T' control-t
+function alt-c {
+  zle fzf-cd-widget
+  bottom-prompt
+  zle redisplay
+}
+zle -N alt-c
+bindkey '^[c' alt-c
+
+
+# Ensure tmux uses utf8
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8
+
+# Use bat for manpager
+export MANPAGER=$HOME/.batman
+
+# Get nvm working
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Make Go work
+export GOPATH=$HOME/gocode
+export PATH="$HOME/gocode/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="$HOME/.pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Navi integration
+eval "$(navi widget zsh)"
+
+# fx configuration https://github.com/antonmedv/fx
+export FX_SHOW_SIZE=true
+export FX_LINE_NUMBERS=true
+
+# walk config
+export WALK_REMOVE_CMD='gtrash put'
+
+# jump
+eval "$(jump shell)"
+
+# Fix Cargo pkgconfig on Fedora for some libraries
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="$HOME/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

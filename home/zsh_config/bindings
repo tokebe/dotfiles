@@ -1,0 +1,19 @@
+# CTRL-left/right to skip words
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
+# Alt-left/right to skip words
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+
+# Home/End
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
+bindkey "^H" kill-word # Delete quick
+
+bindkey '\t' magic-tab
+bindkey '^_' help-current
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
