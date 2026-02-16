@@ -1,2 +1,19 @@
 # Plugin list
+
+#OMZ plugins
+getantidote/use-omz
+ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/history-substring-search
+ohmyzsh/ohmyzsh path:plugins/uv
+
 Aloxaf/fzf-tab
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+hsaunders1904/pyautoenv
+matthiasha/zsh-uv-env
+RobSis/zsh-completion-generator
+Tarrasch/zsh-bd
+hlissner/zsh-autopair
+zdharma-continuum/fast-syntax-highlighting
+akash329d/zsh-alias-finder
+romkatv/powerlevel10k

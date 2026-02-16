@@ -8,3 +8,9 @@ if [ ! -d "${ZDOTDIR:-$HOME}/.antidote" ]; then
     return 1
   fi
 fi
+
+# Export some variables
+
+export GPG_TTY=$TTY
+export MANROFFOPT="-c" # Fix escape symbols in manpages
+export HOMEBREW_NO_AUTO_UPDATE=1 # for those slow-internet days
