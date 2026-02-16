@@ -3,18 +3,18 @@
 #OMZ plugins
 getantidote/use-omz
 ohmyzsh/ohmyzsh path:lib
-ohmyzsh/ohmyzsh path:plugins/history-substring-search
-ohmyzsh/ohmyzsh path:plugins/uv
-  ohmyzsh/ohmyzsh path:plugins/magic-enter
+ohmyzsh/ohmyzsh path:plugins/history-substring-search # Up uses substring
+ohmyzsh/ohmyzsh path:plugins/uv # uv integration
+ohmyzsh/ohmyzsh path:plugins/magic-enter # Run command on empty enter
 
-Aloxaf/fzf-tab
-zsh-users/zsh-completions
-zsh-users/zsh-autosuggestions
-hsaunders1904/pyautoenv
-matthiasha/zsh-uv-env
-RobSis/zsh-completion-generator
-Tarrasch/zsh-bd
-hlissner/zsh-autopair
-zdharma-continuum/fast-syntax-highlighting
-akash329d/zsh-alias-finder
-romkatv/powerlevel10k
+Aloxaf/fzf-tab # Use fzf for completion selection
+zsh-users/zsh-completions # Additional completions
+zsh-users/zsh-autosuggestions # Inline history completion
+hsaunders1904/pyautoenv # Automatically use poetry env
+matthiasha/zsh-uv-env # Automatically use .venv
+RobSis/zsh-completion-generator # Automatic completion using getopt-style help
+Tarrasch/zsh-bd # Faster cd up
+hlissner/zsh-autopair # Auto-insert closing braces/etc.
+zdharma-continuum/fast-syntax-highlighting # Highlight syntax
+romkatv/powerlevel10k # Custom prompt
+MichaelAquilina/zsh-you-should-use # Alias finder

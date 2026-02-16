@@ -1,9 +1,31 @@
 #! /usr/bin/env zsh
 
-if [[ $1 = "git" ]]; then
-  git --no-pager diff --stat
+rule() {
   print -- ${(l:COLUMNS::─:)}
-  lsd -AX --group-dirs=first
-else
-  lsd -AX --group-dirs=first
+}
+
+rule
+
+disk_use="$(df -h --output="target,pcent,avail" . | tail -1)"
+mnt="$(echo $disk_use| awk '{print $1}')"
+pcent="$(echo $disk_use| awk '{print $2}')"
+avail="$(echo $disk_use| awk '{print $3}')"
+mem_use="$(free -h)"
+mem_total="$(echo $mem_use | awk 'NR==2{print $2}')"
+mem_used="$(echo $mem_use | awk 'NR==2{print $3}')"
+
+topline="  $(uptime -p | sed 's/./\u&/')    $mem_used / $mem_total  󰋊  $mnt $pcent ($avail Available)"
+echo "$topline"
+
+rule
+
+# Git info
+if [[ $1 = "git" ]]; then
+  echo "ORIGIN $(git remote get-url origin)"
+  git --no-pager log --oneline --decorate=short -3 --graph
+  rule
+  git --no-pager diff --stat
+  rule
 fi
+
+lsd -AX --group-dirs=first
