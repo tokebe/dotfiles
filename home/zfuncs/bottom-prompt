@@ -1,0 +1,3 @@
+function bottom-prompt() {
+  print ${(pl:$LINES::\n:):-}
+}

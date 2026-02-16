@@ -1,0 +1,4 @@
+# Use bat for help colorization
+function help() {
+    "$@" --help 2>&1 | bat --plain --language=help
+}

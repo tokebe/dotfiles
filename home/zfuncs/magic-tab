@@ -1,0 +1,30 @@
+# Magic-tab
+function magic-tab() {
+  # If input empty, run magic tab
+  if ! (( $#BUFFER )) && [[ "$CONTEXT" == start ]]; then
+    LBUFFER+=$(
+      print -rlo -- $commands:t | fzf --height="~50%" --prompt="▎ " \
+      --info="inline-right" --no-separator --scrollbar="▐" --layout="reverse" \
+      --gutter="▎" \
+      --color="gutter:8"
+    )
+    bottom-prompt
+    zle redisplay
+  # If it contains only a space, run magic space-tab
+  elif [[ $BUFFER = " " ]] && [[ "$CONTEXT" == start ]]; then
+    file=$(
+      fd -ut f  | fzf --height="~50%" --prompt="▎ " \
+      --info="inline-right" --no-separator --scrollbar="▐" --layout="reverse" \
+      --gutter="▎" \
+      --color="gutter:8" --preview="ctpv {}"
+    ) && nvim $file
+    BUFFER=""
+    bottom-prompt
+    zle redisplay
+  # Otherwise, default to fzf completion
+  else
+    zle fzf-tab-complete
+    bottom-prompt
+    zle redisplay
+  fi
+}

@@ -1,0 +1,27 @@
+## Plugin Config
+
+### fzf-tab
+zstyle ':completion:*' menu no # Hand control to fzf-tab
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # enable filename colorizing
+# zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ctpv $realpath' # use ctpv for previewing
+zstyle ':fzf-tab:*' fzf-flags \
+  --height="~50%" --prompt="󰥨 " \
+  --info="inline-right" --no-separator \
+  --preview-window="border-sharp" \
+  --scrollbar="▐"
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
+### zsh-users/zsh-history-substring-search
+export HISTORY_SUBSTRING_SEARCH_FUZZY=true
+
+
+### magic-enter
+MAGIC_ENTER_GIT_COMMAND=' $HOME/.zsh.dashboard git'
+MAGIC_ENTER_OTHER_COMMAND=' $HOME/.zsh.dashboard'
+
+### RobSis/zsh-completion-generator
+#### Supply list of programs missing completion
+zstyle ":plugin:zsh-completion-generator" programs cat

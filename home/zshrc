@@ -43,234 +43,42 @@ export HISTSIZE=1000000 # larger history size
 export SAVEHIST=1000000
 export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/.zsh_history" # XDG-compliant history
 
-bottom_prompt() {
-  print ${(pl:$LINES::\n:):-}
-}
 
 # Plugins
 antidote load
 
-## Plugin Config
+## Config
+plugin_config="${ZDOTDIR:-$HOME}/.zsh_config/plugin_config"
+[ -f $plugin_config ] && source $plugin_config
 
-### fzf-tab
-zstyle ':completion:*' menu no # Hand control to fzf-tab
-zstyle ':completion:*:descriptions' format '[%d]'
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # enable filename colorizing
-# zstyle ':fzf-tab:*' use-fzf-default-opts yes
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ctpv $realpath' # use ctpv for previewing
-zstyle ':fzf-tab:*' fzf-flags \
-  --height="~50%" --prompt="󰥨 " \
-  --info="inline-right" --no-separator \
-  --preview-window="border-sharp" \
-  --scrollbar="▐"
-# switch group using `<` and `>`
-zstyle ':fzf-tab:*' switch-group '<' '>'
+# Aliases
+alias_config="${ZDOTDIR:-$HOME}/.zsh_config/aliases"
+[ -f $lias_config ] && source $alias_config
 
-### zsh-users/zsh-history-substring-search
-export HISTORY_SUBSTRING_SEARCH_FUZZY=true
+# Functions
+# BUG: Functions can't use defined aliases with this structure :/
+fpath+=("${ZDOTDIR:-$HOME}/.zfuncs")
+autoload -Uz md
+autoload -Uz bottom-prompt
+autoload -Uz help
+autoload -Uz help-current
+autoload -Uz magic-tab
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
-### magic-enter
-MAGIC_ENTER_GIT_COMMAND=' $HOME/.zsh.dashboard git'
-MAGIC_ENTER_OTHER_COMMAND=' $HOME/.zsh.dashboard'
-
-### RobSis/zsh-completion-generator
-#### Supply list of programs missing completion
-zstyle ":plugin:zsh-completion-generator" programs cat
+## Register function widgets
+zle -N help-current
+zle -N magic-tab
 
 # Bindings
-
-## CTRL-left/right to skip words
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-
-## Alt-left/right to skip words
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
-
-## Home/End
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
-
-bindkey "^H" kill-word # Delete quick
-
-## Magic-tab
-if ! typeset -f magic-tab-cmd >/dev/null; then
-    function magic-tab-cmd {
-      print -rlo -- $commands:t | fzf --height="~50%" --prompt="▎ " \
-      --info="inline-right" --no-separator --scrollbar="▐" --layout="reverse" \
-      --gutter="▎" \
-      --color="gutter:8"
-    }
-fi
-if ! typeset -f magic-space-tab-cmd >/dev/null; then
-	function magic-space-tab-cmd {
-	  fd -ut f  | fzf --height="~50%" --prompt="▎ " \
-	  --info="inline-right" --no-separator --scrollbar="▐" --layout="reverse" \
-	  --gutter="▎" \
-	  --color="gutter:8" --preview="ctpv {}"
-	}
-fi
-
-function magic-tab {
-  # Only run magic-double-tab commands when the command line is empty and
-  # when on the first line (PS1)
-  if ! (( $#BUFFER )) && [[ "$CONTEXT" == start ]]; then
-    LBUFFER+=$(magic-tab-cmd)
-    bottom_prompt
-    zle redisplay
-  elif [[ $BUFFER = " " ]] && [[ "$CONTEXT" == start ]]; then
-    file=$(magic-space-tab-cmd) && nvim $file
-    BUFFER=""
-    bottom_prompt
-    zle redisplay
-  else
-    zle fzf-tab-complete
-    bottom_prompt
-    zle redisplay
-  fi
-}
-zle -N magic-tab
-bindkey '\t' magic-tab
-
-# Functions and Aliases
-
-## mkdir + cd
-function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
-compdef _directories md
-
-## Use bat for help colorization
-alias bathelp='bat --plain --language=help'
-help() {
-    "$@" --help 2>&1 | bathelp
-}
-
-## Ctrl-/ to call up temporary help on current input
-function help-current {
-  if ! (( $#BUFFER )); then
-    BUFFER="No command to help!"
-    zle reset-prompt
-    sleep 0.3
-    BUFFER=""
-    zle reset-prompt
-    return
-  fi
-  eval "$BUFFER --help" 2>&1 | bathelp --paging=always
-}
-zle -N help-current
-bindkey '^_' help-current
-
-alias tree='tree -a -I .git'
-alias rangerd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias lg=lazygit
-alias ls='lsd -AX --group-dirs=first'
-alias lso="lsd -AXtSrl --color=always | sed -re 's/^([^ ]* ){3}//'" # Find old files
-alias notes="( cd ~ && nvim ~/notes )"
-alias cat=ccat
-alias lk='() { walk "$@" --icons; }'
-alias lkd='() { cd "$(walk "$@" --icons --preview)" }'
-alias pn=pnpm
-alias tm='gtrash put'
-alias tr='gtrash restore'
-if command -v neovide >/dev/null 2>&1; then
-    alias nvd='neovide --frame buttonless --multigrid'
-fi
-alias st=systemctl-tui
+bindings_config="${ZDOTDIR:-$HOME}/.zsh_config/bindings"
+[ -f $indings_config ] && source $bindings_config
 
 # Integration
-## FZF Integration
-source <(fzf --zsh)
-fzf_inline_opts='--height="~50%" --prompt="▎󰥨 "
---info="inline-right" --no-separator
---preview-window="border-sharp"
---gutter="▎"
---color="gutter:8"
---scrollbar="▐"
---preview="ctpv {}"'
-export FZF_ALT_C_OPTS="$fzf_inline_opts"
-export FZF_CTRL_T_OPTS="$fzf_inline_opts"
-export FZF_CTRL_R_OPTS='--height="~50%" --prompt="▎ "
---info="inline-right" --no-separator
---gutter="▎" --color="gutter:8"
---scrollbar="▐" --layout="reverse"'
+integration_config="${ZDOTDIR:-$HOME}/.zsh_config/integration"
+[ -f $integration_config ] && source $integration_config
 
-### Reset prompt position after fzf-integration
-function control-r {
-  zle fzf-history-widget
-  bottom_prompt
-  zle redisplay
-}
-zle -N control-r
-bindkey '^R' control-r
-function control-t {
-  zle fzf-file-widget
-  bottom_prompt
-  zle redisplay
-}
-zle -N control-t
-bindkey '^T' control-t
-function alt-c {
-  zle fzf-cd-widget
-  bottom_prompt
-  zle redisplay
-}
-zle -N alt-c
-bindkey '^[c' alt-c
-
-# Ensure tmux uses utf8
-export LC_ALL=en_IN.UTF-8
-export LANG=en_IN.UTF-8
-
-# Use bat for manpager
-export MANPAGER=$HOME/.batman
-
-# Get nvm working
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Make Go work
-export GOPATH=$HOME/gocode
-export PATH="$HOME/gocode/bin:$PATH"
-
-# pnpm
-export PNPM_HOME="$HOME/.pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# Navi integration
-eval "$(navi widget zsh)"
-
-# fx configuration https://github.com/antonmedv/fx
-export FX_SHOW_SIZE=true
-export FX_LINE_NUMBERS=true
-
-# walk config
-export WALK_REMOVE_CMD='gtrash put'
-
-# jump
-eval "$(jump shell)"
-
-# Fix Cargo pkgconfig on Fedora for some libraries
-export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
-
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/jcallaghan/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-
+# P10k final setup
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Prompt at bottom
-bottom_prompt() {
-  print ${(pl:$LINES::\n:):-}
-}
-alias clear='clear && bottom_prompt'
-
-bottom_prompt
+# Prompt at bottom from start
+bottom-prompt

@@ -1,0 +1,17 @@
+alias tree='tree -a -I .git'
+alias rangerd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+alias lg=lazygit
+alias ls='lsd -AX --group-dirs=first'
+alias lso="lsd -AXtSrl --color=always | sed -re 's/^([^ ]* ){3}//'" # Find old files
+alias notes="( cd ~ && nvim ~/notes )"
+alias cat=ccat
+alias lk='() { walk "$@" --icons; }'
+alias lkd='() { cd "$(walk "$@" --icons --preview)" }'
+alias pn=pnpm
+alias tm='gtrash put'
+alias tr='gtrash restore'
+if command -v neovide >/dev/null 2>&1; then
+    alias nvd='neovide --frame buttonless --multigrid'
+fi
+alias st=systemctl-tui
+alias clear='clear && bottom-prompt'

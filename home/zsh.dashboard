@@ -1,5 +1,7 @@
 #! /usr/bin/env zsh
 
+# Magic-enter dashboard, for useful info in a given dir
+
 rule() {
   print -- ${(l:COLUMNS::─:)}
 }
