@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Load modules
 zmodload zsh/complist
 autoload -U compinit && compinit
@@ -79,6 +86,29 @@ bindkey "^[[F" end-of-line
 
 bindkey "^H" kill-word # Delete quick
 
+if ! typeset -f magic-tab-cmd >/dev/null; then
+	function magic-tab-cmd {
+	  print -rlo -- $commands:t | fzf --height="~50%" --prompt="▎ " \
+	  --info="inline-right" --no-separator --scrollbar="▐" --layout="reverse" \
+	  --pointer="▎" --gutter="▎" \
+	  --color="gutter:8"
+	}
+fi
+
+function magic-tab {
+  # Only run magic-double-tab commands when the command line is empty and
+  # when on the first line (PS1)
+  if ! (( $#BUFFER )) && [[ "$CONTEXT" == start ]]; then
+	  LBUFFER+=$(magic-tab-cmd)
+	  zle redisplay
+  fi
+}
+zle -N magic-tab
+bindkey '\t' magic-tab
+
+# TODO space-tab to open file directly in nvim
+# TODO:enter to get a cute dashboard
+
 # Functions and Aliases
 
 # mkdir + cd
@@ -113,16 +143,18 @@ alias st=systemctl-tui
 # Integration
 ## FZF Integration
 source <(fzf --zsh)
-fzf_inline_opts='--height="~50%" --prompt="󰥨 "
+fzf_inline_opts='--height="~50%" --prompt="▎󰥨 "
 --info="inline-right" --no-separator
 --preview-window="border-sharp"
+--pointer="▎" --gutter="▎"
+--color="gutter:8"
 --scrollbar="▐"
 --preview="ctpv {}"'
 export FZF_ALT_C_OPTS="$fzf_inline_opts"
 export FZF_CTRL_T_OPTS="$fzf_inline_opts"
-export FZF_CTRL_R_OPTS='--height="~50%" --prompt=" "
+export FZF_CTRL_R_OPTS='--height="~50%" --prompt="▎ "
 --info="inline-right" --no-separator
---scrollbar="▐"'
+--scrollbar="▐" --layout="reverse"'
 
 # Ensure tmux uses utf8
 export LC_ALL=en_IN.UTF-8
@@ -169,3 +201,13 @@ export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
 export PATH="/Users/jcallaghan/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Prompt at bottom
+bottom_prompt() {
+  print ${(pl:$LINES::\n:):-}
+}
+alias clear='clear && bottom_prompt'
+
+bottom_prompt
