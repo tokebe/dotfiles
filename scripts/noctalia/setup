@@ -5,6 +5,8 @@ source "$(dirname "${BASH_SOURCE[0]}")/vars"
 
 latest_release_tag=$(curl -sL -m 10 --connect-timeout 5 https://api.github.com/repos/"$shell_repo"/releases/latest | grep 'tag_name' | sed -E 's/.*"([^"]+)".*/\1/')
 
+rm -rf "$shell_dir"
+
 git clone \
   --depth 1 \
   --branch="$latest_release_tag" \
