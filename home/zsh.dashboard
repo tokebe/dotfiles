@@ -1,0 +1,9 @@
+#! /usr/bin/env zsh
+
+if [[ $1 = "git" ]]; then
+  git --no-pager diff --stat
+  print -- ${(l:COLUMNS::─:)}
+  lsd -AX --group-dirs=first
+else
+  lsd -AX --group-dirs=first
+fi

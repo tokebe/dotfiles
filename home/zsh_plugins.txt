@@ -5,6 +5,7 @@ getantidote/use-omz
 ohmyzsh/ohmyzsh path:lib
 ohmyzsh/ohmyzsh path:plugins/history-substring-search
 ohmyzsh/ohmyzsh path:plugins/uv
+  ohmyzsh/ohmyzsh path:plugins/magic-enter
 
 Aloxaf/fzf-tab
 zsh-users/zsh-completions
