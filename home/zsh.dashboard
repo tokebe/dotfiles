@@ -8,18 +8,35 @@ rule() {
 
 rule
 
-disk_use="$(df -h --output="target,pcent,avail" . | tail -1)"
-mnt="$(echo $disk_use| awk '{print $1}')"
-pcent="$(echo $disk_use| awk '{print $2}')"
-avail="$(echo $disk_use| awk '{print $3}')"
-mem_use="$(free -h)"
-mem_total="$(echo $mem_use | awk 'NR==2{print $2}')"
-mem_used="$(echo $mem_use | awk 'NR==2{print $3}')"
+if [[ $OSTYPE == "linux-gnu"* ]]; then
+  disk_use="$(df -h --output="target,pcent,avail" . | tail -1)"
+  mnt="$(echo $disk_use| awk '{print $1}')"
+  pcent="$(echo $disk_use| awk '{print $2}')"
+  avail="$(echo $disk_use| awk '{print $3}')"
 
-topline="  $(uptime -p | sed 's/./\u&/')    $mem_used / $mem_total  󰋊  $mnt $pcent ($avail Available)"
-echo "$topline"
+  mem_use="$(free -h)"
+  mem_total="$(echo $mem_use | awk 'NR==2{print $2}')"
+  mem_used="$(echo $mem_use | awk 'NR==2{print $3}')"
 
-rule
+  topline="    $(uptime -p | sed 's/./\u&/')    $mem_used / $mem_total  󰋊  $mnt $pcent ($avail Available)"
+  echo "$topline"
+
+  rule
+elif [[ $OSTYPE == "darwin"* ]]; then
+  disk_use="$(gdf -h --output="target,pcent,avail" . | tail -1)"
+  mnt="$(echo $disk_use| awk '{print $1}')"
+  pcent="$(echo $disk_use| awk '{print $2}')"
+  avail="$(echo $disk_use| awk '{print $3}')"
+
+  memsize_bytes=$(sysctl -n hw.memsize)
+  mem_total=$(expr $memsize_bytes / $((1024**3)))
+  memuse_gb=$(ps -A -o %mem, | awk -v mem_total=$mem_total '{ mem += $1} END {print mem / 100 * mem_total}')
+  mem_used=$(printf "%.2f\n" "$memuse_gb" )
+
+  topline="    Up $(uptime | sed -n 's/^.*up  \([^,]*\).*/\1/p')    ${mem_used}Gi / ${mem_total}Gi  󰋊  $mnt $pcent ($avail Available)"
+  echo "$topline"
+
+fi
 
 # Git info
 if [[ $1 = "git" ]]; then
