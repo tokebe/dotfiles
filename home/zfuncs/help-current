@@ -6,7 +6,9 @@ function help-current() {
     sleep 0.3
     BUFFER=""
     zle reset-prompt
-    return
+  elif helptext=$(eval "${BUFFER##*|} --help" 2>&1); then
+    echo $helptext | bat --plain --language=help --paging=always
+  else
+    eval "man ${BUFFER##*|} -P cat" 2>&1 | bat --plain --language=man --paging=always
   fi
-  eval "${BUFFER##*|} --help" 2>&1 | bat --plain --language=help --paging=always
 }
