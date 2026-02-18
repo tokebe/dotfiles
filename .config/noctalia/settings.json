@@ -252,15 +252,6 @@
                     "useCustomFont": false
                 },
                 {
-                    "defaultSettings": {
-                        "activeColor": "primary",
-                        "hideInactive": false,
-                        "inactiveColor": "none",
-                        "removeMargins": false
-                    },
-                    "id": "plugin:privacy-indicator"
-                },
-                {
                     "displayMode": "onhover",
                     "iconColor": "none",
                     "id": "Bluetooth",
@@ -291,8 +282,13 @@
                     "useDistroLogo": false
                 },
                 {
+                    "colorizeSystemIcon": "none",
+                    "customIconPath": "",
+                    "enableColorization": false,
+                    "icon": "gender-transgender",
                     "iconColor": "error",
-                    "id": "SessionMenu"
+                    "id": "SessionMenu",
+                    "useDistroLogo": false
                 }
             ]
         }
