@@ -75,21 +75,60 @@ return {
   { -- Smart handling of surrounding brackets
     'kylechui/nvim-surround',
     dependencies = { 'ggandor/leap.nvim' }, -- ensure it loads after
-    version = '*',
+    version = '^4.0.0',
+    keys = {
+      {
+        'gs',
+        '<Plug>(nvim-surround-normal)',
+        desc = 'Surround motion...',
+      },
+      {
+        'gss',
+        '<Plug>(nvim-surround-normal-cur)',
+        desc = 'Surround current line...',
+      },
+
+      {
+        'gS',
+        '<Plug>(nvim-surround-normal-line)',
+        desc = 'Surround motion on new lines...',
+      },
+      {
+        'gSS',
+        '<Plug>(nvim-surround-normal-cur-line)',
+        desc = 'Surround current line on new lines...',
+      },
+      {
+        'S',
+        '<Plug>(nvim-surround-visual)',
+        mode = 'x',
+        desc = 'Surround visual selection...',
+      },
+      {
+        'gS',
+        '<Plug>(nvim-surround-visual-line)',
+        mode = 'x',
+        desc = 'Surround visual selection on new lines...',
+      },
+      {
+        'dgs',
+        '<Plug>(nvim-surround-delete)',
+        desc = 'Delete surrounding pair...',
+      },
+      {
+        'cgs',
+        '<Plug>(nvim-surround-change)',
+        desc = 'Change surrounding pair...',
+      },
+      {
+        'cgS',
+        '<Plug>(nvim-surround-change-line)',
+        desc = 'Change surrounding pair on new lines...',
+      },
+    },
     config = function()
-      require('nvim-surround').setup({
-        keymaps = {
-          normal = 'gs',
-          normal_cur = 'gss',
-          normal_line = 'gS',
-          normal_cur_line = 'ySS',
-          visual = 'S',
-          visual_line = 'gS',
-          delete = 'dgs',
-          change = 'cgs',
-          change_line = 'cgS',
-        },
-      })
+      vim.g.nvim_surround_no_mappings = true
+      require('nvim-surround').setup()
     end,
   },
   {
