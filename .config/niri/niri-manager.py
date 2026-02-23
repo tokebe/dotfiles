@@ -40,11 +40,11 @@ def niri_cmd(*command: str) -> CompletedProcess[str]:
 
 
 def handle_overview(_event: dict[str, Any]) -> None:
-    # return
-    _ = subprocess.run(
-        ["qs ipc call dock toggle"],
-        shell=True,
-    )
+    return
+    # _ = subprocess.run(
+    #     ["qs ipc call dock toggle"],
+    #     shell=True,
+    # )
 
 
 def send_window_to_corner(event: dict[str, Any]) -> None:
