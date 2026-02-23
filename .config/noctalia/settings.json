@@ -85,7 +85,6 @@
                     "labelMode": "none",
                     "occupiedColor": "secondary",
                     "pillSize": 0.6,
-                    "reverseScroll": false,
                     "showApplications": true,
                     "showBadge": true,
                     "showLabelsOnlyWhenOccupied": true,
@@ -96,6 +95,7 @@
                 {
                     "colorizeSystemIcon": "none",
                     "enableColorization": false,
+                    "generalTooltipText": "",
                     "hideMode": "alwaysExpanded",
                     "icon": "niri",
                     "id": "CustomButton",
@@ -111,7 +111,9 @@
                     "parseJson": false,
                     "rightClickExec": "niri msg action toggle-overview",
                     "rightClickUpdateText": false,
+                    "showExecTooltip": true,
                     "showIcon": true,
+                    "showTextTooltip": true,
                     "textCollapse": "",
                     "textCommand": "",
                     "textIntervalMs": 3000,
@@ -142,7 +144,8 @@
                     "showNetworkStats": false,
                     "showSwapUsage": false,
                     "textColor": "none",
-                    "useMonospaceFont": true
+                    "useMonospaceFont": true,
+                    "usePadding": false
                 },
                 {
                     "defaultSettings": {
@@ -197,6 +200,7 @@
                 {
                     "colorizeSystemIcon": "none",
                     "enableColorization": false,
+                    "generalTooltipText": "",
                     "hideMode": "alwaysExpanded",
                     "icon": "clipboard",
                     "id": "CustomButton",
@@ -212,7 +216,9 @@
                     "parseJson": false,
                     "rightClickExec": "",
                     "rightClickUpdateText": false,
+                    "showExecTooltip": true,
                     "showIcon": true,
+                    "showTextTooltip": true,
                     "textCollapse": "",
                     "textCommand": "",
                     "textIntervalMs": 3000,
@@ -252,6 +258,15 @@
                     "useCustomFont": false
                 },
                 {
+                    "defaultSettings": {
+                        "activeColor": "primary",
+                        "hideInactive": false,
+                        "inactiveColor": "none",
+                        "removeMargins": false
+                    },
+                    "id": "plugin:privacy-indicator"
+                },
+                {
                     "displayMode": "onhover",
                     "iconColor": "none",
                     "id": "Bluetooth",
@@ -282,13 +297,8 @@
                     "useDistroLogo": false
                 },
                 {
-                    "colorizeSystemIcon": "none",
-                    "customIconPath": "",
-                    "enableColorization": false,
-                    "icon": "gender-transgender",
                     "iconColor": "error",
-                    "id": "SessionMenu",
-                    "useDistroLogo": false
+                    "id": "SessionMenu"
                 }
             ]
         }
@@ -423,6 +433,7 @@
         "colorizeIcons": false,
         "deadOpacity": 0.65,
         "displayMode": "always_visible",
+        "dockType": "static",
         "enabled": false,
         "floatingRatio": 1,
         "inactiveIndicators": true,
@@ -444,6 +455,8 @@
         ],
         "pinnedStatic": true,
         "position": "bottom",
+        "showFrameIndicator": true,
+        "sitOnFrame": false,
         "size": 1
     },
     "general": {
@@ -475,6 +488,9 @@
             "keyLeft": [
                 "Left"
             ],
+            "keyRemove": [
+                "Del"
+            ],
             "keyRight": [
                 "Right"
             ],
@@ -491,6 +507,7 @@
         ],
         "lockScreenTint": 0,
         "radiusRatio": 0.75,
+        "reverseScroll": false,
         "scaleRatio": 1,
         "screenRadiusRatio": 0.75,
         "shadowDirection": "center",
@@ -528,10 +545,12 @@
         "weatherShowEffects": true
     },
     "network": {
+        "airplaneModeEnabled": false,
         "bluetoothDetailsViewMode": "grid",
         "bluetoothHideUnnamedDevices": false,
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": false,
+        "disableDiscoverability": false,
         "wifiDetailsViewMode": "grid",
         "wifiEnabled": true
     },
@@ -546,9 +565,12 @@
     },
     "notifications": {
         "backgroundOpacity": 1,
+        "clearDismissed": true,
         "criticalUrgencyDuration": 10,
+        "density": "default",
         "enableBatteryToast": true,
         "enableKeyboardLayoutToast": true,
+        "enableMarkdown": false,
         "enableMediaToast": false,
         "enabled": true,
         "location": "bottom_right",
@@ -638,35 +660,37 @@
                 "action": "hibernate",
                 "command": "",
                 "countdownEnabled": true,
-                "enabled": true,
+                "enabled": false,
                 "keybind": "3"
+            },
+            {
+                "action": "rebootToUefi",
+                "command": "",
+                "countdownEnabled": true,
+                "enabled": true,
+                "keybind": ""
             }
         ],
-        "showHeader": false
+        "showHeader": false,
+        "showKeybinds": true
     },
     "settingsVersion": 53,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
         "cpuCriticalThreshold": 90,
-        "cpuPollingInterval": 1000,
         "cpuWarningThreshold": 80,
         "criticalColor": "#eb6f92",
         "diskAvailCriticalThreshold": 10,
         "diskAvailWarningThreshold": 20,
         "diskCriticalThreshold": 100,
-        "diskPollingInterval": 3000,
         "diskWarningThreshold": 80,
         "enableDgpuMonitoring": false,
         "externalMonitor": "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor",
         "gpuCriticalThreshold": 85,
-        "gpuPollingInterval": 3000,
         "gpuWarningThreshold": 80,
-        "loadAvgPollingInterval": 3000,
         "memCriticalThreshold": 90,
-        "memPollingInterval": 1000,
         "memWarningThreshold": 80,
-        "networkPollingInterval": 1000,
         "swapCriticalThreshold": 90,
         "swapWarningThreshold": 80,
         "tempCriticalThreshold": 90,
