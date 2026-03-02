@@ -43,6 +43,7 @@ setopt hist_ignore_dups # Ignore consecutive duplicates
 export HISTSIZE=1000000 # larger history size
 export SAVEHIST=1000000
 export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/.zsh_history" # XDG-compliant history
+export PROMPT_EOL_MARK=$'%{\e[7m%} %{\e[27m%}'
 
 DISABLE_MAGIC_FUNCTIONS=true # Paste bracketing slows down pasting a lot
 
