@@ -33,6 +33,7 @@
         "preferredPlayer": "",
         "visualizerType": "mirrored",
         "volumeFeedback": true,
+        "volumeFeedbackSoundFile": "",
         "volumeOverdrive": false,
         "volumeStep": 5
     },
@@ -43,9 +44,11 @@
         "barType": "simple",
         "capsuleColorKey": "none",
         "capsuleOpacity": 1,
+        "contentPadding": 2,
         "density": "default",
         "displayMode": "always_visible",
         "floating": false,
+        "fontScale": 1,
         "frameRadius": 12,
         "frameThickness": 8,
         "hideOnOverview": false,
@@ -56,8 +59,11 @@
             "DP-1",
             "eDP-1"
         ],
+        "mouseWheelAction": "content",
+        "mouseWheelWrap": true,
         "outerCorners": true,
         "position": "bottom",
+        "reverseScroll": false,
         "screenOverrides": [
             {
                 "density": "compact",
@@ -67,8 +73,10 @@
             }
         ],
         "showCapsule": false,
+        "showOnWorkspaceSwitch": true,
         "showOutline": false,
         "useSeparateOpacity": false,
+        "widgetSpacing": 6,
         "widgets": {
             "center": [
                 {
@@ -163,14 +171,11 @@
                 },
                 {
                     "compactMode": false,
-                    "compactShowAlbumArt": true,
-                    "compactShowVisualizer": false,
                     "hideMode": "hidden",
                     "hideWhenIdle": false,
                     "id": "MediaMini",
                     "maxWidth": 200,
                     "panelShowAlbumArt": true,
-                    "panelShowVisualizer": true,
                     "scrollingMode": "hover",
                     "showAlbumArt": true,
                     "showArtistFirst": false,
@@ -258,6 +263,16 @@
                     "useCustomFont": false
                 },
                 {
+                    "capsLockIcon": "square-letter-c",
+                    "hideWhenOff": true,
+                    "id": "LockKeys",
+                    "numLockIcon": "square-letter-n",
+                    "scrollLockIcon": "square-letter-s",
+                    "showCapsLock": true,
+                    "showNumLock": true,
+                    "showScrollLock": true
+                },
+                {
                     "defaultSettings": {
                         "activeColor": "primary",
                         "hideInactive": false,
@@ -304,6 +319,8 @@
         }
     },
     "brightness": {
+        "backlightDeviceMappings": [
+        ],
         "brightnessStep": 5,
         "enableDdcSupport": false,
         "enforceMinimum": true
@@ -362,6 +379,7 @@
             }
         ],
         "diskPath": "/",
+        "openAtMouseOnBarRightClick": true,
         "position": "close_to_bar_button",
         "shortcuts": {
             "left": [
@@ -425,19 +443,30 @@
                 "widgets": [
                 ]
             }
-        ]
+        ],
+        "overviewEnabled": true
     },
     "dock": {
         "animationSpeed": 1,
         "backgroundOpacity": 1,
         "colorizeIcons": false,
         "deadOpacity": 0.65,
-        "displayMode": "always_visible",
+        "displayMode": "auto_hide",
         "dockType": "static",
-        "enabled": false,
+        "enabled": true,
         "floatingRatio": 1,
+        "groupApps": true,
+        "groupClickAction": "cycle",
+        "groupContextMenuMode": "extended",
+        "groupIndicatorStyle": "dots",
         "inactiveIndicators": true,
+        "indicatorColor": "primary",
+        "indicatorOpacity": 0.6,
+        "indicatorThickness": 3,
+        "launcherIconColor": "none",
+        "launcherPosition": "start",
         "monitors": [
+            "DP-1"
         ],
         "onlySameOutput": true,
         "pinnedApps": [
@@ -455,7 +484,8 @@
         ],
         "pinnedStatic": true,
         "position": "bottom",
-        "showFrameIndicator": true,
+        "showDockIndicator": false,
+        "showLauncherIcon": false,
         "sitOnFrame": false,
         "size": 1
     },
@@ -472,6 +502,7 @@
         "compactLockScreen": false,
         "dimmerOpacity": 0,
         "enableLockScreenCountdown": true,
+        "enableLockScreenMediaControls": true,
         "enableShadows": false,
         "forceBlackScreenCorners": true,
         "iRadiusRatio": 1,
@@ -480,7 +511,8 @@
                 "Down"
             ],
             "keyEnter": [
-                "Return"
+                "Return",
+                "Enter"
             ],
             "keyEscape": [
                 "Esc"
@@ -500,16 +532,17 @@
         },
         "language": "",
         "lockOnSuspend": true,
-        "lockScreenAnimations": false,
-        "lockScreenBlur": 0,
+        "lockScreenAnimations": true,
+        "lockScreenBlur": 1,
         "lockScreenCountdownDuration": 10000,
         "lockScreenMonitors": [
         ],
         "lockScreenTint": 0,
-        "radiusRatio": 0.75,
+        "passwordChars": true,
+        "radiusRatio": 0.5,
         "reverseScroll": false,
         "scaleRatio": 1,
-        "screenRadiusRatio": 0.75,
+        "screenRadiusRatio": 0.5,
         "shadowDirection": "center",
         "shadowOffsetX": 0,
         "shadowOffsetY": 0,
@@ -529,6 +562,20 @@
         "session": "",
         "startup": "",
         "wallpaperChange": ""
+    },
+    "idle": {
+        "customCommands": "[]",
+        "enabled": true,
+        "fadeDuration": 5,
+        "lockCommand": "",
+        "lockTimeout": 660,
+        "resumeLockCommand": "",
+        "resumeScreenOffCommand": "",
+        "resumeSuspendCommand": "",
+        "screenOffCommand": "",
+        "screenOffTimeout": 900,
+        "suspendCommand": "",
+        "suspendTimeout": 1800
     },
     "location": {
         "analogClockInCalendar": false,
@@ -551,6 +598,7 @@
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
+        "networkPanelView": "wifi",
         "wifiDetailsViewMode": "grid",
         "wifiEnabled": true
     },
@@ -674,7 +722,7 @@
         "showHeader": false,
         "showKeybinds": true
     },
-    "settingsVersion": 53,
+    "settingsVersion": 54,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
@@ -720,19 +768,16 @@
         "enableUserTheming": false
     },
     "ui": {
-        "bluetoothDetailsViewMode": "grid",
-        "bluetoothHideUnnamedDevices": false,
         "boxBorderEnabled": false,
         "fontDefault": "tokebe",
         "fontDefaultScale": 1.1,
         "fontFixed": "tokebe",
         "fontFixedScale": 1.1099999999999999,
-        "networkPanelView": "wifi",
-        "panelBackgroundOpacity": 0.7,
+        "panelBackgroundOpacity": 0.9,
         "panelsAttachedToBar": true,
         "settingsPanelMode": "window",
-        "tooltipsEnabled": true,
-        "wifiDetailsViewMode": "grid"
+        "settingsPanelSideBarCardStyle": false,
+        "tooltipsEnabled": true
     },
     "wallpaper": {
         "automationEnabled": true,
