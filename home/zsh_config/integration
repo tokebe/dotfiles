@@ -79,3 +79,6 @@ eval "$(jump shell)"
 
 # Fix Cargo pkgconfig on Fedora for some libraries
 export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+
+# Cargo bin
+export PATH="$HOME/.cargo/bin:$PATH"
