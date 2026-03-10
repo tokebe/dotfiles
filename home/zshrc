@@ -35,7 +35,8 @@ setopt interactive_comments # Allow comments in interactive shell
 ## History
 setopt append_history # Allow parallel session history
 setopt inc_append_history # Append history incrementally
-setopt share_history # Keep history between sessions
+setopt no_share_history # Don't share between sessions
+unsetopt share_history
 setopt extended_history # Keep timestamps
 setopt hist_ignore_space # Ignore space-led commands
 setopt hist_ignore_dups # Ignore consecutive duplicates
