@@ -12,3 +12,5 @@ export PATH
 
 # Fix Cargo pkgconfig on Fedora for some libraries
 export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+
+. "$HOME/.cargo/env"
