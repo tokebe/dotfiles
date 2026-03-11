@@ -31,6 +31,9 @@ input {
     }
 
     trackball {
+        scroll-button 275
+        scroll-method "on-button-down"
+        scroll-button-lock
 
     }
 

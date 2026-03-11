@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-package_updates=$(dnf check-upgrade --refresh -q | grep -c '^[a-z0-9]')
+package_updates=$(dnf check-upgrade --refresh -q -y | grep -c '^[a-z0-9]')
 brew_updates=$(brew upgrade -n | sed -nE 's/.*([0-9]+) outdated packages:/\1/p')
 flatpak_updates=$(yes no | flatpak update | grep -e '^\s*[0-9+]\.' | tail -1 | sed -nE 's/^\s([0-9]+)\..+/\1/p')
 
