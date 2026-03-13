@@ -8,6 +8,14 @@ vim.lsp.config('basedpyright', {
         useLibraryCodeForTypes = true,
       },
     },
+    basedpyright = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = 'openFilesOnly',
+        typeCheckingMode = 'standard',
+        useLibraryCodeForTypes = true,
+      },
+    },
   },
   -- on_attach = function(client, buffer)
   --   client.server_capabilities.hoverProvider = false
