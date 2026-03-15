@@ -14,4 +14,7 @@ fi
 export GPG_TTY=$TTY
 export MANROFFOPT="-c" # Fix escape symbols in manpages
 export HOMEBREW_NO_AUTO_UPDATE=1 # for those slow-internet days
-. "$HOME/.cargo/env"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  . "$HOME/.cargo/env"
+fi
