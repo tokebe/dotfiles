@@ -304,4 +304,5 @@ binds {
     // Dynamic casting target
     Mod+Alt+S { set-dynamic-cast-window; }
     Mod+Alt+Shift+S { set-dynamic-cast-monitor; }
+    Mod+Ctrl+S { clear-dynamic-cast-target; }
 }
