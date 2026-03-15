@@ -17,6 +17,7 @@ layer-rule {
 //     place-within-backdrop true
 // }
 
+
 layer-rule {
     match namespace="^noctalia-overview*"
     place-within-backdrop true
@@ -71,12 +72,22 @@ window-rule {
 
     focus-ring {
         active-color "#eb6f92"
-        inactive-color "#ea9a97"
     }
+
 
     tab-indicator {
         active-color "#eb6f92"
         inactive-color "#ea9a97"
+    }
+}
+window-rule {
+    match is-window-cast-target=true
+
+    border {
+        on
+        width 2
+        active-color "#eb6f92"
+        inactive-color "#eb6f92"
     }
 }
 
