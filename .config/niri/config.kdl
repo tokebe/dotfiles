@@ -11,6 +11,7 @@ environment {
     // ELECTRON_OZONE_PLATFORM_HINT "auto"
     // Used by Noctalia for qt auto-theming
     QT_QPA_PLATFORMTHEME "qt6ct"
+    XDG_CURRENT_DESKTOP "niri"
 }
 
 switch-events {

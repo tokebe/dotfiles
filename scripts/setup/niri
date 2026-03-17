@@ -10,8 +10,8 @@ setup () {
     systemctl --user add-wants niri.service swayidle.service
     systemctl --user add-wants niri.service mate-polkit.service
 
-    # Get the latest Noctalia
-    source "../noctalia/setup"
+    # Set up niri-autoselect-portal
+    source "../noctalia/setup-autoselect-portal"
 
     # Set gtk theme so Noctalia can customize it
     gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'
