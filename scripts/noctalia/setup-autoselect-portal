@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Uses https://codeberg.org/debugloop/niri-autoselect-portal
+# Skips a couple steps (just lets niri spawn the portal service)
+
+# Install the portal
+go install codeberg.org/debugloop/niri-autoselect-portal@latest
+sudo install -D -m 755 "$(go env GOPATH)/bin/niri-autoselect-portal" /usr/local/bin/
+
+# Create the portal config
+mkdir -p /usr/local/share/xdg-desktop-portal/portals
+sudo tee /usr/local/share/xdg-desktop-portal/portals/niri-autoselect.portal &>/dev/null <<EOF
+[portal]
+DBusName=org.freedesktop.impl.portal.desktop.niri-autoselect
+Interfaces=org.freedesktop.impl.portal.ScreenCast
+EOF
+
+# Ensure environment is propagated
+systemctl --user import-environment XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
+dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
+
+# Start xdg-desktop-portal
+systemctl --user start xdg-desktop-portal
