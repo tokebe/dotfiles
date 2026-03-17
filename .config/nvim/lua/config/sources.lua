@@ -3,7 +3,8 @@ return {
     'lua_ls', -- Lua
     -- 'tsserver', -- Typescript/Javascript
     'basedpyright', -- Python
-    'ruff', --Python
+    -- 'ty', -- Python
+    'ruff', -- Python
     'taplo', -- TOML
     'bashls', -- Bash
     'yamlls', -- JSON/YAML

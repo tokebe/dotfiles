@@ -32,3 +32,15 @@ vim.lsp.config('basedpyright', {
     end
   end,
 })
+
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+-- vim.lsp.config('ty', {
+--   settings = {
+--     ty = {
+--       diagnosticMode = 'workspace',
+--     },
+--   },
+--   capabilities = capabilities,
+-- })
+-- vim.lsp.enable('ty')
