@@ -123,6 +123,7 @@
     - xh  # Friendlier cURL | https://github.com/ducaale/xh
     - gum  # Shell script utility | https://github.com/charmbracelet/gum
     - kew  # TUI Music library and player | https://codeberg.org/ravachol/kew
+    - brevity1swos/tap/rgx  # TUI Regex tester | https://github.com/brevity1swos/rgx
 - shell:
     - description: Install ZSH for Humans  # A really solid CLI environment/prompt
       command: ./zsh/setup
