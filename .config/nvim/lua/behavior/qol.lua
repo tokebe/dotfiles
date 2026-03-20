@@ -14,6 +14,7 @@ return {
     config = function()
       require('yankbank').setup({
         max_entries = 10,
+        persist_type = 'sqlite',
       })
       vim.keymap.set('n', '<Leader>sy', '<CMD>YankBank<CR>', { noremap = true, desc = 'Select & paste from clipboard' })
     end,
