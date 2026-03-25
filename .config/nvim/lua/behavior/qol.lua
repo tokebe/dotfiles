@@ -11,6 +11,7 @@ return {
   },
   {
     'ptdewey/yankbank-nvim',
+    dependencies = 'kkharji/sqlite.lua',
     config = function()
       require('yankbank').setup({
         max_entries = 10,
