@@ -42,5 +42,7 @@ return {
   'neotest-output-panel',
   'persistentfilterdata',
   'smear-cursor',
-  'DiffviewFiles'
+  'DiffviewFiles',
+  'oil',
+  'oil_preview'
 }
