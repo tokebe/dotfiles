@@ -16,3 +16,4 @@ if command -v neovide >/dev/null 2>&1; then
 fi
 alias st=systemctl-tui
 alias clear='clear && bottom-prompt'
+alias cclear='clear && tmux clear-history'
