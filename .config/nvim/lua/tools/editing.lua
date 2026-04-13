@@ -5,6 +5,9 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('wildfire').setup({
+        keymaps = {
+          init_selection = '<Leader><CR>'
+        },
         filetype_exclude = require('config.filetype_excludes'),
       })
     end,
