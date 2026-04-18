@@ -112,10 +112,11 @@
             "left": [
                 {
                     "colorizeSystemIcon": "none",
-                    "enableColorization": false,
+                    "colorizeSystemText": "none",
                     "generalTooltipText": "",
                     "hideMode": "alwaysExpanded",
                     "icon": "niri",
+                    "iconPosition": "left",
                     "id": "CustomButton",
                     "ipcIdentifier": "",
                     "leftClickExec": "vicinae toggle",
@@ -167,13 +168,6 @@
                     "usePadding": false
                 },
                 {
-                    "defaultSettings": {
-                        "hideBackground": false,
-                        "minimumThreshold": 10
-                    },
-                    "id": "plugin:catwalk"
-                },
-                {
                     "displayMode": "onhover",
                     "iconColor": "none",
                     "id": "Volume",
@@ -215,10 +209,11 @@
                 },
                 {
                     "colorizeSystemIcon": "none",
-                    "enableColorization": false,
+                    "colorizeSystemText": "none",
                     "generalTooltipText": "",
                     "hideMode": "alwaysExpanded",
                     "icon": "clipboard",
+                    "iconPosition": "left",
                     "id": "CustomButton",
                     "ipcIdentifier": "",
                     "leftClickExec": "qs -c noctalia-shell ipc call launcher clipboard",
@@ -306,6 +301,7 @@
                 {
                     "colorizeDistroLogo": false,
                     "colorizeSystemIcon": "none",
+                    "colorizeSystemText": "none",
                     "customIconPath": "",
                     "enableColorization": false,
                     "icon": "gender-transgender",
@@ -350,6 +346,7 @@
         "monitorForColors": "",
         "predefinedScheme": "Rose Pine",
         "schedulingMode": "off",
+        "syncGsettings": true,
         "useWallpaperColors": false
     },
     "controlCenter": {
@@ -554,6 +551,7 @@
         "showHibernateOnLockScreen": false,
         "showScreenCorners": true,
         "showSessionButtonsOnLockScreen": true,
+        "smoothScrollEnabled": true,
         "telemetryEnabled": true
     },
     "hooks": {
@@ -584,6 +582,7 @@
     },
     "location": {
         "analogClockInCalendar": false,
+        "autoLocate": false,
         "firstDayOfWeek": -1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
@@ -594,12 +593,12 @@
         "use12hourFormat": true,
         "useFahrenheit": true,
         "weatherEnabled": true,
-        "weatherShowEffects": true
+        "weatherShowEffects": true,
+        "weatherTaliaMascotAlways": false
     },
     "network": {
-        "airplaneModeEnabled": false,
         "bluetoothAutoConnect": true,
-        "bluetoothDetailsViewMode": "grid",
+        "bluetoothDetailsViewMode": "list",
         "bluetoothHideUnnamedDevices": false,
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": false,
@@ -682,7 +681,7 @@
             {
                 "action": "lock",
                 "command": "",
-                "countdownEnabled": true,
+                "countdownEnabled": false,
                 "enabled": true,
                 "keybind": "1"
             },
@@ -698,34 +697,41 @@
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": "5"
+                "keybind": "3"
             },
             {
                 "action": "shutdown",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": "6"
+                "keybind": "4"
             },
             {
                 "action": "reboot",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": "4"
+                "keybind": "5"
             },
             {
                 "action": "hibernate",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": false,
-                "keybind": "3"
+                "keybind": ""
             },
             {
                 "action": "rebootToUefi",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
+                "keybind": "6"
+            },
+            {
+                "action": "userspaceReboot",
+                "command": "",
+                "countdownEnabled": true,
+                "enabled": false,
                 "keybind": ""
             }
         ],
@@ -801,6 +807,7 @@
         "fillColor": "#000000",
         "fillMode": "crop",
         "hideWallpaperFilenames": false,
+        "linkLightAndDarkWallpapers": true,
         "monitorDirectories": [
         ],
         "overviewBlur": 1,
