@@ -16,6 +16,7 @@ source "${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
 
 # General Options
 unsetopt prompt_sp # Don't autoclean blanklines
+zle_highlight+=(paste:none) # Don't highlight pasted text
 
 ## Completion (cmp) Options
 zstyle ':completion:*' menu select # Tab opens cmp menu
@@ -46,11 +47,18 @@ export SAVEHIST=1000000
 export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/.zsh_history" # XDG-compliant history
 export PROMPT_EOL_MARK=$'%{\e[7m%} %{\e[27m%}'
 
-DISABLE_MAGIC_FUNCTIONS=true # Paste bracketing slows down pasting a lot
-
 
 # Plugins
 antidote load
+
+# Bracketed paste: fast insert via builtin, then rehighlight
+_fast_bracketed_paste() {
+  local PASTED
+  zle .bracketed-paste PASTED
+  LBUFFER+=$PASTED
+  (( $+functions[_zsh_highlight] )) && _zsh_highlight
+}
+zle -N bracketed-paste _fast_bracketed_paste
 
 ## Config
 plugin_config="${ZDOTDIR:-$HOME}/.zsh_config/plugin_config"
