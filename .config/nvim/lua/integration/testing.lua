@@ -2,7 +2,6 @@ return {
   {
     'nvim-neotest/neotest',
     version = '^5.13.4',
-    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
       'nvim-neotest/nvim-nio',
       'nvim-lua/plenary.nvim',

@@ -46,11 +46,6 @@ return {
         lightness = 'dim',
       }
 
-      require('lualine').setup({
-        options = {
-          theme = 'auto',
-        },
-      })
       local colorscheme = require('last-color').recall() or default_theme
       vim.cmd('colorscheme ' .. colorscheme)
       require('transparent').setup({})

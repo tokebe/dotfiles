@@ -18,7 +18,6 @@ return {
   },
   formatter = {
     -- formatters
-    'sytlua',
     -- 'prettierd', -- Better to use dedicated formatters
     -- 'black', -- Replaced by Ruff
     'beautysh',

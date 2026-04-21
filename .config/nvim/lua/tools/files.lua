@@ -99,85 +99,27 @@ return {
       },
     },
   },
-  -- { -- causes persistent dimming
-  --   'lmburns/lf.nvim',
-  --   dependencies = { 'akinsho/toggleterm.nvim' },
-  --   config = function()
-  --     require('lf').setup({
-  --       border = 'single',
-  --       default_file_manager = true,
-  --       highlights = {
-  --         Normal = { link = 'Normal' },
-  --         NormalFloat = { link = 'Normal' },
-  --         FloatBorder = { link = 'Normal' },
-  --       },
-  --     })
-  --
-  --     vim.keymap.set('n', '<Leader>mf', function()
-  --       local path = vim.api.nvim_buf_get_name(0)
-  --       if path == nil then
-  --         path = vim.fn.getcwd()
-  --       end
-  --       require('lf').start()
-  --     end, { desc = 'Manage Files with lf' })
-  --   end,
-  -- },
-  {
-    {
-      'stevearc/oil.nvim',
-      ---@module 'oil'
-      ---@type oil.SetupOpts
-      opts = {
-        default_file_explorer = true,
-        delete_to_trash = true,
-        watch_for_changes = true,
-        view_options = {
-          show_hidden = true,
-        },
-        float = {
-          max_width = 0.7,
-          max_height = 0.7,
-          border = 'single',
-        },
-        confirmation = {
-          border = 'single',
-        },
-        use_default_keymaps = true,
-        keymaps = {
-          ['q'] = { 'actions.close', mode = 'n' },
-          ['<CR>'] = 'actions.select',
-          ['L'] = { 'actions.select', mode = 'n' },
-          ['H'] = { 'actions.parent', mode = 'n' },
-          ['<C-s>'] = { '<CMD>w<CR>' },
-          ['Q'] = { '<CMD>q!<CR>' },
-        },
-      },
-      -- Optional dependencies
-      dependencies = { 'nvim-tree/nvim-web-devicons' },
-      -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-      lazy = false,
-      keys = {
-        {
-          '<Leader>mf',
-          '<CMD>Oil --float --preview<CR>',
-          desc = 'Manage Files with Oil',
-        },
-      },
-    },
-  },
-  { 'malewicz1337/oil-git.nvim', dependencies = { 'stevearc/oil.nvim' } },
-  {
-    'JezerM/oil-lsp-diagnostics.nvim',
-    dependencies = { 'stevearc/oil.nvim' },
+  { -- causes persistent dimming
+    'lmburns/lf.nvim',
+    dependencies = { 'akinsho/toggleterm.nvim' },
     config = function()
-      require('oil-lsp-diagnostics').setup({
-        diagnostic_symbols = {
-          error = ' ',
-          warn = ' ',
-          info = ' ',
-          hint = '󱉵 ',
+      require('lf').setup({
+        border = 'single',
+        default_file_manager = true,
+        highlights = {
+          Normal = { link = 'Normal' },
+          NormalFloat = { link = 'Normal' },
+          FloatBorder = { link = 'Normal' },
         },
       })
+
+      vim.keymap.set('n', '<Leader>mf', function()
+        local path = vim.api.nvim_buf_get_name(0)
+        if path == nil then
+          path = vim.fn.getcwd()
+        end
+        require('lf').start()
+      end, { desc = 'Manage Files with lf' })
     end,
   },
 }

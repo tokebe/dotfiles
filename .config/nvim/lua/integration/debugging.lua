@@ -21,17 +21,138 @@ return {
   {
     'igorlfs/nvim-dap-view',
     lazy = false,
+    opts = {
+      auto_toggle = false,
+      winbar = {
+        default_section = 'console',
+        sections = { 'sessions', 'threads', 'watches', 'exceptions', 'breakpoints', 'scopes', 'repl', 'console' },
+        controls = {
+          enabled = true,
+        },
+      },
+      windows = {
+        size = 0.35,
+        terminal = {
+          size = 0.5,
+        },
+      },
+    },
+    keys = {
+      {
+        '<Leader>dv',
+        function()
+          require('dap-view').toggle()
+        end,
+      },
+    },
+  },
+  {
+    'mfussenegger/nvim-dap',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
       'nvim-neotest/nvim-nio',
-      'mfussenegger/nvim-dap',
       { 'jay-babu/mason-nvim-dap.nvim', dependencies = { 'williamboman/mason.nvim' } },
       'Weissle/persistent-breakpoints.nvim',
       { 'stevearc/overseer.nvim' },
       'nvimtools/hydra.nvim',
     },
+    keys = {
+      -- Breakpoint keybinds
+      {
+        '<Leader>bb',
+        function()
+          require('persistent-breakpoints.api').toggle_breakpoint()
+        end,
+        desc = 'Toggle breakpoint',
+      },
+      {
+        '<Leader>bc',
+        function()
+          require('persistent-breakpoints.api').set_conditional_breakpoint()
+        end,
+        desc = 'Set conditional breakpoint',
+      },
+      {
+        '<Leader>bl',
+        function()
+          require('persistent-breakpoints.api').set_log_point()
+        end,
+        desc = 'Set Logpoint',
+      },
+      {
+        '<Leader>bd',
+        function()
+          require('persistent-breakpoints.api').clear_all_breakpoints()
+        end,
+        desc = 'Clear all breakpoints',
+      },
+      -- Debugging keybinds
+      {
+        '<Leader>dd',
+        function()
+          require('dap').continue()
+        end,
+        desc = 'Start a debugging session...',
+      },
+      {
+        '<Leader>dp',
+        function()
+          require('dap').pause()
+        end,
+        desc = 'Pause',
+      },
+      {
+        '<Leader>dc',
+        function()
+          require('dap').continue()
+        end,
+        desc = 'Continue',
+      },
+      {
+        '<Leader>dC',
+        function()
+          require('dap').run_to_cursor()
+        end,
+        desc = 'Continue to cursor',
+      },
+      {
+        '<Leader>ds',
+        function()
+          require('dap').terminate()
+        end,
+        desc = 'Stop',
+      },
+      {
+        '<Leader>dr',
+        function()
+          require('dap').restart()
+        end,
+        desc = 'Restart',
+      },
+      { '<Leader>df', '<CMD>FzfLua dap_breakpoints<CR>', desc = 'Find breakpoints' },
+      {
+        '<Leader>dj',
+        function()
+          require('dap').step_over()
+        end,
+        desc = 'Step over',
+      },
+      {
+        '<Leader>dl',
+        function()
+          require('dap').step_into()
+        end,
+        desc = 'Step into',
+      },
+      {
+        '<Leader>dh',
+        function()
+          require('dap').step_out()
+        end,
+        desc = 'Step out',
+      },
+    },
     config = function()
-      -- FIX: ftmemo creates errors on opening repl, figure out how to suppress
       local dap = require('dap')
       local uv = vim.uv or vim.loop
 
@@ -119,56 +240,6 @@ return {
       --     },
       --   },
       -- }
-
-      -- Provides a decent UI, might switch back to dap-ui for toggleable breakpoints
-      local dapview = require('dap-view')
-      dapview.setup({
-        auto_toggle = false,
-        winbar = {
-          default_section = 'console',
-          sections = { 'sessions', 'threads', 'watches', 'exceptions', 'breakpoints', 'scopes', 'repl', 'console' },
-          controls = {
-            enabled = true,
-          },
-        },
-        windows = {
-          size = 0.35,
-          terminal = {
-            size = 0.5,
-          },
-        },
-      })
-
-      -- Breakpoint keybinds
-      vim.keymap.set(
-        'n',
-        '<Leader>bb',
-        require('persistent-breakpoints.api').toggle_breakpoint,
-        { desc = 'Toggle breakpoint' }
-      )
-      vim.keymap.set('n', '<Leader>bc', function()
-        require('persistent-breakpoints.api').set_conditional_breakpoint()
-      end, { desc = 'Set conditional breakpoint' })
-      vim.keymap.set('n', '<Leader>bl', function()
-        require('persistent-breakpoints.api').set_log_point()
-      end, { desc = 'Set Logpoint' })
-      vim.keymap.set('n', '<Leader>bd', function()
-        require('persistent-breakpoints.api').clear_all_breakpoints()
-      end, { desc = 'Clear all breakpoints' })
-
-      -- Debugging keybinds
-      vim.keymap.set('n', '<Leader>dd', dap.continue, { desc = 'Start a debugging session...' })
-      vim.keymap.set('n', '<Leader>dv', dapview.toggle, { desc = 'Toggle debugging UI' })
-
-      vim.keymap.set('n', '<Leader>dp', dap.pause, { desc = 'Pause' })
-      vim.keymap.set('n', '<Leader>dc', dap.continue, { desc = 'Continue' })
-      vim.keymap.set('n', '<Leader>dC', dap.run_to_cursor, { desc = 'Continue to cursor' })
-      vim.keymap.set('n', '<Leader>ds', dap.terminate, { desc = 'Stop' })
-      vim.keymap.set('n', '<Leader>dr', dap.restart, { desc = 'Restart' })
-      vim.keymap.set('n', '<Leader>df', '<CMD>FzfLua dap_breakpoints<CR>', { desc = 'Find breakpoints' })
-      vim.keymap.set('n', '<Leader>dj', dap.step_over, { desc = 'Step over' })
-      vim.keymap.set('n', '<Leader>dl', dap.step_into, { desc = 'Step into' })
-      vim.keymap.set('n', '<Leader>dh', dap.step_out, { desc = 'Step out' })
 
       -- Debug control mode
       require('hydra')({
