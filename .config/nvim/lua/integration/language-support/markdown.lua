@@ -10,7 +10,7 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons',
     },
-    events = {
+    event = {
       'FileType',
     },
     opts = {

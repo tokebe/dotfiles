@@ -44,9 +44,9 @@ return {
       { '<M-H>', '<CMD>Treewalker Left<CR>', mode = 'n', noremap = true, silent = true },
       { '<M-L>', '<CMD>Treewalker Right<CR>', mode = 'n', noremap = true, silent = true },
       { '<Leader>mj', '<CMD>Treewalker SwapDown<CR>', mode = 'n', noremap = true, silent = true },
-      { '<M-K>mk', '<CMD>Treewalker SwapUp<CR>', mode = 'n', noremap = true, silent = true },
-      { '<M-H>mh', '<CMD>Treewalker SwapLeft<CR>', mode = 'n', noremap = true, silent = true },
-      { '<M-L>ml', '<CMD>Treewalker SwapRight<CR>', mode = 'n', noremap = true, silent = true },
+      { '<Leader>mk', '<CMD>Treewalker SwapUp<CR>', mode = 'n', noremap = true, silent = true },
+      { '<Leader>mh', '<CMD>Treewalker SwapLeft<CR>', mode = 'n', noremap = true, silent = true },
+      { '<Leader>ml', '<CMD>Treewalker SwapRight<CR>', mode = 'n', noremap = true, silent = true },
     },
   },
 }
