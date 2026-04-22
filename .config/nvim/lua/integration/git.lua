@@ -96,19 +96,19 @@ return {
           end, { expr = true, desc = 'Previous hunk' })
 
           -- Actions
-          vim.keymap.set('n', '<leader>hs', gs.stage_hunk, { desc = 'Stage hunk' })
-          vim.keymap.set('n', '<leader>hr', gs.reset_hunk, { desc = 'Reset hunk' })
-          vim.keymap.set('v', '<leader>hs', function()
+          vim.keymap.set('n', '<Leader>hs', gs.stage_hunk, { desc = 'Stage hunk' })
+          vim.keymap.set('n', '<Leader>hr', gs.reset_hunk, { desc = 'Reset hunk' })
+          vim.keymap.set('v', '<Leader>hs', function()
             gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
           end, { desc = 'Stage selection' })
-          vim.keymap.set('v', '<leader>hr', function()
+          vim.keymap.set('v', '<Leader>hr', function()
             gs.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
           end, { desc = 'Reset selection' })
-          vim.keymap.set('n', '<leader>hS', gs.stage_buffer, { desc = 'Stage buffer' })
-          vim.keymap.set('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'Unstage hunk' })
-          vim.keymap.set('n', '<leader>hR', gs.reset_buffer, { desc = 'Reset buffer' })
-          vim.keymap.set('n', '<leader>hp', gs.preview_hunk_inline, { desc = 'Preview hunk' })
-          vim.keymap.set('n', '<leader>hd', gs.toggle_deleted, { desc = 'Toggle show deleted' })
+          vim.keymap.set('n', '<Leader>hS', gs.stage_buffer, { desc = 'Stage buffer' })
+          vim.keymap.set('n', '<Leader>hu', gs.undo_stage_hunk, { desc = 'Unstage hunk' })
+          vim.keymap.set('n', '<Leader>hR', gs.reset_buffer, { desc = 'Reset buffer' })
+          vim.keymap.set('n', '<Leader>hp', gs.preview_hunk_inline, { desc = 'Preview hunk' })
+          vim.keymap.set('n', '<Leader>hd', gs.toggle_deleted, { desc = 'Toggle show deleted' })
 
           -- Text object
           vim.keymap.set({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
