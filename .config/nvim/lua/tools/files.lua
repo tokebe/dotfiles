@@ -99,7 +99,7 @@ return {
       },
     },
   },
-  { -- causes persistent dimming
+  {
     'lmburns/lf.nvim',
     dependencies = { 'akinsho/toggleterm.nvim' },
     config = function()

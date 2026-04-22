@@ -9,6 +9,7 @@ return {
       require('fzf-lua').setup({
         winopts = {
           border = 'single',
+          backdrop = false,
         },
         files = {
           previewer = 'bat',
