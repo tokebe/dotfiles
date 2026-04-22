@@ -1,3 +1,4 @@
+require('config.misc-keybinds')
 return {
   {
     'folke/which-key.nvim',
@@ -34,7 +35,6 @@ return {
         { '<Leader>w', group = 'Window / Buffer...' },
       })
       -- Set up misc keybinds
-      require('config.misc-keybinds')
     end,
   },
 }
