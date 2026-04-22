@@ -14,9 +14,13 @@ return {
     {
       'MysticalDevil/inlay-hints.nvim',
       event = 'LspAttach',
+      dependencies = { 'neovim/nvim-lspconfig' },
+      config = function()
+        require('inlay-hints').setup()
+      end,
       keys = {
         {
-          '<leader>it',
+          '<Leader>it',
           '<CMD>InlayHintsToggle<CR>',
           desc = 'Toggle inlay hints.',
         },
@@ -26,21 +30,21 @@ return {
       'AbysmalBiscuit/insert-inlay-hints.nvim',
       keys = {
         {
-          '<leader>ic',
+          '<Leader>ic',
           function()
             require('insert-inlay-hints').closest()
           end,
           desc = 'Insert closest inlay hint.',
         },
         {
-          '<leader>il',
+          '<Leader>il',
           function()
             require('insert-inlay-hints').line()
           end,
           desc = 'Insert inlay hints on current line.',
         },
         {
-          '<leader>i',
+          '<Leader>i',
           function()
             require('insert-inlay-hints').visual()
           end,
@@ -48,7 +52,7 @@ return {
           mode = { 'v' },
         },
         {
-          '<leader>ia',
+          '<Leader>ia',
           function()
             return require('insert-inlay-hints').all()
           end,

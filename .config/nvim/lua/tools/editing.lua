@@ -162,7 +162,7 @@ return {
       vim.keymap.set({ 'n', 'v' }, '<right>', mc.prevCursor, { desc = 'Switch to previous cursor' })
 
       -- delete the main cursor
-      vim.keymap.set({ 'n', 'v' }, '<leader>mx', mc.deleteCursor, { desc = 'Delete current cursor' })
+      vim.keymap.set({ 'n', 'v' }, '<Leader>mx', mc.deleteCursor, { desc = 'Delete current cursor' })
 
       -- add and remove cursors with control + left click
       vim.keymap.set('n', '<c-leftmouse>', mc.handleMouse, { desc = 'Add cursor with mouse' })
@@ -188,7 +188,7 @@ return {
       end, { desc = 'Exit multi-cursor', noremap = true })
 
       -- align cursor columns
-      vim.keymap.set('n', '<leader>ma', mc.alignCursors, { desc = 'Align cursor columns' })
+      vim.keymap.set('n', '<Leader>ma', mc.alignCursors, { desc = 'Align cursor columns' })
 
       -- split visual selections by regex
       vim.keymap.set('v', '<Leader>ms', mc.splitCursors, { desc = 'Split selection by regex and add cursors' })
@@ -202,10 +202,10 @@ return {
       )
 
       -- rotate visual selection contents
-      -- vim.keymap.set('v', '<leader>mr', function()
+      -- vim.keymap.set('v', '<Leader>mr', function()
       --   mc.transposeCursors(1)
       -- end, { desc = 'Transpose multi-selections' })
-      -- vim.keymap.set('v', '<leader>mR', function()
+      -- vim.keymap.set('v', '<Leader>mR', function()
       --   mc.transposeCursors(-1)
       -- end, { desc = 'Transpose multi-selections (reverse)' })
 
