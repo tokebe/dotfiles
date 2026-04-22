@@ -91,11 +91,11 @@ cmd delete ${{
     printf "$fx\n"
     printf "delete?[y/n]"
     read ans
-    [ "$ans" = "y" ] && gtrash put $fx
+    [ "$ans" = "y" ] && gtrash put "${(@f)fx}"
 }}
 
 cmd gtrash ${{
-    gtrash put $fx
+    gtrash put "${(@f)fx}"
 }}
 
 # use '<delete>' key for either 'trash' or 'delete' command
