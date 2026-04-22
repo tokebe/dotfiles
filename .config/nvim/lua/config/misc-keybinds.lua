@@ -26,14 +26,15 @@ vim.keymap.set('n', '>', '<CMD>bnext<CR>', {
   desc = 'Next buffer',
   silent = true,
 })
-vim.keymap.set('n', '<A-lt>', '<CMD>tabprev<CR>', {
-  desc = 'Previous Tabpage',
-  silent = true,
-})
-vim.keymap.set('n', '<A->>', '<CMD>tabnext<CR>', {
-  desc = 'Next Tabpage',
-  silent = true,
-})
+-- vim.keymap.set('n', '<M-lt>', '<CMD>tabprev<CR>', {
+--   desc = 'Previous Tabpage',
+--   silent = true,
+-- })
+-- For some reason, breaks bprev
+-- vim.keymap.set('n', '<M->>', '<CMD>tabnext<CR>', {
+--   desc = 'Next Tabpage',
+--   silent = true,
+-- })
 vim.keymap.set('n', '<S-Tab>', '<CMD>tabnext<CR>', { desc = 'Cycle Tabpages', silent = true })
 vim.keymap.set('n', '<Leader>wn', '<CMD>enew<CR>', {
   desc = 'New buffer',
