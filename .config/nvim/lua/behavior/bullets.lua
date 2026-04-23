@@ -29,6 +29,9 @@ return {
       'plaintex',
       'norg',
     },
+    keys = {
+      { '<Leader>x', '<CMD>AutolistToggleCheckbox<CR>', desc = 'Toggle checkbox' },
+    },
     config = function()
       require('autolist').setup()
       vim.keymap.set('i', '<CR>', '<CR><cmd>AutolistNewBullet<cr>')
