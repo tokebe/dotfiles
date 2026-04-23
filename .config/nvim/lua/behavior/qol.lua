@@ -36,7 +36,7 @@ return {
             local excludes = require('config.filetype_excludes')
             local is_excluded = false
             for i, v in ipairs(excludes) do
-              if v == vim.bo[buf].buftype then
+              if v == vim.bo[buf].filetype then
                 is_excluded = true
               end
             end
