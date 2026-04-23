@@ -44,5 +44,6 @@ return {
   'smear-cursor',
   'DiffviewFiles',
   'oil',
-  'oil_preview'
+  'oil_preview',
+  'qf',
 }
