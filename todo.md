@@ -18,7 +18,7 @@ Running TODO list:
 - [ ] Better control of edgy windows--hydra to resize or something? Send to buffer?
 - [ ] More snippets for different languages
 - [x] Debugging
- - [x] A solid control scheme
+  - [x] A solid control scheme
   - [x] Breakpoints, inspection
   - [x] Persistent breakpoints (Just set up breakpoint keys using persistent-breakpoints commands)
   - [x] Possible vscode debug config support?
@@ -30,8 +30,8 @@ Running TODO list:
   - [x] maybe launch in tmux pane and then attach to (this would be incredibly complicated)?
   - [x] kill process on debug stop
 - [ ] Fix overseer output not showing errors
-- [ ] better quick fix management
-- [ ] Fix visual-paste yanking replaced text
+- [x] better quick fix management
+- [x] Fix visual-paste yanking replaced text
 - [ ] Disable diagnostics on insert?
 - [ ] Live file running for quicker iteration
 
