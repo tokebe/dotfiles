@@ -6,11 +6,11 @@ return {
   },
   event = 'LspAttach',
   keys = {
-    {
-      '<Leader>fq',
-      ':Trouble quickfix<CR>',
-      desc = 'Find quickfix',
-    },
+    -- {
+    --   '<Leader>fq',
+    --   ':Trouble quickfix<CR>',
+    --   desc = 'Find quickfix',
+    -- },
     {
       '<Leader>ft',
       ':TodoTrouble<CR>',

@@ -9,11 +9,31 @@ return {
         startInInsertMode = false,
         keymaps = {
           close = { n = 'q' },
+          qflist = { n = '<Leader>q' },
         },
         prefills = {
           flags = '--smart-case --no-ignore --hidden',
         },
         transient = true,
+      })
+
+      -- override the built-in qflist binding so it also closes grug-far.
+      -- vim.schedule defers past grug-far's own keymap setup, which runs synchronously
+      -- after it sets filetype=grug-far (and would otherwise clobber this binding).
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'grug-far',
+        callback = function(ev)
+          vim.schedule(function()
+            if not vim.api.nvim_buf_is_valid(ev.buf) then
+              return
+            end
+            vim.keymap.set('n', '<Leader>q', function()
+              local instance = grug.get_instance(ev.buf)
+              instance:open_quickfix()
+              instance:close()
+            end, { buffer = ev.buf, desc = 'Send to quickfix and close grug-far' })
+          end)
+        end,
       })
 
       vim.keymap.set({ 'n', 'v' }, '<Leader>ff', function()
