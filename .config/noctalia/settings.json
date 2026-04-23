@@ -269,15 +269,6 @@
                     "useCustomFont": false
                 },
                 {
-                    "defaultSettings": {
-                        "activeColor": "primary",
-                        "hideInactive": false,
-                        "inactiveColor": "none",
-                        "removeMargins": false
-                    },
-                    "id": "plugin:privacy-indicator"
-                },
-                {
                     "displayMode": "onhover",
                     "iconColor": "none",
                     "id": "Bluetooth",
@@ -534,7 +525,7 @@
         "language": "",
         "lockOnSuspend": true,
         "lockScreenAnimations": true,
-        "lockScreenBlur": 1,
+        "lockScreenBlur": 0,
         "lockScreenCountdownDuration": 10000,
         "lockScreenMonitors": [
         ],
