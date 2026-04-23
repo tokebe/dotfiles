@@ -16,8 +16,8 @@ return {
           ['<C-k>'] = { 'show', 'fallback' },
           ['<Tab>'] = {
             function(cmp)
-              if cmp.snippet_active() then
-                return cmp.accept()
+              if cmp.snippet_active({ direction = 1 }) then
+                return cmp.snippet_forward()
               elseif cmp.is_menu_visible() then
                 return cmp.select_next()
               end
