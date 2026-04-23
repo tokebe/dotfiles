@@ -113,14 +113,14 @@ return {
       require('auto-save').setup({
         -- trigger_events = { 'InsertLeave' }
         debounce_delay = 500,
-        condition = function(buf)
-          local utils = require('auto-save.utils.data')
-
-          if utils.not_in(vim.fn.getbufvar(buf, '&filetype'), { 'oil', 'oil_preview' }) then
-            return true
-          end
-          return false
-        end,
+        -- condition = function(buf)
+        --   local utils = require('auto-save.utils.data')
+        --
+        --   if utils.not_in(vim.fn.getbufvar(buf, '&filetype'), require('config.filetype_excludes')) then
+        --     return true
+        --   end
+        --   return false
+        -- end,
       })
 
       vim.keymap.set('n', '<Leader>ota', ':ASToggle<CR>', {
