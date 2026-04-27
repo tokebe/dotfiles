@@ -64,6 +64,7 @@
         - lolcat  # Colorful text | https://github.com/busyloop/lolcat
         - yank  # Terminal output -> Clipboard | https://github.com/mptre/yank
         - input-remapper  # Remap inputs from peripherals | https://github.com/sezanzeb/input-remapper
+        - sd  # Sane sed | https://github.com/chmln/sd
 - if:
     cond: command -v fdfind &> /dev/null
     met:
@@ -112,7 +113,7 @@
     - glow  # Terminal Markdown Renderer | https://github.com/charmbracelet/glow
     - jump  # Smart cd'ing | https://github.com/gsamokovarov/jump
     - lazydocker  # TUI Docker management | https://github.com/jesseduffield/lazydocker
-    - lsd # Deluxe ls |  # https://github.com/lsd-rs/lsd
+    - lsd  # Deluxe ls | https://github.com/lsd-rs/lsd
     - nap  # TUI snippet manager | https://github.com/maaslalani/nap
     - navi  # FZF Cheatsheet | https://github.com/denisidoro/navi
     - portal  # Internet file transfer | https://github.com/SpatiumPortae/portal
@@ -124,6 +125,7 @@
     - gum  # Shell script utility | https://github.com/charmbracelet/gum
     - kew  # TUI Music library and player | https://codeberg.org/ravachol/kew
     - brevity1swos/tap/rgx  # TUI Regex tester | https://github.com/brevity1swos/rgx
+    - atuin  # Shell history manager | https://github.com/atuinsh/atuin
 - shell:
     - description: Install ZSH for Humans  # A really solid CLI environment/prompt
       command: ./zsh/setup

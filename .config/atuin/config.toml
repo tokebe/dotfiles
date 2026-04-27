@@ -1,0 +1,16 @@
+# Let package manager handle updates
+update_check = false
+
+# One-keystroke commit
+enter_accept = true
+
+# Popup-sized, fzf-style geometry
+style = "full"
+inline_height = 20
+
+search_mode = "fuzzy"
+search_mode_shell_up_key_binding = "fuzzy"
+
+# Up-arrow scoped to cwd (replaces per-directory-history); Ctrl-R stays global
+filter_mode = "global"
+filter_mode_shell_up_key_binding = "directory"
