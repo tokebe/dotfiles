@@ -18,7 +18,7 @@ export FZF_CTRL_R_OPTS='--height="~50%" --prompt="▎ "
 
 ## Reset prompt position after fzf-integration
 function control-r {
-  zle fzf-history-widget
+  zle atuin-search
   bottom-prompt
   zle redisplay
 }
@@ -65,7 +65,7 @@ esac
 # pnpm end
 
 # Navi integration
-eval "$(navi widget zsh)"
+eval "$(navi widget zsh | sed -e 's/\^g/\^n/')"
 
 # fx configuration https://github.com/antonmedv/fx
 export FX_SHOW_SIZE=true
@@ -82,3 +82,6 @@ export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
 
 # Cargo bin
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Atuin history integration; control-r above wraps atuin-search with bottom-prompt
+eval "$(atuin init zsh --disable-ctrl-r )"

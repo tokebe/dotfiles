@@ -3,9 +3,9 @@
 #OMZ plugins
 getantidote/use-omz
 ohmyzsh/ohmyzsh path:lib
-ohmyzsh/ohmyzsh path:plugins/history-substring-search # Up uses substring
 ohmyzsh/ohmyzsh path:plugins/uv # uv integration
 ohmyzsh/ohmyzsh path:plugins/magic-enter # Run command on empty enter
+ohmyzsh/ohmyzsh path:plugins/extract # Smart extract
 
 Aloxaf/fzf-tab # Use fzf for completion selection
 zsh-users/zsh-completions # Additional completions

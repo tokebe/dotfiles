@@ -66,7 +66,7 @@ plugin_config="${ZDOTDIR:-$HOME}/.zsh_config/plugin_config"
 
 # Aliases
 alias_config="${ZDOTDIR:-$HOME}/.zsh_config/aliases"
-[ -f $lias_config ] && source $alias_config
+[ -f $alias_config ] && source $alias_config
 
 # Functions
 # BUG: Functions can't use defined aliases with this structure :/
@@ -83,7 +83,7 @@ zle -N magic-tab
 
 # Bindings
 bindings_config="${ZDOTDIR:-$HOME}/.zsh_config/bindings"
-[ -f $indings_config ] && source $bindings_config
+[ -f $bindings_config ] && source $bindings_config
 
 # Integration
 integration_config="${ZDOTDIR:-$HOME}/.zsh_config/integration"
