@@ -90,12 +90,6 @@ return {
       disabled_filetypes = require('config.filetype_excludes'),
     })
 
-    -- Integrate with mason
-    require('mason').setup({})
-    vim.keymap.set('n', '<Leader>om', ':Mason<CR>', {
-      desc = 'Manage LSPs with Mason',
-    })
-
     -- Remove borders on hover/signatureHelp
     vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'solid' })
     vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'solid' })

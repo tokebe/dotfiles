@@ -19,7 +19,6 @@ return {
         { '<Leader>s', group = 'Select...' },
         { '<Leader>g', group = 'Global / Git...' },
         { '<Leader>m', group = 'Manage / Multicursor...' },
-        { '<Leader>j', group = 'Jump...' },
         -- { '<Leader>v', group = 'View...' },
         { '<Leader>e', group = 'Explore / Explain...' },
         { '<Leader>t', group = 'Test / Task...' },
