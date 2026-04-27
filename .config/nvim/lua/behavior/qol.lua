@@ -273,12 +273,21 @@ return {
   --   opts = { pattern = '*' },
   --   dependencies = { 'nvim-treesitter/nvim-treesitter' },
   -- },
-  -- {
-  'Faria22/ftmemo.nvim',
-  config = function()
-    require('ftmemo').setup({
-      ignore_filetypes = require('config.filetype_excludes'),
-    })
-  end,
-  -- },
+  {
+    'Faria22/ftmemo.nvim',
+    config = function()
+      require('ftmemo').setup({
+        ignore_filetypes = require('config.filetype_excludes'),
+      })
+    end,
+  },
+  {
+    'andymass/vim-matchup',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {
+      treesitter = {
+        stopline = 500
+      }
+    }
+  }
 }
