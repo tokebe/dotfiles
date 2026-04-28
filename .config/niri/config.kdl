@@ -36,6 +36,11 @@ overview {
     }
 }
 
+blur {
+    offset 3
+    noise 0.33
+}
+
 recent-windows {
 
     highlight {

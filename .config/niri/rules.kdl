@@ -46,6 +46,10 @@ window-rule {
         softness 20
         // offset x=10 y=10
     }
+    background-effect {
+        blur true
+        xray true
+    }
 }
 
 // lower opacity on unfocused windows (disabled because it's not helpful)
