@@ -106,3 +106,42 @@ vim.keymap.set('n', '<Leader>sd', function()
     vim.cmd('windo diffthis')
   end
 end, { desc = 'Diff using current split' })
+
+-- Send all `/` search matches in current buffer to quickfix
+vim.keymap.set('n', '<Leader>/', function()
+  local pattern = vim.fn.getreg('/')
+  if pattern == '' then
+    vim.notify('No previous search pattern', vim.log.levels.WARN)
+    return
+  end
+  local ok, regex = pcall(vim.regex, pattern)
+  if not ok then
+    vim.notify('Invalid pattern: ' .. pattern, vim.log.levels.ERROR)
+    return
+  end
+  local bufnr = vim.api.nvim_get_current_buf()
+  local items = {}
+  for lnum, line in ipairs(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)) do
+    local offset = 0
+    while offset <= #line do
+      local s, e = regex:match_str(line:sub(offset + 1))
+      if not s then
+        break
+      end
+      table.insert(items, {
+        bufnr = bufnr,
+        lnum = lnum,
+        col = offset + s + 1,
+        text = line,
+      })
+      -- guard zero-width match (e.g. /\<)
+      offset = offset + (e > s and e or s + 1)
+    end
+  end
+  if #items == 0 then
+    vim.notify('No matches for /' .. pattern, vim.log.levels.WARN)
+    return
+  end
+  vim.fn.setqflist({}, ' ', { title = '/' .. pattern, items = items })
+  vim.cmd('copen')
+end, { desc = 'Send / matches to quickfix' })
