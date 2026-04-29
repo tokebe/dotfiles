@@ -153,16 +153,7 @@ return {
           -- end),
         })
       end, { desc = 'view code actions' })
-      vim.keymap.set('n', '<Leader><Leader>', function()
-        require('fzf-lua').keymaps({
-          previewer = 'none',
-          winopts = {
-            height = 0.3,
-            width = 0.9,
-            row = 0.9,
-          },
-        })
-      end, { desc = 'Search keymaps' })
+      -- <Leader><Leader> is now the unified palette (see tools/palette.lua + lua/palette.lua).
     end,
   },
 }
