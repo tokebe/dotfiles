@@ -26,10 +26,16 @@ layer-rule {
 layer-rule {
     match namespace="^quick-terminal-overlay"
     geometry-corner-radius 10
-    shadow {
-        on
-        offset x=25 y=100
-        softness 20
+}
+
+// Make top and overlay layers use the regular blur (if enabled),
+// while bottom and background layers keep using the efficient xray blur.
+layer-rule {
+    match layer="top"
+    match layer="overlay"
+
+    background-effect {
+        xray false
     }
 }
 
