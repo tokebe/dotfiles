@@ -30,7 +30,7 @@ config.colors = {
 	selection_bg = "#d2d0e7",
 	selection_fg = "#26233a",
 }
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.9
 config.macos_window_background_blur = 100
 config.font = wezterm.font('Tokebe Nerd Font')
 config.font_size = require('fontsize')

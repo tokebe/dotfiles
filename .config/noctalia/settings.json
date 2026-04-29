@@ -42,7 +42,7 @@
     "bar": {
         "autoHideDelay": 500,
         "autoShowDelay": 150,
-        "backgroundOpacity": 0,
+        "backgroundOpacity": 0.9,
         "barType": "simple",
         "capsuleColorKey": "none",
         "capsuleOpacity": 1,
@@ -83,7 +83,7 @@
         "showCapsule": false,
         "showOnWorkspaceSwitch": true,
         "showOutline": false,
-        "useSeparateOpacity": false,
+        "useSeparateOpacity": true,
         "widgetSpacing": 6,
         "widgets": {
             "center": [
@@ -611,7 +611,7 @@
         "disableWallpaper": true
     },
     "notifications": {
-        "backgroundOpacity": 1,
+        "backgroundOpacity": 0.8,
         "clearDismissed": true,
         "criticalUrgencyDuration": 10,
         "density": "default",
@@ -786,7 +786,7 @@
         "settingsPanelMode": "window",
         "settingsPanelSideBarCardStyle": false,
         "tooltipsEnabled": true,
-        "translucentWidgets": false
+        "translucentWidgets": true
     },
     "wallpaper": {
         "automationEnabled": true,
@@ -801,7 +801,7 @@
         "linkLightAndDarkWallpapers": true,
         "monitorDirectories": [
         ],
-        "overviewBlur": 1,
+        "overviewBlur": 0,
         "overviewEnabled": true,
         "overviewTint": 0.2,
         "panelPosition": "follow_bar",

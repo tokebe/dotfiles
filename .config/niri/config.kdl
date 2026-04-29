@@ -38,7 +38,7 @@ overview {
 
 blur {
     offset 3
-    noise 0.33
+    noise 0.25
 }
 
 recent-windows {
