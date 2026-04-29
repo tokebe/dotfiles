@@ -286,8 +286,14 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = {
       treesitter = {
-        stopline = 500
-      }
-    }
-  }
+        stopline = 500,
+      },
+    },
+  },
+  {
+    'nacro90/numb.nvim',
+    config = function ()
+      require('numb').setup()
+    end
+  },
 }
