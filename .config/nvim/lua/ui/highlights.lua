@@ -43,14 +43,7 @@ return {
       'nvim-lua/plenary.nvim',
     },
     config = function()
-      require('todo-comments').setup({
-        highlight = {
-          pattern = [[.*<(KEYWORDS)>\s*:?]],
-        },
-        search = {
-          pattern = [[\b(KEYWORDS):?]],
-        },
-      })
+      require('todo-comments').setup()
     end,
   },
   {
