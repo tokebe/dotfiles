@@ -60,5 +60,3 @@
                     https://raw.githubusercontent.com/SimBoi/nautilus-regex-select/main/nautilus-regex-select.py
                   quiet: true
                   stderr: true
-            - pip:
-                file: python-desktop.txt
