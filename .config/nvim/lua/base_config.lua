@@ -78,6 +78,17 @@ set.timeoutlen = 500
 cmd([[au BufEnter * set fo-=c fo-=r fo-=o]]) -- no autocomment on newline
 cmd('filetype plugin indent on') -- filetype detection
 
+-- Force-kill LSP clients on exit. Registered before plugins load so it fires
+-- before nvim's built-in vim.lsp VimLeavePre handler, preventing error messages
+vim.api.nvim_create_autocmd('VimLeavePre', {
+  group = vim.api.nvim_create_augroup('UserLspForceQuit', { clear = true }),
+  callback = function()
+    for _, client in ipairs(vim.lsp.get_clients()) do
+      pcall(function() client:stop(true) end)
+    end
+  end,
+})
+
 -- Neovide config
 vim.o.guifont = 'Tokebe Nerd Font:h14:#e-antialias'
 
