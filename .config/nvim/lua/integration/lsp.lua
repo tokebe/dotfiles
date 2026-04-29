@@ -60,6 +60,17 @@ return {
         },
       },
     },
+    {
+      'chrisgrieser/nvim-rulebook',
+      keys = {
+        {
+          '<Leader>rl',
+          function()
+            require('rulebook').lookupRule()
+          end,
+        },
+      },
+    },
   },
   config = function() -- LSP loading status
     local lspconfig_defaults = require('lspconfig').util.default_config
