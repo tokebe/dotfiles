@@ -46,4 +46,5 @@ return {
   'oil',
   'oil_preview',
   'qf',
+  'wayfinder'
 }
