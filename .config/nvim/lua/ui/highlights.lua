@@ -13,12 +13,6 @@ return {
       vim.keymap.set('n', '<Leader>gw', '<CMD>RetrailTrimWhitespace<CR>', { desc = 'Trim whitespace' })
     end,
   },
-  -- { -- Replaced by native highlighting
-  --   'm-demare/hlargs.nvim',
-  --   config = function()
-  --     require('hlargs').setup()
-  --   end,
-  -- },
   -- { -- Causes way too many errors when major file changes occur
   --   'zbirenbaum/neodim',
   --   event = 'LspAttach',
@@ -164,4 +158,5 @@ return {
       require('colorizer').setup()
     end,
   },
+  
 }
