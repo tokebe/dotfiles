@@ -1,0 +1,39 @@
+# Ctrl-R: fzf over $HISTFILE (scope follows per-directory-history's C-g toggle).
+# Shows last-use relative time and duration; matching limited to command text.
+function custom-fzf-hist() {
+  # eval to parse FZF_CTRL_R_OPTS as shell tokens (handles embedded quotes and
+  # newlines); plain ${=...} would pass --height="~50%" through with literal quotes.
+  local -a fzf_opts
+  eval "fzf_opts=( $FZF_CTRL_R_OPTS )"
+  fzf_opts+=( --tiebreak=index --delimiter=$'\t' --nth=2.. )
+  local selected
+  selected=$(
+    fc -lDt '%s' 1 | awk -v now=$(date +%s) '
+      function rel(ts,   d) {
+        d = now - ts
+        if (d < 60)        return d "s"
+        if (d < 3600)      return int(d/60) "m"
+        if (d < 86400)     return int(d/3600) "h"
+        if (d < 86400*30)  return int(d/86400) "d"
+        if (d < 86400*365) return int(d/86400/30) "mo"
+        return int(d/86400/365) "y"
+      }
+      $1 ~ /^[0-9]+$/ {
+        cmd = ""
+        for (i = 4; i <= NF; i++) cmd = cmd (i > 4 ? " " : "") $i
+        last[cmd] = NR
+        rec[cmd]  = sprintf("%4s  %5s\t%s", rel($2), $3, cmd)
+      }
+      END {
+        for (c in rec) printf "%d\t%s\n", last[c], rec[c]
+      }' \
+    | sort -rn | cut -f2- \
+    | fzf "${fzf_opts[@]}"
+  )
+  if [[ -n "$selected" ]]; then
+    LBUFFER+="${selected#*$'\t'}"
+  fi
+  bottom-prompt
+  zle reset-prompt
+  zle redisplay
+}

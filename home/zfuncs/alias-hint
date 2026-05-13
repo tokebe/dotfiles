@@ -1,0 +1,57 @@
+# Find matching aliases while typing and show them in zle message area if something definitive is found
+function alias-hint() {
+  emulate -L zsh
+  setopt local_options
+
+  local new_msg=""
+  local buf="${BUFFER}"
+
+  if [[ -n $buf ]]; then
+    local -a words
+    words=(${(z)buf})
+    while (( ${#words} )) && [[ ${words[1]} == (sudo|time|nice|env) ]]; do
+      shift words
+    done
+    local cmd="${words[1]:-}"
+
+    if [[ -n $cmd ]]; then
+      local key value best_key="" best_value="" mode=""
+      local -i exact=0 early=0 used=0
+
+      for key in "${(@k)aliases}"; do
+        value="${aliases[$key]}"
+        (( ${#value} > ${#key} )) || continue
+        if [[ $cmd == "$key" ]]; then used=1; break; fi
+
+        if [[ $cmd == "$value" || $buf == "$value "* || $buf == "$value" ]]; then
+          if (( ${#value} > ${#best_value} )) \
+            || { (( ${#value} == ${#best_value} )) && (( ${#key} < ${#best_key} )) }; then
+            best_key=$key; best_value=$value; mode="definite"
+          fi
+          exact=1
+        elif (( ${#cmd} >= 3 )) && [[ $value == "$cmd"* ]]; then
+          if [[ -z $mode ]]; then
+            best_key=$key; best_value=$value; mode="early"
+          fi
+          (( early++ ))
+        fi
+      done
+
+      if (( !used )); then
+        if (( exact )); then
+          new_msg="󱉵 $cmd → $best_key"
+        elif [[ $mode == early ]] && (( early == 1 )); then
+          new_msg="󱉵? $cmd → $best_key"
+        fi
+      fi
+    fi
+  fi
+
+  if [[ -n $new_msg ]]; then
+    zle -M "$new_msg"
+    _alias_hint_shown=1
+  elif (( ${_alias_hint_shown:-0} )); then
+    zle -M ""
+    _alias_hint_shown=0
+  fi
+}

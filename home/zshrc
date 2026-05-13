@@ -76,10 +76,16 @@ autoload -Uz bottom-prompt
 autoload -Uz help
 autoload -Uz help-current
 autoload -Uz magic-tab
+autoload -Uz alias-hint
+autoload -Uz custom-fzf-hist
 
 ## Register function widgets
 zle -N help-current
 zle -N magic-tab
+zle -N alias-hint
+zle -N custom-fzf-hist
+autoload -Uz add-zle-hook-widget
+add-zle-hook-widget line-pre-redraw alias-hint
 
 # Bindings
 bindings_config="${ZDOTDIR:-$HOME}/.zsh_config/bindings"

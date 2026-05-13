@@ -1,4 +1,4 @@
-# This one can be messy because a lot of auto-ingetration gets slapped in here
+# This one can be messy because a lot of auto-integration gets slapped in here
 
 # FZF Integration
 source <(fzf --zsh)
@@ -17,13 +17,7 @@ export FZF_CTRL_R_OPTS='--height="~50%" --prompt="▎ "
 --scrollbar="▐" --layout="reverse"'
 
 ## Reset prompt position after fzf-integration
-function control-r {
-  zle atuin-search
-  bottom-prompt
-  zle redisplay
-}
-zle -N control-r
-bindkey '^R' control-r
+bindkey '^R' custom-fzf-hist  # autoloaded; rebinds over fzf --zsh's ^R
 function control-t {
   zle fzf-file-widget
   bottom-prompt
@@ -38,7 +32,6 @@ function alt-c {
 }
 zle -N alt-c
 bindkey '^[c' alt-c
-
 
 # Ensure tmux uses utf8
 export LC_ALL=en_IN.UTF-8
@@ -83,5 +76,3 @@ export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
 # Cargo bin
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Atuin history integration; control-r above wraps atuin-search with bottom-prompt
-eval "$(atuin init zsh --disable-ctrl-r )"

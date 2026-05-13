@@ -15,5 +15,17 @@ bindkey "^H" kill-word # Delete quick
 bindkey '\t' magic-tab
 bindkey '^_' help-current
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# Bind history-substring-search by terminfo
+if [[ -n "$terminfo[kcuu1]" ]]; then
+  bindkey -M emacs "$terminfo[kcuu1]" history-substring-search-up
+  bindkey -M viins "$terminfo[kcuu1]" history-substring-search-up
+fi
+if [[ -n "$terminfo[kcud1]" ]]; then
+  bindkey -M emacs "$terminfo[kcud1]" history-substring-search-down
+  bindkey -M viins "$terminfo[kcud1]" history-substring-search-down
+fi
+# Fallback for terminals not advertising via terminfo
+bindkey -M emacs '^[[A' history-substring-search-up
+bindkey -M emacs '^[OA' history-substring-search-up
+bindkey -M emacs '^[[B' history-substring-search-down
+bindkey -M emacs '^[OB' history-substring-search-down

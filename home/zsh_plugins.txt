@@ -9,12 +9,15 @@ ohmyzsh/ohmyzsh path:plugins/extract # Smart extract
 
 Aloxaf/fzf-tab # Use fzf for completion selection
 zsh-users/zsh-completions # Additional completions
-zsh-users/zsh-autosuggestions # Inline history completion
 hsaunders1904/pyautoenv # Automatically use poetry env
-matthiasha/zsh-uv-env # Automatically use .venv
+jimhester/per-directory-history
 RobSis/zsh-completion-generator # Automatic completion using getopt-style help
 Tarrasch/zsh-bd # Faster cd up
 hlissner/zsh-autopair # Auto-insert closing braces/etc.
-zdharma-continuum/fast-syntax-highlighting # Highlight syntax
 romkatv/powerlevel10k # Custom prompt
-MichaelAquilina/zsh-you-should-use # Alias finder
+
+# Order-sensitive: highlighting wraps widgets, so it must precede substring-search;
+# autosuggestions docs say it must load last
+zdharma-continuum/fast-syntax-highlighting # Highlight syntax
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-autosuggestions # Inline history completion

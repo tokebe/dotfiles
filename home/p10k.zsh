@@ -49,8 +49,8 @@
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     newline
     # =========================[ Line #1 ]=========================
+    command_execution_time  # duration of the last command
     status                  # exit code of the last command
-    # command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
@@ -559,13 +559,15 @@
 
   ###################[ command_execution_time: duration of the last command ]###################
   # Show duration of the last command if takes at least this many seconds.
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
   # Show this many fractional digits. Zero means round to seconds.
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=2
   # Execution time color.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=248
   # Duration format: 1d 2h 3m 4s.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='d h m s'
+  # typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_CONTENT_EXPANSION='${P9K_CONTENT:/0s/$((int(1000 * P9K_COMMAND_DURATION_SECONDS)))ms}'
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_CONTENT_EXPANSION='${$((P9K_COMMAND_DURATION_SECONDS < 1 ? int(1000 * P9K_COMMAND_DURATION_SECONDS) : -1)):/-1/$P9K_CONTENT}${${$((P9K_COMMAND_DURATION_SECONDS < 1)):/1/ms}:/0/}'
   # Custom icon.
   # typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION='⭐'
   # Custom prefix.
