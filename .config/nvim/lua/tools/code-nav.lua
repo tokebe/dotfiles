@@ -61,7 +61,7 @@ return {
   {
     'error311/wayfinder.nvim',
     keys = {
-      { '<Leader>fr', '<Plug>(WayfinderOpen)', { desc = 'Find related symbols with Wayfinder' } },
+      { '<Leader>fr', '<Plug>(WayfinderOpen)', desc = 'Find related symbols with Wayfinder' },
     },
   },
 }

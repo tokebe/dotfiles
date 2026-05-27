@@ -49,12 +49,12 @@ return {
       })
     end,
   },
-  { -- Automatic comment/uncomment lines
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end,
-  },
+  -- { -- Automatic comment/uncomment lines
+  --   'numToStr/Comment.nvim',
+  --   config = function()
+  --     require('Comment').setup()
+  --   end,
+  -- },
   { -- Quick search and replace
     'roobert/search-replace.nvim',
     config = function()
