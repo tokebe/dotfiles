@@ -30,7 +30,7 @@ return {
       'AbysmalBiscuit/insert-inlay-hints.nvim',
       keys = {
         {
-          '<Leader>ic',
+          '<Leader>ii',
           function()
             require('insert-inlay-hints').closest()
           end,
