@@ -6,7 +6,7 @@ return {
     config = function()
       require('wildfire').setup({
         keymaps = {
-          init_selection = '<Leader><CR>'
+          init_selection = '<Leader><CR>',
         },
         filetype_exclude = require('config.filetype_excludes'),
       })
@@ -226,6 +226,17 @@ return {
     end,
     keys = {
       { '<Leader>fu', ':UndoTreeShow<CR>', desc = 'Undo Tree' },
+    },
+  },
+  {
+    'danymat/neogen',
+    config = function()
+      require('neogen').setup({
+        snippet_engine = 'luasnip',
+      })
+    end,
+    keys = {
+      { '<Leader>id', "<CMD>lua require('neogen').generate()<CR>", desc = 'Insert docstring comment' },
     },
   },
 }
