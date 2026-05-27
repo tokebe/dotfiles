@@ -21,7 +21,7 @@ return {
     -- 'prettierd', -- Better to use dedicated formatters
     -- 'black', -- Replaced by Ruff
     'beautysh',
-    'yamlfix',
+    'yamlfmt',
     'stylua',
     -- linters
     'luacheck',
