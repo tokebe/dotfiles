@@ -1,0 +1,17 @@
+[updates]
+auto_update = true
+
+
+[style.command_name]
+foreground = "blue"
+bold = true
+
+[style.example_text]
+background = "cyan"
+foreground = "black"
+italic = true
+
+[style.example_code]
+foreground = "red"
+
+
