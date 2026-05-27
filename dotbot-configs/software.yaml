@@ -28,7 +28,6 @@
     - upgrade
     - install:
         # Languages / build support
-        - cargo  # Rust package manager | https://www.rust-lang.org/
         - clang  # C frontend for LLVM
         - cmake  # Why is this not on be default
         - [go, golang]  # Go | https://go.dev/
@@ -127,12 +126,6 @@
     - kew  # TUI Music library and player | https://codeberg.org/ravachol/kew
     - brevity1swos/tap/rgx  # TUI Regex tester | https://github.com/brevity1swos/rgx
 - shell:
-    - description: Install ZSH for Humans  # A really solid CLI environment/prompt
-      command: ./zsh/setup
-      quiet: true
-      stdout: true
-      stderr: true
-      stdin: true
     - description: Install nvm  # Node Version Manager
       command: >
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
