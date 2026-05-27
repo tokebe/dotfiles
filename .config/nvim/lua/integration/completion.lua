@@ -16,20 +16,20 @@ return {
           ['<C-k>'] = { 'show', 'fallback' },
           ['<Tab>'] = {
             function(cmp)
-              if cmp.snippet_active({ direction = 1 }) then
-                return cmp.snippet_forward()
-              elseif cmp.is_menu_visible() then
+              if cmp.is_menu_visible() then
                 return cmp.select_next()
+              elseif cmp.snippet_active({ direction = 1 }) then
+                return cmp.snippet_forward()
               end
             end,
             'fallback',
           },
           ['<S-Tab>'] = {
             function(cmp)
-              if cmp.snippet_active() then
-                return cmp.snippet_backward()
-              elseif cmp.is_menu_visible() then
+              if cmp.is_menu_visible() then
                 return cmp.select_prev()
+              elseif cmp.snippet_active() then
+                return cmp.snippet_backward()
               end
             end,
             'fallback',

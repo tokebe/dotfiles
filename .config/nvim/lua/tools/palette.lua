@@ -37,6 +37,20 @@ local function gather()
   return items
 end
 
+-- nvim_get_keymap returns lhs with <Leader>/<LocalLeader> already resolved to
+-- the literal character, so " q" needs to render back as "<Leader>q".
+local function display_lhs(lhs)
+  local leader = vim.g.mapleader
+  local localleader = vim.g.maplocalleader
+  if localleader and localleader ~= '' and lhs:sub(1, #localleader) == localleader then
+    return '<Leader>' .. lhs:sub(#localleader + 1)
+  end
+  if leader and leader ~= '' and lhs:sub(1, #leader) == leader then
+    return '<Leader>' .. lhs:sub(#leader + 1)
+  end
+  return lhs
+end
+
 local function format_item(item)
   local marker = item.buf and '*' or ' '
   if item.kind == 'cmd' then
@@ -46,7 +60,7 @@ local function format_item(item)
     end
     return string.format('cmd%s :%-28s  %s', marker, item.name, desc)
   end
-  return string.format('key%s %-29s  %s', marker, item.lhs, item.desc)
+  return string.format('key%s %-29s  %s', marker, display_lhs(item.lhs), item.desc)
 end
 
 local function open()
