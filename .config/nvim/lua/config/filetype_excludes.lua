@@ -46,5 +46,7 @@ return {
   'oil',
   'oil_preview',
   'qf',
-  'wayfinder'
+  'wayfinder',
+  'typr',
+  'typrstats'
 }
