@@ -61,7 +61,7 @@ binds {
     Mod+Shift+T repeat=false { spawn "~/Applications/wezterm.appimage" "start" "--cwd" "."; }
     Mod+E repeat=false { spawn "nautilus" "-w"; }
     // Mod+Space repeat=false { spawn "fuzzel"; }
-    // Mod+Space repeat=false { spawn-sh "qs -c ~/.config/quickshell/noctalia-shell/ ipc call launcher toggle"; }
+    // Mod+Space repeat=false { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
     Mod+Space repeat=false { spawn "vicinae" "toggle"; }
     Mod+b repeat=false { spawn "flatpak" "run" "org.gnome.gitlab.cheywood.Buffer"; }
     Mod+Shift+b repeat=false { spawn "~/Applications/wezterm.appimage" "start" "--" "btop"; }
