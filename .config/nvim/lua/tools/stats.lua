@@ -20,17 +20,6 @@ return {
     },
   },
   {
-    'gisketch/triforce.nvim',
-    opts = {
-      notifications = {
-        enabled = false,
-      },
-      keymap = {
-        show_profile = '<Leader>oS',
-      },
-    },
-  },
-  {
     'nvzone/typr',
     dependencies = 'nvzone/volt',
     opts = {},

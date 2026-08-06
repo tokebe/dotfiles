@@ -48,5 +48,6 @@ return {
   'qf',
   'wayfinder',
   'typr',
-  'typrstats'
+  'typrstats',
+  'incline',
 }

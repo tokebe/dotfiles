@@ -68,6 +68,7 @@ return {
           function()
             require('rulebook').lookupRule()
           end,
+          desc = 'Open link to rule explanation'
         },
       },
     },

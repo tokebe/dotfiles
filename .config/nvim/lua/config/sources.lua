@@ -2,7 +2,7 @@ return {
   lsp = { -- Language Server Protocol
     'lua_ls', -- Lua
     -- 'tsserver', -- Typescript/Javascript
-    'basedpyright', -- Python
+    -- 'basedpyright', -- Python
     -- 'ty', -- Python
     'ruff', -- Python
     'taplo', -- TOML
@@ -33,6 +33,7 @@ return {
   treesitter = {
     'dap_repl',
     'regex',
+    'markdown',
     'markdown_inline',
     'http',
     'json',

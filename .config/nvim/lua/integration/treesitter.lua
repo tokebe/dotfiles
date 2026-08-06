@@ -155,12 +155,32 @@ return {
 
       -- Go to either the start or the end, whichever is closer.
       -- Use if you want more granular movements
-      vim.keymap.set({ 'n', 'x', 'o' }, ']d', function()
+      -- ]d/[d are left for diagnostics; conditionals live on ]c/[c, which fall
+      -- through to Vim's builtin diff-change nav in diff windows (like ]h/[h).
+      vim.keymap.set('n', ']c', function()
+        if vim.wo.diff then
+          return ']c'
+        end
+        vim.schedule(function()
+          require('nvim-treesitter-textobjects.move').goto_next('@conditional.outer', 'textobjects')
+        end)
+        return '<Ignore>'
+      end, { expr = true, desc = 'Next conditional' })
+      vim.keymap.set('n', '[c', function()
+        if vim.wo.diff then
+          return '[c'
+        end
+        vim.schedule(function()
+          require('nvim-treesitter-textobjects.move').goto_previous('@conditional.outer', 'textobjects')
+        end)
+        return '<Ignore>'
+      end, { expr = true, desc = 'Previous conditional' })
+      vim.keymap.set({ 'x', 'o' }, ']c', function()
         require('nvim-treesitter-textobjects.move').goto_next('@conditional.outer', 'textobjects')
-      end)
-      vim.keymap.set({ 'n', 'x', 'o' }, '[d', function()
+      end, { desc = 'Next conditional' })
+      vim.keymap.set({ 'x', 'o' }, '[c', function()
         require('nvim-treesitter-textobjects.move').goto_previous('@conditional.outer', 'textobjects')
-      end)
+      end, { desc = 'Previous conditional' })
 
       local ts_repeat_move = require('nvim-treesitter-textobjects.repeatable_move')
 
