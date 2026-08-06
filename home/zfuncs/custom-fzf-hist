@@ -33,7 +33,6 @@ function custom-fzf-hist() {
   if [[ -n "$selected" ]]; then
     LBUFFER+="${selected#*$'\t'}"
   fi
-  bottom-prompt
   zle reset-prompt
   zle redisplay
 }
