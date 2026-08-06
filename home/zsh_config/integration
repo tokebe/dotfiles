@@ -16,22 +16,9 @@ export FZF_CTRL_R_OPTS='--height="~50%" --prompt="▎ "
 --gutter="▎" --color="gutter:8"
 --scrollbar="▐" --layout="reverse"'
 
-## Reset prompt position after fzf-integration
+## fzf-integration tweaks
 bindkey '^R' custom-fzf-hist  # autoloaded; rebinds over fzf --zsh's ^R
-function control-t {
-  zle fzf-file-widget
-  bottom-prompt
-  zle redisplay
-}
-zle -N control-t
-bindkey '^T' control-t
-function alt-c {
-  zle fzf-cd-widget
-  bottom-prompt
-  zle redisplay
-}
-zle -N alt-c
-bindkey '^[c' alt-c
+# ^T (fzf-file-widget) and alt-c (fzf-cd-widget) keep fzf's native bindings from above
 
 # Ensure tmux uses utf8
 export LC_ALL=en_IN.UTF-8
