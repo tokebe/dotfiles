@@ -84,6 +84,15 @@ vim.diagnostic.handlers.signs = {
   end,
 }
 
+-- Jump between diagnostics
+vim.keymap.set('n', ']d', function()
+  vim.diagnostic.jump({ count = 1 })
+end, { silent = true, noremap = true, desc = 'Next diagnostic' })
+
+vim.keymap.set('n', '[d', function()
+  vim.diagnostic.jump({ count = -1 })
+end, { silent = true, noremap = true, desc = 'Previous diagnostic' })
+
 vim.keymap.set('n', '<Leader>otD', function()
   local current_config = vim.diagnostic.config()
   if current_config == nil then
