@@ -66,7 +66,9 @@
         - input-remapper  # Remap inputs from peripherals | https://github.com/sezanzeb/input-remapper
         - sd  # Sane sed | https://github.com/chmln/sd
 
-- cargo: [tealdeer]
+- cargo:
+  - tealdeer
+  - tabiew
 - if:
     cond: command -v fdfind &> /dev/null
     met:
@@ -85,6 +87,7 @@
     - jq  # CLI JSON transformer | https://github.com/jqlang/jq
     - jqp  # TUI for JQ | https://github.com/noahgorstein/jqp
     - kiki-ki/tap/qo  # Query JSON/CSV/TSV with SQL | https://github.com/kiki-ki/go-qo
+    - csvlens # less for CSV/TSV | https://github.com/YS-L/csvlens
     # Dependencies
     - openssl  # Pyenv compatibility with linuxbrew
     - tcl-tk  # Python tkinter support
