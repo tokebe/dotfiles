@@ -6,7 +6,6 @@ rule() {
   print -- ${(l:COLUMNS::─:)}
 }
 
-rule
 
 if [[ $OSTYPE == "linux-gnu"* ]]; then
   disk_use="$(df -h --output="target,pcent,avail" . | tail -1)"
@@ -19,7 +18,7 @@ if [[ $OSTYPE == "linux-gnu"* ]]; then
   mem_used="$(echo $mem_use | awk 'NR==2{print $3}')"
 
   topline="󰌽    $(uptime -p | sed 's/./\u&/')    $mem_used / $mem_total  󰋊  $mnt $pcent ($avail Available)"
-  echo "$topline"
+  echo "\e[7m$topline\e[0m"
 
   rule
 elif [[ $OSTYPE == "darwin"* ]]; then
@@ -34,7 +33,7 @@ elif [[ $OSTYPE == "darwin"* ]]; then
   mem_used=$(printf "%.2f\n" "$memuse_gb" )
 
   topline="    Up $(uptime | sed -n 's/^.*up  \([^,]*\).*/\1/p')    ${mem_used}Gi / ${mem_total}Gi  󰋊  $mnt $pcent ($avail Available)"
-  echo "$topline"
+  echo "\e[7m$topline\e[0m"
 
 fi
 
