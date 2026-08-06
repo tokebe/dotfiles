@@ -40,7 +40,7 @@ return {
                 is_excluded = true
               end
             end
-            return is_excluded ~= false
+            return is_excluded == false
               and vim.g.snacks_indent ~= false
               and vim.b[buf].snacks_indent ~= false
               and vim.bo[buf].buftype == ''
