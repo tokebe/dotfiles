@@ -1,7 +1,9 @@
 return {
   'folke/trouble.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  version = '3.*.*',
+  -- Track main: the nvim 0.12 `_on_range` highlighter fix isn't in a 3.x tag yet.
+  -- Revert to version = '3.*.*' once a release > v3.7.1 ships.
+  branch = 'main',
   opts = {
     focus = true,
   },
