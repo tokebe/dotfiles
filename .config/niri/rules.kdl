@@ -18,7 +18,7 @@ layer-rule {
 
 
 layer-rule {
-    match namespace="^noctalia-overview*"
+    match namespace="^noctalia-backdrop"
     place-within-backdrop true
 }
 
@@ -28,17 +28,28 @@ layer-rule {
 }
 
 layer-rule {
-    match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
     background-effect {
         blur true
         xray false
     }
 }
 
+window-rule {
+  match app-id="dev.noctalia.Noctalia"
+  background-effect {
+      blur true
+  }
+}
+
 // Set a shadow for vicnae
 layer-rule {
     match namespace="^launcher$"
     match namespace="^vicinae$"
+
+    background-effect {
+        xray false
+    }
 
     shadow {
         // on
@@ -60,10 +71,10 @@ window-rule {
         softness 20
         // offset x=10 y=10
     }
-    background-effect {
-        blur true
-        xray true
-    }
+    // background-effect {
+    //     blur true
+    //     xray true
+    // }
 }
 
 window-rule {
