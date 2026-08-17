@@ -5,11 +5,12 @@ type = "sysmon"
 
 [widget.Mutli-purpose]
 glyph = "niri"
+tooltip = "Right: Overview ・ Middle: Window List"
 type = "custom_button"
 
     [widget.Mutli-purpose.actions]
     left = "exec vicinae toggle"
-    middle = "exec \"notify-send -i info --app-name 'Window List' \\\"$(niri msg --json windows | jq '.[].app_id' | sed -s 's/\\\"//g')\\\"\""
+    middle = "exec notify-send -i info --app-name 'Window List' \\\"$(niri msg --json windows | jq '.[].app_id' | sed -s 's/\\\"//g')\\\""
     right = "exec niri msg action toggle-overview"
 
 [widget.VRAM]
