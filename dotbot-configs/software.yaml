@@ -69,6 +69,7 @@
 - cargo:
   - tealdeer
   - tabiew
+  - cargo-update
 - if:
     cond: command -v fdfind &> /dev/null
     met:

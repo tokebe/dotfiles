@@ -1,21 +1,50 @@
 #!/usr/bin/env bash
 
-package_updates=$(dnf check-upgrade -q | grep -c '^[a-z0-9]')
-brew_updates=$(brew upgrade -n 2>/dev/null | sed -nE 's/.*([0-9]+) outdated packages:/\1/p')
-flatpak_updates=$(yes no | flatpak update | grep -e '^\s*[0-9+]\.' | tail -1 | sed -nE 's/^\s([0-9]+)\..+/\1/p')
+package_updates=$(gum spin --title='Checking packages...' -- dnf check-upgrade -q | grep -c '^[a-z0-9]')
+brew_updates=$(gum spin --title='Checking brew...' -- brew upgrade -n 2>/dev/null | sed -nE 's/.*([0-9]+) outdated packages:/\1/p')
+flatpak_updates=$(gum spin --title='Checking flatpak...' -- yes no | flatpak update | grep -e '^\s*[0-9+]\.' | tail -1 | sed -nE 's/^\s([0-9]+)\..+/\1/p')
+cargo_updates=$(gum spin --title='Checking cargo...' -- cargo install-update -l | grep -c Yes)
+gearlever_updates=$(gum spin --title='Checking gearlever...' -- flatpak run it.mijorus.gearlever --list-updates | awk '{print $NF}')
+gearlever_update_count=$(echo "$gearlever_updates" | wc -l)
 
+selections=$(cat <<<"Packages (${package_updates:-0})
+Brew (${brew_updates:-0})
+Flatpak (${flatpak_updates:-0})
+Cargo (${cargo_updates:-0})
+Gearlever (${gearlever_update_count:-0})" \
+  | gum choose \
+    --no-limit  \
+    --selected=* \
+    --unselected-prefix="󰄰 "  \
+    --selected-prefix="󰄴 "  \
+    --cursor-prefix="󰄰 " \
+    --header="Choose what to update:"
+  )
 
 did_updates=0
-if [ "$package_updates" != "" ] && [ "$package_updates" -gt 0 ]; then
-  gum confirm 'Update dnf packages?' && sudo dnf upgrade -y && did_updates=1
+if [[ $selections == *"Packages"* ]]; then
+  echo "Updating packages..."
+  sudo dnf upgrade -y && did_updates=1
 fi
-if [ "$brew_updates" != "" ] && [ "$brew_updates" -gt 0 ]; then
-  gum confirm 'Update brew packages?' && brew upgrade && did_updates=1
+if [[ $selections == *"Brew"* ]]; then
+  echo "Updating brew..."
+  brew upgrade && did_updates=1
+fi
+if [[ $selections == *"Flatpak"* ]]; then
+  echo "Updating flatpak..."
+  flatpak update -y && did_updates=1
+fi
+if [[ $selections == *"Cargo"* ]]; then
+  echo "Updating cargo..."
+  cargo install-update --all && did_updates=1
+fi
+if [[ $selections == *"Gearlever"* ]]; then
+  echo "Updating gearlever..."
+  while IFS= read -r line; do
+    yes y | flatpak run it.mijorus.gearlever --update "$line" && did_updates=1
+  done <<< "$gearlever_updates"
+fi
 
-fi
-if [ "$flatpak_updates" != "" ] && [ "$flatpak_updates" -gt 0 ]; then
-  gum confirm 'Update flatpaks?' && flatpak update -y && did_updates=1
-fi
 if [ "$did_updates" -gt 0 ]; then
   echo "Update complete!" && sleep 2
 else
