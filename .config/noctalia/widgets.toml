@@ -30,9 +30,6 @@ glyph = "gender-transgender"
 [widget.cpu]
 show_value = false
 
-[widget.eyecare-widget]
-type = "apex077/eyecare:eyecare-widget"
-
 [widget.lock_keys]
 display = "full"
 hide_when_off = true

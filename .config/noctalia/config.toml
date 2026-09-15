@@ -5,53 +5,51 @@ enabled = true
 
 [calendar]
 enabled = true
+event_date_format = "%a %b %e"
 
-    [calendar.account.personal_google]
-    type = "google"
+[calendar.account.personal_google]
+type = "google"
 
 [control_center]
-hidden_tabs = [ "network", "bluetooth", "calendar", "notifications" ]
+hidden_tabs = ["network", "bluetooth", "calendar", "notifications"]
 show_session_button = false
 sidebar_section = "none"
 
-    [control_center.calendar]
-    event_date_format = "%a %b %e"
+[[control_center.shortcuts]]
+type = "caffeine"
 
-    [[control_center.shortcuts]]
-    type = "caffeine"
+[[control_center.shortcuts]]
+type = "nightlight"
 
-    [[control_center.shortcuts]]
-    type = "nightlight"
+[[control_center.shortcuts]]
+type = "notification"
 
-    [[control_center.shortcuts]]
-    type = "notification"
+[[control_center.shortcuts]]
+type = "power_profile"
 
-    [[control_center.shortcuts]]
-    type = "power_profile"
+[[control_center.shortcuts]]
+type = "wallpaper"
 
-    [[control_center.shortcuts]]
-    type = "wallpaper"
-
-    [[control_center.shortcuts]]
-    type = "dark_mode"
+[[control_center.shortcuts]]
+type = "dark_mode"
 
 [desktop_widgets]
 enabled = false
 schema_version = 2
 widget_order = []
 
-    [desktop_widgets.grid]
-    cell_size = 16
-    major_interval = 4
-    visible = true
+[desktop_widgets.grid]
+cell_size = 16
+major_interval = 4
+visible = true
 
-    [desktop_widgets.widget]
+[desktop_widgets.widget]
 
 [dock]
 background_opacity = 0.99999997764825821
 cross_axis_padding = 6
 magnification = false
-monitors = [ "DP-1" ]
+monitors = ["DP-1"]
 reserve_space = false
 show_dots = true
 show_instance_count = false
@@ -71,12 +69,12 @@ blur_intensity = 0.74999998323619366
 enabled = true
 
 [notification]
-monitors = [ "DP-1" ]
+monitors = ["DP-1"]
 position = "bottom_right"
 
 [osd]
 background_opacity = 0.99999997764825821
-monitors = [ "DP-1" ]
+monitors = ["DP-1"]
 position = "bottom_center"
 position_vertical = "bottom_right"
 
@@ -84,11 +82,13 @@ position_vertical = "bottom_right"
 drives_placement = "attached"
 system_collector_enabled = true
 
-[plugin_settings."weinguyen/procmon"]
-panel_placement = "attached"
-
 [plugins]
-enabled = [ "tordex/system-updater", "gustav0ar/drive-health", "apex077/eyecare", "raycursive/niri-displays" ]
+enabled = [
+    "tordex/system-updater",
+    "gustav0ar/drive-health",
+    "apex077/eyecare",
+    "raycursive/niri-displays",
+]
 
 [shell]
 button_borders = false
@@ -98,26 +98,26 @@ password_style = "random"
 polkit_agent = true
 screen_time_enabled = true
 
-    [shell.panel]
-    borders = false
-    clipboard_placement = "attached"
-    clipboard_position = "auto"
-    open_near_click_clipboard = true
-    open_near_click_control_center = true
-    open_near_click_session = true
-    open_near_click_wallpaper = true
-    polkit_placement = "attached"
-    polkit_position = "auto"
-    session_placement = "floating"
-    session_position = "center"
-    transparency_mode = "glass"
+[shell.panel]
+borders = false
+clipboard_placement = "attached"
+clipboard_position = "auto"
+open_near_click_clipboard = true
+open_near_click_control_center = true
+open_near_click_session = true
+open_near_click_wallpaper = true
+polkit_placement = "attached"
+polkit_position = "auto"
+session_placement = "floating"
+session_position = "center"
+transparency_mode = "glass"
 
-    [shell.screen_corners]
-    enabled = true
-    size = 24
+[shell.screen_corners]
+enabled = true
+size = 24
 
-    [shell.session]
-    show_shortcuts = false
+[shell.session]
+show_shortcuts = false
 
 [theme]
 builtin = "Rosé Pine"
@@ -129,18 +129,17 @@ wallpaper_scheme = "m3-content"
 [wallpaper]
 directory = "/home/alter/OneDrive/wallpaper/desktop-alter"
 
-    [wallpaper.automation]
-    enabled = true
+[wallpaper.automation]
+enabled = true
 
-    [wallpaper.default]
-    path = "/home/alter/OneDrive/wallpaper/desktop-alter/wallpaperflare.com_wallpaper(2).jpg"
+[wallpaper.default]
+path = "/home/alter/OneDrive/wallpaper/desktop-alter/wallpaperflare.com_wallpaper(2).jpg"
 
-    [wallpaper.last]
-    path = "/home/alter/OneDrive/wallpaper/desktop-alter/wallpaperflare.com_wallpaper(2).jpg"
+[wallpaper.last]
+path = "/home/alter/OneDrive/wallpaper/desktop-alter/wallpaperflare.com_wallpaper(2).jpg"
 
-    [wallpaper.monitors.DP-1]
-    path = "/home/alter/OneDrive/wallpaper/desktop-alter/wallpaperflare.com_wallpaper(2).jpg"
+[wallpaper.monitors.DP-1]
+path = "/home/alter/OneDrive/wallpaper/desktop-alter/wallpaperflare.com_wallpaper(2).jpg"
 
-    [wallpaper.monitors.DP-2]
-    path = "/home/alter/OneDrive/wallpaper/desktop-alter/wallpaperflare.com_wallpaper(2).jpg"
-
+[wallpaper.monitors.DP-2]
+path = "/home/alter/OneDrive/wallpaper/desktop-alter/wallpaperflare.com_wallpaper(2).jpg"
