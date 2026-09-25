@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Integrate AppImages from `name=url` entries, skipping names already integrated (idempotency).
+# The gearlever CLI arg forms (--list-installed match, --set-update-source) need Linux verification.
+set -uo pipefail
+
+gearlever() { flatpak run it.mijorus.gearlever "$@"; }
+
+installed="$(gearlever --list-installed 2>/dev/null || true)"
+
+for entry in "$@"; do
+  name="${entry%%=*}"
+  url="${entry#*=}"
+
+  if grep -qiF "$name" <<<"$installed"; then
+    echo "gearlever: $name already integrated, skipping"
+    continue
+  fi
+
+  tmp="$(mktemp -d)"
+  file="$tmp/$name.AppImage"
+
+  if curl -fsSL "$url" -o "$file"; then
+    yes y | gearlever --integrate "$file"
+    yes y | gearlever --set-update-source "$file" "$url"
+  else
+    echo "gearlever: failed to download $name from $url" >&2
+  fi
+
+  rm -rf "$tmp"
+done

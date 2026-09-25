@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Install pnpm globals; batch first, then retry individually so a broken/missing one is skipped.
+set -uo pipefail
+
+# pnpm refuses global ops unless its bin dir is on PATH; profiles aren't sourced in this shell
+export PATH="${PNPM_HOME:-$HOME/.pnpm}/bin:$PATH"
+
+if pnpm add -g --yes "$@"; then
+  exit 0
+fi
+
+printf '\033[1;4m%s\033[0m\n' "pnpm: batch failed, retrying individually to skip broken/missing..." >&2
+for pkg in "$@"; do
+  pnpm add -g --yes "$pkg" || echo "pnpm: failed to install $pkg" >&2
+done

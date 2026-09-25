@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Count AppImages with an available update (one line per update); count to stdout, list on stderr.
+set -uo pipefail
+
+gearlever() { flatpak run it.mijorus.gearlever "$@"; }
+
+gearlever --list-updates 2>&1 | tee /dev/stderr | grep -c . || true

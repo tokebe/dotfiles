@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Install npm globals; batch first, then retry individually so a broken/missing one is skipped.
+set -uo pipefail
+
+if npm install -g "$@"; then
+  exit 0
+fi
+
+printf '\033[1;4m%s\033[0m\n' "npm: batch failed, retrying individually to skip broken/missing..." >&2
+for pkg in "$@"; do
+  npm install -g "$pkg" || echo "npm: failed to install $pkg" >&2
+done

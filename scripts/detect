@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Detect system facts and export them as DOTS_* vars; source this, don't run it.
+
+# OS: macos on Darwin, else the lowercased kernel name (e.g. linux)
+case "$(uname -s)" in
+  Darwin) DOTS_OS="macos" ;;
+  *) DOTS_OS="$(uname -s | tr '[:upper:]' '[:lower:]')" ;;
+esac
+
+# Distro: macos on Darwin, else the os-release ID (matches Python's distro.id())
+if [ "$DOTS_OS" = "macos" ]; then
+  DOTS_DISTRO="macos"
+elif [ -r /etc/os-release ]; then
+  # shellcheck disable=SC1091
+  DOTS_DISTRO="$(. /etc/os-release && printf '%s' "${ID:-}")"
+else
+  DOTS_DISTRO=""
+fi
+
+DOTS_ARCH="$(uname -m | tr '[:upper:]' '[:lower:]')"
+
+DOTS_HOST="$(hostname 2>/dev/null || uname -n)"
+DOTS_HOST="${DOTS_HOST%%.*}"
+
+# Desktop: aqua on macOS, the DE name if set, else a bool for a bare graphical session
+if [ "$DOTS_OS" = "macos" ]; then
+  DOTS_DESKTOP="aqua"
+elif [ "${XDG_CURRENT_DESKTOP:-${DESKTOP_SESSION:-}}" != "" ]; then
+  DOTS_DESKTOP="$(printf '%s' "${XDG_CURRENT_DESKTOP:-$DESKTOP_SESSION}" | cut -d: -f1 | tr '[:upper:]' '[:lower:]')"
+elif [ "${WAYLAND_DISPLAY:-}${DISPLAY:-}" != "" ]; then
+  DOTS_DESKTOP="true"
+else
+  DOTS_DESKTOP="false"
+fi
+
+export DOTS_OS DOTS_DISTRO DOTS_ARCH DOTS_HOST DOTS_DESKTOP

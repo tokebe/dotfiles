@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Install cargo crates; a `name=giturl` arg installs that crate from git on its own.
+set -uo pipefail
+
+crates=()
+for arg in "$@"; do
+  case "$arg" in
+    *=*://*)
+      names="${arg%%=*}"
+      url="${arg#*=}"
+      if [ "$names" != "" ]; then
+        IFS=',' read -ra names_arr <<<"$names"
+        cargo install --git="$url" "${names_arr[@]}" \
+          || echo "cargo: failed to install $names from $url" >&2
+      else
+        cargo install --git="$url" || echo "cargo: failed git install from $url" >&2
+      fi
+      ;;
+    *)
+      crates+=("$arg")
+      ;;
+  esac
+done
+
+if [ "${#crates[@]}" -gt 0 ]; then
+  cargo install "${crates[@]}" || echo "cargo: failed to install ${crates[*]}" >&2
+fi

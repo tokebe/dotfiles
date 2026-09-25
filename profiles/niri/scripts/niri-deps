@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+setup () {
+
+  # Not used anymore (noctalia covers them)
+  # systemctl --user add-wants niri.service swww-bg.service
+  # systemctl --user add-wants niri.service swww-overview.service
+  # systemctl --user add-wants niri.service swww-cycle.service
+  # systemctl --user add-wants niri.service ignis.service
+  # systemctl --user add-wants niri.service swayidle.service
+  # systemctl --user add-wants niri.service mate-polkit.service
+
+  # Set gtk theme so Noctalia can customize it
+  gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'
+}
+setup
