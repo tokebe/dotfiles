@@ -1,9 +1,0 @@
-#!/bin/bash
-
-cwd=$(pwd) # store current directory
-
-git clone https://github.com/tokebe/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-./install
-
-cd "$cwd"

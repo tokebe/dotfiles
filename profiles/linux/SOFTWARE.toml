@@ -1,0 +1,12 @@
+flatpak = [
+  "com.discordapp.Discord",           # Discord | https://discord.com/
+  "dev.vencord.Vesktop",              # Modified Discord client | https://github.com/Vencord/Vesktop
+  "com.github.finefindus.eyedropper", # Color picker | https://github.com/FineFindus/eyedropper
+  "com.github.tchx84.Flatseal",       # Flatpak permissions | https://github.com/tchx84/Flatseal
+  "com.github.neithern.g4music",      # Pretty music GUI | https://gitlab.gnome.org/neithern/g4music
+  "org.kde.krita",                    # Art! | https://krita.org/en/
+  "md.obsidian.Obsidian",             # Notetaking done good | https://obsidian.md/
+  "com.visualstudio.code",            # One day nvim will be good for debugging | https://code.visualstudio.com/
+  "io.github.zen_browser.zen",        # Custom Firefox layer | https://zen-browser.app/
+  "it.mijorus.gearlever",             # AppImage manager | https://github.com/mijorus/gearlever
+]

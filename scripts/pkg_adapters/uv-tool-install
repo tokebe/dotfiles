@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Install/refresh uv tools (uv tool install takes one package); warn past failures.
+set -uo pipefail
+
+for tool in "$@"; do
+  uv tool install --upgrade "$tool" || echo "uv: failed to install $tool" >&2
+done

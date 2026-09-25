@@ -1,0 +1,53 @@
+force_links = true
+
+[[create]]
+dir = "~/Applications"
+mode = 0o755
+
+[[create]]
+dir = "~/Downloads"
+mode = 0o755
+
+[[create]]
+dir = "~/Projects"
+mode = 0o755
+
+[[clean]]
+dir = "~"
+
+[links]
+"~" = "linked/home/*"
+"~/.config" = "linked/.config/*"
+"~/.tmux/plugins/tpm" = "linked/tmux/tpm"
+"~/.config/tmux/tmux.conf" = "linked/tmux/tmux.conf"
+
+[[hooks.before.install]]
+name = "Install NVM"
+command = "bash -c \"$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh)\""
+
+[[hooks.before.install]]
+name = "Install latest LTS node & npm"
+command = "bash -lc 'nvm install --lts && nvm alias default \"lts/*\"'"
+
+[[hooks.after.install]]
+name = "Fix fd access"
+command = "command -v fd &> /dev/null || ln -esf $(which fdfind) ~/.local/bin/fd"
+mode = "silent"
+
+[[hooks.after.install]]
+name = "Update TLDR cache"
+command = "tldr --update"
+
+[[hooks.after.install]]
+name = "Prepare Neovim"
+command = "nvim --headless '+Lazy! sync' +qa"
+
+[[hooks.after.deploy]]
+name = "Set up github known host"
+command = "./scripts/setup/git"
+mode = "silent"
+
+[[hooks.after.deploy]]
+name = "Ensure github cli auth"
+command = "gh auth status || gh auth login"
+mode = "interactive"

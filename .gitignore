@@ -1,7 +1,15 @@
-.config/nvim/lua/.luarc.json
-.config/nvim/lockfiles/*
-neofetch/config/*
-.config/wezterm/fontsize.lua
-.config/btop/btop.log
-.config/systemd/user/*.wants
-.config/quickshell
+# Python / uv project
+.venv/
+.ruff_cache/
+__pycache__/
+*.egg-info/
+
+# macOS
+.DS_Store
+
+# Machine-local / generated files in the linked config pool
+linked/.config/nvim/lua/.luarc.json
+linked/.config/nvim/lockfiles/*
+linked/.config/btop/btop.log
+linked/.config/systemd/user/*.wants
+linked/.config/quickshell

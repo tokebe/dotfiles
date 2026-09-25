@@ -1,0 +1,53 @@
+[bar.default]
+center = ["taskbar"]
+end = [
+  "tray",
+  "clipboard",
+  "status",
+  "notifications",
+  "clock",
+  "group:g2",
+  "control-center",
+  "session",
+]
+margin_ends = 0
+position = "bottom"
+start = ["Mutli-purpose", "group:g1", "volume", "media"]
+thickness = 30
+widget_spacing = 10
+
+[bar.default.dead_zone.actions]
+scroll_down = "exec niri msg action focus-column-or-monitor-right"
+scroll_up = "exec niri msg action focus-column-or-monitor-left"
+
+[bar.default.monitor.DP-2]
+position = "top"
+
+[[bar.default.capsule_group]]
+accordion = true
+accordion_direction = "end"
+enabled = true
+fill = "surface_variant"
+id = "g1"
+members = [
+  "cpu",
+  "temp",
+  "GPU",
+  "VRAM",
+  "ram",
+  "summary",
+  "eyecare-widget",
+  "bar",
+]
+opacity = 1.0
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+enabled = true
+fill = "surface_variant"
+id = "g2"
+members = ["privacy", "lock_keys", "bluetooth", "network", "battery"]
+opacity = 1.0
+padding = 6.0

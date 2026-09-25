@@ -1,0 +1,74 @@
+[brew]
+native_on = ["macos", "*"]
+refresh = "brew update"
+detect = "command -v brew"
+install = "scripts/pkg_adapters/brew-install {packages}"
+upgrade = "brew upgrade --yes"
+check = "brew outdated --quiet 2>&1 | tee /dev/stderr | grep -c . || true"
+
+[gh-ext]
+detect = "command -v gh"
+install = "scripts/pkg_adapters/gh-ext-install {packages}"
+upgrade = "gh extension upgrade --all"
+check = "scripts/pkg_adapters/gh-ext-check"
+
+[uv]
+detect = "command -v uv"
+install = "scripts/pkg_adapters/uv-tool-install {packages}"
+upgrade = "uv tool upgrade --all"
+check = "uv tool list --outdated 2>&1 | tee /dev/stderr | grep -c latest: || true"
+
+[cargo]
+detect = "command -v cargo"
+install = "scripts/pkg_adapters/cargo-install {packages}"
+upgrade = "cargo install-update -a"
+check = "scripts/pkg_adapters/cargo-check"
+
+# npm queries the registry live, so no refresh; update -g upgrades every global to latest.
+[npm]
+detect = "command -v npm"
+install = "scripts/pkg_adapters/npm-install {packages}"
+upgrade = "npm update -g"
+check = "npm outdated -g --parseable | tee /dev/stderr | grep -c . || true"
+
+# pnpm queries the registry live, so no refresh; update -g --latest bumps every global to latest.
+[pnpm]
+detect = "command -v pnpm"
+install = "scripts/pkg_adapters/pnpm-install {packages}"
+upgrade = "export PATH=\"${PNPM_HOME:-$HOME/.pnpm}/bin:$PATH\"; pnpm update -g --latest"
+check = "export PATH=\"${PNPM_HOME:-$HOME/.pnpm}/bin:$PATH\"; pnpm outdated -g --format list | tee /dev/stderr | grep -c ' => ' || true"
+
+[flatpak]
+detect = "command -v flatpak"
+install = "flatpak install -y flathub {packages}"
+upgrade = "flatpak update -y"
+check = "flatpak remote-ls --updates 2>&1 | tee /dev/stderr | grep -c . || true"
+
+[gearlever]
+detect = "flatpak info it.mijorus.gearlever"
+refresh = "flatpak run it.mijorus.gearlever --fetch-updates"
+install = "scripts/pkg_adapters/gearlever-install {packages}"
+upgrade = "scripts/pkg_adapters/gearlever-upgrade"
+check = "scripts/pkg_adapters/gearlever-check"
+
+# go install @latest always fetches the newest, so there's nothing to upgrade/check after.
+[go]
+detect = "command -v go"
+install = "go install {packages}"
+upgrade = "true"
+check = "echo 0"
+
+[dnf]
+native_on = ["fedora", "rhel", "centos"]
+detect = "command -v dnf"
+install = "scripts/pkg_adapters/dnf-install {packages}"
+upgrade = "sudo dnf upgrade -y"
+check = "scripts/pkg_adapters/dnf-check"
+
+[apt]
+native_on = ["ubuntu", "debian"]
+refresh = "sudo apt-get update"
+detect = "command -v apt-get"
+install = "scripts/pkg_adapters/apt-install {packages}"
+upgrade = "sudo apt-get upgrade -y"
+check = "apt-get -s upgrade 2>/dev/null | grep -E '^Inst ' | tee /dev/stderr | grep -c . || true"

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Count gh extensions with an available upgrade; count to stdout, dry-run detail live on stderr.
+set -uo pipefail
+
+gh extension upgrade --all --dry-run 2>&1 | tee /dev/stderr | grep -c 'would have upgraded' || true

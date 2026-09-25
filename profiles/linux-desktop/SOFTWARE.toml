@@ -1,0 +1,9 @@
+system = [
+  "gamemode",       # Game mode utility
+  "input-remapper", # Remap inputs from peripherals | https://github.com/sezanzeb/input-remapper
+  "openal-soft",    # Headphone virtual surround support
+]
+
+cargo = [
+  "systemctl-tui", # Systemd viewer | https://github.com/rgwood/systemctl-tui
+]

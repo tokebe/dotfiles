@@ -1,6 +1,0 @@
-libtmux
-dataclasses
-pylatexenc
-uv
-pynvim
-

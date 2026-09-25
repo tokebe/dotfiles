@@ -1,0 +1,44 @@
+system = [
+  # Niri Deps
+  "wlclipboard",           # Make clipboard work with command-line stuff | https://github.com/bugaevc/wl-clipboard
+  "brightnessctl",         # Brightness controller | https://github.com/Hummer12007/brightnessctl
+  "cliphist",              # Clipboard history | https://github.com/sentriz/cliphist
+  "matugen-git",           # Colors from wallpaper | https://github.com/InioX/matugen
+  "xdg-desktop-portal",    # Desktop integration portal | https://github.com/flatpak/xdg-desktop-portal
+  "evolution-data-server", # GNOME Data backend
+  "qt6ct",                 # Used by Noctalia
+
+  [ # protocols dev package for building swww
+    "wayland-protocols-devel",
+    "wayland-protocols",
+  ],
+  [ # Used for cursor support
+    "xcb-util-cursor",
+    "xcb-cursor",
+  ],
+  [
+    "xcb-util-cursor-devel",
+    "xcb-cursor-dev",
+  ],
+  [ # Used by Noctalia for theming
+    "adw-gtk3-theme",
+    "adw-gtk3",
+    "adw-gtk-theme",
+  ],
+]
+
+flatpak = [
+  "com.dec05eba.gpu_screen_recorder", # Screen recorder | https://flathub.org/en/apps/com.dec05eba.gpu_screen_recorder
+]
+
+go = [
+  # niri screencast portal | https://codeberg.org/debugloop/niri-autoselect-portal
+  "codeberg.org/debugloop/niri-autoselect-portal@latest",
+]
+
+cargo = [
+  # Rootless Xwayland for niri, installed from git | https://github.com/Supreeeme/xwayland-satellite
+  { names = [
+    "xwayland-satellite",
+  ], git = "https://github.com/Supreeeme/xwayland-satellite" },
+]

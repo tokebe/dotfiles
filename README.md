@@ -1,17 +1,19 @@
 # Dotfiles
 
-Welcome to my dotfiles. Like any user, my setup is idiosyncratic at best, so bear with me.
+Welcome to my dotfiles. Like any user, my setup is eclectic and idiosyncratic at best,
+so bear with me.
 
 ## Installation
 
-My dotfiles are managed using [dotbot](https://github.com/anishathalye/dotbot). This *should* make things relatively simple.
+My dotfiles are managed using a custom set of python modules. Probably overcomplicated,
+but it suits my use-case. Bear with me if you're trying to adapt it to your own setup.
 
 ### Quick installation
 
-If you're lazy, just use this oneliner:
+To boostrap a new system, use the following command:
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/tokebe/dotfiles/main/quick)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/tokebe/dotfiles/main/bootstrap)"
 ```
 
 ### Normal Installation
@@ -25,11 +27,13 @@ git clone https://github.com/tokebe/dotfiles
 Install:
 
 ```bash
-cd dotfiles && ./install
+cd dotfiles && bootstrap
 ```
 
 ## Acknowledgements
 
 Anyone who deserves thanking, they'll go here.
 
-- Initial Nvim config based around [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
+- Initial Nvim config based around
+  [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
+- Dotfiles workflow inspired by [dotbot](https://github.com/anishathalye/dotbot)

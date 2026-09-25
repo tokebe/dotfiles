@@ -1,0 +1,9 @@
+[profile]
+priority = 5
+when = { os = "macos" }
+
+# MacOS doesn't support symlinked fonts
+[[hooks.after.link]]
+name = "Copy fonts"
+command = "cp ../../linked/iosevka-cache/*.ttf ~/Library/Fonts"
+mode = "silent"

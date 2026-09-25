@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Count cargo crates with an update (needs cargo-update); count to stdout, detail live on stderr.
+set -uo pipefail
+
+cargo install-update -l 2>&1 | tee /dev/stderr | grep -cE '\bYes\b' || true

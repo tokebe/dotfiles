@@ -1,0 +1,24 @@
+system = [
+  "niri", # My favorite WM | https://github.com/YaLTeR/niri
+  "cava", # Audio visualizer | https://github.com/karlstav/cava
+
+  # Nautilus extension dependencies
+  "python3-nautilus",
+  "python3-charset-normalizer",
+  "at",
+  "python3-polib",
+  "python3-gobject",
+  "procps-ng",
+  "js-jquery",
+]
+
+flatpak = [
+  "com.usebottles.bottles",                  # Wine GUI | https://usebottles.com/
+  "de.haeckerfelix.Fragments",               # Torrent client | https://apps.gnome.org/Fragments/
+  "com.mattjakeman.ExtensionManager",        # Gnome extension manager | https://github.com/mjakeman/extension-manager
+  "io.github.realmazharhussain.GdmSettings", # Manage Gnome greeter | https://github.com/gdm-settings/gdm-settings
+  "io.gitlab.adhami3310.Impression",         # Media writer | https://apps.gnome.org/Impression/
+  "re.sonny.Junction",                       # App chooser for file opening | https://github.com/sonnyp/Junction
+  "app.drey.Warp",                           # Like portal, but GUI | https://apps.gnome.org/Warp/
+  "org.gnome.gitlab.cheywood.Buffer",        # Simple throwaway text space | https://gitlab.gnome.org/cheywood/buffer
+]

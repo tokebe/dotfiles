@@ -1,0 +1,7 @@
+[profile]
+priority = 5
+when = { os = "linux" }
+
+[links."~/.local/share/fonts/iosevka-tokebe"]
+src = "../../linked/iosevka-cache"
+force = true

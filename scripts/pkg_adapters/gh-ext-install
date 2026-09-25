@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Install gh CLI extensions (gh takes one repo per call); skip already-installed and warn past failures.
+set -uo pipefail
+
+installed="$(gh extension list | grep -oE '[[:alnum:]_.-]+/[[:alnum:]_.-]+' || true)"
+
+for repo in "$@"; do
+  if grep -qxF "$repo" <<<"$installed"; then
+    echo "gh extension $repo already installed, skipping"
+    continue
+  fi
+  gh extension install "$repo" || echo "gh: failed to install $repo" >&2
+done

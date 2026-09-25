@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Count available dnf updates (check-update exits 100 when any); count to stdout, list live on stderr.
+set -uo pipefail
+
+dnf -q check-update 2>&1 | tee /dev/stderr | grep -cE '^[[:alnum:]]' || true

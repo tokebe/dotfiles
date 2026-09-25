@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Install apt packages; batch first, then retry individually so a broken/missing one is skipped.
+set -uo pipefail
+
+if sudo apt-get install -y "$@"; then
+  exit 0
+fi
+
+# A single package is an alias candidate: report its real status so callers can fall through.
+if [ "$#" -eq 1 ]; then
+  exit 1
+fi
+
+printf '\033[1;4m%s\033[0m\n' "apt: batch failed, retrying individually to skip broken/missing..." >&2
+for pkg in "$@"; do
+  sudo apt-get install -y "$pkg" || echo "apt: failed to install $pkg" >&2
+done

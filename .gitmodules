@@ -1,45 +1,9 @@
-[submodule "iosevka/iosevka-generate"]
-	path = iosevka/iosevka-generate
+[submodule "misc/iosevka/iosevka-generate"]
+	path = misc/iosevka/iosevka-generate
 	url = https://github.com/tokebe/iosevka-generate.git
-[submodule "dotbot-plugins/dotbot-omnipkg"]
-	path = dotbot-plugins/dotbot-omnipkg
-	url = https://github.com/code-maniac/dotbot-omnipkg
-[submodule "dotbot-plugins/dotbot-brew"]
-	path = dotbot-plugins/dotbot-brew
-	url = https://github.com/d12frosted/dotbot-brew.git
-[submodule "dotbot-plugins/dotbot-if"]
-	path = dotbot-plugins/dotbot-if
-	url = https://github.com/wonderbeyond/dotbot-if.git
-[submodule "dotbot-plugins/dotbot-pip"]
-	path = dotbot-plugins/dotbot-pip
-	url = https://github.com/sobolevn/dotbot-pip.git
-[submodule "tmux/tpm"]
-	path = tmux/tpm
+[submodule "linked/tmux/tpm"]
+	path = linked/tmux/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "neofetch/neofetch-themes"]
-	path = neofetch/neofetch-themes
-	url = https://github.com/Chick2D/neofetch-themes
-[submodule "dotbot-plugins/dotbot-flatpak"]
-	path = dotbot-plugins/dotbot-flatpak
-	url = https://github.com/DrDynamic/dotbot-flatpak.git
-[submodule "dotbot-plugins/dotbot-gh-extensions"]
-	path = dotbot-plugins/dotbot-gh-extensions
-	url = https://github.com/fundor333/dotbot-gh-extension.git
-[submodule "dotbot-plugins/dotbot-npm"]
-	path = dotbot-plugins/dotbot-npm
-	url = https://github.com/ameliagapin/dotbot-npm.git
-[submodule "dotbot-plugins/dotbot-rust"]
-	path = dotbot-plugins/dotbot-rust
-	url = https://github.com/alexcormier/dotbot-rust
-[submodule "dotbot-plugins/dotbot-git"]
-	path = dotbot-plugins/dotbot-git
-	url = https://github.com/DrDynamic/dotbot-git.git
-[submodule "dotbot"]
-	path = dotbot
-	url = https://github.com/anishathalye/dotbot
-[submodule "dotbot-plugins/dotbot-include"]
-	path = dotbot-plugins/dotbot-include
-	url = https://gitlab.com/gnfzdz/dotbot-include.git
-[submodule ".config/niri/nfsm"]
-	path = .config/niri/nfsm
+[submodule "linked/.config/niri/nfsm"]
+	path = linked/.config/niri/nfsm
 	url = https://github.com/gvolpe/nfsm.git

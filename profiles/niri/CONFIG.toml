@@ -1,0 +1,14 @@
+[profile]
+priority = 10
+when = { desktop = "niri" }
+
+[links]
+"~/.config" = "linked/.config/*"
+
+[[hooks.after.install]]
+name = "Set up Niri dependencies"
+command = "./scripts/niri-deps"
+
+[[hooks.after.install]]
+name = "Set up niri-autoselect-portal"
+command = "./scripts/setup-autoselect-portal"

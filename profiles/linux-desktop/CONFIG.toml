@@ -1,0 +1,6 @@
+[profile]
+priority = 8
+when = { os = "linux", desktop = true }
+
+[links]
+"~/.config" = "linked/.config/*"

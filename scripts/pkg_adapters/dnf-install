@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Install a batch of dnf packages, skipping unavailable/broken ones so the rest still install.
+set -uo pipefail
+
+sudo dnf install -y --skip-unavailable --skip-broken "$@" \
+  || echo "dnf: install failed for: $*" >&2
