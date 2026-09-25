@@ -42,6 +42,10 @@ command = "tldr --update"
 name = "Prepare Neovim"
 command = "nvim --headless '+Lazy! sync' +qa"
 
+[[hooks.before.deploy]]
+name = "Sync git submodules"
+command = "git submodule update --init --recursive"
+
 [[hooks.after.deploy]]
 name = "Set up github known host"
 command = "./scripts/setup/git"
