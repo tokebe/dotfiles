@@ -1,0 +1,109 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Load modules
+zmodload zsh/complist
+autoload -U compinit && compinit
+autoload -U colors && colors
+
+# Load Antidote (plugin manager)
+source "${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
+
+
+# General Options
+unsetopt prompt_sp # Don't autoclean blanklines
+zle_highlight+=(paste:none) # Don't highlight pasted text
+
+## Completion (cmp) Options
+zstyle ':completion:*' menu select # Tab opens cmp menu
+zstyle ':completion:*' squeeze-slashes false # Allow /*/ expansion
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' # Smart case sensitivity
+zstyle ':completion:*:git-checkout:*' sort false # Don't sort `git checkout`
+
+setopt auto_menu menu_complete # Use first match and show menu
+setopt auto_param_slash # Add slash to directory completions
+
+## Globbing
+# setopt no_case_glob no_case_match # Case insensitive
+setopt extended_glob # Match # ~ ^
+setopt glob_dots # Include dotfiles without explicit `.`
+setopt interactive_comments # Allow comments in interactive shell
+
+## History
+setopt append_history # Allow parallel session history
+setopt inc_append_history # Append history incrementally
+setopt no_share_history # Don't share between sessions
+unsetopt share_history
+setopt extended_history # Keep timestamps
+setopt hist_ignore_space # Ignore space-led commands
+setopt hist_ignore_dups # Ignore consecutive duplicates
+# setopt share_history # Share history between sessions
+export HISTSIZE=1000000 # larger history size
+export SAVEHIST=1000000
+export HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/.zsh_history" # XDG-compliant history
+export PROMPT_EOL_MARK=$'%{\e[7m%} %{\e[27m%}'
+
+
+# Plugins
+antidote load
+
+# Bracketed paste: fast insert via builtin, then rehighlight
+_fast_bracketed_paste() {
+  local PASTED
+  zle .bracketed-paste PASTED
+  LBUFFER+=$PASTED
+  (( $+functions[_zsh_highlight] )) && _zsh_highlight
+}
+zle -N bracketed-paste _fast_bracketed_paste
+
+## Config
+plugin_config="${ZDOTDIR:-$HOME}/.zsh_config/plugin_config"
+[ -f $plugin_config ] && source $plugin_config
+
+# Aliases
+alias_config="${ZDOTDIR:-$HOME}/.zsh_config/aliases"
+[ -f $alias_config ] && source $alias_config
+
+# Functions
+# BUG: Functions can't use defined aliases with this structure :/
+fpath+=("${ZDOTDIR:-$HOME}/.zfuncs")
+autoload -Uz md
+autoload -Uz bottom-prompt
+autoload -Uz help
+autoload -Uz help-current
+autoload -Uz magic-tab
+autoload -Uz alias-hint
+autoload -Uz custom-fzf-hist
+
+## Register function widgets
+zle -N help-current
+zle -N magic-tab
+zle -N alias-hint
+zle -N custom-fzf-hist
+autoload -Uz add-zle-hook-widget
+add-zle-hook-widget line-pre-redraw alias-hint
+
+# Bindings
+bindings_config="${ZDOTDIR:-$HOME}/.zsh_config/bindings"
+[ -f $bindings_config ] && source $bindings_config
+
+# Integration
+integration_config="${ZDOTDIR:-$HOME}/.zsh_config/integration"
+[ -f $integration_config ] && source $integration_config
+
+# P10k final setup
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Prompt at bottom from start
+bottom-prompt
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

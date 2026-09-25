@@ -1,0 +1,73 @@
+[widget.GPU]
+show_value = false
+stat = "gpu_usage"
+type = "sysmon"
+
+[widget.Mutli-purpose]
+glyph = "niri"
+tooltip = "Right: Overview ・ Middle: Window List"
+type = "custom_button"
+
+[widget.Mutli-purpose.actions]
+left = "exec vicinae toggle"
+middle = "exec notify-send -i info --app-name 'Window List' \\\"$(niri msg --json windows | jq '.[].app_id' | sed -s 's/\\\"//g')\\\""
+right = "exec niri msg action toggle-overview"
+
+[widget.VRAM]
+show_value = false
+stat = "gpu_vram"
+type = "sysmon"
+
+[widget.bar]
+type = "raycursive/niri-displays:bar"
+
+[widget.clock]
+format = "{:%a, %b %d %I:%M %p}"
+
+[widget.control-center]
+glyph = "gender-transgender"
+
+[widget.cpu]
+show_value = false
+
+[widget.lock_keys]
+display = "full"
+hide_when_off = true
+
+[widget.media]
+hide_when_no_media = true
+
+[widget.network]
+show_label = false
+
+[widget.privacy]
+hide_inactive = true
+
+[widget.ram]
+show_value = false
+
+[widget.session]
+color = "error"
+
+[widget.status]
+type = "tordex/system-updater:status"
+
+[widget.summary]
+type = "gustav0ar/drive-health:summary"
+
+[widget.sysmon]
+stat = "gpu_usage"
+
+[widget.taskbar]
+group_by_workspace = true
+hide_empty_workspaces = true
+show_workspace_label = false
+workspace_label_placement = "centered"
+
+[widget.tray]
+drawer = true
+pinned = ["OneDriveGUI"]
+
+[widget.workspaces]
+show_labels = false
+style = "focus_hint"

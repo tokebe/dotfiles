@@ -1,0 +1,45 @@
+return {
+  lsp = { -- Language Server Protocol
+    'lua_ls', -- Lua
+    -- 'tsserver', -- Typescript/Javascript
+    -- 'basedpyright', -- Python
+    -- 'ty', -- Python
+    'ruff', -- Python
+    'taplo', -- TOML
+    'bashls', -- Bash
+    'yamlls', -- JSON/YAML
+    'marksman', -- Markdown
+  },
+  dap = { -- Debug Adapter Protocol
+    'js',
+    -- 'js-debug-adapter', -- VSCode js debug adapter
+    'debugpy',
+    -- 'bash-debug-adapter',
+  },
+  formatter = {
+    -- formatters
+    'prettierd', -- Markdown hard-wrap only; scoped + configured in integration/formatting.lua
+    -- 'black', -- Replaced by Ruff
+    'beautysh',
+    'yamlfmt',
+    'stylua',
+    -- linters
+    'luacheck',
+    'eslint_d',
+    'ruff',
+    'shellharden',
+    'shellcheck',
+  },
+  treesitter = {
+    'dap_repl',
+    'regex',
+    'markdown',
+    'markdown_inline',
+    'http',
+    'json',
+    'python',
+    'typescript',
+    'javascript',
+    'latex',
+  },
+}

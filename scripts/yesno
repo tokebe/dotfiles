@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 yesno() {
-    while true; do
-        read -r -p "$1 (y/n) " yn
-        case $yn in
-            [Yy]* ) return 0 ;;
-            [Nn]* ) return 1 ;;
-            * ) echo "Please answer yes or no." ;;
-        esac
-    done
+  while true; do
+    read -r -p "$1 (y/n) " yn
+    case $yn in
+      [Yy]* ) return 0 ;;
+      [Nn]* ) return 1 ;;
+      * ) echo "Please answer yes or no." ;;
+    esac
+  done
 }

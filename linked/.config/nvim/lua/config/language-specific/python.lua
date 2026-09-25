@@ -1,0 +1,52 @@
+vim.lsp.config('basedpyright', {
+  -- Prefer plaintext hover so Google-style docstring indentation survives
+  capabilities = {
+    textDocument = {
+      hover = { contentFormat = { 'plaintext', 'markdown' } },
+    },
+  },
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = 'openFilesOnly',
+        typeCheckingMode = 'standard',
+        useLibraryCodeForTypes = true,
+      },
+    },
+    basedpyright = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = 'openFilesOnly',
+        typeCheckingMode = 'standard',
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+  -- on_attach = function(client, buffer)
+  --   client.server_capabilities.hoverProvider = false
+  -- end,
+  -- Work in the local venv
+  before_init = function(params, config)
+    local Path = require('plenary.path')
+    local venv = Path:new((config.root_dir:gsub('/', Path.path.sep)), '.venv')
+
+    if venv:joinpath('bin'):is_dir() then
+      config.settings.python.pythonPath = tostring(venv:joinpath('bin', 'python'))
+    else
+      config.settings.python.pythonPath = tostring(venv:joinpath('Scripts', 'python.exe'))
+    end
+  end,
+})
+
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+-- vim.lsp.config('ty', {
+--   settings = {
+--     ty = {
+--       diagnosticMode = 'workspace',
+--     },
+--   },
+--   capabilities = capabilities,
+-- })
+-- vim.lsp.enable('ty')

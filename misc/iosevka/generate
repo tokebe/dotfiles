@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Regenerate the custom Iosevka nerd font into the repo's linked cache
+set -uo pipefail
+cwd="$(realpath "${0%/*}")"
+cd "$cwd" || exit # execute from script dir
+
+cache="$(cd ../.. && pwd)/linked/iosevka-cache"
+scratch=""
+
+exithandler() {
+  rm -rf iosevka_setup_env "$scratch" &> /dev/null || true
+}
+trap exithandler ERR EXIT
+
+source ../../scripts/yesno
+if ! yesno 'Re-generate custom Iosevka nerd font?' $?; then
+  echo 'Keeping cached font files.'
+  exit 0
+fi
+
+echo "Generating font..."
+python3 -m venv iosevka_setup_env --clear
+./iosevka_setup_env/bin/pip3 install -r iosevka-generate/requirements.txt
+
+# the tool writes to $XDG_DATA_HOME/fonts; sink that into a scratch dir, then collect the ttf
+scratch="$(mktemp -d)"
+XDG_DATA_HOME="$scratch" ./iosevka_setup_env/bin/python3 iosevka-generate/iosevka-generate
+
+mkdir -p "$cache"
+mv "$scratch/fonts/"*.ttf "$cache"/
+echo "Fonts written to $cache"
