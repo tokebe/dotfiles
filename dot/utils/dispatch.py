@@ -113,6 +113,15 @@ def check_updates(adapter: PackageAdapter, sink: Sink | None = None) -> int:
     return int(out or 0)
 
 
+def installed_packages(adapter: PackageAdapter) -> set[str]:
+    """Names the manager reports installed."""
+    if not adapter.list_installed:
+        return set()
+
+    out = run(adapter.list_installed, capture=True).stdout
+    return {line.strip() for line in out.splitlines() if line.strip()}
+
+
 def install_packages(
     adapter: PackageAdapter, packages: list[str], *, dry_run: bool = False
 ) -> None:

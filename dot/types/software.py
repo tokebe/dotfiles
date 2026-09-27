@@ -27,6 +27,7 @@ class PackageAdapter(BaseModel):
     install: str
     upgrade: str
     check: str
+    list_installed: str | None = None
 
 
 PackageManagers = dict[PackageManagerName, PackageAdapter]

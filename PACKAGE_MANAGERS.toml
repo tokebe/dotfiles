@@ -5,6 +5,7 @@ detect = "command -v brew"
 install = "scripts/pkg_adapters/brew-install {packages}"
 upgrade = "brew upgrade --yes"
 check = "brew outdated --quiet 2>&1 | tee /dev/stderr | grep -c . || true"
+list_installed = "brew list -1"
 
 [gh-ext]
 detect = "command -v gh"
@@ -17,12 +18,14 @@ detect = "command -v uv"
 install = "scripts/pkg_adapters/uv-tool-install {packages}"
 upgrade = "uv tool upgrade --all"
 check = "uv tool list --outdated 2>&1 | tee /dev/stderr | grep -c latest: || true"
+list_installed = "uv tool list | awk '/^[^ -]/{print $1}'"
 
 [cargo]
 detect = "command -v cargo"
 install = "scripts/pkg_adapters/cargo-install {packages}"
 upgrade = "cargo install-update -a"
 check = "scripts/pkg_adapters/cargo-check"
+list_installed = "cargo install --list | grep -E '^\\S' | sed 's/ .*//'"
 
 # npm queries the registry live, so no refresh; update -g upgrades every global to latest.
 [npm]
@@ -30,6 +33,7 @@ detect = "command -v npm"
 install = "scripts/pkg_adapters/npm-install {packages}"
 upgrade = "npm update -g"
 check = "npm outdated -g --parseable | tee /dev/stderr | grep -c . || true"
+list_installed = "npm ls -g --parseable --depth=0 | tail -n +2 | sed 's#.*/node_modules/##'"
 
 # pnpm queries the registry live, so no refresh; update -g --latest bumps every global to latest.
 [pnpm]
@@ -37,12 +41,14 @@ detect = "command -v pnpm"
 install = "scripts/pkg_adapters/pnpm-install {packages}"
 upgrade = "export PATH=\"${PNPM_HOME:-$HOME/.pnpm}/bin:$PATH\"; pnpm update -g --latest"
 check = "export PATH=\"${PNPM_HOME:-$HOME/.pnpm}/bin:$PATH\"; pnpm outdated -g --format list | tee /dev/stderr | grep -c ' => ' || true"
+list_installed = "export PATH=\"${PNPM_HOME:-$HOME/.pnpm}/bin:$PATH\"; pnpm ls -g --depth=0 --parseable | tail -n +2 | sed 's#.*/node_modules/##'"
 
 [flatpak]
 detect = "command -v flatpak"
 install = "flatpak install -y flathub {packages}"
 upgrade = "flatpak update -y"
 check = "flatpak remote-ls --updates 2>&1 | tee /dev/stderr | grep -c . || true"
+list_installed = "flatpak list --app --columns=application"
 
 [gearlever]
 detect = "flatpak info it.mijorus.gearlever"

@@ -12,6 +12,7 @@ from dot.types.software import (
 from dot.utils.dispatch import (
     get_enabled_managers,
     install_packages,
+    installed_packages,
     try_install_package,
 )
 from dot.utils.hooks import run_hooks
@@ -63,6 +64,7 @@ def run_install(
         name, adapter = resolved
 
         batchable, serial = _classify_entry(to_install, name, system)
+        batchable, serial = _drop_installed(adapter, batchable, serial)
 
         # Attempt every unit independently, track overall failure
         attempts = 0
@@ -117,6 +119,22 @@ def _resolve_adapter(manager: str, system: System) -> tuple[str, PackageAdapter]
         return None
 
     return manager, available[manager]
+
+
+def _drop_installed(
+    adapter: PackageAdapter,
+    batchable: list[PackageName],
+    serial: list[list[PackageName]],
+) -> tuple[list[PackageName], list[list[PackageName]]]:
+    """Drop anything batchable/serial that's already installed."""
+    if not adapter.list_installed:
+        return batchable, serial
+
+    installed = installed_packages(adapter)
+    return (
+        [pkg for pkg in batchable if pkg not in installed],
+        [group for group in serial if not any(a in installed for a in group)],
+    )
 
 
 def _classify_entry(
