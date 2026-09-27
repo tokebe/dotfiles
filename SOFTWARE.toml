@@ -79,6 +79,7 @@ brew = [
   "cpufetch", # CPU information | https://github.com/Dr-Noob/cpufetch
   "hyfetch",  # Neofetch with Pride | https://github.com/hykilpikonna/hyfetch
   "onefetch", # Git repo info | https://github.com/o2sh/onefetch
+  "macchina", # Super fast fetch in rust | https://github.com/Macchina-CLI/macchina
 
   # File management
   "dua-cli",           # TUI disk usage analyzer | https://github.com/Byron/dua-cli
@@ -127,7 +128,6 @@ cargo = [
   "tealdeer",     # faster tldr
   "tabiew",       # tsv viewer
   "shellharden",  # shell formatter / fixer
-  "macchina",     # Super fast fetch in rust | https://github.com/Macchina-CLI/macchina
 ]
 
 uv = [
