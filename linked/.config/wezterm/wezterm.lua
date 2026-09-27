@@ -38,7 +38,7 @@ config.font = wezterm.font('Tokebe Nerd Font')
 -- Font size per host (short hostname), falling back to a default
 local font_sizes = {
   ['Default'] = 16,
-  ['Willows-MBP'] = 18,
+  ['Mac'] = 18,
 }
 local host = (wezterm.hostname() or ''):match('^[^.]+')
 config.font_size = font_sizes[host] or font_sizes['Default']
