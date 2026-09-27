@@ -25,6 +25,15 @@ clean = [
 "~/.tmux/plugins/tpm" = "linked/tmux/tpm"
 "~/.config/tmux/tmux.conf" = "linked/tmux/tmux.conf"
 
+[[hooks.before.deploy]]
+name = "Sync git submodules"
+command = "git submodule update --init --recursive"
+
+[[hooks.after.link]]
+name = "Install Iosevka nerd font"
+command = "scripts/install-iosevka"
+mode = "silent"
+
 [[hooks.before.install]]
 name = "Install NVM"
 command = "bash -c \"$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh)\""
@@ -45,10 +54,6 @@ command = "tldr --update"
 [[hooks.after.install]]
 name = "Prepare Neovim"
 command = "nvim --headless '+Lazy! sync' +qa"
-
-[[hooks.before.deploy]]
-name = "Sync git submodules"
-command = "git submodule update --init --recursive"
 
 [[hooks.after.deploy]]
 name = "Set up github known host"
