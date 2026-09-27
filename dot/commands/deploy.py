@@ -43,13 +43,13 @@ def deploy(
                 config.hooks, "before", "deploy", cwd=profile_cwd(name), dry_run=dry_run
             )
 
-    console.rule("[bold]Link[/]")
+    console.rule("[bold]Link[/]", align="right")
     run_link(active_profiles, dry_run=dry_run, suppress_hooks=suppress_hooks)
 
-    console.rule("[bold]Install[/]")
+    console.rule("[bold]Install[/]", align="right")
     run_install(active_profiles, dry_run=dry_run, suppress_hooks=suppress_hooks)
 
-    console.rule("[bold]Update[/]")
+    console.rule("[bold]Update[/]", align="right")
     run_update([], update_all=True, dry_run=dry_run, suppress_hooks=suppress_hooks)
 
     if not suppress_hooks:
