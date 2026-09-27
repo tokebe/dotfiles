@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo="$(cd "$(dirname "$0")/.." && pwd)"
+cache="$repo/linked/iosevka-cache"
+
+# MacOS doesn't support symlinked fonts, copy it
+if [ "$(uname -s)" = "Darwin" ]; then
+  dest="$HOME/Library/Fonts"
+  marker="$dest/.iosevka-tokebe.uuid"
+
+  # Skip copy when the cached font is unchanged
+  if [ -f "$marker" ] && cmp -s "$cache/.uuid" "$marker"; then
+    exit 0
+  fi
+
+  mkdir -p "$dest"
+  cp "$cache"/*.ttf "$dest/"
+  cp "$cache/.uuid" "$marker"
+else
+  dest="$HOME/.local/share/fonts/iosevka-tokebe"
+  mkdir -p "$(dirname "$dest")"
+  ln -sfn "$cache" "$dest"
+
+  if fc_cache="$(command -v fc-cache)"; then
+    "$fc_cache" -f "$dest" >/dev/null 2>&1
+  fi
+fi
