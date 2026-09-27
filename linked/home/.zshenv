@@ -17,4 +17,10 @@ export HOMEBREW_NO_AUTO_UPDATE=1 # for those slow-internet days
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   . "$HOME/.cargo/env"
+
+  # Ensure macos XDG dirs match linux for my sanity
+  export XDG_CONFIG_HOME="$HOME/.config"
+  export XDG_CACHE_HOME="$HOME/.cache"
+  export XDG_DATA_HOME="$HOME/.local/share"
+  export XDG_STATE_HOME="$HOME/.local/state"
 fi
