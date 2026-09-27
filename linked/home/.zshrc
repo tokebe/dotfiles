@@ -72,6 +72,7 @@ alias_config="${ZDOTDIR:-$HOME}/.zsh_config/aliases"
 # BUG: Functions can't use defined aliases with this structure :/
 fpath+=("${ZDOTDIR:-$HOME}/.zfuncs")
 autoload -Uz md
+autoload -Uz mf
 autoload -Uz bottom-prompt
 autoload -Uz help
 autoload -Uz help-current
