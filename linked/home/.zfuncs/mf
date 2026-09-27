@@ -5,3 +5,4 @@ mf() {
         mkdir -p "$(dirname $path_var)" && touch "$path_var"
     done
 }
+compdef _directories md
