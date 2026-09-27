@@ -115,6 +115,7 @@ brew = [
   "gum",                  # Shell script utility | https://github.com/charmbracelet/gum
   "kew",                  # TUI Music library and player | https://codeberg.org/ravachol/kew
   "brevity1swos/tap/rgx", # TUI Regex tester | https://github.com/brevity1swos/rgx
+  "SurgeDM/tap/surge"     # Fast download manager | https://github.com/surgedm/surge
 ]
 
 gearlever = [
