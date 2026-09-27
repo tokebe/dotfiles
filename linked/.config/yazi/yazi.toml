@@ -1,2 +1,14 @@
 [mgr]
+sort_by = "natural"
+sort_sensitive = true
+sort_translit = true
 show_hidden = true
+show_symlink = true
+image_delay = 400
+
+# Waiting on Drag and drop support (kitty OSC 72) in a workable terminal:
+# native tmux OSC 72 tracked at https://github.com/tmux/tmux/issues/5595
+# Ghostty: https://github.com/ghostty-org/ghostty/issues/12852
+# WezTerm: https://github.com/wezterm/wezterm/discussions/1135
+
+[opener]
