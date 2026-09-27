@@ -132,10 +132,15 @@ cargo = [
 ]
 
 uv = [
+
+  # System support
   "pylatexenc", # LaTeX parser
+  "pynvim",     # Extended nvim support
+
+  # Tools
   "asciinema",  # Record terminal interactions
   "yq",         # like jq but with yaml+toml
-  "pynvim",     # Extended nvim support
+  "posting"     # API client | https://github.com/darrenburns/posting
 ]
 
 npm = [
