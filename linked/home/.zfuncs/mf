@@ -1,0 +1,7 @@
+mf() {
+    mkdir -p "$(dirname "$1")" && touch "$1"
+    for path_var in "$@"
+    do
+        mkdir -p "$(dirname $path_var)" && touch "$path_var"
+    done
+}
