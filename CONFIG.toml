@@ -12,8 +12,12 @@ mode = 0o755
 dir = "~/Projects"
 mode = 0o755
 
-[[clean]]
-dir = "~"
+clean = [
+  "~",
+  { dir = "~/.config", recursive = true },
+  { dir = ".tmux", recursive = true },
+]
+
 
 [links]
 "~" = "linked/home/*"
