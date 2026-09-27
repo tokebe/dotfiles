@@ -65,8 +65,12 @@ def adopt(
     if profile != "DEFAULT":
         configs.append((get_available_profiles()[profile], profile_rootdir))
 
-    if _rule_covers(src, dest, configs):
-        console.print(f"{OK} Already covered by an existing link rule")
+    covered = _rule_covers(src, dest, configs)
+    if covered:
+        target, source = covered
+        console.print(
+            f'{OK} Already covered by an existing link rule  [dim]"{target}" = "{source}"[/]'
+        )
     else:
         _add_link_rule(src, dest, profile_rootdir, dry_run=dry_run)
 
@@ -149,8 +153,10 @@ def _home_str(path: Path) -> str:
     return "~" if str(rel) == "." else f"~/{rel}"
 
 
-def _rule_covers(src: Path, dest: Path, configs: list[tuple[Config, Path]]) -> bool:
-    """Whether an existing link rule already maps target `src` to source `dest`."""
+def _rule_covers(
+    src: Path, dest: Path, configs: list[tuple[Config, Path]]
+) -> tuple[str, str] | None:
+    """The existing `(target, source)` link rule mapping `src` to `dest`, else None."""
     for config, root in configs:
         for target, value in config.links.items():
             source = str(value.src) if isinstance(value, Link) else value
@@ -163,7 +169,7 @@ def _rule_covers(src: Path, dest: Path, configs: list[tuple[Config, Path]]) -> b
                     dest.is_relative_to(source_resolved)
                     and target_path / dest.relative_to(source_resolved) == src
                 ):
-                    return True
+                    return target, source
                 continue
 
             # A glob covers dest when dest or a containing folder matches the pattern
@@ -172,7 +178,7 @@ def _rule_covers(src: Path, dest: Path, configs: list[tuple[Config, Path]]) -> b
                     break
                 if ancestor.relative_to(root).full_match(source):
                     if target_path / ancestor.name / dest.relative_to(ancestor) == src:
-                        return True
+                        return target, source
                     break
 
-    return False
+    return None
