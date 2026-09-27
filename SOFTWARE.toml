@@ -25,6 +25,18 @@ system = [
   "inotify-tools", # inotify utilities | https://github.com/inotify-tools/inotify-tools
   "luarocks",      # lua package manager | https://luarocks.org/
 
+  [ # 7zip support
+    "7zip",
+    "p7zip",
+    "p7zip-full",
+    "7-zip",
+  ],
+  [
+    "7zip-rar",
+    "p7zip-rar",
+  ],
+  "p7zip-plugins",
+
   # System dependencies
   "chafa",                      # Terminal graphics support | https://github.com/hpjansson/chafa
   "gstreamer1-plugin-openh264", # Ensure video support on linux
@@ -36,7 +48,20 @@ system = [
   "socat",                      # Bidirectional socket relay
   "rocm-smi",                   # GPU interface library? Used by btop
   { macos = "coreutils" },      # Ensure coreutils on MacOS
+  "file",                       # Used by yazi for filetype ID
+  "ffmpeg",                     # Used by yazi for thumbnailing
+  "resvg",                      # Used by yazi for SVG rendering
+  "zoxide",                     # Used by yazi for history jumping
 
+  [ # Image manipulation library, used by yazi
+    "imagemagick-full",
+    "imagemagick",
+    "ImageMagick",
+  ],
+  [ # PDF rendering library, used by yazi
+    "poppler",
+    "poppler-utils",
+  ],
   [ # Ensure full font support on linux
     "font-noto",
     "google-noto-sans-*",
@@ -86,6 +111,7 @@ brew = [
   "umlx5h/tap/gtrash", # Integrated TUI trash manager | https://github.com/umlx5h/gtrash
   "lf",                # Lightweight TUI file manager | https://github.com/gokcehan/lf
   "walk",              # inline TUI file manager | https://github.com/antonmedv/walk
+  "yazi",              # Fast featureful file manager | https://github.com/sxyazi/yazi
 
   # Git
   "jesseduffield/lazygit/lazygit", # TUI git manager | https://github.com/jesseduffield/lazygit
@@ -138,9 +164,9 @@ uv = [
   "pynvim",     # Extended nvim support
 
   # Tools
-  "asciinema",  # Record terminal interactions
-  "yq",         # like jq but with yaml+toml
-  "posting"     # API client | https://github.com/darrenburns/posting
+  "asciinema", # Record terminal interactions
+  "yq",        # like jq but with yaml+toml
+  "posting",   # API client | https://github.com/darrenburns/posting
 ]
 
 npm = [
