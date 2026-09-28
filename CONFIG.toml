@@ -15,7 +15,7 @@ mode = 0o755
 clean = [
   "~",
   { dir = "~/.config", recursive = true },
-  { dir = ".tmux", recursive = true },
+  { dir = "~/.tmux", recursive = true },
 ]
 
 
@@ -50,14 +50,14 @@ command = "bash -c \"$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.
 name = "Install latest LTS node & npm"
 command = "bash -lc 'nvm install --lts && nvm alias default \"lts/*\"'"
 
-[[hooks.after.install]]
-stage = "system"
+[[hooks.before.install]]
+stage = "flatpak"
 name = "Ensure flathub added to flatpak"
-command = "flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo"
+command = "command -v flatpak >/dev/null && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo"
 
 [[hooks.after.install]]
 name = "Fix fd access"
-command = "command -v fd &> /dev/null || ln -esf $(which fdfind) ~/.local/bin/fd"
+command = "command -v fd &> /dev/null || { mkdir -p ~/.local/bin && ln -sf $(which fdfind) ~/.local/bin/fd; }"
 mode = "silent"
 
 [[hooks.after.install]]
@@ -71,7 +71,7 @@ command = "nvim --headless '+Lazy! sync' +qa"
 [[hooks.after.deploy]]
 name = "Set up github known host"
 command = "./scripts/setup/git"
-mode = "silent"
+mode = "interactive"
 
 [[hooks.after.deploy]]
 name = "Ensure github cli auth"

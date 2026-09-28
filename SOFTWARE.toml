@@ -23,7 +23,6 @@ system = [
   "unzip",         # .zip support
   "zsh",           # Z Shell | https://www.zsh.org/
   "inotify-tools", # inotify utilities | https://github.com/inotify-tools/inotify-tools
-  "luarocks",      # lua package manager | https://luarocks.org/
 
   [ # 7zip support
     "7zip",
@@ -44,7 +43,6 @@ system = [
   "ttfautohint",                # More font building support | https://freetype.org/ttfautohint/
   "xclip",                      # Ensure nvim clipboard works in wayland
   "clutter-gtk",                # Ensure gnome addon TopHat works
-  "gamemode",                   # Game mode utility
   "socat",                      # Bidirectional socket relay
   "rocm-smi",                   # GPU interface library? Used by btop
   { macos = "coreutils" },      # Ensure coreutils on MacOS
@@ -74,7 +72,6 @@ system = [
   "git-delta",         # Pager/file comparison | https://github.com/dandavison/delta
   "lolcat",            # Colorful text | https://github.com/busyloop/lolcat
   "yank",              # Terminal output -> Clipboard | https://github.com/mptre/yank
-  "input-remapper",    # Remap inputs from peripherals | https://github.com/sezanzeb/input-remapper
   "sd",                # Sane sed | https://github.com/chmln/sd
 
   [ # Faster/friendlier find | https://github.com/sharkdp/fd
@@ -120,7 +117,6 @@ brew = [
   # Package/language management
   "eget",    # Github prebuilt binary installer | https://github.com/zyedidia/eget
   "pnpm",    # Performant NPM | https://github.com/pnpm/pnpm
-  "flatpak", # Flatpak | https://flatpak.org/
 
   # Utilities
   "bat",                      # Better cat/less | https://github.com/sharkdp/bat
