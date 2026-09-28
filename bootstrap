@@ -1,0 +1,233 @@
+#!/usr/bin/env bash
+# Bring a fresh machine from nothing to a working `dots` install.
+set -euo pipefail
+
+echo '
+／l、                  .     ┌
+(˚ˎ 。７   ┬┐┌┐│┬┐┌┐│├-┐┌┐  ┌┤┌┐├-┌┐
+l  ~ \     ├┘│ │├┘│ ││ ││ --│││││ └┐
+じしf_,)ノ ┴┘└┘└┴┘└┘└└┘┘└┘  └┘└┘└┘└┘
+'
+
+echo 'This is the bootstrap script for Tokebe'\''s eclectic-dots.'
+echo 'It will do some serious system changes:'
+echo 'Install homebrew, rust/cargo, etc.;'
+echo 'Set your default shell to zsh and replace your .zshrc;'
+echo 'And generally set up your system to be like mine, with all its idiosyncracies.'
+echo 'You may end up finding it more annoying than useful, and it comes with no warranty.'
+echo 'Continue at your own risk.'
+
+# User prompts will use TTY to ensure compatibility with `curl | bash`
+
+# Confirm before making system changes; no TTY declines by default (set DOTS_ASSUME_YES=1 to proceed unattended)
+if [ "${DOTS_ASSUME_YES:-}" != "" ]; then
+  : # explicit unattended opt-in
+elif { : </dev/tty; } 2>/dev/null; then
+  printf 'Bootstrap this machine? [y/N] ' >/dev/tty
+  read -r reply </dev/tty || reply=""
+  case "$reply" in
+    [Yy]*) ;;
+    *) echo "Bootstrap cancelled." ; exit 0 ;;
+  esac
+else
+  echo "bootstrap: no TTY to confirm; set DOTS_ASSUME_YES=1 to proceed unattended." >&2
+  exit 1
+fi
+
+# Used to make brew skip prompts
+export NONINTERACTIVE=1
+
+# OS is needed before the repo is cloned
+case "$(uname -s)" in
+  Darwin) DOTS_OS="macos" ;;
+  *) DOTS_OS="linux" ;;
+esac
+
+has() { command -v "$1" >/dev/null 2>&1; }
+as_root() { if [ "$(id -u)" -eq 0 ]; then "$@"; else sudo "$@"; fi; }
+
+# Bold + underlined task heading
+heading() {
+  if [ -t 1 ]; then printf '\n\033[1;4m%s\033[0m\n' "$*"; else printf '\n%s\n' "$*"; fi
+  sleep 0.3 # Just enough to ensure the user sees it
+}
+
+# Install packages with the OS package manager
+native_install() {
+  if has apt-get; then as_root apt-get install -y "$@"
+  elif has dnf; then as_root dnf install -y "$@"
+  elif has pacman; then as_root pacman -S --needed --noconfirm "$@"
+  elif has zypper; then as_root zypper install -y "$@"
+  else echo "bootstrap: no supported package manager to install: $*" >&2; return 1
+  fi
+}
+
+# Ensure brew prerequisites: curl, git, and a C toolchain
+heading 'Ensuring Homebrew prerequisites...'
+if [ "$DOTS_OS" = "macos" ]; then
+  if ! xcode-select -p >/dev/null 2>&1; then
+    heading "Installing Xcode Command Line Tools (complete the GUI prompt)..."
+    xcode-select --install || true
+    tries=0
+    until xcode-select -p >/dev/null 2>&1; do
+      tries=$((tries + 1))
+      if [ "$tries" -gt 120 ]; then
+        echo "bootstrap: timed out waiting for Xcode Command Line Tools; install and re-run." >&2
+        exit 1
+      fi
+      sleep 3
+    done
+  fi
+elif has apt-get; then
+  as_root apt-get update
+  as_root apt-get install -y curl git build-essential procps file
+elif has dnf; then
+  as_root dnf install -y curl git gcc gcc-c++ make procps-ng file
+elif has pacman; then
+  as_root pacman -Sy --needed --noconfirm curl git base-devel procps-ng file
+elif has zypper; then
+  as_root zypper install -y curl git gcc make procps file
+else
+  heading "bootstrap: no supported package manager (apt/dnf/pacman/zypper) found" >&2
+  exit 1
+fi
+
+# Install brew and put it on PATH for this run
+if ! has brew; then
+  heading "Installing Homebrew..."
+  # Capture + check separately: `bash -c "$(curl ...)"` would swallow a failed download as an empty (exit-0) script
+  brew_installer="$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
+    || { echo "bootstrap: failed to download the Homebrew installer" >&2; exit 1; }
+  /usr/bin/env bash -c "$brew_installer"
+fi
+for brew_bin in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew "$HOME/.linuxbrew/bin/brew"; do
+  if [ -x "$brew_bin" ]; then
+    eval "$("$brew_bin" shellenv)"
+    break
+  fi
+done
+
+# Clone to ~/.dotfiles unless we're already inside a checkout, then enter it
+heading "Setting up dotfiles repo/program..."
+REPO_URL="https://github.com/tokebe/dotfiles"
+if [ -f scripts/detect ]; then
+  REPO_DIR="$PWD"
+elif [ -d "${DOTFILES_DIR:-$HOME/.dotfiles}/.git" ]; then
+  REPO_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
+  # Existing clone: fast-forward + sync submodules, but keep going if local state blocks it
+  git -C "$REPO_DIR" pull --ff-only \
+    || echo "bootstrap: could not fast-forward $REPO_DIR, continuing with current checkout" >&2
+  git -C "$REPO_DIR" submodule update --init --recursive \
+    || echo "bootstrap: could not sync submodules in $REPO_DIR" >&2
+else
+  REPO_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
+  # A non-repo dir here would make `git clone` fail; move it aside first
+  if [ -e "$REPO_DIR" ]; then
+    backup="$REPO_DIR.bak-$(date +%Y%m%d-%H%M%S)"
+    echo "bootstrap: $REPO_DIR exists but isn't a git repo; moving it to $backup" >&2
+    mv -- "$REPO_DIR" "$backup"
+  fi
+  git clone --recurse-submodules "$REPO_URL" "$REPO_DIR"
+fi
+cd "$REPO_DIR"
+
+# The repo is present now; load the full system facts
+. scripts/detect
+
+# Install uv via brew, the pinned Python, then the `dots` CLI (editable, tracks this repo)
+# `yes` auto-accepts brew's prompt; process substitution keeps pipefail from tripping on yes's SIGPIPE
+has uv || brew install uv < <(yes)
+# rustup up front satisfies a uv dependency's build backend, avoiding uv's flaky temporary toolchain
+if ! has cargo; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain stable
+fi
+# Put ~/.cargo/bin on PATH so uv sync (and later steps) can find cargo/rustc
+[ -r "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+uv python install "$(cat .python-version)"
+uv sync
+uv tool install --force --editable .
+
+
+# Add `dots` to path by adding uv tool scripts dir to path
+export PATH="$HOME/.local/bin:$PATH"
+
+# Ensure zsh is installed and make it the default login shell
+heading "Setting up zsh..."
+has zsh || native_install zsh
+zsh_path="$(command -v zsh)"
+if [ "${SHELL:-}" != "$zsh_path" ]; then
+  grep -qxF "$zsh_path" /etc/shells 2>/dev/null || echo "$zsh_path" | as_root tee -a /etc/shells >/dev/null
+  heading "Setting zsh to default shell..."
+  chsh -s "$zsh_path" \
+    || echo "bootstrap: could not change default shell; set it manually with: chsh -s $zsh_path" >&2
+fi
+
+# Install nerd font
+heading "Installing Tokebe Nerd Font..."
+scripts/install-iosevka
+
+# Ask whether next login should finish setup automatically
+auto=""
+if { : </dev/tty; } 2>/dev/null; then
+  printf 'Auto-run "dots deploy" when you next open a terminal? [y/N] ' >/dev/tty
+  read -r reply </dev/tty || reply=""
+  case "$reply" in [Yy]*) auto=1 ;; esac
+fi
+
+# Finish-setup command; a fresh zsh lacks the brew/cargo PATH (config isn't linked yet), so rebuild it for deploy's hooks
+brew_path="$(command -v brew || true)"
+finish=''
+# shellcheck disable=SC2016  # $ stays literal on purpose; the generated zsh expands it, not us
+[ -n "$brew_path" ] && finish='eval "$('"$brew_path"' shellenv)"; '
+# shellcheck disable=SC2016
+finish="$finish"'[ -r "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"; export PATH="$HOME/.local/bin:$PATH"; cd "'"$REPO_DIR"'" && source .venv/bin/activate && dots deploy'
+zshrc="$HOME/.zshrc"
+
+# Move any pre-existing ~/.zshrc (regular file or symlink) aside
+backup_zshrc() {
+  if [ -e "$zshrc" ] || [ -L "$zshrc" ]; then
+    local backup
+    backup="$zshrc.bak-$(date +%Y%m%d-%H%M%S)"
+    mv -- "$zshrc" "$backup"
+    echo "Backed up existing ~/.zshrc to $backup"
+  fi
+}
+
+if [ "$auto" != "" ]; then
+  # Auto-finish: wait for keypress, then delete self + deploy
+  backup_zshrc
+  cat >"$zshrc" <<EOF
+read -s -k 1 "?Press any key to deploy dotfiles..."
+echo
+command rm -f -- "\$HOME/.zshrc"
+if ! { $finish; }; then
+  cat > "\$HOME/.zshrc" <<'RC'
+print -r -- 'dots deploy did not finish — run this to retry:'
+print -r -- '  $finish'
+RC
+fi
+EOF
+elif [ -f "$zshrc" ] && [ ! -L "$zshrc" ]; then
+  # Keep real ~/.zshrc; append a reminder
+  cat >>"$zshrc" <<EOF
+print -r -- 'Finish dotfiles setup by running:'
+print -r -- '  $finish'
+EOF
+else
+  # Absent/symlink: back up if present, write a throwaway reminder
+  backup_zshrc
+  cat >"$zshrc" <<EOF
+command rm -f -- "\$HOME/.zshrc"
+print -r -- 'Finish dotfiles setup by running:'
+print -r -- '  $finish'
+EOF
+fi
+
+echo
+echo "Bootstrap complete."
+echo "The dots UI uses Nerd Font glyphs. Restart your terminal and select Tokebe Nerd Font Regular."
+if [ "$auto" != "" ]; then
+  echo "Your next terminal session will automatically resume setup."
+else
+  echo "Your next terminal session will print a command to finish setup."
+fi
