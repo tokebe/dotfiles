@@ -10,10 +10,10 @@ but it suits my use-case. Bear with me if you're trying to adapt it to your own 
 
 ### Quick installation
 
-To boostrap a new system, use the following command:
+To bootstrap a new system, use the following command:
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/tokebe/dotfiles/main/bootstrap)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/tokebe/dotfiles/main/bootstrap)"
 ```
 
 ### Normal Installation
@@ -27,7 +27,7 @@ git clone https://github.com/tokebe/dotfiles
 Install:
 
 ```bash
-cd dotfiles && bootstrap
+cd dotfiles && ./bootstrap
 ```
 
 ## Acknowledgements
