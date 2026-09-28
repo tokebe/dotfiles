@@ -33,7 +33,9 @@ def run_update(
     """Update installed packages for the given managers (or all / interactively)."""
     profiles = active_profiles if active_profiles is not None else resolve_active(None)
 
-    def fire_hooks(timing: Literal["before", "after"], stage: str | None = None) -> None:
+    def fire_hooks(
+        timing: Literal["before", "after"], stage: str | None = None
+    ) -> None:
         if suppress_hooks:
             return
         for name, config in profiles:
