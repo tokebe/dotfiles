@@ -1,6 +1,6 @@
-import functools
 import shlex
 import subprocess
+import threading
 from collections.abc import Callable
 from pathlib import Path
 
@@ -8,6 +8,7 @@ from rich.console import Console
 
 from dot.types.shared import REPO_ROOT
 from dot.types.software import PACKAGE_MANAGERS, PackageAdapter, PackageManagers
+from dot.utils.symbols import NEUTRAL
 
 Sink = Callable[[str], None]  # receives each output line as it streams
 
@@ -59,11 +60,20 @@ def run_stream(
 
     if split:
         assert process.stderr is not None
-        for raw in process.stderr:
-            if sink:
-                sink(raw.rstrip("\n"))
+        assert process.stdout is not None
 
-        stdout, _ = process.communicate()
+        # Drain stderr on a thread so a large stdout can't fill its pipe and deadlock
+        def _drain_stderr() -> None:
+            assert process.stderr is not None
+            for raw in process.stderr:
+                if sink:
+                    sink(raw.rstrip("\n"))
+
+        thread = threading.Thread(target=_drain_stderr)
+        thread.start()
+        stdout = process.stdout.read()
+        thread.join()
+        process.wait()
         return subprocess.CompletedProcess(command, process.returncode, stdout, "")
 
     lines: list[str] = []
@@ -89,27 +99,36 @@ def refresh(adapter: PackageAdapter, sink: Sink | None = None) -> None:
 
 
 def refresh_all(managers: list[str] | None = None, *, dry_run: bool = False) -> None:
-    """Sync all package indices once."""
+    """Sync all package indices once, isolating per-manager refresh failures."""
     adapters = get_enabled_managers()
     if managers is not None:
         adapters = {n: a for n, a in adapters.items() if n in managers}
 
-    for adapter in adapters.values():
+    for name, adapter in adapters.items():
         if not adapter.refresh:
             continue
         if dry_run:
             console.print(adapter.refresh)
-        else:
+            continue
+        try:
             refresh(adapter)
+        except subprocess.CalledProcessError as err:
+            console.print(
+                f"[yellow]{NEUTRAL} {name} refresh failed (exit {err.returncode}), continuing...[/]"
+            )
 
 
 def check_updates(adapter: PackageAdapter, sink: Sink | None = None) -> int:
     """Count of available updates.
 
-    `check` prints a bare integer on stdout, progress on stderr.
+    `check` prints a bare integer on stdout, progress on stderr; non-integer output counts as 0.
     """
     out = run_stream(adapter.check, sink, split=True).stdout.strip()
-    return int(out or 0)
+    last = out.splitlines()[-1].strip() if out else ""
+    try:
+        return int(last)
+    except ValueError:
+        return 0
 
 
 def installed_packages(adapter: PackageAdapter) -> set[str]:
@@ -154,9 +173,11 @@ def upgrade_packages(adapter: PackageAdapter, *, dry_run: bool = False) -> None:
     run(adapter.upgrade).check_returncode()
 
 
-@functools.lru_cache
 def get_enabled_managers() -> PackageManagers:
-    """Get the presently-enabled adapters."""
+    """Get the presently-enabled adapters, detected fresh each call.
+
+    Not cached: managers installed mid-run (nvm node, brew pnpm) must become visible.
+    """
     return {
         name: adapter for name, adapter in PACKAGE_MANAGERS.items() if detect(adapter)
     }

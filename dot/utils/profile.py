@@ -111,11 +111,16 @@ def resolve_profiles(
                 console.print(f"[yellow]Profile {name} not found, skipping...[/]")
     else:
         facts = detect_system()
-        selected = [
-            (name, config)
-            for name, config in profiles.items()
-            if _matches(config.profile.when, facts)
-        ]
+        selected = []
+        for name, config in profiles.items():
+            when = config.profile.when
+            if _when_is_empty(when):
+                console.print(
+                    f"[yellow]Profile {name} has an empty `when` (matches nothing), skipping...[/]"
+                )
+                continue
+            if _matches(when, facts):
+                selected.append((name, config))
 
     ordered = sorted(selected, key=lambda entry: profiles[entry[0]].profile.priority)
     return [("DEFAULT", CONFIG), *ordered]
@@ -151,11 +156,27 @@ def get_available_profiles() -> dict[str, ProfileConfig]:
 
     for path in sorted(PROFILES_DIR.glob("*/CONFIG.toml")):
         with path.open("rb") as file:
-            profiles[path.parent.name] = ProfileConfig.model_validate(
-                tomllib.load(file)
-            )
+            config = ProfileConfig.model_validate(tomllib.load(file))
+        if "force_links" not in config.model_fields_set:  # inherit base when unset
+            config.force_links = CONFIG.force_links
+        profiles[path.parent.name] = config
 
     return profiles
+
+
+def _when_is_empty(when: ProfileWhen) -> bool:
+    """A `when` with no conditions set at all — treated as never-match, not always-match."""
+    return all(
+        key is None
+        for key in (
+            when.cond,
+            when.os,
+            when.distro,
+            when.architecture,
+            when.host,
+            when.desktop,
+        )
+    )
 
 
 def _matches(when: ProfileWhen, system: System) -> bool:

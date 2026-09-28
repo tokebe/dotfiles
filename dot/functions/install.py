@@ -11,7 +11,7 @@ from dot.types.software import (
     SoftwareEntry,
 )
 from dot.utils.dispatch import (
-    get_enabled_managers,
+    detect,
     install_packages,
     installed_packages,
     try_install_package,
@@ -115,14 +115,14 @@ def _resolve_adapter(manager: str, system: System) -> tuple[str, PackageAdapter]
         )
         return None
 
-    available = get_enabled_managers()
-    if manager not in available:
+    adapter = PACKAGE_MANAGERS[manager]
+    if not detect(adapter):  # detected fresh so managers installed earlier this run count
         console.print(
             f"[yellow]{NEUTRAL} Manager {manager} is not active, skipping...[/]"
         )
         return None
 
-    return manager, available[manager]
+    return manager, adapter
 
 
 def _drop_installed(
@@ -168,6 +168,9 @@ def _resolve_entry(
 ) -> PackageName | list[PackageName] | None:
     """Resolve entry special behaviors."""
     if manager == "gearlever":
+        if "name" not in item or "url" not in item:
+            console.print(f"[yellow]{NEUTRAL} gearlever entry missing name/url, skipping: {item}[/]")
+            return None
         return f"{item['name']}={item['url']}"
     if manager == "cargo" and "git" in item:
         names = item.get("names", [])
