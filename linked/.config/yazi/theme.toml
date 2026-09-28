@@ -1,2 +1,14 @@
 [mgr]
 border_symbol = " "
+
+[indicator]
+padding = { open = "▐", close = "▌" }
+
+[status]
+sep_left = { open = "▐", close = "▌" }
+sep_right = { open = "▐", close = "▌" }
+
+[mode]
+normal_alt = { bg = "#393552" }
+select_alt = { bg = "#393552" }
+unset_alt = { bg = "#393552" }

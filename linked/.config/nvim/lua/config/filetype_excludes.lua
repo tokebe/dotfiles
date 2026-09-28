@@ -50,4 +50,5 @@ return {
   'typr',
   'typrstats',
   'incline',
+  'yazi',
 }
