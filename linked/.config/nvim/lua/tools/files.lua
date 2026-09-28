@@ -99,27 +99,53 @@ return {
       },
     },
   },
+  -- {
+  --   'lmburns/lf.nvim',
+  --   dependencies = { 'akinsho/toggleterm.nvim' },
+  --   config = function()
+  --     require('lf').setup({
+  --       border = 'single',
+  --       default_file_manager = true,
+  --       highlights = {
+  --         Normal = { link = 'Normal' },
+  --         NormalFloat = { link = 'Normal' },
+  --         FloatBorder = { link = 'Normal' },
+  --       },
+  --     })
+  --
+  --     vim.keymap.set('n', '<Leader>mF', function()
+  --       local path = vim.api.nvim_buf_get_name(0)
+  --       if path == nil then
+  --         path = vim.fn.getcwd()
+  --       end
+  --       require('lf').start()
+  --     end, { desc = 'Manage Files with lf' })
+  --   end,
+  -- },
   {
-    'lmburns/lf.nvim',
-    dependencies = { 'akinsho/toggleterm.nvim' },
-    config = function()
-      require('lf').setup({
-        border = 'single',
-        default_file_manager = true,
-        highlights = {
-          Normal = { link = 'Normal' },
-          NormalFloat = { link = 'Normal' },
-          FloatBorder = { link = 'Normal' },
-        },
-      })
-
-      vim.keymap.set('n', '<Leader>mf', function()
-        local path = vim.api.nvim_buf_get_name(0)
-        if path == nil then
-          path = vim.fn.getcwd()
-        end
-        require('lf').start()
-      end, { desc = 'Manage Files with lf' })
-    end,
+    'mikavilpas/yazi.nvim',
+    version = '*', -- use the latest stable version
+    event = 'VeryLazy',
+    dependencies = {
+      { 'nvim-lua/plenary.nvim', lazy = true },
+    },
+    keys = {
+      {
+        '<leader>mf',
+        mode = { 'n', 'v' },
+        '<cmd>Yazi<cr>',
+        desc = 'Manage files with yazi',
+      },
+    },
+    opts = {
+      floating_window_scaling_factor = 0.75,
+      yazi_floating_window_winblend = 10,
+      highlight_hovered_buffers_in_same_directory = false,
+      highlight_groups = {
+        -- Make hovered buffer highlight not actually change
+        hovered_buffer = { link = 'Normal' },
+      },
+      yazi_floating_window_border = 'single',
+    },
   },
 }
