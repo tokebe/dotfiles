@@ -19,7 +19,7 @@ app = typer.Typer(
 )
 
 
-@app.command(name="adopt | a")
+@app.command(name="adopt | al")
 def adopt(
     src: Annotated[Path, typer.Argument(help="Existing real path to adopt.")],
     dest: Annotated[

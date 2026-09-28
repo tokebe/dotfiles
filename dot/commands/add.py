@@ -21,7 +21,7 @@ console = Console()
 Additions = dict[PackageManagerName, list[PackageName]]
 
 
-@app.command(name="add")
+@app.command(name="add | a")
 def add(
     specs: Annotated[
         list[str],
