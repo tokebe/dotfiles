@@ -17,6 +17,19 @@ echo 'And generally set up your system to be like mine, with all its idiosyncrac
 echo 'You may end up finding it more annoying than useful, and it comes with no warranty.'
 echo 'Continue at your own risk.'
 
+# Homebrew won't install as root, and a non-root user needs sudo for system packages
+if [ "$(id -u)" -eq 0 ]; then
+  echo "bootstrap: run as a non-root user with sudo. Homebrew refuses to install as root." >&2
+  exit 1
+elif ! command -v sudo >/dev/null 2>&1; then
+  echo "bootstrap: sudo is required for system packages. Install it as root then set up user with sudo.
+  Debian example:
+  > su - # - forces path re-evaluation, makes usermod available
+  > apt update && apt install sudo
+  > usermod -aG sudo <your_user>" >&2
+  exit 1
+fi
+
 # User prompts will use TTY to ensure compatibility with `curl | bash`
 
 # Confirm before making system changes; no TTY declines by default (set DOTS_ASSUME_YES=1 to proceed unattended)
@@ -178,7 +191,7 @@ fi
 brew_path="$(command -v brew || true)"
 finish=''
 # shellcheck disable=SC2016  # $ stays literal on purpose; the generated zsh expands it, not us
-[ -n "$brew_path" ] && finish='eval "$('"$brew_path"' shellenv)"; '
+[ "$brew_path" != "" ] && finish='eval "$('"$brew_path"' shellenv)"; '
 finish="$finish"'. "'"$REPO_DIR"'/linked/home/.shell_env"; cd "'"$REPO_DIR"'" && source .venv/bin/activate && dots deploy'
 zshrc="$HOME/.zshrc"
 
