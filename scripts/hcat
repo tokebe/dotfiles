@@ -1,0 +1,74 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.14"
+# dependencies = ["typer>=0.27.2", "rich>=15.0.0"]
+# ///
+"""Horizontally concatenate multiline strings, aligning columns by display width."""
+
+from pathlib import Path
+from typing import Annotated
+
+import typer
+from rich.console import Console
+from rich.table import Table
+from rich.text import Text
+
+
+def hcat(blocks: list[str], sep: str = "") -> str:
+    """Concatenate multiline blocks side by side, padded to each block's widest line.
+
+    Rich measures cells in display columns, so CJK/fullwidth glyphs stay aligned.
+    """
+    columns = [b.rstrip("\n").split("\n") for b in blocks]
+    height = max((len(col) for col in columns), default=0)
+
+    grid = Table.grid()
+    for i in range(len(columns)):
+        if i:
+            grid.add_column()  # separator column between blocks
+        grid.add_column()
+
+    for row in range(height):
+        cells: list[str | Text] = []
+        for i, col in enumerate(columns):
+            if i:
+                cells.append(sep)
+            cells.append(Text(col[row] if row < len(col) else "", no_wrap=True))
+        grid.add_row(*cells)
+
+    # Wide console so long lines never wrap; grid columns still size to content.
+    console = Console(width=10_000)
+    with console.capture() as capture:
+        console.print(grid)
+
+    return "\n".join(line.rstrip() for line in capture.get().splitlines())
+
+
+app = typer.Typer(
+    no_args_is_help=True,
+    context_settings={"help_option_names": ["-h", "--help"]},
+)
+
+
+@app.command()
+def main(
+    strings: Annotated[
+        list[str],
+        typer.Argument(help="blocks to place side by side"),
+    ],
+    sep: Annotated[
+        str,
+        typer.Option("-s", "--sep", help="separator between columns"),
+    ] = "",
+    files: Annotated[
+        bool,
+        typer.Option("-f", "--files", help="treat each argument as a file path"),
+    ] = False,
+) -> None:
+    """Concatenate multiline strings side by side, padding each to its widest line."""
+    blocks = [Path(s).read_text() for s in strings] if files else strings
+    print(hcat(blocks, sep))
+
+
+if __name__ == "__main__":
+    app()
