@@ -35,3 +35,13 @@ for _pc in /usr/lib64/pkgconfig /usr/lib/pkgconfig /usr/lib/x86_64-linux-gnu/pkg
 done
 [ -n "${PKG_CONFIG_PATH:-}" ] && export PKG_CONFIG_PATH
 unset _pc
+
+# Integrate with dots: autojump to dir when called with no subcommand
+dots() {
+  if [ "$#" -eq 0 ]; then
+    command dots --help
+    cd "$(command dots root)" || return
+  else
+    command dots "$@"
+  fi
+}

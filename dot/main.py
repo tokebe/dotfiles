@@ -15,6 +15,7 @@ from dot.commands.hook import app as hook_app
 from dot.commands.install import app as install_app
 from dot.commands.link import app as link_app
 from dot.commands.update import app as update_app
+from dot.types.shared import REPO_ROOT
 from dot.utils.symbols import FAIL
 
 console = Console(stderr=True)
@@ -63,6 +64,12 @@ app.add_typer(add_profile_app)
 app.add_typer(install_app)
 app.add_typer(update_app)
 app.add_typer(hook_app)
+
+
+@app.command(name="root", hidden=True)
+def root() -> None:
+    """Print the dotfiles repo root, for the shell `dots` wrapper to cd into."""
+    print(REPO_ROOT)
 
 
 def main() -> None:
