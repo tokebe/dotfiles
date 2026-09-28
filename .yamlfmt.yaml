@@ -1,4 +1,10 @@
 ---
+exclude:
+  - .venv
+  # Submodules are vendored trees, not our source — never reformat them
+  - misc/iosevka/iosevka-generate
+  - linked/tmux/tpm
+  - linked/.config/niri/nfsm
 formatter:
   type: basic
   include_document_start: true
