@@ -1,0 +1,6 @@
+# Submodules are vendored trees, not our source — never reformat them
+exclude = [
+  "misc/iosevka/iosevka-generate/**",
+  "linked/tmux/tpm/**",
+  "linked/.config/niri/nfsm/**",
+]

@@ -41,15 +41,15 @@ dots = "dot.main:main"
 
 [tool.taskipy.tasks]
 # Code work
-lint = 'ruff check dot'
+lint = 'ruff check .'
 'lint:stats' = 'task lint --statistics'
 'lint:watch' = 'task lint --watch'
 'lint:fix' = 'task lint --fix'
 
-typecheck = 'pyrefly check dot'
+typecheck = 'pyrefly check'
 'typecheck:watch' = 'task typecheck --watch'
 
-format = 'ruff format --diff dot'
+format = 'ruff format --diff .'
 'format:fix' = 'ruff format .'
 
 fixup = """
@@ -70,7 +70,7 @@ echo "✅ All set!"
 """
 # Config work
 yamllint = 'yamllint .'
-yamlfmt = 'yamlfmt --exclude .venv .'
+yamlfmt = 'yamlfmt .'
 tomlfmt = 'taplo format'
 
 # Shell work (scripts are extensionless, discovered by shebang)
@@ -80,10 +80,17 @@ shellharden = 'command -v shellharden >/dev/null || { echo "shellharden not inst
 
 [tool.pyrefly]
 project-includes = ["**/*.py*", "**/*.ipynb"]
+project-excludes = [
+  "**/linked/**",
+  "**/misc/**",
+  "**/.venv/**",
+  "**/*.egg-info/**",
+]
 
 [tool.ruff]
 line-length = 88
 indent-width = 4
+extend-exclude = ["linked", "misc", "*.egg-info"]
 
 [tool.ruff.lint]
 select = [
