@@ -151,7 +151,7 @@ def _link(active_profiles: ActiveProfiles, *, dry_run: bool = False) -> None:
     unsafe_delete = False
     if not dry_run and not _has_gtrash():
         unsafe_delete = inquirer.confirm(
-            "Gtrash not present, use permanent deletion?", default=False
+            "GTrash not present, use permanent deletion for cleanup?", default=False
         ).execute()
 
     for dest, (src, force) in _merge_link_configs(active_profiles).items():

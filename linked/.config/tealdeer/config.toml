@@ -10,6 +10,7 @@ bold = true
 background = "cyan"
 foreground = "black"
 italic = true
+bold = true
 
 [style.example_code]
 foreground = "red"
