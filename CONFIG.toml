@@ -51,6 +51,11 @@ name = "Install latest LTS node & npm"
 command = "bash -lc 'nvm install --lts && nvm alias default \"lts/*\"'"
 
 [[hooks.after.install]]
+stage = "system"
+name = "Ensure flathub added to flatpak"
+command = "flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo"
+
+[[hooks.after.install]]
 name = "Fix fd access"
 command = "command -v fd &> /dev/null || ln -esf $(which fdfind) ~/.local/bin/fd"
 mode = "silent"
