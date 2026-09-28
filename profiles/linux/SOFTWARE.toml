@@ -1,5 +1,9 @@
 system = [
   "flatpak", # Flatpak | https://flatpak.org/ (Linux-only; base would hit brew on macOS)
+
+  # Dependencies
+  "util-linux",
+  "udiskctl",
 ]
 
 flatpak = [
