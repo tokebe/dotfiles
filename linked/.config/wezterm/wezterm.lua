@@ -17,11 +17,25 @@ end
 config.window_close_confirmation = 'NeverPrompt'
 config.enable_kitty_keyboard = true
 
--- Fix weirdness in Niri
--- local gpus = wezterm.gui.enumerate_gpus()
--- config.webgpu_preferred_adapter = gpus[1]
--- config.webgpu_power_preference = "HighPerformance"
-config.front_end = 'WebGpu'
+-- Fix weirdness in Niri: use WebGpu when a real GPU adapter exists
+local function pick_gpu_adapter()
+  if not wezterm.gui then return nil end
+  local ok, gpus = pcall(wezterm.gui.enumerate_gpus)
+  if not ok or type(gpus) ~= 'table' then return nil end
+  local rank = { DiscreteGpu = 3, IntegratedGpu = 2, VirtualGpu = 1 }
+  local best, best_rank = nil, 0
+  for _, gpu in ipairs(gpus) do
+    local r = rank[gpu.device_type or ''] or 0
+    if r > best_rank then best, best_rank = gpu, r end
+  end
+  return best
+end
+local gpu_adapter = pick_gpu_adapter()
+if gpu_adapter then
+  config.front_end = 'WebGpu'
+  config.webgpu_preferred_adapter = gpu_adapter
+  config.webgpu_power_preference = 'HighPerformance'
+end
 
 -- Appearance
 local colorscheme = 'rose-pine-moon'
@@ -131,7 +145,7 @@ wezterm.on('format-tab-title', function(tab, tabs, _, _, _, max_width)
   local title = tab_title(tab)
   if title:len() + 4 > max_width then
     local final_title = ''
-    local string_to_slice
+    local string_to_slice = ''
     local substrings = {}
     for str in string.gmatch(title, '([^' .. ' ' .. ']+)') do
       table.insert(substrings, str)
@@ -140,7 +154,7 @@ wezterm.on('format-tab-title', function(tab, tabs, _, _, _, max_width)
       string_to_slice = substrings[1]
     else
       final_title = substrings[1]
-      for _, substring in substrings do
+      for _, substring in ipairs(substrings) do
         string_to_slice = string_to_slice .. ' ' .. substring
       end
     end
