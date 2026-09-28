@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 yesno() {
+  local yn
   while true; do
-    read -r -p "$1 (y/n) " yn
+    printf '%s (y/n) ' "$1" >/dev/tty
+    read -r yn </dev/tty || return 1 # EOF / no TTY (e.g. curl|bash) → decline, don't loop
     case $yn in
       [Yy]* ) return 0 ;;
       [Nn]* ) return 1 ;;
-      * ) echo "Please answer yes or no." ;;
+      * ) echo "Please answer yes or no." >/dev/tty ;;
     esac
   done
 }
