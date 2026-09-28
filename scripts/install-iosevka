@@ -15,6 +15,10 @@ if [ "$(uname -s)" = "Darwin" ]; then
   fi
 
   mkdir -p "$dest"
+  if ! compgen -G "$cache/*.ttf" >/dev/null; then
+    echo "install-iosevka: no .ttf files in $cache, skipping font copy" >&2
+    exit 0
+  fi
   cp "$cache"/*.ttf "$dest/"
   cp "$cache/.uuid" "$marker"
 else
