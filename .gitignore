@@ -13,3 +13,4 @@ linked/.config/nvim/lockfiles/*
 linked/.config/btop/btop.log
 linked/.config/systemd/user/*.wants
 linked/.config/quickshell
+/linked/.config/yazi/plugins/*
