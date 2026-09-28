@@ -20,7 +20,7 @@ when = {}
 
 # [[create]]
 # dir = "~/Something"
-# mode = "0777"
+# mode = 0o777
 
 # [[clean]]
 # dir = "~/Something"
