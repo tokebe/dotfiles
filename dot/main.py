@@ -7,6 +7,7 @@ from rich.console import Console
 from typer._click import Command, Context
 from typer.core import TyperGroup
 
+from dot.commands.add import app as add_app
 from dot.commands.add_profile import app as add_profile_app
 from dot.commands.adopt import app as adopt_app
 from dot.commands.deploy import app as deploy_app
@@ -57,6 +58,7 @@ app = typer.Typer(
 app.add_typer(deploy_app)
 app.add_typer(link_app)
 app.add_typer(adopt_app)
+app.add_typer(add_app)
 app.add_typer(add_profile_app)
 app.add_typer(install_app)
 app.add_typer(update_app)
