@@ -45,7 +45,7 @@ list_installed = "export PATH=\"${PNPM_HOME:-$HOME/.pnpm}/bin:$PATH\"; pnpm ls -
 
 [flatpak]
 detect = "command -v flatpak"
-install = "flatpak install -y flathub {packages}"
+install = "scripts/pkg_adapters/flatpak-install {packages}"
 upgrade = "flatpak update -y"
 check = "flatpak remote-ls --updates 2>&1 | tee /dev/stderr | grep -c . || true"
 list_installed = "flatpak list --app --columns=application"
