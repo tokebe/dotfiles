@@ -1,16 +1,18 @@
 import subprocess
 import time
 from collections import Counter
+from collections.abc import Callable
+from typing import Literal
 
 from InquirerPy import inquirer
 from InquirerPy.base.control import Choice
 from rich.console import Console
 from rich.table import Table
 
-from dot.types.config import CONFIG
 from dot.types.software import PACKAGE_MANAGERS
 from dot.utils.dispatch import check_updates, get_enabled_managers, upgrade_packages
 from dot.utils.hooks import run_hooks
+from dot.utils.profile import ActiveProfiles, profile_cwd, resolve_active
 from dot.utils.progress import live_progress
 from dot.utils.symbols import FAIL, NEUTRAL, OK
 
@@ -26,28 +28,41 @@ def run_update(
     update_all: bool = False,
     dry_run: bool = False,
     suppress_hooks: bool = False,
+    active_profiles: ActiveProfiles | None = None,
 ) -> None:
     """Update installed packages for the given managers (or all / interactively)."""
-    if not suppress_hooks:
-        run_hooks(CONFIG.hooks, "before", "update", dry_run=dry_run)
+    profiles = active_profiles if active_profiles is not None else resolve_active(None)
+
+    def fire_hooks(timing: Literal["before", "after"], stage: str | None = None) -> None:
+        if suppress_hooks:
+            return
+        for name, config in profiles:
+            run_hooks(
+                config.hooks,
+                timing,
+                "update",
+                stage=stage,
+                cwd=profile_cwd(name),
+                dry_run=dry_run,
+            )
+
+    fire_hooks("before")
 
     selection = _resolve_selection(managers, update_all)
 
     if dry_run:
         _report_available(selection)
-        _run_upgrades(selection, dry_run=True, suppress_hooks=suppress_hooks)
-        if not suppress_hooks:
-            run_hooks(CONFIG.hooks, "after", "update", dry_run=dry_run)
+        _run_upgrades(selection, fire_hooks, dry_run=True)
+        fire_hooks("after")
         return
 
     # Get interactive selection if no manual was done
     if not (managers or update_all):
         selection = get_user_selection()
 
-    did_updates, failures = _run_upgrades(selection, suppress_hooks=suppress_hooks)
+    did_updates, failures = _run_upgrades(selection, fire_hooks)
 
-    if not suppress_hooks:
-        run_hooks(CONFIG.hooks, "after", "update", dry_run=dry_run)
+    fire_hooks("after")
 
     if failures:
         console.print(
@@ -90,7 +105,10 @@ def _report_available(selection: list[str]) -> None:
 
 
 def _run_upgrades(
-    selection: list[str], *, dry_run: bool = False, suppress_hooks: bool = False
+    selection: list[str],
+    fire_hooks: Callable[..., None],
+    *,
+    dry_run: bool = False,
 ) -> tuple[bool, list[str]]:
     """Upgrade each selected manager, isolating failures so the rest still run.
 
@@ -100,8 +118,7 @@ def _run_upgrades(
     failures: list[str] = []
 
     for manager in selection:
-        if not suppress_hooks:
-            run_hooks(CONFIG.hooks, "before", "update", stage=manager, dry_run=dry_run)
+        fire_hooks("before", manager)
 
         if dry_run:
             console.print(f"[bright_black]\\[PLANNED] update {manager}[/]")
@@ -116,8 +133,7 @@ def _run_upgrades(
                 )
                 failures.append(manager)
 
-        if not suppress_hooks:
-            run_hooks(CONFIG.hooks, "after", "update", stage=manager, dry_run=dry_run)
+        fire_hooks("after", manager)
 
     return did_updates, failures
 

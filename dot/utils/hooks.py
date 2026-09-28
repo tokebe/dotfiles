@@ -30,7 +30,7 @@ def run_hook(
 
     if dryrun:
         console.print(
-            f"[bright_black]\\[{label}] {hook.name}: {hook.command}{' 󰝟 ' if hook.mode == 'silent' else ''}[/]"
+            f"[bright_black]\\[{label}] {hook.name}: {hook.command}{f' {SILENT}' if hook.mode == 'silent' else ''}[/]"
         )
         return True
 
@@ -44,7 +44,7 @@ def run_hook(
     window = LogWindow() if hook.mode != "silent" else None
     spinner = Spinner(
         "dots",
-        text=Text(f"{hook.name}{f'{SILENT} ' if hook.mode == 'silent' else ''}..."),
+        text=Text(f"{hook.name}{f' {SILENT} ' if hook.mode == 'silent' else ''}..."),
     )
     group = Group(window, spinner) if window else Group(spinner)
 

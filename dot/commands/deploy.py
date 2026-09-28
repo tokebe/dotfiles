@@ -50,7 +50,13 @@ def deploy(
     run_install(active_profiles, dry_run=dry_run, suppress_hooks=suppress_hooks)
 
     console.rule("[bold]󰚰 Update[/]", align="right")
-    run_update([], update_all=True, dry_run=dry_run, suppress_hooks=suppress_hooks)
+    run_update(
+        [],
+        update_all=True,
+        dry_run=dry_run,
+        suppress_hooks=suppress_hooks,
+        active_profiles=active_profiles,
+    )
 
     if not suppress_hooks:
         for name, config in active_profiles:
