@@ -9,7 +9,7 @@ from typing import Literal
 from InquirerPy import inquirer
 from rich.console import Console
 
-from dot.types.config import CleanRule, Config, CreateRule, Link
+from dot.types.config import CleanRule, CreateRule, Link
 from dot.utils.dispatch import REPO_ROOT
 from dot.utils.hooks import run_hooks
 from dot.utils.profile import ActiveProfiles, profile_cwd
@@ -33,34 +33,39 @@ def run_link(
     if not phases:
         phases = {"create", "clean", "link"}
 
-    if not suppress_hooks:
+    def fire_hooks(timing: Literal["before", "after"], stage: str | None = None) -> None:
+        if suppress_hooks:
+            return
         for name, config in active_profiles:
             run_hooks(
-                config.hooks, "before", "link", cwd=profile_cwd(name), dry_run=dry_run
+                config.hooks,
+                timing,
+                "link",
+                stage=stage,
+                cwd=profile_cwd(name),
+                dry_run=dry_run,
             )
 
-    # create/clean per profile
-    for _name, config in active_profiles:
-        _apply_profile_phase(config, phases=phases, dry_run=dry_run)
-    if "link" in phases:  # link requires special merging
-        _link(active_profiles, dry_run=dry_run)
+    fire_hooks("before")
 
-    if not suppress_hooks:
-        for name, config in active_profiles:
-            run_hooks(
-                config.hooks, "after", "link", cwd=profile_cwd(name), dry_run=dry_run
-            )
-
-
-def _apply_profile_phase(
-    config: Config, *, phases: Phases, dry_run: bool = False
-) -> None:
-    """Apply a profile's create/clean."""
     if "create" in phases:
-        _create(config.create, dry_run=dry_run)
+        fire_hooks("before", "create")
+        for _name, config in active_profiles:
+            _create(config.create, dry_run=dry_run)
+        fire_hooks("after", "create")
 
     if "clean" in phases:
-        _clean(config.clean, dry_run=dry_run)
+        fire_hooks("before", "clean")
+        for _name, config in active_profiles:
+            _clean(config.clean, dry_run=dry_run)
+        fire_hooks("after", "clean")
+
+    if "link" in phases:  # link requires special merging
+        fire_hooks("before", "link")
+        _link(active_profiles, dry_run=dry_run)
+        fire_hooks("after", "link")
+
+    fire_hooks("after")
 
 
 def _create(entries: list[Path | CreateRule], *, dry_run: bool = False) -> None:

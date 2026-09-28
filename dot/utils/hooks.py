@@ -67,14 +67,20 @@ def run_hook(
     return ok
 
 
-def run_hooks(
+def run_hooks(  # noqa: PLR0913
     hooks: HookSet,
     timing: Literal["before", "after"],
     event: EventName,
     *,
+    stage: str | None = None,
     cwd: Path | None = None,
     dry_run: bool = False,
 ) -> None:
-    """Run the hooks bound to a timing/event, in listed order, from `cwd`."""
+    """Run the hooks bound to a timing/event/stage, in listed order, from `cwd`.
+
+    A stage of None matches phase-boundary hooks; a named stage matches only its own.
+    """
     for hook in hooks.get(timing).get(event, []):
+        if hook.stage != stage:
+            continue
         run_hook(hook, timing, cwd=cwd, dryrun=dry_run)

@@ -63,6 +63,10 @@ class Hook(BaseModel):
     name: str
     command: str
     mode: HookMode = "auto"
+    stage: str | None = Field(
+        default=None,
+        description="Sub-stage to anchor to; None fires at the phase boundary",
+    )
 
 
 class HookSet(BaseModel):

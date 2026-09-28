@@ -35,6 +35,7 @@ def run_update(
 
     if dry_run:
         _report_available(selection)
+        _run_upgrades(selection, dry_run=True, suppress_hooks=suppress_hooks)
         if not suppress_hooks:
             run_hooks(CONFIG.hooks, "after", "update", dry_run=dry_run)
         return
@@ -43,7 +44,7 @@ def run_update(
     if not (managers or update_all):
         selection = get_user_selection()
 
-    did_updates, failures = _run_upgrades(selection)
+    did_updates, failures = _run_upgrades(selection, suppress_hooks=suppress_hooks)
 
     if not suppress_hooks:
         run_hooks(CONFIG.hooks, "after", "update", dry_run=dry_run)
@@ -88,22 +89,35 @@ def _report_available(selection: list[str]) -> None:
     console.print(table)
 
 
-def _run_upgrades(selection: list[str]) -> tuple[bool, list[str]]:
-    """Upgrade each selected manager, isolating failures so the rest still run."""
+def _run_upgrades(
+    selection: list[str], *, dry_run: bool = False, suppress_hooks: bool = False
+) -> tuple[bool, list[str]]:
+    """Upgrade each selected manager, isolating failures so the rest still run.
+
+    A dry run fires the stage hooks (as planned) but skips the actual upgrade.
+    """
     did_updates = False
     failures: list[str] = []
 
     for manager in selection:
-        console.print(f"Updating {manager}...")
-        try:
-            upgrade_packages(PACKAGE_MANAGERS[manager])
-        except subprocess.CalledProcessError as err:
-            console.print(
-                f"[red]{FAIL} {manager} update failed (exit {err.returncode}), skipping...[/]"
-            )
-            failures.append(manager)
-            continue
-        did_updates = True
+        if not suppress_hooks:
+            run_hooks(CONFIG.hooks, "before", "update", stage=manager, dry_run=dry_run)
+
+        if dry_run:
+            console.print(f"[bright_black]\\[PLANNED] update {manager}[/]")
+        else:
+            console.print(f"Updating {manager}...")
+            try:
+                upgrade_packages(PACKAGE_MANAGERS[manager])
+                did_updates = True
+            except subprocess.CalledProcessError as err:
+                console.print(
+                    f"[red]{FAIL} {manager} update failed (exit {err.returncode}), skipping...[/]"
+                )
+                failures.append(manager)
+
+        if not suppress_hooks:
+            run_hooks(CONFIG.hooks, "after", "update", stage=manager, dry_run=dry_run)
 
     return did_updates, failures
 

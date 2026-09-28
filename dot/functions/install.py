@@ -1,4 +1,5 @@
 import subprocess
+from typing import Literal
 
 from rich.console import Console
 
@@ -41,15 +42,20 @@ def run_install(
     """
     software = merge_software(active_profiles)
 
-    if not suppress_hooks:
+    def fire_hooks(timing: Literal["before", "after"], stage: str | None = None) -> None:
+        if suppress_hooks:
+            return
         for name, config in active_profiles:
             run_hooks(
                 config.hooks,
-                "before",
+                timing,
                 "install",
+                stage=stage,
                 cwd=profile_cwd(name),
                 dry_run=dry_run,
             )
+
+    fire_hooks("before")
 
     selected = {name.strip() for name in managers.split(",")} if managers else None
     system = detect_system()
@@ -60,6 +66,7 @@ def run_install(
         resolved = _resolve_adapter(manager, system)
         if resolved is None:
             continue
+        fire_hooks("before", manager)
         console.rule(manager, align="right")
         name, adapter = resolved
 
@@ -87,12 +94,9 @@ def run_install(
 
         succeeded = not attempts or failures < attempts
         console.rule(f"{OK if succeeded else FAIL} {manager}", align="left")
+        fire_hooks("after", manager)
 
-    if not suppress_hooks:
-        for name, config in active_profiles:
-            run_hooks(
-                config.hooks, "after", "install", cwd=profile_cwd(name), dry_run=dry_run
-            )
+    fire_hooks("after")
 
 
 def _resolve_adapter(manager: str, system: System) -> tuple[str, PackageAdapter] | None:
