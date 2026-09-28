@@ -1,5 +1,5 @@
 alias tree='tree -a -I .git'
-alias rangerd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+alias y=yazi
 alias lg=lazygit
 alias ld=lazydocker
 alias ls='lsd -AX --group-dirs=first'
