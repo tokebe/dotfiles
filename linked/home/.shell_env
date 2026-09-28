@@ -14,7 +14,6 @@ _dots_path_prepend() {
 
 # Prepended low-to-high priority
 _dots_path_prepend "$HOME/.pyenv/shims"
-_dots_path_prepend "$PNPM_HOME/bin"
 _dots_path_prepend "$GOPATH/bin"
 _dots_path_prepend "$HOME/.cargo/bin"
 _dots_path_prepend "$HOME/.local/bin"
@@ -24,6 +23,9 @@ case "$(uname -s)" in
 esac
 export PATH
 unset -f _dots_path_prepend
+
+# pnpm's global bin
+case ":$PATH:" in *":$PNPM_HOME/bin:"*) ;; *) export PATH="$PNPM_HOME/bin:$PATH" ;; esac
 
 # pkg-config dirs for native builds (cargo/C); add only those present, keep any existing value
 for _pc in /usr/lib64/pkgconfig /usr/lib/pkgconfig /usr/lib/x86_64-linux-gnu/pkgconfig /usr/lib/aarch64-linux-gnu/pkgconfig; do
@@ -35,6 +37,19 @@ for _pc in /usr/lib64/pkgconfig /usr/lib/pkgconfig /usr/lib/x86_64-linux-gnu/pkg
 done
 [ -n "${PKG_CONFIG_PATH:-}" ] && export PKG_CONFIG_PATH
 unset _pc
+
+# Ensure flatpak path
+if [ "$(uname -s)" = "Linux" ]; then
+  XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+  for _fp in /var/lib/flatpak/exports/share "$HOME/.local/share/flatpak/exports/share"; do
+    case ":$XDG_DATA_DIRS:" in
+      *":$_fp:"*) ;;
+      *) XDG_DATA_DIRS="$XDG_DATA_DIRS:$_fp" ;;
+    esac
+  done
+  export XDG_DATA_DIRS
+  unset _fp
+fi
 
 # Integrate with dots: autojump to dir when called with no subcommand
 dots() {

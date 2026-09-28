@@ -2,10 +2,6 @@
 # Install pnpm globals; batch first, then retry individually so a broken/missing one is skipped.
 set -uo pipefail
 
-# pnpm needs PNPM_HOME set and on PATH for global ops
-export PNPM_HOME="${PNPM_HOME:-$HOME/.pnpm}"
-export PATH="$PNPM_HOME/bin:$PATH"
-
 if pnpm add -g --yes "$@"; then
   exit 0
 fi

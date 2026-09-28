@@ -39,9 +39,9 @@ list_installed = "npm ls -g --parseable --depth=0 | tail -n +2 | sed 's#.*/node_
 [pnpm]
 detect = "command -v pnpm"
 install = "scripts/pkg_adapters/pnpm-install {packages}"
-upgrade = "export PATH=\"${PNPM_HOME:-$HOME/.pnpm}/bin:$PATH\"; pnpm update -g --latest"
-check = "export PATH=\"${PNPM_HOME:-$HOME/.pnpm}/bin:$PATH\"; pnpm outdated -g --format list | tee /dev/stderr | grep -c ' => ' || true"
-list_installed = "export PATH=\"${PNPM_HOME:-$HOME/.pnpm}/bin:$PATH\"; pnpm ls -g --depth=0 --parseable | tail -n +2 | sed 's#.*/node_modules/##'"
+upgrade = "pnpm update -g --latest"
+check = "pnpm outdated -g --format list | tee /dev/stderr | grep -c ' => ' || true"
+list_installed = "pnpm ls -g --depth=0 --parseable | tail -n +2 | sed 's#.*/node_modules/##'"
 
 [flatpak]
 detect = "command -v flatpak"

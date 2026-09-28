@@ -4,4 +4,10 @@ set -uo pipefail
 
 gearlever() { flatpak run it.mijorus.gearlever "$@"; }
 
+# Nothing integrated → 0 updates (list-updates would otherwise print a message counted as 1)
+if [ -z "$(gearlever --list-installed 2>/dev/null)" ]; then
+  echo 0
+  exit 0
+fi
+
 gearlever --list-updates 2>&1 | tee /dev/stderr | grep -c . || true
