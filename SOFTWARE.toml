@@ -160,6 +160,7 @@ cargo = [
   "tealdeer",     # faster tldr
   "tabiew",       # tsv viewer
   "shellharden",  # shell formatter / fixer
+  "taplo-cli",    # TOML formatter/linter (binary: taplo) | https://taplo.tamasfe.dev
 ]
 
 uv = [
