@@ -11,5 +11,13 @@ image_delay = 400
 # Ghostty: https://github.com/ghostty-org/ghostty/issues/12852
 # WezTerm: https://github.com/wezterm/wezterm/discussions/1135
 
-[opener]
+[[plugin.prepend_fetchers]]
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "git"
+group = "git"
 

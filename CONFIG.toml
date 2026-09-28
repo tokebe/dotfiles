@@ -73,6 +73,10 @@ command = "tldr --update"
 name = "Prepare Neovim"
 command = "nvim --headless '+Lazy! sync' +qa"
 
+[[hooks.after.install]]
+name = "Prepare yazi"
+command = "ya pkg install && ya pkg upgrade"
+
 [[hooks.after.deploy]]
 name = "Set up github known host"
 command = "./scripts/setup/git"

@@ -1,21 +1,20 @@
 -- Show host in top path
 Header:children_add(function()
-	if ya.target_family() ~= "unix" then
-		return ""
-	end
-	return ui.Span(ya.user_name() .. "@" .. ya.host_name() .. ":"):fg("blue")
+  if ya.target_family() ~= 'unix' then
+    return ''
+  end
+  return ui.Span(ya.user_name() .. '@' .. ya.host_name() .. ':'):fg('blue')
 end, 500, Header.LEFT)
 
 -- Show symlink in status bar
 Status:children_add(function(self)
-	local h = self._current.hovered
-	if h and h.link_to then
-		return " -> " .. tostring(h.link_to)
-	else
-		return ""
-	end
+  local h = self._current.hovered
+  if h and h.link_to then
+    return ' -> ' .. tostring(h.link_to)
+  else
+    return ''
+  end
 end, 3300, Status.LEFT)
-
 
 -- Show modify time in status bar
 Status:children_add(function()
@@ -37,3 +36,10 @@ Status:children_add(function()
 
   return ui.Line(elements)
 end, 500, Status.RIGHT)
+
+-- Git plugins
+require('git'):setup({
+  -- Order of status signs showing in the linemode
+  order = 1500,
+})
+require("githead"):setup()
