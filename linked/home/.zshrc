@@ -11,6 +11,13 @@ autoload -U compinit && compinit
 autoload -U colors && colors
 
 # Load Antidote (plugin manager)
+if [[ ! -d "${ZDOTDIR:-$HOME}/.antidote" ]]; then
+  if command -v git >/dev/null 2>&1; then
+    git clone --depth=1 https://github.com/mattmc3/antidote.git "${ZDOTDIR:-$HOME}/.antidote"
+  else
+    print -u2 -r -- 'shell: git is required to install antidote'
+  fi
+fi
 source "${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
 
 
@@ -107,3 +114,6 @@ bottom-prompt
 
 # Rest of NVM setup in zshenv
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

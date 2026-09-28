@@ -5,14 +5,6 @@ if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
 
-# User specific environment and startup programs
+# User specific
 PATH=$PATH:$HOME/stl/prefix
-
 export PATH
-
-# Fix Cargo pkgconfig on Fedora for some libraries
-export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  . "$HOME/.cargo/env"
-fi
