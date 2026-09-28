@@ -179,8 +179,7 @@ brew_path="$(command -v brew || true)"
 finish=''
 # shellcheck disable=SC2016  # $ stays literal on purpose; the generated zsh expands it, not us
 [ -n "$brew_path" ] && finish='eval "$('"$brew_path"' shellenv)"; '
-# shellcheck disable=SC2016
-finish="$finish"'[ -r "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"; export PATH="$HOME/.local/bin:$PATH"; cd "'"$REPO_DIR"'" && source .venv/bin/activate && dots deploy'
+finish="$finish"'. "'"$REPO_DIR"'/linked/home/.shell_env"; cd "'"$REPO_DIR"'" && source .venv/bin/activate && dots deploy'
 zshrc="$HOME/.zshrc"
 
 # Move any pre-existing ~/.zshrc (regular file or symlink) aside

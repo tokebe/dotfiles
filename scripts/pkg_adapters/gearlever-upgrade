@@ -4,6 +4,9 @@ set -uo pipefail
 
 gearlever() { flatpak run it.mijorus.gearlever "$@"; }
 
+# Nothing integrated → nothing to update (avoids parsing a message line into a bogus --update target)
+[ -n "$(gearlever --list-installed 2>/dev/null)" ] || exit 0
+
 gearlever --list-updates 2>/dev/null | awk '{print $NF}' | while IFS= read -r target; do
   [ "$target" != "" ] && yes y | gearlever --update "$target"
 done
