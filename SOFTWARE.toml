@@ -118,8 +118,9 @@ brew = [
   "gh",                            # GitHub CLI | https://cli.github.com/
 
   # Package/language management
-  "eget", # Github prebuilt binary installer | https://github.com/zyedidia/eget
-  "pnpm", # Performant NPM | https://github.com/pnpm/pnpm
+  "eget",    # Github prebuilt binary installer | https://github.com/zyedidia/eget
+  "pnpm",    # Performant NPM | https://github.com/pnpm/pnpm
+  "flatpak", # Flatpak | https://flatpak.org/
 
   # Utilities
   "bat",                      # Better cat/less | https://github.com/sharkdp/bat
@@ -144,6 +145,10 @@ brew = [
   "brevity1swos/tap/rgx",     # TUI Regex tester | https://github.com/brevity1swos/rgx
   "SurgeDM/tap/surge",        # Fast download manager | https://github.com/surgedm/surge
   "erickochen/purple/purple", # SSH config manager and container viewer | https://github.com/erickochen/purple
+]
+
+flatpak = [
+  "it.mijorus.gearlever", # AppImage manager | https://github.com/mijorus/gearlever
 ]
 
 gearlever = [
