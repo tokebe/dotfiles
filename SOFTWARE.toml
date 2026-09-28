@@ -10,6 +10,10 @@ system = [
   "python3-pip",       # Ensure pip3
   "python3-venv",      # Virtualenv support
 
+  [ # pkg-config — openssl-sys etc. use it to locate libs
+    "pkg-config",
+    "pkgconf",
+  ],
   [ # Go | https://go.dev/
     "go",
     "golang",
@@ -64,6 +68,12 @@ system = [
     "font-noto",
     "google-noto-sans-*",
   ],
+  [ # OpenSSL dev headers
+    "libssl-dev",
+    "openssl-devel",
+    "libopenssl-devel",
+    "openssl",
+  ],
 
   # Utilities
   "ffmpegthumbnailer", # Video/Audio thumbnailer | https://github.com/dirkvdb/ffmpegthumbnailer
@@ -115,8 +125,8 @@ brew = [
   "gh",                            # GitHub CLI | https://cli.github.com/
 
   # Package/language management
-  "eget",    # Github prebuilt binary installer | https://github.com/zyedidia/eget
-  "pnpm",    # Performant NPM | https://github.com/pnpm/pnpm
+  "eget", # Github prebuilt binary installer | https://github.com/zyedidia/eget
+  "pnpm", # Performant NPM | https://github.com/pnpm/pnpm
 
   # Utilities
   "bat",                      # Better cat/less | https://github.com/sharkdp/bat
