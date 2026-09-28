@@ -94,17 +94,20 @@ def resolve_profiles(
 ) -> ActiveProfiles:
     """Get active profiles.
 
-    Returns:
-        root DEFAULT first, then profiles by priority.
+    Auto-detect includes the base (DEFAULT) first
+    while explicit profiles skip it unless `default` is specified
     """
     profiles = get_available_profiles()
+
+    include_default = not pre_selected
 
     selected: ActiveProfiles
     if pre_selected:
         selected = []
         for name in pre_selected:
             if name.lower() == "default":
-                continue  # the default profile is always included below
+                include_default = True
+                continue
             if name in profiles:
                 selected.append((name, profiles[name]))
             else:
@@ -123,14 +126,22 @@ def resolve_profiles(
                 selected.append((name, config))
 
     ordered = sorted(selected, key=lambda entry: profiles[entry[0]].profile.priority)
-    return [("DEFAULT", CONFIG), *ordered]
+    if include_default:
+        return [("DEFAULT", CONFIG), *ordered]
+    return ordered
 
 
 def merge_software(profiles: ActiveProfiles) -> Software:
-    """Merge SOFTWARE lists between profiles."""
+    """Merge SOFTWARE lists across active profiles."""
     merged: Software = {}
 
-    for profile in (SOFTWARE, *(_get_profile_software(name) for name, _ in profiles)):
+    include_root = any(name == "DEFAULT" for name, _ in profiles)
+    sources: list[Software] = [SOFTWARE] if include_root else []
+    sources.extend(
+        _get_profile_software(name) for name, _ in profiles if name != "DEFAULT"
+    )
+
+    for profile in sources:
         for manager, entries in profile.items():
             merged.setdefault(manager, []).extend(entries)
 
