@@ -1,12 +1,11 @@
 import tomllib
-from pathlib import Path
 
 from pydantic import BaseModel, TypeAdapter
 
-from dot.types.shared import Distro
+from dot.types.shared import REPO_ROOT, Distro
 
-BASE_SOFTWARE_PATH = Path("SOFTWARE.toml")
-PACKAGE_MANAGERS_PATH = Path("PACKAGE_MANAGERS.toml")
+BASE_SOFTWARE_PATH = REPO_ROOT / "SOFTWARE.toml"
+PACKAGE_MANAGERS_PATH = REPO_ROOT / "PACKAGE_MANAGERS.toml"
 
 PackageManagerName = str
 PackageName = str

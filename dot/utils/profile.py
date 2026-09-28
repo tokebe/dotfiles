@@ -14,7 +14,7 @@ from dot.types.config import CONFIG, Config, ProfileConfig, ProfileWhen
 from dot.types.software import SOFTWARE, Software
 from dot.utils.dispatch import REPO_ROOT, run
 
-PROFILES_DIR = Path("profiles")
+PROFILES_DIR = REPO_ROOT / "profiles"
 
 ActiveProfiles = list[tuple[str, Config]]
 
@@ -79,7 +79,7 @@ def _desktop(os_name: str) -> bool | str:
 
 def profile_cwd(name: str) -> Path | None:
     """Get the base dir for the a profile."""
-    return None if name == "DEFAULT" else REPO_ROOT / PROFILES_DIR / name
+    return None if name == "DEFAULT" else PROFILES_DIR / name
 
 
 def resolve_active(forced: list[str] | None = None) -> ActiveProfiles:

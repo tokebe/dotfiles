@@ -4,7 +4,9 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-BASE_CONFIG_PATH = Path("CONFIG.toml")
+from dot.types.shared import REPO_ROOT
+
+BASE_CONFIG_PATH = REPO_ROOT / "CONFIG.toml"
 
 EventName = str
 HookMode = Literal["silent", "auto", "verbose", "interactive"]
