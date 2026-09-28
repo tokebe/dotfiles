@@ -6,9 +6,8 @@ from pathlib import Path
 
 from rich.console import Console
 
+from dot.types.shared import REPO_ROOT
 from dot.types.software import PACKAGE_MANAGERS, PackageAdapter, PackageManagers
-
-REPO_ROOT = Path(__file__).resolve().parents[2]
 
 Sink = Callable[[str], None]  # receives each output line as it streams
 

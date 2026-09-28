@@ -29,6 +29,14 @@ clean = [
 name = "Sync git submodules"
 command = "git submodule update --init --recursive"
 
+[[hooks.before.deploy]]
+name = "Sync uv"
+command = "uv sync"
+
+[[hooks.before.deploy]]
+name = "Install dots as global tool"
+command = "uv tool install --editable --force ."
+
 [[hooks.after.link]]
 name = "Install Iosevka nerd font"
 command = "scripts/install-iosevka"
