@@ -54,6 +54,7 @@ system = [
   "ffmpeg",                     # Used by yazi for thumbnailing
   "resvg",                      # Used by yazi for SVG rendering
   "zoxide",                     # Used by yazi for history jumping
+  "curl",                       # Still surprised curl is left out of some systems
 
   [ # Image manipulation library, used by yazi
     "imagemagick-full",
@@ -88,6 +89,7 @@ system = [
     "fd",
     "fd-find",
   ],
+
 ]
 
 brew = [
