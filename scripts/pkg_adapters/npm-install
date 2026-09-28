@@ -6,6 +6,11 @@ if npm install -g "$@"; then
   exit 0
 fi
 
+# Fail on single-package failure
+if [ "$#" -eq 1 ]; then
+  exit 1
+fi
+
 printf '\033[1;4m%s\033[0m\n' "npm: batch failed, retrying individually to skip broken/missing..." >&2
 for pkg in "$@"; do
   npm install -g "$pkg" || echo "npm: failed to install $pkg" >&2
