@@ -33,7 +33,9 @@ def run_link(
     if not phases:
         phases = {"create", "clean", "link"}
 
-    def fire_hooks(timing: Literal["before", "after"], stage: str | None = None) -> None:
+    def fire_hooks(
+        timing: Literal["before", "after"], stage: str | None = None
+    ) -> None:
         if suppress_hooks:
             return
         for name, config in active_profiles:

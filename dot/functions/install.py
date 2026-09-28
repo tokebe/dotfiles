@@ -42,7 +42,9 @@ def run_install(
     """
     software = merge_software(active_profiles)
 
-    def fire_hooks(timing: Literal["before", "after"], stage: str | None = None) -> None:
+    def fire_hooks(
+        timing: Literal["before", "after"], stage: str | None = None
+    ) -> None:
         if suppress_hooks:
             return
         for name, config in active_profiles:
@@ -116,7 +118,9 @@ def _resolve_adapter(manager: str, system: System) -> tuple[str, PackageAdapter]
         return None
 
     adapter = PACKAGE_MANAGERS[manager]
-    if not detect(adapter):  # detected fresh so managers installed earlier this run count
+    if not detect(
+        adapter
+    ):  # detected fresh so managers installed earlier this run count
         console.print(
             f"[yellow]{NEUTRAL} Manager {manager} is not active, skipping...[/]"
         )
@@ -169,7 +173,9 @@ def _resolve_entry(
     """Resolve entry special behaviors."""
     if manager == "gearlever":
         if "name" not in item or "url" not in item:
-            console.print(f"[yellow]{NEUTRAL} gearlever entry missing name/url, skipping: {item}[/]")
+            console.print(
+                f"[yellow]{NEUTRAL} gearlever entry missing name/url, skipping: {item}[/]"
+            )
             return None
         return f"{item['name']}={item['url']}"
     if manager == "cargo" and "git" in item:
