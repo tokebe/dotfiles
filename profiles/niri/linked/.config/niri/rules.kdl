@@ -1,0 +1,189 @@
+// ------ LAYER RULES -----
+
+// Make top and overlay layers use the regular blur (if enabled),
+// while bottom and background layers keep using the efficient xray blur.
+layer-rule {
+    match layer="top"
+    match layer="overlay"
+
+    background-effect {
+        xray false
+    }
+}
+
+// layer-rule {
+//     match namespace="^swww-daemonoverview$"
+//     place-within-backdrop true
+// }
+
+
+layer-rule {
+    match namespace="^noctalia-backdrop"
+    place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="^quick-terminal-overlay"
+    geometry-corner-radius 10
+}
+
+layer-rule {
+    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+    background-effect {
+        blur false
+        xray false
+    }
+}
+
+window-rule {
+  match app-id="dev.noctalia.Noctalia"
+  background-effect {
+      blur true
+  }
+}
+
+// Set a shadow for vicnae
+layer-rule {
+    match namespace="^launcher$"
+    match namespace="^vicinae$"
+
+    background-effect {
+        xray false
+    }
+
+    shadow {
+        // on
+        offset x=25 y=100
+        softness 20
+    }
+}
+
+// ------ WINDOW RULES -----
+
+// Window defaults
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+    // maybe causes problems
+    draw-border-with-background false
+    shadow {
+        on
+        softness 20
+        // offset x=10 y=10
+    }
+    // background-effect {
+    //     blur true
+    //     xray true
+    // }
+}
+
+window-rule {
+
+    match app-id="vicinae"
+    geometry-corner-radius 10
+    clip-to-geometry true
+    shadow {
+        off
+    }
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+// lower opacity on unfocused windows (disabled because it's not helpful)
+window-rule {
+    match is-active=false is-focused=false is-window-cast-target=false
+    // match is-focused=false
+    // match is-window-cast-target=false
+    // opacity 0.95
+}
+
+// Floating windows have shadow
+window-rule {
+    match is-floating=true
+    shadow {
+        on
+        offset x=20 y=60
+        softness 20
+    }
+}
+
+// Highlight screen-shared windows
+window-rule {
+    match is-window-cast-target=true
+
+    focus-ring {
+        active-color "#eb6f92"
+    }
+
+
+    tab-indicator {
+        active-color "#eb6f92"
+        inactive-color "#ea9a97"
+    }
+}
+window-rule {
+    match is-window-cast-target=true
+
+    border {
+        on
+        width 2
+        active-color "#eb6f92"
+        inactive-color "#eb6f92"
+    }
+}
+
+// Picture in picture
+window-rule {
+    match title="^Picture-in-Picture$"
+    open-floating true
+    default-column-width { fixed 720; }
+    default-window-height { fixed 480; }
+}
+
+// Fix for wezterm window size misbehaving
+// Unnecessary in latest nightly builds
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    // default-column-width {}
+}
+
+// Apps that should open floating
+window-rule {
+    match app-id="org.gnome.Decibels"
+    match app-id="OneDriveGUI"
+    match app-id="org.gnome.NautilusPreviewer"
+    match app-id="org.quickshell"
+    match title="Noctalia Update Script"
+    match app-id="org.gnome.gitlab.cheywood.Buffer"
+    open-floating true
+}
+
+// Apps that should open at minimum preset
+window-rule {
+    match app-id="org.gnome.Nautilus"
+    default-column-width { proportion 0.33333; }
+}
+
+// Make decibels tiny :)
+window-rule {
+    match app-id="org.gnome.Decibels"
+    default-column-width { fixed 360; }
+    default-window-height { fixed 260; }
+}
+
+// default size for onedrivegui
+window-rule {
+    match app-id="OneDriveGUI"
+    default-column-width { fixed 500; }
+    default-window-height { fixed 800; }
+}
+
+// Update script small
+window-rule {
+    match title="Noctalia Update Script"
+    default-column-width { fixed 1000; }
+    default-window-height { fixed 300; }
+}
+
