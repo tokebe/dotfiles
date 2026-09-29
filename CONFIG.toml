@@ -43,17 +43,8 @@ command = "scripts/install-iosevka"
 mode = "silent"
 
 [[hooks.before.install]]
-name = "Install NVM"
-command = "bash -c \"$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh)\""
-
-[[hooks.before.install]]
-name = "Install latest LTS node & npm"
-command = "bash -lc 'nvm install --lts && nvm alias default \"lts/*\"'"
-
-[[hooks.before.install]]
-name = "Link node onto PATH"
-command = "bash -lc 'n=$(command -v node) || exit 0; d=$(dirname \"$n\"); mkdir -p ~/.local/bin; for b in node npm npx corepack; do [ -e \"$d/$b\" ] && ln -sf \"$d/$b\" ~/.local/bin/; done'"
-mode = "silent"
+name = "Ensure node LTS"
+command = "pnpm runtime set node lts -g"
 
 [[hooks.before.install]]
 stage = "flatpak"
