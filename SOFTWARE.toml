@@ -95,12 +95,13 @@ system = [
 brew = [
 
   # Data tools
-  "jless",          # TUI JSON viewer | https://github.com/PaulJuliusMartinez/jless
+  "csvlens",        # less for CSV/TSV | https://github.com/YS-L/csvlens
   "fx",             # TUI JSON/YAML viewer | https://github.com/antonmedv/fx
+  "jless",          # TUI JSON viewer | https://github.com/PaulJuliusMartinez/jless
   "jq",             # CLI JSON transformer | https://github.com/jqlang/jq
   "jqp",            # TUI for JQ | https://github.com/noahgorstein/jqp
   "kiki-ki/tap/qo", # Query JSON/CSV/TSV with SQL | https://github.com/kiki-ki/go-qo
-  "csvlens",        # less for CSV/TSV | https://github.com/YS-L/csvlens
+  "tidy-viewer",    # Quick CSV+ pretty-printer | https://github.com/alexhallam/tv
 
   # Dependencies
   "openssl", # Pyenv compatibility with linuxbrew
@@ -117,14 +118,20 @@ brew = [
 
   # File management
   "dua-cli",           # TUI disk usage analyzer | https://github.com/Byron/dua-cli
-  "umlx5h/tap/gtrash", # Integrated TUI trash manager | https://github.com/umlx5h/gtrash
   "lf",                # Lightweight TUI file manager | https://github.com/gokcehan/lf
+  "umlx5h/tap/gtrash", # Integrated TUI trash manager | https://github.com/umlx5h/gtrash
   "walk",              # inline TUI file manager | https://github.com/antonmedv/walk
   "yazi",              # Fast featureful file manager | https://github.com/sxyazi/yazi
 
+  # Fluff
+  "clainstone/tap/cbirds", # Boids | https://github.com/clainstone/cbirds
+  "cbonsai",               # Bonsai tree generator | https://github.com/mhzawadi/homebrew-cbonsai
+  "cmatrix",               # Matrix animation | https://github.com/abishekvashok/cmatrix
+  "phlx0/drift/drift",     # Screensavers | https://github.com/phlx0/drift
+
   # Git
-  "jesseduffield/lazygit/lazygit", # TUI git manager | https://github.com/jesseduffield/lazygit
   "gh",                            # GitHub CLI | https://cli.github.com/
+  "jesseduffield/lazygit/lazygit", # TUI git manager | https://github.com/jesseduffield/lazygit
 
   # Package/language management
   "eget", # Github prebuilt binary installer | https://github.com/zyedidia/eget
@@ -143,6 +150,7 @@ brew = [
   "lsd",                  # Deluxe ls | https://github.com/lsd-rs/lsd
   "nap",                  # TUI snippet manager | https://github.com/maaslalani/nap
   "navi",                 # FZF Cheatsheet | https://github.com/denisidoro/navi
+  "nvtop",                # Like top for GPUs | https://github.com/syllo/nvtop
   "portal",               # Internet file transfer | https://github.com/SpatiumPortae/portal
   "ripgrep",              # Recursive grep | https://github.com/BurntSushi/ripgrep
   "ast-grep",             # Structural grep & replace | https://github.com/ast-grep/ast-grep
