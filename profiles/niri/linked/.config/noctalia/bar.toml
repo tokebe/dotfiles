@@ -4,7 +4,6 @@ order = [ "default" ]
     [bar.default]
     center = [ "taskbar" ]
     end = [ "tray", "status_3", "group:g3", "clock", "group:g2", "control-center", "group:g4" ]
-    margin_ends = 1020
     position = "bottom"
     start = [ "Mutli-purpose", "group:g1", "volume", "media" ]
     thickness = 30
@@ -16,7 +15,6 @@ order = [ "default" ]
         scroll_up = "exec niri msg action focus-column-or-monitor-left"
 
         [bar.default.monitor.DP-2]
-        margin_ends = 320
         position = "top"
 
         [[bar.default.capsule_group]]
