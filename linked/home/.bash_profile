@@ -8,3 +8,4 @@ fi
 # User specific
 PATH=$PATH:$HOME/stl/prefix
 export PATH
+. "$HOME/.cargo/env"

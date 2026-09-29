@@ -42,7 +42,6 @@
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lazydev.nvim": { "branch": "main", "commit": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d" },
   "leap.nvim": { "branch": "main", "commit": "277e04fad21e3af05a55cc414757b09a704f2a92" },
-  "lf.nvim": { "branch": "master", "commit": "69ab1efcffee6928bf68ac9bd0c016464d9b2c8b" },
   "link-visitor.nvim": { "branch": "main", "commit": "9eb0227c4860027e8d5a3c42ef9b8cf1a4279321" },
   "live-command.nvim": { "branch": "main", "commit": "fc8c36d7e5b96945fbc52af7029facc317a47377" },
   "live-rename.nvim": { "branch": "main", "commit": "205bddec4bf1276c81a03777f8335d4ad034ae03" },

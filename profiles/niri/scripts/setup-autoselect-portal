@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Skip install if already installed
+command -v niri-autoselect-portal && exit
+
 # Uses https://codeberg.org/debugloop/niri-autoselect-portal
 # Skips a couple steps (just lets niri spawn the portal service)
 
