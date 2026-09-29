@@ -43,5 +43,10 @@ use = "terrakok/split-tabs"
 rev = "d0531f4"
 hash = "4298f0a23f6109a92334eef06fc7ffb9"
 
+[[plugin.deps]]
+use = "Sonico98/exifaudio"
+rev = "4506f9d"
+hash = "4761fffb60a12d37096c34a356380cdf"
+
 [flavor]
 deps = []
