@@ -183,7 +183,7 @@ uv = [
   "posting",   # API client | https://github.com/darrenburns/posting
 ]
 
-npm = [
+pnpm = [
   "neovim", # Neovim support
 ]
 

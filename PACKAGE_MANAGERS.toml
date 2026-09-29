@@ -27,13 +27,6 @@ upgrade = "cargo install-update -a"
 check = "scripts/pkg_adapters/cargo-check"
 list_installed = "cargo install --list | grep -E '^\\S' | sed 's/ .*//'"
 
-# npm queries the registry live, so no refresh; update -g upgrades every global to latest.
-[npm]
-detect = "command -v npm"
-install = "scripts/pkg_adapters/npm-install {packages}"
-upgrade = "npm update -g"
-check = "npm outdated -g --parseable | tee /dev/stderr | grep -c . || true"
-list_installed = "npm ls -g --parseable --depth=0 | tail -n +2 | sed 's#.*/node_modules/##'"
 
 # pnpm queries the registry live, so no refresh; update -g --latest bumps every global to latest.
 [pnpm]
