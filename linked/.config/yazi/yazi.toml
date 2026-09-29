@@ -23,5 +23,7 @@ group = "git"
 
 [plugin]
 prepend_previewers = [
-    { mime = "audio/*",   run = "exifaudio"}
+    { mime = "audio/*", run = "exifaudio"},
+    {url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'}
+
 ]
