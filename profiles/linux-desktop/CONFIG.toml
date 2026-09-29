@@ -4,3 +4,8 @@ when = { os = "linux", desktop = true }
 
 [links]
 "~/.config" = "linked/.config/*"
+
+[[hooks.before.install]]
+stage = "flatpak"
+name = "Ensure flathub added to flatpak"
+command = "command -v flatpak >/dev/null && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo"
