@@ -19,14 +19,20 @@ config.enable_kitty_keyboard = true
 
 -- Fix weirdness in Niri: use WebGpu when a real GPU adapter exists
 local function pick_gpu_adapter()
-  if not wezterm.gui then return nil end
+  if not wezterm.gui then
+    return nil
+  end
   local ok, gpus = pcall(wezterm.gui.enumerate_gpus)
-  if not ok or type(gpus) ~= 'table' then return nil end
+  if not ok or type(gpus) ~= 'table' then
+    return nil
+  end
   local rank = { DiscreteGpu = 3, IntegratedGpu = 2, VirtualGpu = 1 }
   local best, best_rank = nil, 0
   for _, gpu in ipairs(gpus) do
     local r = rank[gpu.device_type or ''] or 0
-    if r > best_rank then best, best_rank = gpu, r end
+    if r > best_rank then
+      best, best_rank = gpu, r
+    end
   end
   return best
 end
@@ -42,8 +48,8 @@ local colorscheme = 'rose-pine-moon'
 local colorscheme_table = wezterm.color.get_builtin_schemes()[colorscheme]
 config.color_scheme = colorscheme
 config.colors = {
-	selection_bg = "#d2d0e7",
-	selection_fg = "#26233a",
+  selection_bg = '#d2d0e7',
+  selection_fg = '#26233a',
 }
 config.window_background_opacity = 0.9
 config.macos_window_background_blur = 100
@@ -58,7 +64,10 @@ local host = (wezterm.hostname() or ''):match('^[^.]+')
 config.font_size = font_sizes[host] or font_sizes['Default']
 config.harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' }
 -- config.line_height = 1.1
-config.window_decorations = 'RESIZE'
+config.window_decorations = 'NONE'
+if wezterm.target_triple:find('darwin') ~= nil then
+  config.window_decorations = 'RESIZE'
+end
 config.enable_scroll_bar = false
 config.window_padding = {
   right = '10px',
