@@ -1,4 +1,7 @@
 system = [
+  # Noctalia & Deps
+  "noctalia",
+
   # Niri Deps
   "wlclipboard",           # Make clipboard work with command-line stuff | https://github.com/bugaevc/wl-clipboard
   "brightnessctl",         # Brightness controller | https://github.com/Hummer12007/brightnessctl
