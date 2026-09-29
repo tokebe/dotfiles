@@ -1,6 +1,7 @@
 import shlex
 import subprocess
 import threading
+import time
 from collections.abc import Callable
 from pathlib import Path
 
@@ -8,11 +9,14 @@ from rich.console import Console
 
 from dot.types.shared import REPO_ROOT
 from dot.types.software import PACKAGE_MANAGERS, PackageAdapter, PackageManagers
+from dot.utils.progress import live_progress
 from dot.utils.symbols import NEUTRAL
 
 Sink = Callable[[str], None]  # receives each output line as it streams
 
 console = Console()
+
+STEP_PAUSE = 0.5  # If a refresh produces output, hold long enough for the eye to register
 
 
 def insert_packages(template: str, packages: list[str]) -> str:
@@ -104,18 +108,28 @@ def refresh_all(managers: list[str] | None = None, *, dry_run: bool = False) -> 
     if managers is not None:
         adapters = {n: a for n, a in adapters.items() if n in managers}
 
-    for name, adapter in adapters.items():
-        if not adapter.refresh:
-            continue
-        if dry_run:
+    refreshable = {n: a for n, a in adapters.items() if a.refresh}
+
+    if dry_run:
+        for adapter in refreshable.values():
             console.print(adapter.refresh)
-            continue
-        try:
-            refresh(adapter)
-        except subprocess.CalledProcessError as err:
-            console.print(
-                f"[yellow]{NEUTRAL} {name} refresh failed (exit {err.returncode}), continuing...[/]"
-            )
+        return
+
+    with live_progress(bar_width=len(refreshable)) as (window, progress):
+        task = progress.add_task("Refreshing indices", total=len(refreshable))
+        for name, adapter in refreshable.items():
+            window.clear()
+            progress.update(task, description=f"Refreshing indices ({name})")
+            try:
+                refresh(adapter, window.write)
+            except subprocess.CalledProcessError as err:
+                console.print(
+                    f"[yellow]{NEUTRAL} {name} refresh failed (exit {err.returncode}), continuing...[/]"
+                )
+            progress.advance(task)
+
+            if window.lines:
+                time.sleep(STEP_PAUSE)
 
 
 def check_updates(adapter: PackageAdapter, sink: Sink | None = None) -> int:
