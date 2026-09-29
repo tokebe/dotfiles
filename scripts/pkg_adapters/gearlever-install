@@ -20,8 +20,9 @@ for entry in "$@"; do
   file="$tmp/$name.AppImage"
 
   if curl -fsSL "$url" -o "$file"; then
+    echo "Installing $file..."
     yes y | gearlever --integrate "$file"
-    yes y | gearlever --set-update-source "$file" "$url"
+    yes y | gearlever --set-update-source "$url" "$file"
   else
     echo "gearlever: failed to download $name from $url" >&2
   fi
