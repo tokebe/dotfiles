@@ -36,6 +36,3 @@ export WALK_REMOVE_CMD='gtrash put'
 # jump
 command -v jump >/dev/null && eval "$(jump shell)"
 
-# nvm (node) — interactive only; heavy to source, and hooks get node via bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
