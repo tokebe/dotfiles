@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
-# Update every AppImage gearlever lists as outdated; last field of each line is the update target.
+# Update every integrated AppImage that has an available update.
 set -uo pipefail
 
-gearlever() { flatpak run it.mijorus.gearlever "$@"; }
-
-# Nothing integrated → nothing to update (avoids parsing a message line into a bogus --update target)
-[ "$(gearlever --list-installed 2>/dev/null)" != "" ] || exit 0
-
-gearlever --list-updates 2>/dev/null | awk '{print $NF}' | while IFS= read -r target; do
-  [ "$target" != "" ] && yes y | gearlever --update "$target"
-done
+flatpak run it.mijorus.gearlever --update --all -y

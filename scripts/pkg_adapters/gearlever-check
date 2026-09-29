@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
-# Count AppImages with an available update (one line per update); count to stdout, list on stderr.
+# Count AppImages with an available update; count to stdout, detail on stderr.
 set -uo pipefail
 
 gearlever() { flatpak run it.mijorus.gearlever "$@"; }
 
-# Nothing integrated → 0 updates (list-updates would otherwise print a message counted as 1)
-if [ "$(gearlever --list-installed 2>/dev/null)" = "" ]; then
-  echo 0
-  exit 0
-fi
+updates="$(gearlever --list-updates --json 2>/dev/null)"
 
-gearlever --list-updates 2>&1 | tee /dev/stderr | grep -c . || true
+jq -c '.updates[]' <<<"$updates" 2>/dev/null >&2 || true
+jq -r '.updates | length' <<<"$updates" 2>/dev/null || echo 0
