@@ -1,0 +1,24 @@
+{
+    "closeOnFocusLoss": true,
+    "considerPreedit": false,
+    "faviconService": "twenty",
+    "font": {
+        "size": 11
+    },
+    "keybinding": "default",
+    "keybinds": {
+    },
+    "popToRootOnClose": true,
+    "rootSearch": {
+        "searchFiles": false
+    },
+    "theme": {
+        "iconTheme": "Tela pink dark",
+        "name": "rose-pine-moon"
+    },
+    "window": {
+        "csd": true,
+        "opacity": 0.95,
+        "rounding": 10
+    }
+}

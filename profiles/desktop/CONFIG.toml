@@ -1,0 +1,8 @@
+[profile]
+priority = 12
+when = { desktop = true}
+
+
+[links]
+"~/.config" = "linked/.config/*"
+
