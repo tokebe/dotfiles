@@ -4,5 +4,5 @@ when = { os = "linux" }
 
 [[hooks.before.install]]
 name = "Add terra"
-command = "command -v dnf >/dev/null 2>&1 && dnf repolist | grep terra-release >/dev/null 2>&1 || sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release"
+command = "command -v dnf >/dev/null 2>&1 && dnf repolist | grep terra >/dev/null 2>&1 || sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release"
 mode = "interactive"
