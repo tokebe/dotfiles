@@ -147,6 +147,7 @@ brew = [
   "ccat",                 # Colorful cat | https://github.com/owenthereal/ccat
   "cloc",                 # LOC counter | https://github.com/AlDanial/cloc
   "ctpv",                 # File previewer | https://github.com/NikitaIvanovV/ctpv
+  "entr",                 # Run commands on file change | https://github.com/eradman/entr
   "fzf",                  # TUI Fuzzy finder | https://github.com/junegunn/fzf
   "glow",                 # Terminal Markdown Renderer | https://github.com/charmbracelet/glow
   "jump",                 # Smart cd'ing | https://github.com/gsamokovarov/jump
