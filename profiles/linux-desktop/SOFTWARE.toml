@@ -4,6 +4,18 @@ system = [
   "openal-soft",    # Headphone virtual surround support
 ]
 
+flatpak = [
+  "it.mijorus.gearlever", # AppImage manager | https://github.com/mijorus/gearlever
+]
+
+gearlever = [
+  { name = "Filen", url = "https://cdn.filen.io/@filen/desktop/release/latest/Filen_linux_x86_64.AppImage" },
+  { name = "Neovide", url = "https://github.com/neovide/neovide/releases/latest/download/neovide.AppImage" },
+  { name = "Vial", url = "https://github.com/vial-kb/vial-gui/releases/latest/download/Vial-v0.7.5-x86_64.AppImage" },
+  { name = "Wezterm", url = "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-Ubuntu24.04.AppImage" },
+  { name = "ZMK Studio", url = "https://github.com/zmkfirmware/zmk-studio/releases/latest/download/ZMK.Studio_0.3.1_amd64.AppImage" },
+]
+
 cargo = [
   "systemctl-tui", # Systemd viewer | https://github.com/rgwood/systemctl-tui
 ]

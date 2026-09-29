@@ -154,14 +154,6 @@ brew = [
   "SurgeDM/tap/surge",    # Fast download manager | https://github.com/surgedm/surge
 ]
 
-flatpak = [
-  "it.mijorus.gearlever", # AppImage manager | https://github.com/mijorus/gearlever
-]
-
-gearlever = [
-  # { name = "AppName", url = "https://example.com/AppName.AppImage" },
-]
-
 cargo = [
   "cargo-update", # For updating cargo packages
   "tealdeer",     # faster tldr
