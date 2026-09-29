@@ -46,11 +46,6 @@ mode = "silent"
 name = "Ensure node LTS"
 command = "pnpm runtime set node lts -g"
 
-[[hooks.before.install]]
-stage = "flatpak"
-name = "Ensure flathub added to flatpak"
-command = "command -v flatpak >/dev/null && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo"
-
 [[hooks.after.install]]
 name = "Fix fd access"
 command = "command -v fd &> /dev/null || { mkdir -p ~/.local/bin && ln -sf $(which fdfind) ~/.local/bin/fd; }"
