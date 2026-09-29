@@ -45,7 +45,6 @@ list_installed = "flatpak list --app --columns=application"
 
 [gearlever]
 detect = "flatpak info it.mijorus.gearlever"
-refresh = "flatpak run it.mijorus.gearlever --fetch-updates"
 install = "scripts/pkg_adapters/gearlever-install {packages}"
 upgrade = "scripts/pkg_adapters/gearlever-upgrade"
 check = "scripts/pkg_adapters/gearlever-check"
