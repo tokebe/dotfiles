@@ -3,5 +3,5 @@
 set -uo pipefail
 
 for tool in "$@"; do
-  uv tool install --upgrade "$tool" || echo "uv: failed to install $tool" >&2
+  uv tool install --upgrade --force "$tool" || echo "uv: failed to install $tool" >&2
 done

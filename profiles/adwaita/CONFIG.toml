@@ -5,7 +5,9 @@ when = { os = "linux", desktop = ["niri", "gnome"] }
 [[hooks.after.install]]
 name = "Install Nautilus Scripts extension"
 command = "bash -c \"$(curl -fsSL https://cfgnunes.github.io/nautilus-scripts/install.sh)\""
+mode = "interactive"
 
 [[hooks.after.install]]
 name = "Install Nautilus New File extension"
 command = "bash -c \"$(curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh)\""
+mode = "interactive"
