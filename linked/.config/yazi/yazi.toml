@@ -21,3 +21,7 @@ url   = "*/"
 run   = "git"
 group = "git"
 
+[plugin]
+prepend_previewers = [
+    { mime = "audio/*",   run = "exifaudio"}
+]
