@@ -27,6 +27,7 @@ system = [
   "unzip",         # .zip support
   "zsh",           # Z Shell | https://www.zsh.org/
   "inotify-tools", # inotify utilities | https://github.com/inotify-tools/inotify-tools
+  "alacritty",     # Terminal emulator | https://github.com/alacritty/alacritty
 
   [ # 7zip support
     "7zip",
