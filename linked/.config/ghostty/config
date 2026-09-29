@@ -5,7 +5,10 @@ font-size = 18
 adjust-cell-height = 10%
 
 ### Appearance
-theme = light:Rose Pine Dawn,dark:Rose Pine Moon
+# Wezterm somehow mistakenly swaps 2 and 4 (and bright equivalents)
+# I got too used to it, so now I have a custom theme
+theme = light:Wezpine Dawn,dark:Wezpine Moon
+# theme = light:Rose Pine Dawn,dark:Rose Pine Moon
 cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
