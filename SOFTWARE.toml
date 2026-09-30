@@ -115,10 +115,10 @@ brew = [
   "nvim", # Modal editor | https://github.com/neovim/neovim
 
   # Fetches
-  "cpufetch", # CPU information | https://github.com/Dr-Noob/cpufetch
-  "hyfetch",  # Neofetch with Pride | https://github.com/hykilpikonna/hyfetch
-  "onefetch", # Git repo info | https://github.com/o2sh/onefetch
-  "macchina", # Super fast fetch in rust | https://github.com/Macchina-CLI/macchina
+  "cpufetch",  # CPU information | https://github.com/Dr-Noob/cpufetch
+  "fastfetch", # Fast, comprehensive fetch | https://github.com/fastfetch-cli/fastfetch
+  "hyfetch",   # Neofetch with Pride | https://github.com/hykilpikonna/hyfetch
+  "onefetch",  # Git repo info | https://github.com/o2sh/onefetch
 
   # File management
   "dua-cli",           # TUI disk usage analyzer | https://github.com/Byron/dua-cli
