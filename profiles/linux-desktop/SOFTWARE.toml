@@ -12,13 +12,13 @@ flatpak = [
   "com.github.tchx84.Flatseal",       # Flatpak permissions | https://github.com/tchx84/Flatseal
   "com.github.neithern.g4music",      # Pretty music GUI | https://gitlab.gnome.org/neithern/g4music
   "org.kde.krita",                    # Art! | https://krita.org/en/
-  "md.obsidian.Obsidian",             # Notetaking done good | https://obsidian.md/
   "com.visualstudio.code",            # One day nvim will be good for debugging | https://code.visualstudio.com/
   "io.github.zen_browser.zen",        # Custom Firefox layer | https://zen-browser.app/
 ]
 
 gearlever = [
   { name = "Filen", url = "https://cdn.filen.io/@filen/desktop/release/latest/Filen_linux_x86_64.AppImage" },
+  { name = "Obsidian", url = "https://github.com/obsidianmd/obsidian-releases/releases/latest/download/Obsidian-1.13.7.AppImage" },
   { name = "Neovide", url = "https://github.com/neovide/neovide/releases/latest/download/neovide.AppImage" },
   { name = "Vial", url = "https://github.com/vial-kb/vial-gui/releases/latest/download/Vial-v0.7.5-x86_64.AppImage" },
   { name = "Wezterm", url = "https://github.com/wezterm/wezterm/releases/download/nightly/WezTerm-nightly-Ubuntu24.04.AppImage" },
