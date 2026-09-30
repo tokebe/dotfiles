@@ -4,15 +4,17 @@ set -uo pipefail
 
 gearlever() { flatpak run it.mijorus.gearlever "$@"; }
 
-installed="$(gearlever --list-installed 2>/dev/null || true)"
+installed="$(gearlever --list-installed --json 2>/dev/null || true)"
 
 for entry in "$@"; do
   name="${entry%%=*}"
   url="${entry#*=}"
 
-  if grep -qiF "$name" <<<"$installed"; then
+  path="$(jq -r --arg n "$name" '.installed[]? | select(.name | ascii_downcase | contains($n | ascii_downcase)) | .path' <<<"$installed" 2>/dev/null | head -n1)"
+
+  if [ -n "$path" ]; then
     echo "gearlever: $name already integrated, ensuring update URL..."
-    gearlever --set-update-source "$file" --manager StaticFileUpdater "url=$url"
+    gearlever --set-update-source "$path" --manager StaticFileUpdater "url=$url"
     continue
   fi
 
