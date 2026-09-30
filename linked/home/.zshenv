@@ -28,4 +28,3 @@ fi
 ### Use shared PATH / build env
 [ -r "$HOME/.shell_env" ] && . "$HOME/.shell_env"
 typeset -U path PATH # collapse any duplicates
-. "$HOME/.cargo/env"

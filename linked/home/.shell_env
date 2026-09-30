@@ -51,6 +51,9 @@ if [ "$(uname -s)" = "Linux" ]; then
   unset _fp
 fi
 
+# Cargo integration
+. "$HOME/.cargo/env"
+
 # Integrate with dots: autojump to dir when called with no subcommand
 dots() {
   if [ "$#" -eq 0 ]; then
@@ -60,3 +63,4 @@ dots() {
     command dots "$@"
   fi
 }
+
