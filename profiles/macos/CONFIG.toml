@@ -1,3 +1,6 @@
 [profile]
 priority = 5
 when = { os = "macos" }
+
+[links]
+"~/.config" = "./linked/.config/*"
