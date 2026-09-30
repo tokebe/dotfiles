@@ -189,6 +189,7 @@ uv = [
 ]
 
 pnpm = [
+  "npm",    # For nvim mason
   "neovim", # Neovim support
 ]
 
