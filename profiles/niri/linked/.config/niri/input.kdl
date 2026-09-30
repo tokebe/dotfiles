@@ -284,14 +284,18 @@ binds {
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
 
-    Print { screenshot show-pointer=false; }
-    Ctrl+Print { screenshot-screen show-pointer=false; }
-    Alt+Print { screenshot-window; }
+    Print { spawn-sh "noctalia msg screenshot-region"; }
+    Ctrl+Print { spawn-sh "noctalia msg screenshot-fullscreen"; }
+    Alt+Print { spawn-sh "$HOME/.dotfiles/profiles/niri/scripts/noctalia-screenshot-window"; }
 
     // One-handed screenshot bindings
-    Mod+Shift+S { screenshot show-pointer=false; }
-    Mod+Shift+A { screenshot-screen show-pointer=false; }
-    Mod+Shift+W { screenshot-window; }
+    Mod+Shift+S { spawn-sh "noctalia msg screenshot-region"; }
+    Mod+Shift+A { spawn-sh "noctalia msg screenshot-fullscreen"; }
+    Mod+Shift+D { spawn-sh "noctalia msg annotate"; }
+    Mod+Shift+W { spawn-sh "$HOME/.dotfiles/profiles/niri/scripts/noctalia-screenshot-window"; }
+
+    // Clipboard manager
+    Mod+V { spawn-sh "noctalia msg panel-toggle clipboard"; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }

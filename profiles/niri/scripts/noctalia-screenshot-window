@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+screenshot_dir="$HOME/Pictures/Screenshots"
+
+niri msg action screenshot-window && sleep 0.05 # Wait a bit for file to appear
+unset -v latest
+# Loop through to skip ls-unsafety
+for file in "$screenshot_dir"/*; do
+  [[ $file -nt $latest ]] && latest=$file
+done
+noctalia msg annotate "$latest"
+
