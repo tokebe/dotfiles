@@ -13,10 +13,14 @@
    "close_on_focus_loss": true,
    "pop_to_root_on_close": true,
    "escape_key_behavior": "close_window",
+   "global_shortcuts": {
+      "toggle": "control+SPACE"
+   },
    "font": {
+      "rendering": "qt",
       "normal": {
          "family": "Tokebe Nerd Font",
-         "size": 12
+         "size": 16
       }
    },
    "theme": {
@@ -28,13 +32,15 @@
       "system_info": false
    },
    "launcher_window": {
-      "opacity": 0.9,
+      "rounding": 26,
+      "opacity": 0.01,
       "client_side_decorations": {
          "enabled": true
       },
       "compact_mode": {
          "enabled": false
-      }
+      },
+      "material": "liquid_glass"
    },
    "favorites": [
       "applications:com.fastmail.Fastmail",
