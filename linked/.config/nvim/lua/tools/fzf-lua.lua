@@ -22,6 +22,7 @@ return {
         },
         fzf_opts = {
           ['--layout'] = 'default',
+          ['--cycle'] = true,
         },
         buffers = {
           ignore_current_buffer = true,
