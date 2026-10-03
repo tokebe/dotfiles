@@ -27,13 +27,15 @@ layer-rule {
     geometry-corner-radius 10
 }
 
+
 layer-rule {
-    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+    match namespace="^noctalia-(bar-[^\"]+|(attached-)?panel|notification|osd)$"
     background-effect {
-        blur false
+        blur true
         xray false
     }
 }
+
 
 window-rule {
   match app-id="dev.noctalia.Noctalia"
@@ -71,10 +73,10 @@ window-rule {
         softness 20
         // offset x=10 y=10
     }
-    // background-effect {
-    //     blur true
-    //     xray true
-    // }
+    background-effect {
+        blur true
+        xray true
+    }
 }
 
 window-rule {

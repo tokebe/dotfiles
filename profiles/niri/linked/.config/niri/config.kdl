@@ -37,8 +37,10 @@ overview {
 }
 
 blur {
-    offset 3
-    noise 0.25
+    offset 5
+    passes 3
+    noise 0.01
+    saturation 1
 }
 
 recent-windows {
