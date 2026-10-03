@@ -20,27 +20,30 @@
       "rendering": "qt",
       "normal": {
          "family": "Tokebe Nerd Font",
-         "size": 16
+         "size": 14
       }
    },
    "theme": {
       "dark": {
-         "name": "rose-pine-moon"
+         "name": "rose-pine-moon",
+         "icon_theme": "Tela pink dark"
       }
    },
    "telemetry": {
       "system_info": false
    },
    "launcher_window": {
-      "rounding": 26,
-      "opacity": 0.01,
+      "rounding": 12,
+      "opacity": 0.85,
       "client_side_decorations": {
-         "enabled": true
+         "enabled": true,
+         "border_width": 0
       },
       "compact_mode": {
          "enabled": false
       },
-      "material": "liquid_glass"
+      "floating_status_bar": false,
+      "material": "blur"
    },
    "favorites": [
       "applications:com.fastmail.Fastmail",
