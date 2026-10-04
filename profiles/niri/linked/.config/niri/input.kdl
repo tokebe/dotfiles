@@ -58,7 +58,8 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Shift+Alt+T repeat=false { spawn "alacritty"; }
-    Mod+Shift+T repeat=false { spawn "~/Applications/wezterm.appimage" "start" "--cwd" "."; }
+    // Mod+Shift+T repeat=false { spawn "~/Applications/wezterm.appimage" "start" "--cwd" "."; }
+    Mod+Shift+T repeat=false { spawn "ghostty"; }
     Mod+E repeat=false { spawn "nautilus" "-w"; }
     // Mod+Space repeat=false { spawn "fuzzel"; }
     Mod+Space repeat=false { spawn "vicinae" "toggle"; }
