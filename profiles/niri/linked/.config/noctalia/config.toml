@@ -7,9 +7,6 @@ enabled = true
 enabled = true
 event_date_format = "%a %b %e"
 
-[calendar.account.personal_google]
-type = "google"
-
 [control_center]
 hidden_tabs = ["network", "bluetooth", "calendar", "notifications"]
 show_session_button = false
