@@ -33,7 +33,7 @@
       "system_info": false
    },
    "launcher_window": {
-      "rounding": 12,
+      "rounding": 10,
       "opacity": 0.85,
       "client_side_decorations": {
          "enabled": true,
@@ -53,6 +53,16 @@
       "clipboard:history"
    ],
    "providers": {
+      "@bl4zee1g/store.vicinae.bitwarden": {
+         "preferences": {
+            "rbwPath": "rbw"
+         },
+         "entrypoints": {
+            "browse-vault": {
+               "alias": "bw"
+            }
+         }
+      },
       "applications": {
          "preferences": {
             "defaultAction": "launch",
@@ -66,6 +76,14 @@
          }
       },
       "clipboard": {
+         "preferences": {
+            "monitoring": true,
+            "ignorePasswords": true,
+            "preserveTagged": true,
+            "ignoredApps": [],
+            "evictionThreshold": "never",
+            "eraseOnStartup": false
+         },
          "entrypoints": {
             "history": {
                "alias": "c"

@@ -165,6 +165,7 @@ brew = [
   "kew",                  # TUI Music library and player | https://codeberg.org/ravachol/kew
   "brevity1swos/tap/rgx", # TUI Regex tester | https://github.com/brevity1swos/rgx
   "SurgeDM/tap/surge",    # Fast download manager | https://github.com/surgedm/surge
+  "rbw",                  # Better bitwarden CLI | https://github.com/doy/rbw
 ]
 
 cargo = [
