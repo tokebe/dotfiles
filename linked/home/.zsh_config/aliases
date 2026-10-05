@@ -17,3 +17,4 @@ fi
 alias st=systemctl-tui
 alias clear='clear && bottom-prompt'
 alias cclear='clear && tmux clear-history'
+alias icons='latuicon'

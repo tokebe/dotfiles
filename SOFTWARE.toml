@@ -175,6 +175,7 @@ cargo = [
   "shellharden",  # shell formatter / fixer
   "taplo-cli",    # TOML formatter/linter (binary: taplo) | https://taplo.tamasfe.dev
   "purple-ssh",   # SSH config manager and container viewer | https://github.com/erickochen/purple
+  "latuicon",     # TUI Icon browser | https://github.com/coko7/latuicon
 ]
 
 uv = [
