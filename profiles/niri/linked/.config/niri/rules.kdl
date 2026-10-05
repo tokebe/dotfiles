@@ -155,6 +155,7 @@ window-rule {
 window-rule {
     match app-id="org.gnome.NautilusPreviewer"
     match app-id="org.gnome.gitlab.cheywood.Buffer"
+    match app-id="it.mijorus.gearlever"
     open-floating true
 }
 

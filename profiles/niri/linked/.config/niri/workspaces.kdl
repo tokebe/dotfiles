@@ -13,6 +13,7 @@ workspace "util" {
 window-rule {
     match at-startup=true app-id="Filen"
     match app-id="Filen"
+    match app-id="com.rafaelmardojai.Blanket"
     open-on-workspace "util"
 
 }
