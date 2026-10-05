@@ -22,6 +22,7 @@ require('lazy').setup({
   { import = 'tools' },
   { import = 'ui' },
 }, {
+  concurrency = 64, -- avoid fd limit issues
   change_detection = {
     notify = true,
   },

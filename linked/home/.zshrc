@@ -22,6 +22,7 @@ source "${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
 
 
 # General Options
+ulimit -n 65536 # Raise fd soft limit 
 unsetopt prompt_sp # Don't autoclean blanklines
 zle_highlight+=(paste:none) # Don't highlight pasted text
 
