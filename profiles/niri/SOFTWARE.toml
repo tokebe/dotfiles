@@ -9,7 +9,10 @@ system = [
   "matugen-git",           # Colors from wallpaper | https://github.com/InioX/matugen
   "xdg-desktop-portal",    # Desktop integration portal | https://github.com/flatpak/xdg-desktop-portal
   "evolution-data-server", # GNOME Data backend
-  "qt6ct",                 # Used by Noctalia
+  "grim",                  # Used for image capture
+  "slurp",                 # Used for image capture
+  "tesseract",             # Used for OCR
+  "qrencode",              # Used to generate QR codes
 
   [ # protocols dev package for building swww
     "wayland-protocols-devel",
