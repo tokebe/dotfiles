@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 setup () {
 
+  # Enable systemd services
+  systemctl --user add-wants niri.service niri-manager.service
+
   # Not used anymore (noctalia covers them)
   # systemctl --user add-wants niri.service swww-bg.service
   # systemctl --user add-wants niri.service swww-overview.service

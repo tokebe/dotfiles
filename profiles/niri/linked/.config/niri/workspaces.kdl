@@ -1,0 +1,18 @@
+workspace "main"
+workspace "util" {
+    layout {
+        gaps 32
+        struts {
+            top 128
+            bottom 128
+        }
+    }
+
+}
+
+window-rule {
+    match at-startup=true app-id="Filen"
+    match app-id="Filen"
+    open-on-workspace "util"
+
+}

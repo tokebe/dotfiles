@@ -1,6 +1,7 @@
 include "layout.kdl"
 include "input.kdl"
 include "rules.kdl"
+include "workspaces.kdl"
 
 debug {
     // Allows notification actions and window activation from Noctalia.
@@ -141,7 +142,6 @@ spawn-at-startup "noctalia"
 // spawn-at-startup "ignis" "init"
 spawn-at-startup "vicinae" "server"
 spawn-sh-at-startup "python ~/.config/niri/nfsm/src/nfsm.py"
-spawn-at-startup "~/.config/niri/niri-manager.py"
 spawn-at-startup "niri-autoselect-portal"
 // spawn-sh-at-startup "niri msg action open-overview"
 

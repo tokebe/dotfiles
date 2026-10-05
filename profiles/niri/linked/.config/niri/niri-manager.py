@@ -3,13 +3,16 @@
 # pyright: reportAny=false
 # pyright: reportExplicitAny=false
 
+from dataclasses import dataclass
 import json
+import re
 import subprocess
 from subprocess import CompletedProcess
 import sys
 import threading
+from time import sleep
 import traceback
-from typing import Any, TypedDict
+from typing import Any, Callable, NamedTuple, TypedDict
 
 FieldDict = TypedDict(
     "FieldDict",
@@ -38,6 +41,9 @@ def niri_cmd(*command: str) -> CompletedProcess[str]:
         text=True,
     )
 
+def cmd(*command: str) -> CompletedProcess[bytes]:
+    return subprocess.run(command)
+
 
 def handle_overview(_event: dict[str, Any]) -> None:
     return
@@ -46,6 +52,14 @@ def handle_overview(_event: dict[str, Any]) -> None:
     #     shell=True,
     # )
 
+def float_window(event: dict[str, Any]) -> None:
+    window_id = event["window"]["id"]
+    _ = niri_action("move-window-to-floating", "--id", str(window_id))
+
+def resize_window(event: dict[str, Any], x: int, y: int) -> None:
+    window_id = str(event["window"]["id"])
+    _ = niri_action("set-window-width", "--id", window_id, str(x))
+    _ = niri_action("set-window-height", "--id", window_id, str(y))
 
 def send_window_to_corner(event: dict[str, Any]) -> None:
     # Do some math on size and current output to move to corner
@@ -78,6 +92,7 @@ def send_window_to_corner(event: dict[str, Any]) -> None:
     pass
 
 
+
 def update_workspaces(event: dict[str, Any]) -> None:
     # Update the workspaces
     fields["workspaces"] = {ws["id"]: ws for ws in event["workspaces"]}
@@ -91,27 +106,61 @@ def update_workspaces(event: dict[str, Any]) -> None:
     except json.JSONDecodeError:
         print("ERROR: failed to update outputs.")
 
+class Rule():
+    app_id: str | re.Pattern | None
+    app_title: str | re.Pattern | None
+    operations: list[tuple[Any, ...]]
 
-APP_IDS_SEND_TO_CORNER = [
-    "OneDriveGUI",
-    "Mullvad VPN",
-    "org.gnome.gitlab.cheywood.Buffer",
-    "bitwarden",
+    def __init__(
+        self,
+        *operations: Callable[[dict[str, Any]]] | tuple[Any, ...],
+        app_id: str | re.Pattern | None = None,
+        app_title: str | re.Pattern | None = None,
+    ) -> None:
+        self.app_id = app_id
+        self.app_title = app_title
+        self.operations = [op if isinstance(op, tuple) else (op,) for op in operations]
+
+    def match(self, event: dict[str, Any]) -> bool:
+        window_id = event["window"]["app_id"]
+        window_title = event["window"]["title"]
+        if isinstance(self.app_id, re.Pattern):
+            if re.search(self.app_id, window_id):
+                return True
+        elif self.app_id == window_id:
+            return True
+
+        if isinstance(self.app_title, re.Pattern):
+            if re.search(self.app_title, window_title):
+                return True
+        elif self.app_title == window_title:
+            return True
+
+        return False
+
+    def apply(self, event: dict[str, Any]) -> None:
+        if not self.match(event):
+            return
+        for opfunc, *args in self.operations:
+            opfunc(event, *args)
+
+RULES: list[Rule] = [
+    Rule(send_window_to_corner, app_id="OneDriveGUI"),
+    Rule(send_window_to_corner, app_id="Mullvad VPN"),
+    Rule(send_window_to_corner, ("resize", 20, 20), app_id="org.gnome.gitlab.cheywood.Buffer"),
+    Rule(send_window_to_corner, app_id="bitwarden"),
+    Rule(send_window_to_corner, app_title="Noctalia Update Script"),
+    Rule(float_window, (resize_window, 500, 800), app_title=re.compile(r"Extension:.*Bitwarden.*")),
 ]
-APP_TITLES_SEND_TO_CORNER = [
-    "Noctalia Update Script",
-]
+
 
 
 def handle_event(event: dict[str, Any]) -> None:
     if "OverviewOpenedOrClosed" in event:
         handle_overview(event["OverviewOpenedOrClosed"])
-    elif "WindowOpenedOrChanged" in event and (
-        event["WindowOpenedOrChanged"]["window"]["app_id"] in APP_IDS_SEND_TO_CORNER
-        or event["WindowOpenedOrChanged"]["window"]["title"]
-        in APP_TITLES_SEND_TO_CORNER
-    ):
-        send_window_to_corner(event["WindowOpenedOrChanged"])
+    elif "WindowOpenedOrChanged" in event:
+        for rule in RULES:
+            rule.apply(event["WindowOpenedOrChanged"])
     elif "WorkspacesChanged" in event:
         update_workspaces(event["WorkspacesChanged"])
 
