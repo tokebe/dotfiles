@@ -26,7 +26,7 @@ mouse-scroll-multiplier = 0.5
 scrollback-limit = 100000
 link-previews = true
 quit-after-last-window-closed = true
-# confirm-close-surface = false
+confirm-close-surface = false
 
 ### Quick Terminal
 quick-terminal-screen = mouse
