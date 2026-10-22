@@ -10,22 +10,7 @@ return {
     { 'SmiteshP/nvim-navic', dependencies = { 'neovim/nvim-lspconfig' } },
     -- LSP autokill for performance (disabled because it's too slow to start back up)
     -- { 'Zeioth/garbage-day.nvim', dependencies = { 'neovim/nvim-lspconfig' } },
-    -- Inlay hints
-    {
-      'MysticalDevil/inlay-hints.nvim',
-      event = 'LspAttach',
-      dependencies = { 'neovim/nvim-lspconfig' },
-      config = function()
-        require('inlay-hints').setup()
-      end,
-      keys = {
-        {
-          '<Leader>it',
-          '<CMD>InlayHintsToggle<CR>',
-          desc = 'Toggle inlay hints.',
-        },
-      },
-    },
+    -- Inlay hints (insert-at-cursor helpers; display handled natively in config below)
     {
       'AbysmalBiscuit/insert-inlay-hints.nvim',
       keys = {
@@ -91,20 +76,36 @@ return {
           return
         end
 
+        -- Enable inlay hints
+        if client:supports_method('textDocument/inlayHint') then
+          vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+        end
+
         -- local opts = { buffer = event.buf }
         -- TODO: set keymaps here
       end,
     })
 
+    -- Toggle inlay hint display
+    vim.keymap.set('n', '<Leader>it', function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    end, { desc = 'Toggle inlay hints.' })
+
     -- Inlay hints
-    require('inlay-hints').setup()
     require('insert-inlay-hints').setup({
       disabled_filetypes = require('config.filetype_excludes'),
     })
 
-    -- Remove borders on hover/signatureHelp
-    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'solid' })
-    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'solid' })
+    -- Solid border on hover/signatureHelp floats
+    local hover = vim.lsp.buf.hover
+    vim.lsp.buf.hover = function(opts)
+      return hover(vim.tbl_extend('keep', opts or {}, { border = 'solid' }))
+    end
+
+    local signature_help = vim.lsp.buf.signature_help
+    vim.lsp.buf.signature_help = function(opts)
+      return signature_help(vim.tbl_extend('keep', opts or {}, { border = 'solid' }))
+    end
 
     -- Load language-specific configuration
     require('config.language-specific')

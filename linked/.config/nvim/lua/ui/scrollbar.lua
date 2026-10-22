@@ -11,26 +11,26 @@ return {
   -- },
   {
     'petertriho/nvim-scrollbar',
+    branch = 'refactor/v2',
     dependencies = {
       'kevinhwang91/nvim-hlslens',
       'lewis6991/gitsigns.nvim',
     },
     config = function()
       require('scrollbar').setup({
-        show_in_active_only = true,
-        excluded_filetypes = require('config.filetype_excludes'),
-        hide_if_all_visible = true,
-        handlers = {
-          cursor = true,
-          diagnostic = true,
+        exclude = {
+          filetypes = require('config.filetype_excludes'),
+        },
+        scrollbar = {
+          visibility = 'active',
+          thumb = {
+            hide_if_all_visible = true,
+          },
+        },
+        providers = {
           gitsigns = true, -- Requires gitsigns
-          handle = true,
-          search = true,    -- Requires hlslens
         },
       })
-      require('scrollbar.handlers.diagnostic').setup()
-      require('scrollbar.handlers.gitsigns').setup()
-      require('scrollbar.handlers.search').setup()
     end,
   },
   -- Not very friendly with wrap on
