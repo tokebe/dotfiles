@@ -35,7 +35,7 @@ return {
     'kevinhwang91/nvim-bqf',
     ft = 'qf',
     dependencies = {
-      { 'junegunn/fzf', build = './install' },
+      { 'junegunn/fzf', build = './install --bin' },
     },
     opts = {
       auto_enable = true,

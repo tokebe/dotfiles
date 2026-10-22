@@ -1,0 +1,17 @@
+# This one can be messy because a lot of auto-integration gets slapped in here
+
+# FZF Integration
+command -v fzf >/dev/null && source <(fzf --bash)
+fzf_inline_opts='--height="~50%" --prompt="▎󰥨 "
+--info="inline-right" --no-separator
+--preview-window="border-sharp"
+--gutter="▎"
+--color="gutter:8"
+--scrollbar="▐"
+--preview="ctpv {}"'
+export FZF_ALT_C_OPTS="$fzf_inline_opts"
+export FZF_CTRL_T_OPTS="$fzf_inline_opts"
+export FZF_CTRL_R_OPTS='--height="~50%" --prompt="▎ "
+--info="inline-right" --no-separator
+--gutter="▎" --color="gutter:8"
+--scrollbar="▐" --layout="reverse"'

@@ -110,6 +110,3 @@ integration_config="${ZDOTDIR:-$HOME}/.zsh_config/integration"
 
 # Prompt at bottom from start
 bottom-prompt
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
