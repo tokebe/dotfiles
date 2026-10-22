@@ -52,7 +52,7 @@ check = "scripts/pkg_adapters/gearlever-check"
 # go install @latest always fetches the newest, so there's nothing to upgrade/check after.
 [go]
 detect = "command -v go"
-install = "go install {packages}"
+install = "scripts/pkg_adapters/go-install {packages}"
 upgrade = "true"
 check = "echo 0"
 

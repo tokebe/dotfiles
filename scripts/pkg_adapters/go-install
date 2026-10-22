@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Install go tools (go install takes one module per call); warn past failures, batch best-effort.
+set -uo pipefail
+
+status=0
+for pkg in "$@"; do
+  go install "$pkg" || { echo "go: failed to install $pkg" >&2; status=1; }
+done
+
+# Single package surfaces its failure; batch is best-effort and always exits 0.
+[ "$#" -eq 1 ] && exit "$status"
+exit 0
