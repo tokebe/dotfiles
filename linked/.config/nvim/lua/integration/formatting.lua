@@ -26,7 +26,7 @@ return {
           -- never competes with the dedicated formatters on other filetypes.
           prettierd = function()
             null_ls.register(null_ls.builtins.formatting.prettierd.with({
-              filetypes = { 'markdown' },
+              filetypes = { 'markdown', 'css' },
             }))
           end,
         },
