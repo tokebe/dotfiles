@@ -217,4 +217,5 @@ binds {
     Mod+Shift+Q repeat=false hotkey-overlay-title="Kill window by PID" { spawn "sh" "-c" "kill -9 $(niri msg focused-window|grep PID|awk '{print $2}')"; }
 
     Mod+Return { toggle-overview; }
+    Mod+Shift+Tab { toggle-overview; }
 }
