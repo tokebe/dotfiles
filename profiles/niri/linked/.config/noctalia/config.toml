@@ -46,7 +46,6 @@ visible = true
 background_opacity = 0.99999997764825821
 cross_axis_padding = 6
 magnification = false
-monitors = ["DP-1"]
 reserve_space = false
 show_dots = true
 show_instance_count = false
