@@ -64,7 +64,10 @@ layout {
         inactive-gradient from="#505050" to="#a1a1a1" angle=45 in="oklch longer hue" relative-to="workspace-view"
     }
 
-    struts {}
+    struts {
+        left 8
+        right 8
+    }
 
     insert-hint {
         gradient from="#ffbb66" to="#ffc880" angle=45 in="oklch longer hue" relative-to="workspace-view"
