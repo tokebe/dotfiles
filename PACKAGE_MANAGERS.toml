@@ -23,7 +23,7 @@ list_installed = "uv tool list | awk '/^[^ -]/{print $1}'"
 [cargo]
 detect = "command -v cargo"
 install = "scripts/pkg_adapters/cargo-install {packages}"
-upgrade = "cargo install-update -a"
+upgrade = "rustup update && cargo install-update -a"
 check = "scripts/pkg_adapters/cargo-check"
 list_installed = "cargo install --list | grep -E '^\\S' | sed 's/ .*//'"
 
