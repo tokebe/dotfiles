@@ -133,7 +133,7 @@ screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
 
 // spawn-at-startup "/home/alter/.config/swww/cycle"
 // spawn-at-startup "/home/alter/Applications/onedrivegui.appimage"
-spawn-at-startup "/home/alter/Applications/filen.appimage"
+// spawn-at-startup "/home/alter/Applications/filen.appimage"
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
 // spawn-at-startup "dms" "run"
 // spawn-at-startup "bash" "-c" "qs -c ~/.config/quickshell/noctalia-shell"
@@ -148,4 +148,5 @@ spawn-at-startup "niri-autoselect-portal"
 // config-notification {
 //     disable-failed
 // }
+
 
